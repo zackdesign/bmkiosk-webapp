@@ -1,0 +1,72 @@
+<style>
+.orange_button
+{
+	display: block;
+	width: 100px;
+	height: 17px;
+	background-image: url(/images/more_details.gif);
+	text-align: center;
+	text-decoration: none;
+	/* color: #ffffff; */
+	margin: 4px 0px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+a.orange_button
+{
+	color: #ffffff;
+}
+
+a.orange_button:visited
+{
+	color: #ffffff;
+}
+</style>
+
+<div id="results">
+<%
+  unless ((@phones == nil) or (@phones.empty?))
+    for phone in @phones
+%>
+	<div class="phone_sel"><input name="compare[]" type="checkbox" value="<%= phone.id %>" /></div>
+	<div class="phone_img"><%= show_thumbnail_if_available(phone) %></div>
+	<div class="phone_info">
+		<div><span class="phone_name"><%= h phone.name %></span> - Outright cost <%= number_to_currency phone.outright %></div>
+		<div class="phone_features">
+<%
+      unless (phone.features.empty?)
+%>
+			<ul>
+<%
+        for feature in phone.features
+%>
+				<li><%= show_feature_thumbnail_if_available(feature) %></li>
+<%
+		end
+%>
+			</ul>
+<%
+      else
+%>
+<%=     content_tag(:span, "No Features") %>
+<%
+	  end
+%>
+		</div>
+		<p><%= phone.description %></p>
+		<!-- <%= link_to(image_tag("more_details.gif", { :alt => "More Details", :border => 0 } ), url_for({ :action => 'show', :id => phone.id })) %> -->
+		<%= link_to('More Details', url_for({ :action => 'show', :id => phone.id }), { :class => 'orange_button' }) %>
+	</div>
+	<hr style="clear: both;" />
+<%
+    end
+  else
+%>
+	<div>No phones matching the selection criteria were found.</div>
+<%
+  end
+%>
+</div>
+<!-- <input name="prev_start" type="hidden" value="" />
+<input name="next_start" type="hidden" value="" /> -->

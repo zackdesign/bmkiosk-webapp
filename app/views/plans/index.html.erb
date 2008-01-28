@@ -1,0 +1,70 @@
+<style>
+*
+{
+	padding: 0px;
+	margin: 0px;
+}
+
+form
+{
+	margin: 0px auto;
+	width: 400px;
+	padding: 8px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+
+form input
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+form div
+{
+	width: 100%;
+	padding-top: 6px;
+	clear: both;
+	text-align: right;
+}
+
+/*form div span.label*/
+form div label
+{
+	width: 112px;
+	float: left;
+	text-align: right;
+	margin-right: 5px;
+}
+
+form div span
+{
+	width: 262px;
+	float: right;
+	text-align: left;
+	margin-left: 5px;
+}
+
+fieldset#fs_brand
+{
+	width: 145px;
+	float: left;
+}
+
+fieldset#fs_features
+{
+	width: 145px;
+	float: left;
+}
+
+fieldset#fs_network
+{
+	width: 100px;
+	float: left;
+}
+</style>
+
+<h2>Select Plan Features</h2>
+<hr />
+<%= render :partial => 'plan_search_form.html.erb' %>
