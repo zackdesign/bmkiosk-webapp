@@ -1,0 +1,169 @@
+<style>
+*
+{
+	padding: 0px;
+	margin: 0px;
+}
+
+form
+{
+	margin: 0px auto;
+	width: 400px;
+	padding: 8px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+
+form input
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+form div
+{
+	width: 100%;
+	padding-top: 6px;
+	clear: both;
+	text-align: right;
+}
+
+/*form div span.label*/
+form div label
+{
+	width: 112px;
+	float: left;
+	text-align: right;
+	margin-right: 5px;
+}
+
+form div span
+{
+	width: 262px;
+	float: right;
+	text-align: left;
+	margin-left: 5px;
+}
+
+div.phone_features ul li
+{
+	display: inline;
+}
+
+.phone_sel
+{
+	float: left;
+	width: 22px;
+	/* background-color: #FF0000; */
+	vertical-align: middle;
+}
+
+/* .phone_sel input
+{
+	height: 100%;
+} */
+
+.phone_img
+{
+	float: left;
+	width: 80px;
+	text-align: center;
+	/* background-color: #00FF00; */
+}
+
+.phone_info
+{
+	float: right;
+	width: 594px;
+	/* background-color: #0000FF; */
+}
+
+.phone_name
+{
+	font-weight: bold;
+}
+
+.blue_button
+{
+	display: block;
+	width: 140px;
+	height: 17px;
+	background-image: url(/images/compare_selected.gif);
+	text-align: center;
+	text-decoration: none;
+	/* color: #ffffff; */
+	margin: 4px 0px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+a.blue_button
+{
+	color: #ffffff;
+}
+
+a.blue_button:visited
+{
+	color: #ffffff;
+}
+
+.right_buttons
+{
+	float: right;
+	width: 140px;
+	height: 17px;
+	margin-left: 4px;
+}
+
+.image
+{
+	float: left;
+	width: 124px;
+	/* background-color: #990000; */
+	text-align: center;
+}
+
+.text
+{
+	float: right;
+	width: 574px;
+	/* background-color: #336600; */
+}
+
+.phone_features
+{
+	margin-top: 10px;
+}
+</style>
+
+<h2><%= h @phone.name %></h2>
+<hr />
+<div class="image"><%= show_picture_if_available(@phone) %></div>
+<div class="text">
+	<!-- <div>Outright cost <%#= number_to_currency @phone.outright %></div> -->
+	<p><%= @phone.description %></p>
+	<div class="phone_features">
+<%
+  unless (@phone.features.empty?)
+%>
+		<ul>
+<%
+    for feature in @phone.features
+%>
+			<li><%= show_feature_thumbnail_if_available(feature) %></li>
+<%
+    end
+%>
+		</ul>
+<%
+  else
+%>
+	<%= content_tag(:span, "No Features") %>
+<%
+  end
+%>
+	</div>
+</div>
+<div style="clear: both;"></div>
+<hr />

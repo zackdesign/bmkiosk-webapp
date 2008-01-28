@@ -1,0 +1,220 @@
+<style>
+*
+{
+	padding: 0px;
+	margin: 0px;
+}
+
+form
+{
+	/* margin: 0px auto;
+	width: 400px;
+	padding: 8px; */
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000000;
+	/* background-color: #CC3333; */
+	/* margin: 0px;
+	padding: 0px;
+	width: 100%; */
+	margin: 0px auto;
+	width: 600px;
+}
+
+form input
+{
+	font-family: Arial, Helvetica, sans-serif;
+	/* font-size: 14px; */
+}
+
+form div
+{
+	width: 100%;
+	padding-top: 6px;
+	clear: both;
+	text-align: right;
+}
+
+/*form div span.label*/
+form div label
+{
+	/* width: 112px; */
+	width: 200px;
+	float: left;
+	/* text-align: right; */
+	text-align: left;
+	margin-right: 5px;
+}
+
+form div span
+{
+	/* width: 262px; */
+	width: 390px;
+	float: right;
+	text-align: left;
+	margin-left: 5px;
+}
+
+fieldset
+{
+	border: none;
+}
+
+legend
+{
+	color: #284374;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-indent: -4px;
+	/* background-color: #CC3333; */
+}
+
+div.phone_features ul li
+{
+	display: inline;
+}
+
+.phone_sel
+{
+	float: left;
+	width: 22px;
+	/* background-color: #FF0000; */
+	vertical-align: middle;
+}
+
+/* .phone_sel input
+{
+	height: 100%;
+} */
+
+.phone_img
+{
+	float: left;
+	width: 80px;
+	text-align: center;
+	/* background-color: #00FF00; */
+}
+
+.phone_info
+{
+	float: right;
+	width: 594px;
+	/* background-color: #0000FF; */
+}
+
+.phone_name
+{
+	font-weight: bold;
+}
+
+.orange_button
+{
+	display: block;
+	width: 100px;
+	height: 17px;
+	background-image: url(/images/more_details.gif);
+	text-align: center;
+	text-decoration: none;
+	/* color: #ffffff; */
+	margin: 4px 0px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+a.orange_button
+{
+	color: #ffffff;
+}
+
+a.orange_button:visited
+{
+	color: #ffffff;
+}
+</style>
+
+<form name="phone_search" action="/phones/list" method="post">
+	<fieldset>
+		<legend>Mobile Phone Attributes</legend>
+		<div>
+			<label for="brand">Handset brand</label>
+			<span>
+				<%= select_tag "brand", options_for_select(@phone_brands, @selected_brand) %>
+			</span>
+		</div>
+	</fieldset>
+
+	<hr />
+
+	<fieldset>
+		<legend>Handset Features</legend>
+<%
+  unless ((@features == nil) or (@features.empty?))
+    for feature in @features
+%>
+		<div>
+			<label><%= feature.name %></label>
+			<span><input name="feature[]" type="checkbox" value="<%= feature.id %>" /></span>
+		</div>
+<%
+    end
+  else
+%>
+		<div>No Features</div>
+<%
+  end
+%>
+	</fieldset>
+
+	<hr />
+
+	<fieldset>
+		<legend>Purchase Type</legend>
+		<div>
+			<label>Monthly plan <em>or</em> Outright purchase</label>
+			<span>
+				<input name="purchase_type" type="radio" value="monthly" checked="checked" />
+			</span>
+		</div>
+		<div>
+			<label>Pre-Paid only</label>
+			<span>
+				<input name="purchase_type" type="radio" value="prepaid" />
+			</span>
+		</div>
+	</fieldset>
+
+	<hr />
+
+	<fieldset>
+		<legend>Network</legend>
+<%
+  first = true
+  checked = 'checked="checked"'
+
+  unless ((@networks == nil) or (@networks.empty?))
+    for network in @networks
+%>
+		<div>
+			<label><%= network.first %></label>
+			<span>
+				<input name="network" type="radio" value="<%= network.last %>" <%= checked -%> />
+			</span>
+		</div>
+<%
+	  if (first)
+	    checked = ''
+		first = false
+	  end
+    end
+  else
+%>
+		<div>No Networks</div>
+<%
+  end
+%>
+	</fieldset>
+
+	<hr />
+
+	<div><%= link_to_function('Display Phones', "document.phone_search.submit()", { :class => "orange_button"} ) %></div>
+</form>

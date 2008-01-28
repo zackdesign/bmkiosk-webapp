@@ -1,0 +1,175 @@
+<style>
+*
+{
+	padding: 0px;
+	margin: 0px;
+}
+
+form
+{
+	margin: 0px auto;
+	width: 400px;
+	padding: 8px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+
+form input
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+form div
+{
+	width: 100%;
+	padding-top: 6px;
+	clear: both;
+	text-align: right;
+}
+
+/*form div span.label*/
+form div label
+{
+	width: 112px;
+	float: left;
+	text-align: right;
+	margin-right: 5px;
+}
+
+form div span
+{
+	width: 262px;
+	float: right;
+	text-align: left;
+	margin-left: 5px;
+}
+
+div.phone_features ul li
+{
+	display: inline;
+}
+
+.phone_sel
+{
+	float: left;
+	width: 22px;
+	/* background-color: #FF0000; */
+	vertical-align: middle;
+}
+
+/* .phone_sel input
+{
+	height: 100%;
+} */
+
+.phone_img
+{
+	float: left;
+	width: 80px;
+	text-align: center;
+	/* background-color: #00FF00; */
+}
+
+.phone_info
+{
+	float: right;
+	width: 594px;
+	/* background-color: #0000FF; */
+}
+
+.phone_name
+{
+	font-weight: bold;
+}
+
+.col
+{
+	width: 33%;
+	float: left;
+	/* background-color: #3366CC; */
+}
+
+div.col .image
+{
+	/* float: left; */
+	width: 124px;
+	/* background-color: #990000; */
+	text-align: center;
+}
+
+div.col .text
+{
+	/* float: left; */
+	width: 220px;
+	/* background-color: #336600; */
+}
+
+.clear
+{
+	clear: both;
+}
+
+.orange_button
+{
+	display: block;
+	width: 100px;
+	height: 17px;
+	background-image: url(/images/more_details.gif);
+	text-align: center;
+	text-decoration: none;
+	/* color: #ffffff; */
+	margin: 4px 0px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+a.orange_button
+{
+	color: #ffffff;
+}
+
+a.orange_button:visited
+{
+	color: #ffffff;
+}
+</style>
+
+<h2>Mobile Accessories</h2>
+Show accessories for: <%= select_tag "brand", options_for_select(@phone_brands, @selected_brand) %>
+<hr />
+<div id="results">
+<%
+  count = 0
+  unless ((@accessories == nil) or (@accessories.empty?))
+    for accessory in @accessories
+%>
+	<div class="col">
+		<div class="image"><%= show_offer_picture_if_available(accessory) %></div>
+		<div class="text">
+			<div><%= link_to(h(accessory.name), url_for({ :action => 'show', :id => accessory.id }), { :class => 'phone_name' }) %></div>
+			<div><%= number_to_currency accessory.price %></div>
+			<!-- <p><%#= accessory.description %></p> -->
+			<!-- <%#= link_to(image_tag("more_details.gif", { :alt => "More Details", :border => 0 }), url_for({ :action => 'show', :id => phone.id })) %> -->
+			<!-- <%#= link_to('More Details', url_for({ :action => 'show', :id => accessory.id }), { :class => 'orange_button' }) %> -->
+			<%= link_to('Add to Cart', url_for({ :action => 'cartadd', :id => accessory.id }), { :class => 'orange_button' }) %>
+		</div>
+		<div class="clear"></div>
+	</div>
+<%
+      count = count + 1
+      if (count.modulo(3) == 0)
+%>
+	<div class="clear"></div>
+<%
+      end
+    end
+  else
+%>
+	<div>There are currently no Mobile Accessories.</div>
+<%
+  end
+%>
+	<div class="clear"></div>
+</div>

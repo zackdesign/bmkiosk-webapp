@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :accessories
+
+  map.resources :plans
+
+  map.resources :phones
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -26,8 +32,13 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
+  map.connect '', :controller => "phones"
 
   # See how all your routes lay out with "rake routes"
+  map.connect 'phones/list/offers', :controller => 'phones', :action => 'offers', :id => '1'
+  map.connect 'phones/list/prepaid', :controller => 'phones', :action => 'prepaid', :id => '1'
+  map.connect 'phones/list/nextg', :controller => 'phones', :action => 'nextg', :id => '1'
+  map.connect 'phones/list/pda', :controller => 'phones', :action => 'pda', :id => '1'
 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'

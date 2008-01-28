@@ -1,0 +1,117 @@
+body { background-color: #fff; color: #333; }
+
+body, p, ol, /*ul,*/ td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+/*  line-height: 18px;*/
+}
+
+ul
+{
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   12px;
+}
+
+h1
+{
+	font-size: 1.3em;
+	color: #FFFFFF;
+	font-weight: normal;
+	/*background-color: #FF6600;*/
+	margin: 4px 20px;
+}
+
+h2
+{
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #0066FF;
+}
+
+h3
+{
+	font-size: 1.1em;
+	font-weight: normal;
+	margin-bottom: 6px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; text-decoration: none; }
+a:visited { /*color: #666;*/ color: #000000; }
+a:hover { /*color: #fff; background-color:#000;*/ color: #000000; }
+
+hr
+{
+	padding: 0px;
+	margin-top: 1px;
+	margin-bottom: 2px;
+	border-bottom: 1px solid #0000ff;
+	height: 0px;
+}
+
+sup
+{
+	font-size: 0.7em;
+}
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+div.uploadStatus {
+  margin: 5px;
+}
+
+div.progressBar {
+  margin: 5px;
+}
+
+div.progressBar div.border {
+  background-color: #fff;
+  border: 1px solid gray;
+  width: 100%;
+}
+
+div.progressBar div.background {
+  background-color: #333;
+  height: 18px;
+  width: 0%;
+}
+

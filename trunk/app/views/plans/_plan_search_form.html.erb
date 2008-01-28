@@ -1,0 +1,301 @@
+<style>
+*
+{
+	padding: 0px;
+	margin: 0px;
+}
+
+form
+{
+	/* margin: 0px auto;
+	width: 400px;
+	padding: 8px; */
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000000;
+	/* background-color: #CC3333; */
+	/* margin: 0px;
+	padding: 0px;
+	width: 100%; */
+	margin: 0px auto;
+	width: 600px;
+}
+
+form input
+{
+	font-family: Arial, Helvetica, sans-serif;
+	/* font-size: 14px; */
+}
+
+form div
+{
+	width: 100%;
+	padding-top: 6px;
+	clear: both;
+	text-align: right;
+}
+
+/*form div span.label*/
+form div label
+{
+	/* width: 112px; */
+	width: 200px;
+	float: left;
+	/* text-align: right; */
+	text-align: left;
+	margin-right: 5px;
+}
+
+form div span
+{
+	/* width: 262px; */
+	width: 390px;
+	float: right;
+	text-align: left;
+	margin-left: 5px;
+}
+
+fieldset
+{
+	border: none;
+}
+
+legend
+{
+	color: #284374;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-indent: -4px;
+	/* background-color: #CC3333; */
+}
+
+div.phone_features ul li
+{
+	display: inline;
+}
+
+.phone_sel
+{
+	float: left;
+	width: 22px;
+	/* background-color: #FF0000; */
+	vertical-align: middle;
+}
+
+/* .phone_sel input
+{
+	height: 100%;
+} */
+
+.phone_img
+{
+	float: left;
+	width: 80px;
+	text-align: center;
+	/* background-color: #00FF00; */
+}
+
+.phone_info
+{
+	float: right;
+	width: 594px;
+	/* background-color: #0000FF; */
+}
+
+.phone_name
+{
+	font-weight: bold;
+}
+
+.orange_button
+{
+	display: block;
+	width: 100px;
+	height: 17px;
+	background-image: url(/images/more_details.gif);
+	text-align: center;
+	text-decoration: none;
+	/* color: #ffffff; */
+	margin: 4px 0px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+a.orange_button
+{
+	color: #ffffff;
+}
+
+a.orange_button:visited
+{
+	color: #ffffff;
+}
+</style>
+
+<form name="plan_search" action="/plans/list" method="post">
+	<fieldset>
+		<legend>Do you want a handset with your plan ?</legend>
+		<div>
+			<label>Yes</label>
+			<span>
+				<input name="handset_required" type="radio" value="monthly" checked="checked" />
+			</span>
+		</div>
+		<div>
+			<label>No</label>
+			<span>
+				<input name="handset_required" type="radio" value="prepaid" />
+			</span>
+		</div>
+	</fieldset>
+
+	<hr />
+
+	<fieldset>
+		<legend>Is this a Business or Personal purchase ?</legend>
+		<div>
+			<label>Business</label>
+			<span>
+				<input name="purchase_type" type="radio" value="business" checked="checked" />
+			</span>
+		</div>
+		<div>
+			<label>Personal</label>
+			<span>
+				<input name="purchase_type" type="radio" value="personal" />
+			</span>
+		</div>
+	</fieldset>
+
+	<hr />
+
+	<fieldset>
+		<legend>Is this a new service or an upgrade ?</legend>
+		<div>
+			<label>New Service</label>
+			<span>
+				<input name="service_type" type="radio" value="monthly" checked="checked" />
+			</span>
+		</div>
+		<div>
+			<label>Upgrade</label>
+			<span>
+				<input name="service_type" type="radio" value="prepaid" />
+			</span>
+		</div>
+		<div>
+			<label>Your existing mobile number</label>
+			<span>
+				<input name="existing" type="text" value="" disabled="disabled" />
+			</span>
+		</div>
+	</fieldset>
+
+	<hr />
+
+	<fieldset>
+		<legend>Which Telstra Network would you like to use ?</legend>
+<%
+  first = true
+  checked = 'checked="checked"'
+
+  unless ((@networks == nil) or (@networks.empty?))
+    for network in @networks
+%>
+		<div>
+			<label><%= network.first %></label>
+			<span>
+				<input name="network" type="radio" value="<%= network.last %>" <%= checked -%> />
+			</span>
+		</div>
+<%
+	  if (first)
+	    checked = ''
+		first = false
+	  end
+    end
+  else
+%>
+		<div>No Networks</div>
+<%
+  end
+%>
+	</fieldset>
+
+	<hr />
+
+	<fieldset>
+		<legend>What plan suits your needs ?</legend>
+		<!-- <div>
+			<label for="brand">Handset brand</label>
+			<span>
+				<%#= select_tag "brand", options_for_select(@phone_brands, @selected_brand) %>
+			</span>
+		</div> -->
+		<div>
+			<label for="brand">Plan Type</label>
+			<span>
+				<%#= select_tag "brand", options_for_select(@phone_brands, @selected_brand) %>
+				<select name="plan_type" size="1">
+					<option value="">Select a plan type</option>
+					<option value="cap">Cap Plan</option>
+					<option value="cap">Phone Plan</option>
+					<option value="cap">Member Plan</option>
+				</select>
+			</span>
+		</div>
+		<div>
+			<label for="brand">Sub Plan Type</label>
+			<span>
+				<%#= select_tag "brand", options_for_select(@phone_brands, @selected_brand) %>
+				<select name="plan_type" size="1">
+					<option value="">Select a sub plan type</option>
+					<option value="cap">Mobile Plan</option>
+					<option value="cap">Get Connected Plan</option>
+				</select>
+			</span>
+		</div>
+	</fieldset>
+
+	<hr />
+
+	<fieldset>
+		<legend>Over what period would you like to repay the cost of your handset ?</legend>
+		<div>
+			<label>Repayment Period</label>
+			<span>
+				<select name="repayment_period" size="1">
+					<option value="">Select a repayment period</option>
+					<option value="cap">12 months</option>
+					<option value="cap">24 months</option>
+				</select>
+			</span>
+		</div>
+	</fieldset>
+
+	<hr />
+
+	<fieldset>
+		<legend>What is your average spend each month ?</legend>
+		<div>
+			<label>Average Monthly Spend</label>
+			<span>
+				<select name="repayment_period" size="1">
+					<option value="">Select a monthly spend</option>
+					<option value="cap">$10</option>
+					<option value="cap">$20</option>
+					<option value="cap">$30</option>
+					<option value="cap">$40</option>
+					<option value="cap">$60</option>
+					<option value="cap">$80</option>
+					<option value="cap">$100</option>
+					<option value="cap">$150</option>
+				</select>
+			</span>
+		</div>
+	</fieldset>
+
+	<hr />
+
+	<div><%= link_to_function('Display Plans', "document.plan_search.submit()", { :class => "orange_button"} ) %></div>
+</form>
