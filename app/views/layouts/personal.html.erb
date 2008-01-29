@@ -5,412 +5,19 @@
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 	<title>Personal - <%= controller.action_name %></title>
-	<%= stylesheet_link_tag 'scaffold' %>
-
-<style>
-body
-{
-	background-color: #b2b3b5;
-	background-image: url(/images/back.gif);
-	background-repeat: repeat-x;
-}
-
-ul
-{
-/* 	list-style-type: none; */
-}
-
-/* ul
-{
-	list-style-type: none;
- 	margin: 1.25em;
-	font-size: 0.85em;
-}
-
-li div
-{
-	width: 97%;
-	height: 2em;
-	border-bottom: 1px dotted #000000;
-}
-
-li a:link
-{
-	text-decoration: none;
-}
-
-li a:hover
-{
-	text-decoration: underline;
-}*/
-
-img
-{
-	border: none;
-}
-
-#page
-{
-	position: relative;
-	left: 0px;
-	top: 0px;
-	width: 900px;
-	margin: 0px auto;
-/* 	background-color: #b2b3b5;
-	background-image: url(/images/back.gif);
-	background-repeat: repeat-x;
-	border: 1px solid #000000; */
-}
-
-#header
-{
-	height: 144px;
-}
-
-#logo
-{
-	width: 125px;
-	height: 78px;
-}
-
-#bar
-{
-	/* width: 894px;
-	margin: 0px auto; */
-	width: 100%;
-}
-
-#bar_left
-{
-	width: 8px;
-	height: 30px;
-	float: left;
-	background-image: url(/images/pers_left.gif);
-}
-
-#bar_right
-{
-	width: 8px;
-	height: 30px;
-	float: right;
-	background-image: url(/images/pers_right.gif);
-}
-
-#bar_mid
-{
-	height: 30px;
-	background-image: url(/images/personal.gif);
-	background-repeat: repeat-x;
-}
-
-#nav
-{
-	/* width: 894px;
-	margin: 0px auto; */
-	width: 100%;
-}
-
-#nav_left
-{
-	width: 8px;
-	height: 32px;
-	float: left;
-	background-image: url(/images/nav_left.gif);
-}
-
-#nav_right
-{
-	width: 8px;
-	height: 32px;
-	float: right;
-	background-image: url(/images/nav_right.gif);
-}
-
-#nav_mid
-{
-	height: 32px;
-	background-image: url(/images/nav.gif);
-	background-repeat: repeat-x;
-}
-
-#nav_mid div
-{
-	color: #FFFFFF;
-	/* background-color: #003333; */
-	margin-top: 9px;
-	margin-left: 20px;
-	font-size: 0.85em;
-	font-weight: bold;
-}
-
-#nav_mid a
-{
-	color: #FFFFFF;
-}
-
-#sections
-{
-	position: absolute;
-	right: 0px;
-	top: 0px;
-	/* width: 650px; */
-	/* background-color: #00FF00;
-	background-image: url(/images/menu_mid.gif); */
-	background-image: url(/images/sections_mid.gif);
-	background-repeat: repeat-x;
-	height: 25px;
-}
-
-#sections ul
-{
-	float: left;
-	list-style: none;
-}
-
-#sections ul li
-{
-	float: left;
-	/* height: 1em;
-	background-color: #996600; */
-}
-
-#sections ul li input
-{
-	vertical-align: middle;
-	 margin-left: 9px;
-	/*margin: 0px 0px 0px 9px; */
-	font-size: 0.85em;
-	color: #284374;
-}
-
-#sections ul li label
-{
-	vertical-align: middle;
-	font-size: 0.85em;
-	color: #284374;
-}
-
-#sections ul li a
-{
-	font-size: 0.85em;
-	font-weight: bold;
-	color: #284374;
-	text-decoration: none;
-}
-
-/* #sections ul li:after
-{
-	content: "<img src='/images/sections_break.gif' />";
-} */
-
-#sect_left
-{
-	/* display: inline; */
-	float: left;
-	width: 12px;
-	height: 25px;
-	background-image: url(/images/sections_left.gif);
-}
-
-.sect_link
-{
-	float: left;
-	padding: 5px 9px 0px 9px;
-}
-
-.sect_break
-{
-	float: left;
-	width: 2px;
-	height: 25px;
-	background-image: url(/images/sections_break.gif);
-}
-
-#sect_right
-{
-	float: left;
-	width: 8px;
-	height: 25px;
-	background-image: url(/images/sections_right.gif);
-}
-
-#left
-{
-	width: 163px;
-	float: left;
-	/* padding: 0px 3px; */
-	/* padding: 0px;
-	padding-right: 2px;
-	margin-bottom: 4px; */
-	padding: 0px;
-	margin: 0px 2px 4px 0px;
-	/* background-color: #FF0000; */
-	background-image: url(/images/left.gif);
-	background-repeat: repeat-y;
-}
-
-#left_top
-{
-	height: 8px;
- 	background-image: url(/images/left_top.gif);
-}
-
-#left_inner
-{
-/*	height: 100%;
-	padding: 5px;*/
-	margin: 3px 1.2em;
-	/* background-color: #009933; */
-}
-
-#left_inner ul
-{
-/* 	padding: 5px;
-	background-color: #6600FF; */
-	list-style-type: none;
-}
-
-#left_inner ul li
-{
-	padding-bottom: 5px;
-	margin-bottom: 5px;
-	border-bottom: 1px dotted #000000;
-}
-
-#left_bottom
-{
-	height: 8px;
- 	background-image: url(/images/left_bottom.gif);
-}
-
-#main
-{
-	width: 728px;
-	float: right;
-	/* padding: 0px 3px; */
-	padding: 0px;
-	/* padding-left: 2px;
-	background-color: #00FF00; */
-	background-image: url(/images/main2.gif);
-	background-repeat: repeat-y;
-	margin-bottom: 4px;
-}
-
-#main_top
-{
-	/* background-color:#006600; */
-	height: 8px;
- 	background-image: url(/images/main_top2.gif);
-}
-
-#main_inner
-{
-	margin: 3px 1.2em;
-}
-
-#main_bottom
-{
-	/* background-color:#990000; */
-	height: 8px;
- 	background-image: url(/images/main_bottom2.gif);
-}
-
-#footer
-{
-	height: 42px;
-	background-color: #7f8386;
-	clear: both;
-	text-align: center;
-	padding: 0px 0px;
-}
-
-#footer div
-{
-	color: #FFFFFF;
-	/* background-color: #003333; */
-	margin-top: 14px;
-	font-size: 0.85em;
-}
-
-#footer a
-{
-	color: #FFFFFF;
-	/* background-color: #003333; */
-}
-
-.inner
-{
-/*	height: 100%;
-	padding: 5px;*/
-	margin: 3px 1.2em;
-	/* background-color: #009933; */
-}
-
-#left .inner
-{
- 	/* background-image: url(/images/left.gif);
-	background-repeat: repeat-y; */
-/*	position: relative;
- 	left: 0px;
-	top: 0px; */
-}
-
-#left .inner ul
-{
-/* 	padding: 5px;
-	background-color: #6600FF; */
-	list-style-type: none;
-}
-
-/*
-#left .inner ul li
-{
-//	text-indent: -1em;
-	list-style-type: none;
-	margin-left: -2em;
-	margin-right: 15px;
-// 	background-color: #33FFCC;
-	padding-bottom: 5px;
-	padding-top: 5px;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	font-size: 0.8em;
-	border-bottom: 1px dotted #000000;
-}*/
-
-#left .inner ul li
-{
-	padding-bottom: 5px;
-	margin-bottom: 5px;
-	border-bottom: 1px dotted #000000;
-}
-</style>
+	  <%= stylesheet_link_tag "personal" , :media => "all" %>
 
 </head>
 <body>
 
 <div id="page">
-	<div id="header">
-		<div id="logo">
-			<a href="/" title="Home"><img src="/images/logo.jpg" alt="Telstra Logo" /></a>
-		</div>
 
-		<div id="bar">
-			<div id="bar_left"></div>
-			<div id="bar_right"></div>
-			<div id="bar_mid"><h1>Personal</h1></div>
-		</div>
 
-		<div id="nav">
-			<div id="nav_left"></div>
-			<div id="nav_right"></div>
-			<div id="nav_mid">
-				<div><a href="#">Home</a>&nbsp;&nbsp;&nbsp;<a href="#">My Account</a>&nbsp;&nbsp;&nbsp;<a href="#">Shop Online</a>&nbsp;&nbsp;&nbsp;<a href="#">Help Centre</a>&nbsp;&nbsp;&nbsp;<a href="#">About Telstra</a>&nbsp;&nbsp;&nbsp;<a href="#">Contact Us</a></div>
-			</div>
-		</div>
+<div id="container">
+<div id="header"><br />
+    <a href="/" title="Home"><img src="/images/logo.jpg" alt="Telstra Logo" /></a><br /><br />
 
-		<div style="clear: both;"></div>
-
+<!--
 		<div id="sections">
 			<div id="sect_left"></div>
 			<ul>
@@ -421,14 +28,34 @@ img
 			</ul>
 			<div id="sect_right"></div>
 		</div>
-
+-->
 		<p style="color: green"><%= flash[:notice] %></p>
-	</div>
+    <div id="middlehead">
+        <img src="/images/lefthead.gif" id="lefthead">
+        <img src="/images/righthead.gif" id="righthead">
+        <div id="org">
+            <h1>Personal</h1>
+        </div>
+        <div id="topnav">
+            <a href="#">Home</a>&nbsp;&nbsp;&nbsp;<a href="#">My Account</a>&nbsp;&nbsp;&nbsp;<a href="#">Shop Online</a>&nbsp;&nbsp;&nbsp;<a href="#">Help Centre</a>&nbsp;&nbsp;&nbsp;<a href="#">About Telstra</a>&nbsp;&nbsp;&nbsp;<a href="#">Contact Us</a>
+        </div>
+    </div>
+</div>
 
-	<div id="left">
-		<div id="left_top"></div>
-		<div id="left_inner">
-			<ul>
+<div id="wrapper">
+<div id="content"><img src="/images/contenttop.gif" width="714" height="7" >
+    <div id="body">
+    
+    <%= yield  %>
+    
+    </div>
+<img src="/images/contentbottom.gif" width="714" height="9" >
+</div>
+</div>
+<div id="navigation"><img src="/images/topnav.gif" width="163" height="7" >
+    <div id="navbody">
+    
+    			<ul>
 				<li><a href="/phones/list/offers">Latest Mobile Offers</a></li>
 				<li><a href="/phones">Mobile Phones</a></li>
 				<li><a href="/plans">Search Plans</a></li>
@@ -437,22 +64,22 @@ img
 				<li><a href="/phones/list/pda">PDAs & Smartphones</a></li>
 				<li><a href="/accessories">Mobile Accessories</a></li>
 			</ul>
-		</div>
-		<div id="left_bottom"></div>
-	</div>
+    
+    </div>
+<img src="/images/bottomnav.gif" width="163" height="8" >
+</div>
+<div id="extra">
+</div>
+<div id="footertop">
 
-	<div id="main">
-		<!-- <div class="inner" style="background-color: #00FF00;"> -->
-		<div id="main_top"></div>
-		<div id="main_inner">
-			<%= yield  %>
-		</div>
-		<div id="main_bottom"></div>
-	</div>
+</div>
+</div>
 
-	<div id="footer">
-		<div><a href="#">About Telstra</a>&nbsp;&nbsp;&nbsp;<a href="#">Privacy</a>&nbsp;&nbsp;&nbsp;<a href="#">Our Customer Terms</a>&nbsp;&nbsp;&nbsp;<a href="#">Copyright and Trade Mark Notice</a>&nbsp;&nbsp;&nbsp;<a href="#">Terms of Use</a>&nbsp;&nbsp;&nbsp;<a href="#">Contact Us</a></div>
-	</div>
+</div>
+<div id="footer">
+  <div id="footertext">
+  <a href="#">About Telstra</a>&nbsp;&nbsp;&nbsp;<a href="#">Privacy</a>&nbsp;&nbsp;&nbsp;<a href="#">Our Customer Terms</a>&nbsp;&nbsp;&nbsp;<a href="#">Copyright and Trade Mark Notice</a>&nbsp;&nbsp;&nbsp;<a href="#">Terms of Use</a>&nbsp;&nbsp;&nbsp;<a href="#">Contact Us</a>
+  </div>
 </div>
 
 </body>
