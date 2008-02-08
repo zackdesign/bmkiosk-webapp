@@ -1,136 +1,12 @@
+<!-- Hack for IE to allow legend text to align with the rest of the form -->
+<!--[if IE]>
 <style>
-*
-{
-	padding: 0px;
-	margin: 0px;
-}
-
-form
-{
-	/* margin: 0px auto;
-	width: 400px;
-	padding: 8px; */
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	color: #000000;
-	/* background-color: #CC3333; */
-	/* margin: 0px;
-	padding: 0px;
-	width: 100%; */
-	margin: 0px auto;
-	width: 600px;
-}
-
-form input
-{
-	font-family: Arial, Helvetica, sans-serif;
-	/* font-size: 14px; */
-}
-
-form div
-{
-	width: 100%;
-	padding-top: 6px;
-	clear: both;
-	text-align: right;
-}
-
-/*form div span.label*/
-form div label
-{
-	/* width: 112px; */
-	width: 200px;
-	float: left;
-	/* text-align: right; */
-	text-align: left;
-	margin-right: 5px;
-}
-
-form div span
-{
-	/* width: 262px; */
-	width: 390px;
-	float: right;
-	text-align: left;
-	margin-left: 5px;
-}
-
-fieldset
-{
-	border: none;
-}
-
 legend
 {
-	color: #284374;
-	font-weight: bold;
-	text-transform: uppercase;
 	text-indent: -4px;
-	/* background-color: #CC3333; */
-}
-
-div.phone_features ul li
-{
-	display: inline;
-}
-
-.phone_sel
-{
-	float: left;
-	width: 22px;
-	/* background-color: #FF0000; */
-	vertical-align: middle;
-}
-
-/* .phone_sel input
-{
-	height: 100%;
-} */
-
-.phone_img
-{
-	float: left;
-	width: 80px;
-	text-align: center;
-	/* background-color: #00FF00; */
-}
-
-.phone_info
-{
-	float: right;
-	width: 594px;
-	/* background-color: #0000FF; */
-}
-
-.phone_name
-{
-	font-weight: bold;
-}
-
-.orange_button
-{
-	display: block;
-	width: 100px;
-	height: 17px;
-	background-image: url(/images/more_details.gif);
-	text-align: center;
-	text-decoration: none;
-	/* color: #ffffff; */
-	margin: 4px 0px;
-	font-size: 11px;
-	font-weight: bold;
-}
-
-a.orange_button
-{
-	color: #ffffff;
-}
-
-a.orange_button:visited
-{
-	color: #ffffff;
 }
 </style>
+<![endif]-->
 
 <form name="plan_search" action="/plans/list" method="post">
 	<fieldset>
@@ -297,5 +173,5 @@ a.orange_button:visited
 
 	<hr />
 
-	<div><%= link_to_function('Display Plans', "document.plan_search.submit()", { :class => "orange_button"} ) %></div>
+	<div style="text-align: right;"><div class="right_buttons"><%= link_to_function('Display Plans', "document.plan_search.submit()", { :class => "orange_button"} ) %></div><div style="clear: both;"></div></div>
 </form>

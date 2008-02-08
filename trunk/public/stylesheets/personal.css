@@ -9,9 +9,219 @@ font-family: verdana, arial, helvetica, sans-serif;
   font-size:   11px;
 }
 
+*
+{
+	padding: 0px;
+	margin: 0px;
+}
+
 a { color: #000; text-decoration: none; }
 a:visited { /*color: #666;*/ color: #000000; }
 a:hover { text-decoration: underline; color: #000000; }
+
+h2
+{
+	color: #0066ff;
+	font-size: 16px;
+}
+
+fieldset
+{
+	border: none;
+}
+
+legend {
+	color: #284374;
+	font-weight: bold;
+	/*text-indent: -4px;*/
+	text-transform: uppercase;
+}
+
+hr
+{
+	height: 0px;
+	margin: 5px 0px;
+	border: 0.45px solid #0000ff;
+}
+
+/*----*/
+form
+{
+	/*margin: 0px auto;
+	width: 400px;
+	padding: 8px;*/
+	font-family: Arial, Helvetica, sans-serif;
+	/*font-size: 14px;*/
+	font-size: 13px;
+	color: #000000;
+	margin: 0px auto;
+	width: 600px;
+}
+
+form input
+{
+	font-family: Arial, Helvetica, sans-serif;
+	/*font-size: 14px;*/
+}
+
+form div
+{
+	/*width: 100%;
+	padding-top: 6px;*/
+	clear: both;
+	text-align: right;
+}
+
+form div label
+{
+	width: 200px;
+	float: left;
+	text-align: left;
+	margin-right: 5px;
+}
+
+form div span
+{
+	width: 390px;
+	float: right;
+	text-align: left;
+	margin-left: 5px;
+}
+
+div.phone_features ul li
+{
+	display: inline;
+}
+
+.phone_sel
+{
+	float: left;
+	width: 22px;
+	vertical-align: middle;
+}
+
+.phone_img
+{
+	float: left;
+	width: 80px;
+	text-align: center;
+}
+
+.phone_info
+{
+	float: right;
+	/*width: 594px;*/
+	width: 564px;
+	font-size: 13px;
+}
+
+.phone_name
+{
+	font-weight: bold;
+}
+
+.col
+{
+	width: 50%;
+	float: left;
+}
+
+div.col .image
+{
+	float: left;
+	width: 124px;
+	text-align: center;
+}
+
+div.col .text
+{
+	float: left;
+	width: 210px;
+	font-size: 13px;
+}
+
+.clear
+{
+	clear: both;
+}
+
+.orange_button
+{
+	display: block;
+	width: 100px;
+	height: 17px;
+	background-image: url(/images/more_details.gif);
+	text-align: center;
+	text-decoration: none;
+	margin: 4px 0px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+a.orange_button
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+
+a.orange_button:visited
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.blue_button
+{
+	display: block;
+	width: 140px;
+	height: 17px;
+	background-image: url(/images/compare_selected.gif);
+	text-align: center;
+	text-decoration: none;
+	margin: 4px 0px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+a.blue_button
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+
+a.blue_button:visited
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.right_buttons
+{
+	float: right;
+	/*width: 140px;
+	height: 17px;*/
+	margin-left: 4px;
+}
+
+.image
+{
+	float: left;
+	width: 124px;
+	text-align: center;
+}
+
+.text
+{
+	float: right;
+	width: 550px;
+	font-size: 13px;
+}
+
+.phone_features
+{
+	margin-top: 10px;
+}
+/*------*/
 
 #page {
   background: #b2b3b5 url('/images/pageback.gif') top repeat-x;
@@ -32,7 +242,7 @@ a:hover { text-decoration: underline; color: #000000; }
 
 #topnav a {
   color: white;
-  font-size: 12pt;
+  font-size: 13px;
   
 }
 
@@ -46,8 +256,11 @@ a:hover { text-decoration: underline; color: #000000; }
 }
 
 #org h1 {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding-top: 4px;
+  height: 27px;
+  font-size: 17px;
+  font-weight: normal;
 }
 
 #righthead {
