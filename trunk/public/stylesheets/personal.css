@@ -255,6 +255,11 @@ a.blue_button:visited
   min-height: 62px;
 }
 
+#middlehead2 {
+  background-image: url('/images2/headback.gif');
+  min-height: 62px;
+}
+
 #org h1 {
   margin: 0px;
   padding-top: 4px;
