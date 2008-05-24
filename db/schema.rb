@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 39) do
+ActiveRecord::Schema.define(:version => 44) do
 
   create_table "accessories", :force => true do |t|
     t.string   "name"
@@ -23,10 +23,6 @@ ActiveRecord::Schema.define(:version => 39) do
     t.string   "picture_type",                               :default => "image/jpeg"
     t.binary   "picture_data"
     t.boolean  "active",                                     :default => true
-    t.decimal  "buy_price",    :precision => 9, :scale => 2
-    t.text     "supplier"
-    t.string   "partnum"
-    t.decimal  "corp_price",   :precision => 9, :scale => 2
     t.decimal  "govt_price",   :precision => 9, :scale => 2
   end
 
@@ -72,6 +68,16 @@ ActiveRecord::Schema.define(:version => 39) do
     t.binary   "picture_data"
   end
 
+  create_table "line_items", :force => true do |t|
+    t.integer "product_id",                                :null => false
+    t.integer "order_id",                                  :null => false
+    t.integer "quantity",                                  :null => false
+    t.decimal "total_price", :precision => 8, :scale => 2, :null => false
+  end
+
+  add_index "line_items", ["product_id"], :name => "fk_line_item_products"
+  add_index "line_items", ["order_id"], :name => "fk_line_item_orders"
+
   create_table "logos", :force => true do |t|
     t.text     "name"
     t.datetime "created_at"
@@ -86,6 +92,13 @@ ActiveRecord::Schema.define(:version => 39) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.string "name"
+    t.text   "address"
+    t.string "email"
+    t.string "pay_type", :limit => 10
   end
 
   create_table "phones", :force => true do |t|
@@ -149,5 +162,29 @@ ActiveRecord::Schema.define(:version => 39) do
   end
 
   add_index "plans_options", ["plan_id", "option_id"], :name => "index_plans_options_on_plan_id_and_option_id"
+
+  create_table "products", :force => true do |t|
+    t.string  "title"
+    t.text    "description"
+    t.string  "image_url"
+    t.decimal "price",       :precision => 8, :scale => 2, :default => 0.0
+  end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :default => "", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "users", :force => true do |t|
+    t.string "name"
+    t.string "hashed_password"
+    t.string "salt"
+    t.string "usertype"
+  end
 
 end
