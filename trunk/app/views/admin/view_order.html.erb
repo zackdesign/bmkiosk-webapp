@@ -1,0 +1,43 @@
+<% for column in Order.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @order.send(column.name) %>
+</p>
+<% end %>
+
+<table cellpadding="5" cellspacing="1">
+  <% for line_item in @line_items %>
+    <% @total = @total + line_item.total_price %>
+    <tr valign="top">
+
+      <td>
+        <%= line_item.product_id %> <%= get_product(line_item.product_id) %>
+      </td>
+      
+      <td>
+        x
+      </td>
+
+      <td>
+        <%= line_item.quantity %>
+      </td>
+      
+      <td>
+        =
+      </td>
+
+      <td>
+        <%= number_to_currency(line_item.total_price) %>
+      </td>
+    </tr>
+  <% end %>
+    <tr valign="top">
+      <td colspan="4" align="right">
+      <b>Total:</b>
+      </td>
+
+      <td>
+        <b><%= number_to_currency(@total) %></b>
+      </td>
+    </tr>
+  </table>
+<%= link_to 'Back', :action => 'orders' %>
