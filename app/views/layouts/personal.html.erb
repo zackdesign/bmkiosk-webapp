@@ -1,12 +1,24 @@
+<%
+folder = ""
+porb = "Personal"
+if(session[:user_type] == "1")
+  porb = "Admin"
+  folder = 2
+end
+if(session[:user_type] == "2")
+  porb = "Business"
+  folder = 2
+end
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-	<title>Personal - <%= controller.action_name %></title>
+	<title><%= porb %> - <%= controller.action_name %></title>
 	  <%= stylesheet_link_tag "personal" , :media => "all" %>
-
+    <%= javascript_include_tag :defaults %>
 </head>
 <body>
 
@@ -30,11 +42,11 @@
 		</div>
 -->
 		<p style="color: green"><%= flash[:notice] %></p>
-    <div id="middlehead">
-        <img src="/images/lefthead.gif" id="lefthead">
-        <img src="/images/righthead.gif" id="righthead">
+    <div id="middlehead<%= folder %>">
+        <img src="/images<%= folder %>/lefthead.gif" id="lefthead">
+        <img src="/images<%= folder %>/righthead.gif" id="righthead">
         <div id="org">
-            <h1>Personal</h1>
+            <h1><%= porb %></h1>
         </div>
         <div id="topnav">
             <a href="#">Home</a>&nbsp;&nbsp;&nbsp;<a href="#">My Account</a>&nbsp;&nbsp;&nbsp;<a href="#">Shop Online</a>&nbsp;&nbsp;&nbsp;<a href="#">Help Centre</a>&nbsp;&nbsp;&nbsp;<a href="#">About Telstra</a>&nbsp;&nbsp;&nbsp;<a href="#">Contact Us</a>
@@ -54,7 +66,24 @@
 </div>
 <div id="navigation"><img src="/images/topnav.gif" width="163" height="7" >
     <div id="navbody">
-    
+<% if(controller.controller_name == "store") %>
+<%= hidden_div_if(@cart.items.empty?, :id => "cart" ) %>
+<%= render(:controller => 'store', :partial => "cart" , :object => @cart) %>
+</div>
+<% end  %> 
+<% if(session[:user_type] == "1")  %>  
+
+      <ul>
+  			<li><%= link_to "Go to Store",   :controller => 'store', :action => '' %>
+        <li><%= link_to "Orders",   :controller => 'admin', :action => 'orders' %>
+        <li><%= link_to "Products",   :controller => 'admin', :action => 'list' %>
+        <li><%= link_to "Add Product",   :controller => 'admin', :action => 'new' %>
+        <li><%= link_to "List users", :controller => 'login', :action => 'index' %>
+        <li><%= link_to "Add user",   :controller => 'login', :action => 'add_user' %>
+        <li><%= link_to "Logout",     :controller => 'login', :action => 'logout' %>
+  		</ul>
+  		<br><br>
+<% end  %> 
     			<ul>
 				<li><a href="/phones/list/offers">Latest Mobile Offers</a></li>
 				<li><a href="/phones">Mobile Phones</a></li>
@@ -64,7 +93,6 @@
 				<li><a href="/phones/list/pda">PDAs & Smartphones</a></li>
 				<li><a href="/accessories">Mobile Accessories</a></li>
 			</ul>
-    
     </div>
 <img src="/images/bottomnav.gif" width="163" height="8" >
 </div>

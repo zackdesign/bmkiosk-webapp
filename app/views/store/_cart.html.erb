@@ -1,0 +1,11 @@
+<ul><li>Your Cart
+<li>
+<table>
+<%= render(:partial => "cart_item" , :collection => cart.items) %>
+<tr class="total-line" >
+<td colspan="2" >Total</td>
+<td class="total-cell" ><%= number_to_currency(cart.total_price) %></td>
+</tr>
+</table>
+<li><%= link_to "Checkout", :action => :checkout %> | <%= link_to "Empty cart", :action => :empty_cart %>
+</ul><br><br>

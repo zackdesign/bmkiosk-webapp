@@ -6,5 +6,20 @@ class ApplicationController < ActionController::Base
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery # :secret => 'b89eb255dfa0156f82cb01312d7c1a8e'
+  protect_from_forgery  :secret => 'b89eb255dfa0156f82cb01312d7c1a8e'
+  
+  private
+  
+  def authorize
+    user = User.find_by_id(session[:user_id])
+    if user
+      if session[:user_type] != "1"
+        redirect_to(:controller => "phones" , :action => "index", :id => session[:user_type] )
+      end
+    else
+      flash[:notice] = "Please log in"
+      redirect_to(:controller => "login" , :action => "login" )
+    end
+  end
+
 end
