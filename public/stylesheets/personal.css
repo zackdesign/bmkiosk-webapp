@@ -331,3 +331,41 @@ div#footertop{clear:both;width:100%}
   color: white;
   margin-right: 20px;
 }
+
+tr
+{
+	height: 1.75em;
+	line-height: 1.75em;
+}
+
+th, .separator
+{
+	border-left: 1px solid #c7ddf3;
+	border-right: 1px solid #c7ddf3;
+	border-bottom: 1px solid #c7ddf3;
+	background-color: #E3EFFB;
+	font-size: 0.9em;
+	text-align: left;
+}
+
+.separator
+{
+	text-align: center;
+}
+
+td
+{
+	border-right: 1px solid #c7ddf3;
+	border-bottom: 1px solid #c7ddf3;
+	background-color: #ffffff;
+	font-size: 0.9em;
+	text-align: center;
+}
+
+.phones
+{
+	line-height: 1em;
+	text-align: center;
+	border: none;
+	border-bottom: 1px solid #c7ddf3;
+}

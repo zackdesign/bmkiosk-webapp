@@ -3,7 +3,7 @@
   unless ((@phones == nil) or (@phones.empty?))
     for phone in @phones
 %>
-	<div class="phone_sel"><input name="compare[]" type="checkbox" value="<%= phone.id %>" /></div>
+	<div class="phone_sel"><input name="compare[]" type="checkbox" value="<%= phone.id %>" onclick="return set_compare(<%= phone.id %>, this);" <%= (@compare_ids.include?(phone.id.to_s)) ? 'checked="checked"' : '' %> /></div>
 	<div class="phone_img"><%= show_thumbnail_if_available(phone) %></div>
 	<div class="phone_info">
 		<div><span class="phone_name"><%= h phone.name %></span> - Outright cost <%= number_to_currency phone.outright %></div>
@@ -44,3 +44,8 @@
 </div>
 <!-- <input name="prev_start" type="hidden" value="" />
 <input name="next_start" type="hidden" value="" /> -->
+<!--<form name="compare_form" id="compare_form" action="<%= url_for({ :action => 'compare', :id => @submit_id }) %>" method="get">-->
+<form name="compare_form" id="compare_form" action="" method="post">
+<input name="compare_ids" id="compare_ids" type="hidden" value="<%= @compare_ids.join(',') %>" />
+<input name="offset" id="offset" type="hidden" value="<%= @offset %>" />
+</form>
