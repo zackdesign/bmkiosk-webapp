@@ -97,20 +97,54 @@ class PhonesController < ApplicationController
   end
 
   def prepaid
-    @phones = Phone.find(:all, :conditions => 'NOT prepaid IS NULL')
+    @limit = 3
+    @offset = (params[:offset].nil?) ? 0 : params[:offset].to_i
+    @compare_ids = (params[:compare_ids].nil?) ? Array.new : params[:compare_ids].split(',')
+    @count = Phone.find(:all, :conditions => 'NOT prepaid IS NULL').length
+    @phones = Phone.find(:all, :conditions => 'NOT prepaid IS NULL', :offset => @offset, :limit => @limit)
   end
 
   def nextg
-    @phones = Phone.find(:all, :conditions => "network = 'NextG'")
+    @limit = 3
+    @offset = (params[:offset].nil?) ? 0 : params[:offset].to_i
+    @compare_ids = (params[:compare_ids].nil?) ? Array.new : params[:compare_ids].split(',')
+    @count = Phone.find(:all, :conditions => "network = 'NextG'").length
+    @phones = Phone.find(:all, :conditions => "network = 'NextG'", :offset => @offset, :limit => @limit)
   end
 
   def pda
-#    unless (params[:start].empty?)
-#      @start = params[:start]
-#    end
+    @limit = 3
+    @offset = (params[:offset].nil?) ? 0 : params[:offset].to_i
+    @compare_ids = (params[:compare_ids].nil?) ? Array.new : params[:compare_ids].split(',')
+    @count = Phone.find(:all, :order => 'brand ASC').length
+    @phones = Phone.find(:all, :order => 'brand ASC', :offset => @offset, :limit => @limit)
+  end
 
-#    @phones = Phone.find(:all, :offset => @start, :limit => 1, :order => 'brand ASC')
-    @phones = Phone.find(:all, :order => 'brand ASC')
+  def compare
+    @compare_ids = params[:compare_ids].split(',')
+    @phones = Phone.find(@compare_ids)
+	@features = Array.new
+    for @ph in @phones
+      for @f in @ph.features
+   	    unless @features.include? @f
+   	      @features.concat [ @f ]
+   	    end
+   	  end
+    end
+
+    case params[:id]
+      when 'prepaid'
+        render :template => 'phones/compare.html.erb'
+
+      when 'nextg'
+        render :template => 'phones/compare.html.erb'
+
+      when 'pda'
+        render :template => 'phones/compare.html.erb'
+
+      else
+        # TODO: What to do ???
+    end
   end
 
   # GET /phones/new

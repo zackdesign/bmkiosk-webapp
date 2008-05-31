@@ -1,0 +1,35 @@
+<h2>Compare Products</h2>
+<div style="text-align: right;"><div class="right_buttons"><%= link_to('Return to List', :back, { :class => 'blue_button' }) %></div><div style="clear: both;"></div></div>
+<hr />
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td class="phones">&nbsp;</td>
+<%
+	num = @phones.length
+	for phone in @phones
+%>
+		<td class="phones"><%= h phone.name %><br /><%= show_thumbnail_if_available(phone) %><br /><%= link_to('More Details', url_for({ :action => 'show', :id => phone.id }), { :class => 'orange_button' }) %></td>
+<%
+	end
+%>
+	</tr>
+	<tr>
+		<th class="separator" colspan="<%= (num + 1) %>">Features</th>
+	</tr>
+<%
+	for @feature in @features
+%>
+	<tr>
+		<th><%= @feature.name %></td>
+<%
+		for phone in @phones
+%>
+		<td><%= (phone.features.include?(@feature)) ? 'YES' : 'NO' %></td>
+<%
+		end
+%>
+	</tr>
+<%
+	end
+%>
+</table>
