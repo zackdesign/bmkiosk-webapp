@@ -26,7 +26,7 @@ class AdminController < ApplicationController
   end
 
   def orders
-    @orders =  Orders.find(:all)
+    @orders =  Order.find(:all)
   end
 
   def view_order

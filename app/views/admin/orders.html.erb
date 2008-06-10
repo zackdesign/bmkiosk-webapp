@@ -1,7 +1,7 @@
 <div id="product-list">
-  <h1>Orders</h1>
+  <h1>Orders</h1><br><br>
 
-  <table cellpadding="5" cellspacing="1">
+  <table cellpadding="5" cellspacing="1" width="100%">
     <tr valign="top" class="list-line-even">
 
       <td>
@@ -50,12 +50,3 @@
   <% end %>
   </table>
 </div>
-
-<%=  if @order_pages.current.previous 
-       link_to("Previous page", { :page => @order_pages.current.previous })
-     end
-%>
-<%= if @order_pages.current.next 
-      link_to("Next page", { :page => @order_pages.current.next })
-    end
-%>

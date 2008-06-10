@@ -18,6 +18,29 @@ class AccessoriesController < ApplicationController
       format.xml  { render :xml => @accessories }
     end
   end
+  
+  
+  def cartadd
+    begin                     
+      accessory = Accessory.find(params[:id])  
+    rescue ActiveRecord::RecordNotFound
+      logger.error("Attempt to access invalid product #{params[:id]}")
+      flash[:notice] = "Invalid product"
+      redirect_to(:action => "index") and return
+    else
+      find_id = ActiveRecord::Base.connection.select_value("SELECT id FROM products WHERE title LIKE '"+accessory.name+"'")
+      if(find_id)
+        ActiveRecord::Base.connection.execute("UPDATE products SET price = '"+accessory.price.to_s()+"' WHERE id = '"+find_id.to_s()+"'")
+        last_id = find_id 
+      else 
+        ActiveRecord::Base.connection.execute("INSERT INTO products (title, price) VALUES ('"+accessory.name+"', '"+accessory.price.to_s()+"')")
+        last_id = ActiveRecord::Base.connection.select_value("SELECT id FROM products WHERE id = LAST_INSERT_ID()") 
+      end
+      add_to_cart(last_id)
+    end
+      flash.now[:notice] = "Added to cart"
+      redirect_to(:action => "index" )
+  end
 
   # GET /accessories/1
   # GET /accessories/1.xml
