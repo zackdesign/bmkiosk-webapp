@@ -3,6 +3,6 @@
   <b><%= column.human_name %>:</b> <%=h @product.send(column.name) %>
 </p>
 <% end %>
-
+<br><br>
 <%= link_to 'Edit', :action => 'edit', :id => @product %> |
 <%= link_to 'Back', :action => 'list' %>

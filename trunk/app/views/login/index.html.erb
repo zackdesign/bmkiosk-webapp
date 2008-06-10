@@ -2,7 +2,7 @@
 <%= link_to "Add user",   :controller => 'login', :action => 'add_user' %> 
 | <%= link_to "Log out",   :controller => 'login', :action => 'logout' %>
 <br><br>
-<ul>
+<ul style="margin-left: 20px">
 <% for user in @all_users %>
 <li><%= link_to "[X]" , { # link_to options
 :controller => 'login',

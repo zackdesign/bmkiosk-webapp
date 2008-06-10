@@ -1,9 +1,9 @@
-<h1>Editing product</h1>
+<h1>Editing product</h1><br><br>
 
 <% form_tag :action => 'update', :id => @product do %>
-  <%= render :partial => 'form' %>
+  <%= render :partial => 'form' %><br>
   <%= submit_tag 'Edit' %>
 <% end %>
-
+<br><br>
 <%= link_to 'Show', :action => 'show', :id => @product %> |
 <%= link_to 'Back', :action => 'list' %>

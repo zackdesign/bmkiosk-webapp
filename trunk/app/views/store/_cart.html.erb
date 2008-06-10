@@ -1,11 +1,12 @@
-<ul><li>Your Cart
+<ul><li><b>Your Cart</b>
 <li>
 <table>
-<%= render(:partial => "cart_item" , :collection => cart.items) %>
+<%= render(:partial => "store/cart_item" , :collection => cart.items) %>
 <tr class="total-line" >
-<td colspan="2" >Total</td>
-<td class="total-cell" ><%= number_to_currency(cart.total_price) %></td>
+<td><b>Total</b></td>
+<td class="total-cell" ><b><%= number_to_currency(cart.total_price) %></b></td>
 </tr>
 </table>
-<li><%= link_to "Checkout", :action => :checkout %> | <%= link_to "Empty cart", :action => :empty_cart %>
+<br>
+<%= link_to "Checkout", :controller => 'store', :action => :checkout %> | <%= link_to "Empty cart", :controller => 'store', :action => :empty_cart %>
 </ul><br><br>

@@ -3,10 +3,10 @@
 <% else %>
 <tr>
 <% end %>
+<td colspan="3" style="border-bottom: 0px;"><div align="left"><%= h(cart_item.title) %></div></td>
+</tr>
+<tr>
 <td><%= cart_item.quantity %>&times;</td>
-<td><%= h(cart_item.title) %></td>
-<td class="item-price" ><%= number_to_currency(cart_item.price) %></td>
-<td>
-<%= link_to_remote "[X]", :url => { :action => :remove_from_cart , :id => cart_item.product} %>
-</td>
+<td class="item-price"><%= number_to_currency(cart_item.price) %></td>
+<td><%= link_to_remote "[X]", :url => {:controller => 'store', :action => :remove_from_cart , :id => cart_item.product} %></td>
 </tr>

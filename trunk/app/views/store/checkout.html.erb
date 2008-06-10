@@ -6,23 +6,23 @@
     <legend>Please Enter Your Details</legend>
 
     <% form_for :order, :url => { :action => :save_order } do |form| %>
-      <p>
-        <label for="order_name">Name:</label>
+      <p class="padded">
+        <label for="order_name">Name:</label><br>
         <%= form.text_field :name, :size => 40 %>
       </p>
 
-      <p>
-        <label for="order_address">Address:</label>
+      <p class="padded">
+        <label for="order_address">Address:</label><br>
         <%= form.text_area :address, :rows => 3, :cols => 40 %>
       </p>
 
-      <p>
-        <label for="order_email">E-Mail:</label>
+      <p class="padded">
+        <label for="order_email">E-Mail:</label><br>
         <%= form.text_field :email, :size => 40 %>
       </p>
 
-      <p>
-        <label for="order_pay_type">Pay with:</label>
+      <p class="padded">
+        <label for="order_pay_type">Pay with:</label><br>
         <%=
           form.select :pay_type,
                        Order::PAYMENT_TYPES, 

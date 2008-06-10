@@ -1,8 +1,8 @@
-<h1>New product</h1>
+<h1>New product</h1><br><br>
 
 <% form_tag :action => 'create' do %>
-  <%= render :partial => 'form' %>
+  <%= render :partial => 'form' %><br>
   <%= submit_tag "Create" %>
 <% end %>
-
+<br><br>
 <%= link_to 'Back', :action => 'list' %>

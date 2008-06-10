@@ -15,6 +15,7 @@ font-family: verdana, arial, helvetica, sans-serif;
 	margin: 0px;
 }
 
+
 a { color: #000; text-decoration: none; }
 a:visited { /*color: #666;*/ color: #000000; }
 a:hover { text-decoration: underline; color: #000000; }
@@ -357,7 +358,6 @@ td
 {
 	border-right: 1px solid #c7ddf3;
 	border-bottom: 1px solid #c7ddf3;
-	background-color: #ffffff;
 	font-size: 0.9em;
 	text-align: center;
 }
@@ -368,4 +368,81 @@ td
 	text-align: center;
 	border: none;
 	border-bottom: 1px solid #c7ddf3;
+}
+
+
+.padded
+{
+	padding: 5px;
+	margin: 0px;
+	text-align: left;
+}
+.depot-form ul
+{
+	padding: 0px;
+	margin: 20px;
+}
+
+label
+{
+	vertical-align: middle;
+	font-size: 0.85em;
+}
+
+
+.depot-form legend {
+  font-family: sans-serif;
+  padding: 0.2em 1em;
+}
+
+.depot-form label {
+  width: 5em;
+  float: left;
+  text-align: left;
+  margin-right: 0.5em;
+  display: block;
+}
+
+.depot-form .submit {
+  margin-top: 1.1em;
+  margin-left: 5.5em;
+}
+
+/* The error box */
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-top: 10;
+  margin-bottom: 0;
+  padding: 10px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
 }

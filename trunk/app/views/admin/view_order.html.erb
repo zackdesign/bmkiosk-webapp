@@ -3,41 +3,32 @@
   <b><%= column.human_name %>:</b> <%=h @order.send(column.name) %>
 </p>
 <% end %>
-
+<br><br>
 <table cellpadding="5" cellspacing="1">
   <% for line_item in @line_items %>
     <% @total = @total + line_item.total_price %>
     <tr valign="top">
 
-      <td>
-        <%= line_item.product_id %> <%= get_product(line_item.product_id) %>
+      <td width="80%">
+        <div align="left"><%= line_item.product_id %> <%= get_product(line_item.product_id) %></div>
       </td>
       
       <td>
         x
-      </td>
-
-      <td>
         <%= line_item.quantity %>
-      </td>
-      
-      <td>
         =
-      </td>
-
-      <td>
         <%= number_to_currency(line_item.total_price) %>
       </td>
     </tr>
   <% end %>
     <tr valign="top">
-      <td colspan="4" align="right">
-      <b>Total:</b>
+      <td>
+      <div align="right"><b>Total:</b></div>
       </td>
 
       <td>
         <b><%= number_to_currency(@total) %></b>
       </td>
     </tr>
-  </table>
+  </table><br>
 <%= link_to 'Back', :action => 'orders' %>
