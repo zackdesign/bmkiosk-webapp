@@ -1,9 +1,9 @@
 <% @submit_id = 'prepaid' %>
 <h2>Pre-Paid Mobiles</h2>
-<div style="text-align: right;"><%= (@offset >= @limit) ? link_to_function('Previous', "change_offset(-" << @limit.to_s << ",'" << url_for({ :action => "prepaid" }) << "')") : "Previous" %> <%= (@offset + 1).to_s << '-' << ((@offset + @limit < @count) ? (@offset + @limit) : @count).to_s << ' of ' << @count.to_s %> <%= (@offset + @limit < @count) ? link_to_function("Next", "change_offset(" << @limit.to_s << ",'" << url_for({ :action => "prepaid" }) << "')") : "Next" %></div>
+<div style="text-align: right;"><%= will_paginate @phones, { :prev_label => 'Prev', :next_label => 'Next', :renderer => PhoneCompareLinkRenderer.new } %></div>
 <div style="text-align: right;"><div class="right_buttons"><%= link_to_function('Compare Selected', { :onclick => "return compare_submit('" << url_for({ :action => "compare" }) << "')", :class => 'blue_button' }) %></div><div style="clear: both;"></div></div>
 <hr />
 <%= render :partial => 'phone_list.html.erb' %>
 <div style="text-align: right;"><div class="right_buttons"><%= link_to_function('Compare Selected', { :onclick => "return compare_submit('" << url_for({ :action => "compare" }) << "')", :class => 'blue_button' }) %></div><div style="clear: both;"></div></div>
 <div style="text-align: right;"></div>
-<div style="text-align: right;"><%= (@offset >= @limit) ? link_to_function('Previous', "change_offset(-" << @limit.to_s << ",'" << url_for({ :action => "prepaid" }) << "')") : "Previous" %> <%= (@offset + 1).to_s << '-' << ((@offset + @limit < @count) ? (@offset + @limit) : @count).to_s << ' of ' << @count.to_s %> <%= (@offset + @limit < @count) ? link_to_function("Next", "change_offset(" << @limit.to_s << ",'" << url_for({ :action => "prepaid" }) << "')") : "Next" %></div>
+<div style="text-align: right;"><%= will_paginate @phones, { :prev_label => 'Prev', :next_label => 'Next', :renderer => PhoneCompareLinkRenderer.new } %></div>

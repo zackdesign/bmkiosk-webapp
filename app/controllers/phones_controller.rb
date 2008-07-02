@@ -1,3 +1,11 @@
+class PhoneCompareLinkRenderer < WillPaginate::LinkRenderer
+  def page_link(page, text, attributes = {})
+    attributes[:onclick] = "return goto_page(" + page.to_s + ", '" + url_for(page) + "');"
+#    @template.link_to text, url_for(page), attributes
+    @template.link_to text, '#', attributes
+  end
+end
+
 class PhonesController < ApplicationController
   require 'RMagick'
   include Magick
@@ -98,26 +106,35 @@ class PhonesController < ApplicationController
 
   def prepaid
     @limit = 3
-    @offset = (params[:offset].nil?) ? 0 : params[:offset].to_i
+#    @offset = (params[:offset].nil?) ? 0 : params[:offset].to_i
     @compare_ids = (params[:compare_ids].nil?) ? Array.new : params[:compare_ids].split(',')
-    @count = Phone.find(:all, :conditions => 'NOT prepaid IS NULL').length
-    @phones = Phone.find(:all, :conditions => 'NOT prepaid IS NULL', :offset => @offset, :limit => @limit)
+#    @count = Phone.find(:all, :conditions => 'NOT prepaid IS NULL').length
+#    @phones = Phone.find(:all, :conditions => 'NOT prepaid IS NULL', :offset => @offset, :limit => @limit)
+
+    page = (params[:page].nil?) ? 1 : params[:page]
+    @phones = Phone.paginate :all, :conditions => 'NOT prepaid IS NULL', :page => page, :per_page => @limit
   end
 
   def nextg
     @limit = 3
-    @offset = (params[:offset].nil?) ? 0 : params[:offset].to_i
+#    @offset = (params[:offset].nil?) ? 0 : params[:offset].to_i
     @compare_ids = (params[:compare_ids].nil?) ? Array.new : params[:compare_ids].split(',')
-    @count = Phone.find(:all, :conditions => "network = 'NextG'").length
-    @phones = Phone.find(:all, :conditions => "network = 'NextG'", :offset => @offset, :limit => @limit)
+#    @count = Phone.find(:all, :conditions => "network = 'NextG'").length
+#    @phones = Phone.find(:all, :conditions => "network = 'NextG'", :offset => @offset, :limit => @limit)
+
+    page = (params[:page].nil?) ? 1 : params[:page]
+    @phones = Phone.paginate_all_by_network 'NextG', :page => page, :per_page => @limit
   end
 
   def pda
     @limit = 3
-    @offset = (params[:offset].nil?) ? 0 : params[:offset].to_i
+#    @offset = (params[:offset].nil?) ? 0 : params[:offset].to_i
     @compare_ids = (params[:compare_ids].nil?) ? Array.new : params[:compare_ids].split(',')
-    @count = Phone.find(:all, :order => 'brand ASC').length
-    @phones = Phone.find(:all, :order => 'brand ASC', :offset => @offset, :limit => @limit)
+#    @count = Phone.find(:all, :order => 'brand ASC').length
+#    @phones = Phone.find(:all, :order => 'brand ASC', :offset => @offset, :limit => @limit)
+
+    page = (params[:page].nil?) ? 1 : params[:page]
+    @phones = Phone.paginate :all, :order => 'brand ASC', :page => page, :per_page => @limit
   end
 
   def compare

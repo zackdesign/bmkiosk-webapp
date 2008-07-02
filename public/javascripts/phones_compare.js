@@ -14,6 +14,22 @@ function change_offset(delta, form_action)
 	document.getElementById('compare_form').submit();
 }
 
+function goto_page(new_page, form_action)
+{
+	var page_obj = document.getElementById('page');
+	if (!page_obj)
+	{
+		return false;
+	}
+
+	page_obj.value = new_page;
+
+	document.getElementById('compare_form').action = form_action;
+	document.getElementById('compare_form').submit();
+
+	return false;
+}
+
 function compare_submit(form_action)
 {
 	var ids_obj = document.getElementById('compare_ids');

@@ -1,6 +1,7 @@
 <h2><%= h @phone.name %></h2>
 <hr />
-<div class="image"><%= show_picture_if_available(@phone) %></div>
+<!--<div class="image"><%#= show_picture_if_available(@phone) %></div>-->
+<div class="image"><%= show_thumbnail_if_available(@phone) %></div>
 <div class="text">
 	<!-- <div>Outright cost <%#= number_to_currency @phone.outright %></div> -->
 	<p><%= @phone.description %></p>
@@ -28,3 +29,33 @@
 </div>
 <div style="clear: both;"></div>
 <hr />
+<h2>Select a Purchase Type to continue</h2>
+<form action="/plans" method="get">
+<div><label><input type="radio" name="plan_type" value="phone" />Phone Plan</label><span>$0 Upfront (for phone & service) on selected Personal & Business Phone Plans for 24 months</span></div>
+<div><label><input type="radio" name="plan_type" value="member" />Member Plan</label><span>Personal & Business Member Plans with handset repayment for 12 or 24 months</span></div>
+<div><label><input type="radio" name="plan_type" value="cap" />Cap Plan</label><span>Personal & Business Cap Plans with handset repayment for 12 or 24 months</span></div>
+<div><label><input type="radio" name="plan_type" value="outright" />Buy Outright</label><span>Outright purchase for <%= number_to_currency @phone.outright %> (no plan)</span></div>
+<div><input type="button" name="back" value="Back to Mobile Phones" /><input type="submit" name="next" value="Next" /></div>
+<input type="hidden" name="id" value="<%= @phone.id %>" />
+</form>
+<hr />
+<h2>Features &amp; Specifications</h2>
+<%
+  unless (@phone.features.empty?)
+%>
+		<ul>
+<%
+    for feature in @phone.features
+%>
+			<li><%= h feature.name %></li>
+<%
+    end
+%>
+		</ul>
+<%
+  else
+%>
+	<%= content_tag(:span, "No Features") %>
+<%
+  end
+%>

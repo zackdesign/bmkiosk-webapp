@@ -7,7 +7,14 @@ class AccessoriesController < ApplicationController
   # GET /accessories
   # GET /accessories.xml
   def index
-    @accessories = Accessory.find(:all)
+#    @accessories = Accessory.find(:all)
+#    @limit = 3
+#    @offset = (params[:offset].nil?) ? 0 : params[:offset].to_i
+#    @count = Accessory.find(:all).length
+#    @accessories = Accessory.find(:all, :offset => @offset, :limit => @limit)
+
+    page = (params[:page].nil?) ? 1 : params[:page]
+    @accessories = Accessory.paginate :page => page, :per_page => 3
 
     # Get a list of phone brands
     @phone_brands = get_phone_brands()

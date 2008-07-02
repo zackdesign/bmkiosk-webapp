@@ -138,6 +138,7 @@ a.orange_button:visited
 
 <h2>Mobile Accessories</h2>
 Show accessories for: <%= select_tag "brand", options_for_select(@phone_brands, @selected_brand) %>
+<div style="text-align: right;"><%= will_paginate @accessories, { :prev_label => 'Prev', :next_label => 'Next' } %></div>
 <hr />
 <div id="results">
 <%
@@ -172,4 +173,8 @@ Show accessories for: <%= select_tag "brand", options_for_select(@phone_brands, 
   end
 %>
 	<div class="clear"></div>
+</div>
+<hr />
+<div style="text-align: right;">
+<%= will_paginate @accessories, { :prev_label => 'Prev', :next_label => 'Next' } %>
 </div>

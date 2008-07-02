@@ -47,5 +47,6 @@
 <!--<form name="compare_form" id="compare_form" action="<%= url_for({ :action => 'compare', :id => @submit_id }) %>" method="get">-->
 <form name="compare_form" id="compare_form" action="" method="post">
 <input name="compare_ids" id="compare_ids" type="hidden" value="<%= @compare_ids.join(',') %>" />
-<input name="offset" id="offset" type="hidden" value="<%= @offset %>" />
+<!--<input name="offset" id="offset" type="hidden" value="<%= @offset %>" />-->
+<input name="page" id="page" type="hidden" value="" />
 </form>
