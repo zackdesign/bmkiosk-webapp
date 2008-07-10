@@ -30,13 +30,85 @@
 <div style="clear: both;"></div>
 <hr />
 <h2>Select a Purchase Type to continue</h2>
-<form action="/plans" method="get">
-<div><label><input type="radio" name="plan_type" value="phone" />Phone Plan</label><span>$0 Upfront (for phone & service) on selected Personal & Business Phone Plans for 24 months</span></div>
-<div><label><input type="radio" name="plan_type" value="member" />Member Plan</label><span>Personal & Business Member Plans with handset repayment for 12 or 24 months</span></div>
-<div><label><input type="radio" name="plan_type" value="cap" />Cap Plan</label><span>Personal & Business Cap Plans with handset repayment for 12 or 24 months</span></div>
-<div><label><input type="radio" name="plan_type" value="outright" />Buy Outright</label><span>Outright purchase for <%= number_to_currency @phone.outright %> (no plan)</span></div>
-<div><input type="button" name="back" value="Back to Mobile Phones" /><input type="submit" name="next" value="Next" /></div>
-<input type="hidden" name="id" value="<%= @phone.id %>" />
+<script>
+function chk_buy()
+{
+	var cont = false;
+
+	var pln_frm = document.getElementById('plans');
+	if (!pln_frm)
+	{
+		// Don't allow the form to be submitted
+		return cont;
+	}
+
+	var chked = false;
+	var buy = false;
+
+	var pln = pln_frm['plan_type'];
+	for (var r = 0 ; r < pln.length ; r++)
+	{
+		chked = (chked || pln[r].checked);
+		if ((pln[r].value == 'outright') && (pln[r].checked))
+		{
+			buy = true;
+		}
+	}
+
+	if (!chked)
+	{
+		alert('You must select a Purchase Type to continue.');
+		return cont;
+	}
+
+	var nxtg = document.getElementById('is_nextg');
+	if (!nxtg)
+	{
+		// Don't allow the form to be submitted
+		return cont;
+	}
+
+	var is_nxtg = (parseInt(nxtg.value) > 0) ? true : false;
+	if ((buy) && (is_nxtg))
+	{
+		cont = confirm("Making and receiving video calls and using other features of Telstra's 3G network requires a Telstra\n3G SIM which is only available by purchasing the handset on a plan.\n\nClick OK to purchase the handset without a SIM, or Cancel to choose a plan before continuing.");
+	}
+	else
+	{
+		cont = true;
+	}
+
+	return cont;
+}
+</script>
+<form name="plans" id="plans" action="/plans" method="get" style="padding: 0px; margin: 0px; width: 100%;" onsubmit="return chk_buy();">
+	<div>
+		<label><input type="radio" name="plan_type" value="phone" />Phone Plan</label>
+		<span>$0 Upfront (for phone & service) on selected Personal & Business Phone Plans for 24 months</span>
+	</div>
+	<div>
+		<label><input type="radio" name="plan_type" value="member" />Member Plan</label>
+		<span>Personal & Business Member Plans with handset repayment for 12 or 24 months</span>
+	</div>
+	<div>
+		<label><input type="radio" name="plan_type" value="cap" />Cap Plan</label>
+		<span>Personal & Business Cap Plans with handset repayment for 12 or 24 months</span>
+	</div>
+	<div>
+		<label><input type="radio" name="plan_type" value="outright" />Buy Outright</label>
+		<!-- CHECK WHETHER TO USE @phone.outright HERE -->
+		<span>Outright purchase for <%= number_to_currency @phone.outright %> (no plan)</span>
+	</div>
+	<div>
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+			<tr>
+				<td style="text-align: left; border: none; width: 100%;"><%= link_to('Back', :back, { :class => 'blue_button', :style => 'line-height: 17px;' }) %></td>
+				<td style="text-align: right; border: none;"><input type="submit" name="next" value="Next" class="orange_button" style="border: none; background-color: transparent; color: #ffffff; cursor: hand;" /></td>
+			</tr>
+		</table>
+	</div>
+	<input type="hidden" name="id" value="<%= @phone.id %>" />
+	<input type="hidden" name="is_nextg" id="is_nextg" value="<%= (@phone.network == 'NextG') ? 1 : 0; %>" />
 </form>
 <hr />
 <h2>Features &amp; Specifications</h2>

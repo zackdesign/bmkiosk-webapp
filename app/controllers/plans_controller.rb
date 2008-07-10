@@ -7,13 +7,145 @@ class PlansController < ApplicationController
   # GET /plans
   # GET /plans.xml
   def index
-#    @plans = Plan.find(:all)
-
     # Get a list of phone network types
     @networks = get_phone_networks()
 
+    unless params[:id].nil?
+      @phone = Phone.find(params[:id])
+    else
+      @phone = nil
+    end
+
+    @plan_type = ''
+    @show_sub_plan_type = false
+    @show_repay_period = false
+    @show_avg_spend = false
+
+    unless params[:plan_type].nil?
+      @plan_type = params[:plan_type]
+      case @plan_type
+        when 'cap'
+          @show_repay_period = true
+          @show_avg_spend = true
+        when 'phone'
+          @show_sub_plan_type = true
+          @show_avg_spend = true
+        when 'member'
+          @show_sub_plan_type = true
+          @show_repay_period = true
+          @show_avg_spend = true
+      end
+    else
+      @plan_type = ''
+    end
+
+    unless params[:is_nextg].nil?
+      @is_nextg = (params[:plan_type].to_i == 1) ? true : false
+    else
+      @is_nextg = false
+    end
+
+    @service_type = 'new'
+
     respond_to do |format|
       format.html # index.html.erb
+      format.xml  { render :xml => @plans }
+    end
+  end
+
+  def list
+    # Get a list of phone network types
+    @networks = get_phone_networks()
+
+    unless params[:id].nil?
+      @phone = Phone.find(params[:id])
+    else
+      @phone = nil
+    end
+
+    unless params[:sub_plan_type].nil?
+      @sub_plan_type = params[:sub_plan_type]
+    else
+      @sub_plan_type = ''
+    end
+
+    unless params[:repayment_period].nil?
+      @repayment_period = params[:repayment_period]
+    else
+      @repayment_period = ''
+    end
+
+    unless params[:purchase_type].nil?
+      @purchase_type = params[:purchase_type]
+    else
+      @purchase_type = ''
+    end
+
+    unless params[:service_type].nil?
+      @service_type = params[:service_type]
+    else
+      @service_type = 'new'
+    end
+
+    unless params[:existing].nil?
+      @existing = params[:existing]
+    else
+      @existing = ''
+    end
+
+    unless params[:avg_spend].nil?
+      @avg_spend = params[:avg_spend]
+    else
+      @avg_spend = ''
+    end
+
+    @plan_type = ''
+    @show_sub_plan_type = false
+    @show_repay_period = false
+    @show_avg_spend = false
+
+    unless params[:plan_type].nil?
+      @plan_type = params[:plan_type]
+      case @plan_type
+        when 'cap'
+          @show_repay_period = true
+          @show_avg_spend = true
+        when 'phone'
+          @show_sub_plan_type = true
+          @show_avg_spend = true
+        when 'member'
+          @show_sub_plan_type = true
+          @show_repay_period = true
+          @show_avg_spend = true
+      end
+    else
+      @plan_type = ''
+    end
+
+    unless params[:is_nextg].nil?
+      @is_nextg = (params[:plan_type].to_i == 1) ? true : false
+    else
+      @is_nextg = false
+    end
+
+    # FIXME: Update this to actually do a search of the plans
+    @plans = Plan.find(:all, :limit => 1)
+
+    # FIXME: Manipulation of the plans and charges data to address problem in the database structure
+    unless @plans.first.charges.empty?
+      @rows = @plans[0].charges[0].charge_rows
+      @cols_lengths = @rows.collect { |r| r.charge_columns.length }
+      @max_cols = 0
+      @max_cols_row = 0
+      @cols_lengths.each_index { |cli| if @cols_lengths[cli] > @max_cols
+          @max_cols = @cols_lengths[cli]
+          @max_cols_row = cli
+        end
+      }
+    end
+
+    respond_to do |format|
+      format.html # list.html.erb
       format.xml  { render :xml => @plans }
     end
   end
