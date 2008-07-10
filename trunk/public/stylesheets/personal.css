@@ -56,7 +56,8 @@ form
 	font-size: 13px;
 	color: #000000;
 	margin: 0px auto;
-	width: 600px;
+/*	width: 600px;*/
+	width: 100%;
 }
 
 form input

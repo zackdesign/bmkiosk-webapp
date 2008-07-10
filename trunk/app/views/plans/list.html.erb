@@ -1,0 +1,51 @@
+<h2>Select Plan Features</h2>
+<hr />
+<%= render :partial => 'plan_search_form.html.erb' %>
+<div style="text-align: right;"><div class="right_buttons"><%= link_to_function('Refresh', "document.plan_search.submit()", { :class => "orange_button"} ) %></div><div style="clear: both;"></div></div>
+<p>This plan matches your criteria. To view alternatives, change your preferences and click 'Refresh'.</p>
+<%
+  for plan in @plans
+%>
+<h2>Plan: <%= h plan.name %></h2>
+<%
+    for charge in plan.charges
+%>
+<table cellspacing="0" cellpadding="0" border="1" width="100%">
+	<tr>
+		<th>&nbsp;</th>
+<%
+      for col in 0 .. (@max_cols - 1)
+%>
+		<th><small><%= charge.charge_rows[@max_cols_row].charge_columns[col].name %></small></th>
+<%
+      end
+%>
+	</tr>
+<%
+      for charge_row in charge.charge_rows
+%>
+	<tr>
+		<td><%= number_to_currency charge_row.value %></td>
+<%
+        for charge_col in charge_row.charge_columns
+%>
+	<td><%= charge_col.value %></td>
+<%
+        end
+
+        for rem in charge_row.charge_columns.length .. (@max_cols - 1)
+%>
+	<td>&nbsp;</td>
+<%
+        end
+%>
+	</tr>
+<%
+      end
+%>
+</table>
+<%
+    end
+%><%
+  end
+%>

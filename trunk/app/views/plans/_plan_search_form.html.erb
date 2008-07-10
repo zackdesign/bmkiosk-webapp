@@ -8,7 +8,11 @@ legend
 </style>
 <![endif]-->
 
+<p>To help find a plan for you we need to ask a few questions:</p>
 <form name="plan_search" action="/plans/list" method="post">
+<%
+  if @phone.nil?
+%>
 	<fieldset>
 		<legend>Do you want a handset with your plan ?</legend>
 		<div>
@@ -24,12 +28,25 @@ legend
 			</span>
 		</div>
 	</fieldset>
+<% else %>
+	<fieldset>
+		<legend>Handset selected</legend>
+		<div>
+			<%= show_thumbnail_if_available(@phone) %>
+		</div>
+		<div>
+			<%= h @phone.name %>
+		</div>
+		<input name="handset_required" type="hidden" value="monthly" />
+		<input name="id" type="hidden" value="<%= @phone.id %>" />
+	</fieldset>
+<% end -%>
 
 	<hr />
 
 	<fieldset>
 		<legend>Is this a Business or Personal purchase ?</legend>
-		<div>
+<!--		<div>
 			<label>Business</label>
 			<span>
 				<input name="purchase_type" type="radio" value="business" checked="checked" />
@@ -40,6 +57,17 @@ legend
 			<span>
 				<input name="purchase_type" type="radio" value="personal" />
 			</span>
+		</div>-->
+		<div>
+			<label for="purchase_type">Purchase type</label>
+			<span>
+<!--				<select name="purchase_type" id="purchase_type" size="1">
+					<option value="">Please select</option>
+					<option value="business">Business</option>
+					<option value="personal">Personal</option>
+				</select>-->
+				<%= select_tag 'purchase_type', options_for_select([['Please select', ''], ['Business', 'business'], ['Personal', 'personal']], @purchase_type) %>
+			</span>
 		</div>
 	</fieldset>
 
@@ -47,28 +75,37 @@ legend
 
 	<fieldset>
 		<legend>Is this a new service or an upgrade ?</legend>
-		<div>
+<!--		<div>
 			<label>New Service</label>
 			<span>
-				<input name="service_type" type="radio" value="monthly" checked="checked" />
+				<input name="service_type" type="radio" value="monthly" checked="checked" onclick="$('existing').hide();" />
 			</span>
 		</div>
 		<div>
 			<label>Upgrade</label>
 			<span>
-				<input name="service_type" type="radio" value="prepaid" />
+				<input name="service_type" type="radio" value="prepaid" onclick="$('existing').appear();" />
+			</span>
+		</div>-->
+		<div>
+			<label for="service_type">New Service or upgrade</label>
+			<span>
+				<%= select_tag 'service_type', options_for_select([['New service', 'new'], ['Upgrade', 'upgrade']], @service_type), { :onchange => "if (this.value == 'new') { $('existing').hide(); } else { $('existing').appear(); }" } %>
 			</span>
 		</div>
-		<div>
+		<div id="existing" style="<%= ((@service_type == 'new') ? 'display: none;' : '') %>">
 			<label>Your existing mobile number</label>
 			<span>
-				<input name="existing" type="text" value="" disabled="disabled" />
+				<input name="existing" type="text" value="<%= @existing %>" />
 			</span>
 		</div>
 	</fieldset>
 
 	<hr />
 
+<%
+  if @phone.nil?
+%>
 	<fieldset>
 		<legend>Which Telstra Network would you like to use ?</legend>
 <%
@@ -99,7 +136,13 @@ legend
 	</fieldset>
 
 	<hr />
+<% else %>
+	<input name="network" type="hidden" value="<%= h @phone.network %>" />
+<% end -%>
 
+<%
+  if @phone.nil?
+%>
 	<fieldset>
 		<legend>What plan suits your needs ?</legend>
 		<!-- <div>
@@ -109,55 +152,99 @@ legend
 			</span>
 		</div> -->
 		<div>
-			<label for="brand">Plan Type</label>
-			<span>
-				<%#= select_tag "brand", options_for_select(@phone_brands, @selected_brand) %>
-				<select name="plan_type" size="1">
-					<option value="">Select a plan type</option>
-					<option value="cap">Cap Plan</option>
-					<option value="cap">Phone Plan</option>
-					<option value="cap">Member Plan</option>
-				</select>
-			</span>
+			<%#= select_tag "brand", options_for_select(@phone_brands, @selected_brand) %>
+			<label for="plan_type">Plan Type</label>
+			<select name="plan_type" id="plan_type" size="1">
+				<option value="" checked="checked">Please select</option>
+				<option value="cap">Cap Plan</option>
+				<option value="phone">Phone Plan</option>
+				<option value="member">Member Plan</option>
+			</select>
 		</div>
+	</fieldset>
+<% else %>
+	<fieldset>
+		<legend>Plan selected</legend>
 		<div>
-			<label for="brand">Sub Plan Type</label>
+<%
+  case @plan_type
+    when 'cap'
+%>
+		<p>Cap Plan</p>
+<%
+    when 'phone'
+%>
+		<p>Phone Plan</p>
+<%
+    when 'member'
+%>
+		<p>Member Plan</p>
+<%
+    else
+%>
+		<p>Unknown</p>
+<%
+    end
+%>
+		</div>
+		<input type="hidden" name="plan_type" value="<%= @plan_type %>" />
+	</fieldset>
+<% end -%>
+
+	<hr />
+
+<%
+  if @show_sub_plan_type
+%>
+	<fieldset>
+		<legend>Please select a sub-plan type</legend>
+		<div>
+			<label for="sub_plan_type">Sub Plan Type</label>
 			<span>
-				<%#= select_tag "brand", options_for_select(@phone_brands, @selected_brand) %>
-				<select name="plan_type" size="1">
-					<option value="">Select a sub plan type</option>
-					<option value="cap">Mobile Plan</option>
-					<option value="cap">Get Connected Plan</option>
-				</select>
+				<%= select_tag 'sub_plan_type', options_for_select([['Please select', ''], ['Mobile Plan', 'mobile'], ['Get Connected Plan', 'connected']], @sub_plan_type) %>
+<!--				<select name="sub_plan_type" id="sub_plan_type" size="1">
+					<option value="">Please select</option>
+					<option value="mobile">Mobile Plan</option>
+					<option value="connected">Get Connected Plan</option>
+				</select>-->
 			</span>
 		</div>
 	</fieldset>
 
 	<hr />
+<% end -%>
 
+<%
+  if @show_repay_period
+%>
 	<fieldset>
 		<legend>Over what period would you like to repay the cost of your handset ?</legend>
 		<div>
 			<label>Repayment Period</label>
 			<span>
-				<select name="repayment_period" size="1">
-					<option value="">Select a repayment period</option>
-					<option value="cap">12 months</option>
-					<option value="cap">24 months</option>
-				</select>
+<!--				<select name="repayment_period" size="1">
+					<option value="">Please select</option>
+					<option value="12">12 months</option>
+					<option value="24">24 months</option>
+				</select>-->
+				<%= select_tag 'repayment_period', options_for_select([['Please select', ''], ['12 months', '12'], ['24 months', '24']], @repayment_period) %>
 			</span>
 		</div>
 	</fieldset>
 
 	<hr />
+<% end -%>
 
+<%
+  if @show_avg_spend
+%>
 	<fieldset>
 		<legend>What is your average spend each month ?</legend>
 		<div>
 			<label>Average Monthly Spend</label>
 			<span>
-				<select name="repayment_period" size="1">
-					<option value="">Select a monthly spend</option>
+<!--				<select name="repayment_period" size="1">
+					<option value="">Please select</option>
 					<option value="cap">$10</option>
 					<option value="cap">$20</option>
 					<option value="cap">$30</option>
@@ -166,12 +253,14 @@ legend
 					<option value="cap">$80</option>
 					<option value="cap">$100</option>
 					<option value="cap">$150</option>
-				</select>
+				</select>-->
+				<%= select_tag 'avg_spend', options_for_select([['Please select', ''], ['$10', '10'], ['$20', '20'], ['$30', '30'], ['$40', '40']], @avg_spend) %>
 			</span>
 		</div>
 	</fieldset>
 
 	<hr />
+<% end -%>
 
-	<div style="text-align: right;"><div class="right_buttons"><%= link_to_function('Display Plans', "document.plan_search.submit()", { :class => "orange_button"} ) %></div><div style="clear: both;"></div></div>
+<!--	<div style="text-align: right;"><div class="right_buttons"><%= link_to_function('Display Plans', "document.plan_search.submit()", { :class => "orange_button"} ) %></div><div style="clear: both;"></div></div>-->
 </form>
