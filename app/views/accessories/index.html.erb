@@ -136,8 +136,18 @@ a.orange_button:visited
 }
 </style>
 
+<script language="javascript">
+function change_brand()
+{
+	var new_brand = $F('brand');
+	var query = window.location.search;
+	var new_query = ((new_brand != '') ? 'brand=' + new_brand : '');
+	window.location.search = new_query;
+}
+</script>
+
 <h2>Mobile Accessories</h2>
-Show accessories for: <%= select_tag "brand", options_for_select(@phone_brands, @selected_brand) %>
+Show accessories for: <%= select_tag "brand", options_for_select(@phone_brands, @selected_brand), { :onchange => "change_brand();" } %>
 <div style="text-align: right;"><%= will_paginate @accessories, { :prev_label => 'Prev', :next_label => 'Next' } %></div>
 <hr />
 <div id="results">
@@ -154,7 +164,7 @@ Show accessories for: <%= select_tag "brand", options_for_select(@phone_brands, 
 			<!-- <p><%#= accessory.description %></p> -->
 			<!-- <%#= link_to(image_tag("more_details.gif", { :alt => "More Details", :border => 0 }), url_for({ :action => 'show', :id => phone.id })) %> -->
 			<!-- <%#= link_to('More Details', url_for({ :action => 'show', :id => accessory.id }), { :class => 'orange_button' }) %> -->
-			<%= link_to('Add to Cart', url_for({ :action => 'cartadd', :id => accessory.id }), { :class => 'orange_button' }) %>
+			<%= link_to('Add to Cart', url_for({ :action => 'cartadd', :id => accessory.id, :page => @page, :brand => @selected_brand }), { :class => 'orange_button' }) %>
 		</div>
 		<div class="clear"></div>
 	</div>
