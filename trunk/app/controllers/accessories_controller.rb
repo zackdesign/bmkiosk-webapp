@@ -13,12 +13,21 @@ class AccessoriesController < ApplicationController
 #    @count = Accessory.find(:all).length
 #    @accessories = Accessory.find(:all, :offset => @offset, :limit => @limit)
 
-    page = (params[:page].nil?) ? 1 : params[:page]
-    @accessories = Accessory.paginate :page => page, :per_page => 3
+    unless ((params[:brand].nil?) || (params[:brand].empty?))
+      @selected_brand = params[:brand]
+    else
+      @selected_brand = ""
+    end
+
+    @page = (params[:page].nil?) ? 1 : params[:page]
+    unless @selected_brand.empty?
+      @accessories = Accessory.paginate_by_brand @selected_brand, :page => @page, :per_page => 9
+    else
+      @accessories = Accessory.paginate :page => @page, :per_page => 9
+    end
 
     # Get a list of phone brands
     @phone_brands = get_phone_brands()
-    @selected_brand = ""
 
     respond_to do |format|
       format.html # index.html.erb
@@ -46,7 +55,15 @@ class AccessoriesController < ApplicationController
       add_to_cart(last_id)
     end
       flash.now[:notice] = "Added to cart"
-      redirect_to(:action => "index" )
+
+    unless ((params[:brand].nil?) || (params[:brand].empty?))
+      @selected_brand = params[:brand]
+    else
+      @selected_brand = ""
+    end
+
+    @page = (params[:page].nil?) ? 1 : params[:page]
+    redirect_to(:action => "index", :page => @page, :brand => @selected_brand )
   end
 
   # GET /accessories/1
@@ -145,5 +162,16 @@ class AccessoriesController < ApplicationController
     end
 
     return @brands
+  end
+
+  def actual
+    # Send the uploaded image actual size to the browser
+    @accessory = Accessory.find(params[:id])
+    unless (@accessory.nil?)
+      unless (@accessory.picture_data.nil?)
+        send_data @accessory.picture_data, :filename => @accessory.picture_name,
+                  :type => @accessory.picture_type, :disposition => "inline"
+      end
+    end
   end
 end
