@@ -1,6 +1,6 @@
 class AddBrandToAccessories < ActiveRecord::Migration
   def self.up
-    add_column :accessories, :brand, :string, :default => 'Nokia'
+    add_column :accessories, :brand, :string, :default => ''
   end
 
   def self.down
