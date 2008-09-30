@@ -5,8 +5,8 @@ class PlansOptions < ActiveRecord::Migration
       t.column :option_id, :integer, :null => false
     end
     
-	change_column :options, :id, :integer, { :limit => 24 }
-	
+	change_column :options, :id, :integer
+	execute " ALTER TABLE `options` CHANGE `id` `id` INT( 24 ) NOT NULL  "
     # Indexes are important for performance if join tables grow big
     add_index :plans_options, [:plan_id, :option_id]
   end

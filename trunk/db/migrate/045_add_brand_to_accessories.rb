@@ -4,6 +4,6 @@ class AddBrandToAccessories < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :accessories, :brand, :string
+    remove_column :accessories, :brand
   end
 end
