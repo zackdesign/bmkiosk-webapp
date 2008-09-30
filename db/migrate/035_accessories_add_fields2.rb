@@ -5,6 +5,6 @@ class AccessoriesAddFields2 < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :plans, :govt_price
+    remove_column :accessories, :govt_price
   end
 end

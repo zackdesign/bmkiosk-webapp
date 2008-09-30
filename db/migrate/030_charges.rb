@@ -33,5 +33,22 @@ class Charges < ActiveRecord::Migration
   def self.down
     drop_table "charge_rows"
     drop_table "charge_columns"
+    create_table :charge_types do |t|
+#      t.column :id,             :integer
+      t.column :name,           :string
+      t.column :description,    :text
+      t.column :created_at,     :timestamp
+      t.column :updated_at,     :timestamp
+      t.column :discontinued,   :boolean, :default => false
+    end
+    create_table :charge_type_fields do |t|
+#      t.column :id,             :integer
+      t.column :charge_type_id, :integer
+      t.column :name,           :string
+      t.column :description,    :text
+      t.column :created_at,     :timestamp
+      t.column :updated_at,     :timestamp
+      t.column :discontinued,   :boolean, :default => false
+    end
   end
 end
