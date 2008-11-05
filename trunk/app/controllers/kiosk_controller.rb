@@ -119,7 +119,7 @@ class KioskController < ApplicationController
       unless p.features.empty?
       
         for f in p.features
-          extra += ''+f.name+' ' 
+          extra += ' - '+f.name 
         end
       
       end
