@@ -1,1 +1,53 @@
 
+
+
+Processing KioskController#show (for 127.0.0.1 at 2008-11-05 11:34:59) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"kiosk"}
+  [4;36;1mPhone Load (0.002744)[0m   [0;1mSELECT p.id, p.name, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = 2
+ AND p.id = k.phone_id[0m
+  [4;35;1mPhone Columns (0.001974)[0m   [0mSHOW FIELDS FROM `phones`[0m
+Rendering template within layouts/kiosk
+Rendering kiosk/show
+Completed in 0.30613 (3 reqs/sec) | Rendering: 0.00261 (0%) | DB: 0.00640 (2%) | 200 OK [http://localhost/kiosk/show/2]
+
+
+Processing KioskController#show (for 127.0.0.1 at 2008-11-05 11:35:05) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"show", "id"=>"3", "controller"=>"kiosk"}
+  [4;36;1mPhone Load (0.001120)[0m   [0;1mSELECT p.id, p.name, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = 3
+ AND p.id = k.phone_id[0m
+  [4;35;1mPhone Columns (0.001913)[0m   [0mSHOW FIELDS FROM `phones`[0m
+Rendering template within layouts/kiosk
+Rendering kiosk/show
+Completed in 0.03745 (26 reqs/sec) | Rendering: 0.00125 (3%) | DB: 0.00363 (9%) | 200 OK [http://localhost/kiosk/show/3]
+
+
+Processing KioskController#show (for 127.0.0.1 at 2008-11-05 11:35:11) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"show", "id"=>"4", "controller"=>"kiosk"}
+  [4;36;1mPhone Load (0.000826)[0m   [0;1mSELECT p.id, p.name, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = 4
+ AND p.id = k.phone_id[0m
+  [4;35;1mPhone Columns (0.001146)[0m   [0mSHOW FIELDS FROM `phones`[0m
+Rendering template within layouts/kiosk
+Rendering kiosk/show
+Completed in 0.11968 (8 reqs/sec) | Rendering: 0.00113 (0%) | DB: 0.00255 (2%) | 200 OK [http://localhost/kiosk/show/4]
+
+
+Processing KioskController#show (for 127.0.0.1 at 2008-11-05 11:35:17) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"kiosk"}
+  [4;36;1mPhone Load (0.002632)[0m   [0;1mSELECT p.id, p.name, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = 1
+ AND p.id = k.phone_id[0m
+  [4;35;1mPhone Columns (0.002024)[0m   [0mSHOW FIELDS FROM `phones`[0m
+Rendering template within layouts/kiosk
+Rendering kiosk/show
+Completed in 0.41540 (2 reqs/sec) | Rendering: 0.00109 (0%) | DB: 0.00515 (1%) | 200 OK [http://localhost/kiosk/show/1]
