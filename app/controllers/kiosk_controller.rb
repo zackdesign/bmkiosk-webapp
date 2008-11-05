@@ -22,17 +22,21 @@ class KioskController < ApplicationController
 	  </options>\r\n"
     
     for p in phones
-    
-      image = Magick::Image.from_blob(p.picture_data).first
       
-      max_dimension = (image.columns < image.rows) ? image.rows : image.columns
+      unless FileTest.exist?("public/kiosk_images/#{p.picture_name}")
+      
+        image = Magick::Image.from_blob(p.picture_data).first
+      
+        max_dimension = (image.columns < image.rows) ? image.rows : image.columns
           if max_dimension < 220
             thumb = image
           else
             thumb = image.resize_to_fit(220, 220)
-      end
+        end
     
-      File.open('public/kiosk_images/'+p.picture_name,'w'){|f| f.write(thumb.to_blob)}
+        File.open('public/kiosk_images/'+p.picture_name,'w'){|f| f.write(thumb.to_blob)}
+      
+      end
       
       xml += "\t<photo href=\"/phones/"+p.id.to_s+"\" alt='"+p.name+"' target=\"_self\">/kiosk_images/"+p.picture_name+"</photo>\r\n"
     
@@ -97,12 +101,16 @@ class KioskController < ApplicationController
     for p in phones
       
       if p.picture_type == 'image/jpeg' || p.picture_type == 'image/pjpeg'
-         File.open('public/kiosk_images/slideshow/'+p.picture_name,'w'){|f| f.write(p.picture_data)}
+         unless FileTest.exist?("public/kiosk_images/slideshow/#{p.picture_name}")
+           File.open('public/kiosk_images/slideshow/'+p.picture_name,'w'){|f| f.write(p.picture_data)}
+         end
          picture_name = p.picture_name
       else
-         image = Magick::Image.from_blob(p.picture_data).first
+         unless FileTest.exist?("public/kiosk_images/slideshow/#{p.picture_name}.jpg")
+           image = Magick::Image.from_blob(p.picture_data).first
          
-         File.open('public/kiosk_images/slideshow/'+p.picture_name+'.jpg','w'){|f| f.write(image.to_blob{self.format = "jpg"})}
+           File.open('public/kiosk_images/slideshow/'+p.picture_name+'.jpg','w'){|f| f.write(image.to_blob{self.format = "jpg"})}
+         end
          picture_name = p.picture_name+'.jpg'
       end
       
