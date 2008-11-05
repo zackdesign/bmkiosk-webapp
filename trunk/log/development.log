@@ -8490,3 +8490,294 @@ Processing KioskController#plasma (for 127.0.0.1 at 2008-11-05 14:37:47) [GET]
 Rendering template within layouts/kiosk
 Rendering kiosk/plasma
 Completed in 0.07136 (14 reqs/sec) | Rendering: 0.00105 (1%) | DB: 0.00987 (13%) | 200 OK [http://localhost/kiosk/plasma]
+
+
+Processing KioskController#show (for 127.0.0.1 at 2008-11-05 17:19:29) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"kiosk"}
+
+
+ActionController::UnknownAction (No action responded to show):
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:579:in `call_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:572:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:568:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/session_management.rb:130:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:389:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/servers/mongrel.rb:64
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2008-11-05 17:19:34) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+  [4;36;1mPhone Load (0.001934)[0m   [0;1mSELECT p.id, p.name, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = 1
+ AND p.id = k.phone_id[0m
+  [4;35;1mPhone Columns (0.001218)[0m   [0mSHOW FIELDS FROM `phones`[0m
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.37890 (2 reqs/sec) | Rendering: 0.00252 (0%) | DB: 0.00523 (1%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2008-11-05 17:21:19) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+  [4;36;1mPhone Load (0.000696)[0m   [0;1mSELECT p.id, p.name, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = 1
+ AND p.id = k.phone_id[0m
+  [4;35;1mPhone Columns (0.001299)[0m   [0mSHOW FIELDS FROM `phones`[0m
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.02286 (43 reqs/sec) | Rendering: 0.00167 (7%) | DB: 0.00299 (13%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2008-11-05 17:21:28) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+  [4;36;1mPhone Load (0.001082)[0m   [0;1mSELECT p.id, p.name, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = 1
+ AND p.id = k.phone_id[0m
+  [4;35;1mPhone Columns (0.001906)[0m   [0mSHOW FIELDS FROM `phones`[0m
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.02982 (33 reqs/sec) | Rendering: 0.00181 (6%) | DB: 0.00357 (11%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2008-11-05 17:21:41) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+  [4;36;1mPhone Load (0.000718)[0m   [0;1mSELECT p.id, p.name, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = 1
+ AND p.id = k.phone_id[0m
+  [4;35;1mPhone Columns (0.001282)[0m   [0mSHOW FIELDS FROM `phones`[0m
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.43651 (2 reqs/sec) | Rendering: 0.00115 (0%) | DB: 0.00307 (0%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2008-11-05 17:21:49) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+  [4;36;1mPhone Load (0.001046)[0m   [0;1mSELECT p.id, p.name, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = 1
+ AND p.id = k.phone_id[0m
+  [4;35;1mPhone Columns (0.001160)[0m   [0mSHOW FIELDS FROM `phones`[0m
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.01889 (52 reqs/sec) | Rendering: 0.00104 (5%) | DB: 0.00278 (14%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#plasma (for 127.0.0.1 at 2008-11-05 17:23:17) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"plasma", "controller"=>"kiosk"}
+  [4;36;1mPhone Load (0.000560)[0m   [0;1mSELECT p.id, p.name, p.picture_type, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = "4"
+ AND p.id = k.phone_id[0m
+  [4;35;1mPhone Columns (0.002310)[0m   [0mSHOW FIELDS FROM `phones`[0m
+  [4;36;1mJoin Table Columns (0.000947)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000322)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 25 ) [0m
+  [4;36;1mFeature Columns (0.001174)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+
+
+TypeError (can't convert nil into String):
+    /app/controllers/kiosk_controller.rb:127:in `+'
+    /app/controllers/kiosk_controller.rb:127:in `plasma'
+    /app/controllers/kiosk_controller.rb:101:in `each'
+    /app/controllers/kiosk_controller.rb:101:in `plasma'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1166:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1166:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:579:in `call_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:572:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/query_cache.rb:8:in `cache'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:568:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/session_management.rb:130:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:389:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
+    /usr/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/servers/mongrel.rb:64
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing KioskController#plasma (for 127.0.0.1 at 2008-11-05 17:25:32) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"plasma", "controller"=>"kiosk"}
+  [4;35;1mPhone Load (0.000526)[0m   [0mSELECT p.id, p.name, p.picture_type, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = "4"
+ AND p.id = k.phone_id[0m
+  [4;36;1mPhone Columns (0.002021)[0m   [0;1mSHOW FIELDS FROM `phones`[0m
+  [4;35;1mJoin Table Columns (0.000917)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000294)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 25 ) [0m
+  [4;35;1mFeature Columns (0.001188)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mJoin Table Columns (0.001018)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000354)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 17 ) [0m
+  [4;36;1mJoin Table Columns (0.000934)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000331)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 28 ) [0m
+  [4;36;1mJoin Table Columns (0.001012)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000291)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 18 ) [0m
+  [4;36;1mJoin Table Columns (0.000862)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000190)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 19 ) [0m
+  [4;36;1mJoin Table Columns (0.000867)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000191)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 20 ) [0m
+  [4;36;1mJoin Table Columns (0.000846)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000324)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 21 ) [0m
+Rendering template within layouts/kiosk
+Rendering kiosk/plasma
+Completed in 0.05323 (18 reqs/sec) | Rendering: 0.00162 (3%) | DB: 0.01906 (35%) | 200 OK [http://localhost/kiosk/plasma]
+
+
+Processing KioskController#plasma (for 127.0.0.1 at 2008-11-05 17:25:40) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"plasma", "controller"=>"kiosk"}
+  [4;36;1mPhone Load (0.000338)[0m   [0;1mSELECT p.id, p.name, p.picture_type, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = "4"
+ AND p.id = k.phone_id[0m
+  [4;35;1mPhone Columns (0.001185)[0m   [0mSHOW FIELDS FROM `phones`[0m
+  [4;36;1mJoin Table Columns (0.000672)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000225)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 25 ) [0m
+  [4;36;1mFeature Columns (0.000778)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mJoin Table Columns (0.000634)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000223)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 17 ) [0m
+  [4;35;1mJoin Table Columns (0.000586)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000191)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 28 ) [0m
+  [4;35;1mJoin Table Columns (0.000609)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000187)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 18 ) [0m
+  [4;35;1mJoin Table Columns (0.000590)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000136)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 19 ) [0m
+  [4;35;1mJoin Table Columns (0.000581)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000136)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 20 ) [0m
+  [4;35;1mJoin Table Columns (0.000584)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000199)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 21 ) [0m
+Rendering template within layouts/kiosk
+Rendering kiosk/plasma
+Completed in 0.03294 (30 reqs/sec) | Rendering: 0.00107 (3%) | DB: 0.00844 (25%) | 200 OK [http://localhost/kiosk/plasma]
+
+
+Processing KioskController#plasma (for 127.0.0.1 at 2008-11-05 17:25:46) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"plasma", "controller"=>"kiosk"}
+  [4;35;1mPhone Load (0.000530)[0m   [0mSELECT p.id, p.name, p.picture_type, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = "4"
+ AND p.id = k.phone_id[0m
+  [4;36;1mPhone Columns (0.001997)[0m   [0;1mSHOW FIELDS FROM `phones`[0m
+  [4;35;1mJoin Table Columns (0.001010)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000326)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 25 ) [0m
+  [4;35;1mFeature Columns (0.001224)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mJoin Table Columns (0.000572)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000181)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 17 ) [0m
+  [4;36;1mJoin Table Columns (0.000589)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000180)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 28 ) [0m
+  [4;36;1mJoin Table Columns (0.000539)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000161)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 18 ) [0m
+  [4;36;1mJoin Table Columns (0.000559)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000124)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 19 ) [0m
+  [4;36;1mJoin Table Columns (0.000534)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000120)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 20 ) [0m
+  [4;36;1mJoin Table Columns (0.000529)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000172)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 21 ) [0m
+Rendering template within layouts/kiosk
+Rendering kiosk/plasma
+Completed in 0.05032 (19 reqs/sec) | Rendering: 0.00104 (2%) | DB: 0.00989 (19%) | 200 OK [http://localhost/kiosk/plasma]
