@@ -8781,3 +8781,59 @@ Processing KioskController#plasma (for 127.0.0.1 at 2008-11-05 17:25:46) [GET]
 Rendering template within layouts/kiosk
 Rendering kiosk/plasma
 Completed in 0.05032 (19 reqs/sec) | Rendering: 0.00104 (2%) | DB: 0.00989 (19%) | 200 OK [http://localhost/kiosk/plasma]
+
+
+Processing KioskController#plasma (for 127.0.0.1 at 2008-11-05 17:26:36) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"plasma", "controller"=>"kiosk"}
+  [4;36;1mPhone Load (0.000408)[0m   [0;1mSELECT p.id, p.name, p.picture_type, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = "4"
+ AND p.id = k.phone_id[0m
+  [4;35;1mPhone Columns (0.001194)[0m   [0mSHOW FIELDS FROM `phones`[0m
+  [4;36;1mJoin Table Columns (0.000606)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000213)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 25 ) [0m
+  [4;36;1mFeature Columns (0.000753)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mJoin Table Columns (0.000582)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000197)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 17 ) [0m
+  [4;35;1mJoin Table Columns (0.000562)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000180)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 28 ) [0m
+  [4;35;1mJoin Table Columns (0.000572)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000172)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 18 ) [0m
+  [4;35;1mJoin Table Columns (0.000580)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000126)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 19 ) [0m
+  [4;35;1mJoin Table Columns (0.000550)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000125)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 20 ) [0m
+  [4;35;1mJoin Table Columns (0.000549)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000178)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 21 ) [0m
+Rendering template within layouts/kiosk
+Rendering kiosk/plasma
+Completed in 0.03321 (30 reqs/sec) | Rendering: 0.00106 (3%) | DB: 0.00826 (24%) | 200 OK [http://localhost/kiosk/plasma]
+
+
+Processing KioskController#plasma (for 127.0.0.1 at 2008-11-05 17:26:49) [GET]
+  Session ID: 25ff28607f6bed8f4db96974fdf49810
+  Parameters: {"action"=>"plasma", "controller"=>"kiosk"}
+  [4;35;1mPhone Load (0.000507)[0m   [0mSELECT p.id, p.name, p.picture_type, p.picture_name, p.picture_data
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = "4"
+ AND p.id = k.phone_id[0m
+  [4;36;1mPhone Columns (0.001863)[0m   [0;1mSHOW FIELDS FROM `phones`[0m
+  [4;35;1mJoin Table Columns (0.000575)[0m   [0mSHOW FIELDS FROM `phones_features`[0m
+  [4;36;1mFeature Load (0.000194)[0m   [0;1mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 25 ) [0m
+  [4;35;1mFeature Columns (0.000737)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mJoin Table Columns (0.000737)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000210)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 17 ) [0m
+  [4;36;1mJoin Table Columns (0.000716)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000246)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 28 ) [0m
+  [4;36;1mJoin Table Columns (0.000628)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000180)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 18 ) [0m
+  [4;36;1mJoin Table Columns (0.000551)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000121)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 19 ) [0m
+  [4;36;1mJoin Table Columns (0.000536)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000121)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 20 ) [0m
+  [4;36;1mJoin Table Columns (0.000543)[0m   [0;1mSHOW FIELDS FROM `phones_features`[0m
+  [4;35;1mFeature Load (0.000179)[0m   [0mSELECT * FROM `features` INNER JOIN `phones_features` ON `features`.id = `phones_features`.feature_id WHERE (`phones_features`.phone_id = 21 ) [0m
+Rendering template within layouts/kiosk
+Rendering kiosk/plasma
+Completed in 0.10018 (9 reqs/sec) | Rendering: 0.00218 (2%) | DB: 0.00944 (9%) | 200 OK [http://localhost/kiosk/plasma]
