@@ -118,10 +118,9 @@ OF STOCK'
 				loaderWidth="200"
 				loaderHeight="1"
 				loaderColor="FF0000"
-				loaderOpacity="100" 
-				
+				loaderOpacity="100"
 				attachCaptionToImage="true"
-				imageScaling="downFill"
+				imageScaling="downFit"
 				slideshowMargin="0"
 				showMusicButton="false"
 				music=""
@@ -170,8 +169,15 @@ OF STOCK'
 	 text.pointsize = 40
 	 text.gravity = Magick::SouthGravity
          text.annotate(big_canvas, 0,0,0,0, p.name) { self.fill = 'black' }
+         
+         wet = big_canvas.wet_floor(initial=0.5, rate=0.1)
+         wet.resize!(wet.columns, wet.rows/3)
+         
+         final = Magick::Image.new(big_canvas.columns, big_canvas.rows+wet.rows)
+         final = final.composite(wet, SouthGravity, OverCompositeOp)
+         final = final.composite(big_canvas, NorthGravity, OverCompositeOp)
                   
-         File.open('public/kiosk_images/slideshow/'+picture,'w'){|f| f.write(big_canvas.to_blob{self.format = "jpg"})}
+         File.open('public/kiosk_images/slideshow/'+picture,'w'){|f| f.write(final.to_blob{self.format = "jpg"})}
       end
       
       xml += "<image img='/kiosk_images/slideshow/"+picture+"' caption='Buy Outright for $"+p.buy_price.to_s+"' />\r\n"
