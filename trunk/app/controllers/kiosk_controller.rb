@@ -89,6 +89,7 @@ OF STOCK'
     @plasma = '4'
     
     # Will also need to grab accessories
+    # Check for logos flagged as 'other' to put here also
     
     phones = Phone.find_by_sql('SELECT p.id, p.name, p.picture_type, p.picture_name, p.picture_data, p.buy_price
                                 FROM kiosks AS k, phones AS p
@@ -140,30 +141,40 @@ OF STOCK'
       
       # Redo this so that it shows the phone name beneath the phone and adds feature pics
       
-      if p.picture_type == 'image/jpeg' || p.picture_type == 'image/pjpeg'
-         unless FileTest.exist?("public/kiosk_images/slideshow/#{p.picture_name}")
-           File.open('public/kiosk_images/slideshow/'+p.picture_name,'w'){|f| f.write(p.picture_data)}
-         end
-         picture_name = p.picture_name
-      else
-         unless FileTest.exist?("public/kiosk_images/slideshow/#{p.picture_name}.jpg")
-           image = Magick::Image.from_blob(p.picture_data).first
+      picture = p.picture_name+'.jpg'
+      
+      unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}")
          
-           File.open('public/kiosk_images/slideshow/'+p.picture_name+'.jpg','w'){|f| f.write(image.to_blob{self.format = "jpg"})}
+         unless p.features.empty?
+             
+             ilist = Magick::ImageList.new
+             
+	     for f in p.features
+	        ilist.from_blob(f.picture_data) 
+	        ilist.cur_image[:Label] = f.name
+	     end
+	     
+	     montage = ilist.montage{background_color='white', self.geometry='100x100+2+2', self.pointsize=10, self.tile='2x30'}
          end
-         picture_name = p.picture_name+'.jpg'
+         
+         image = Magick::Image.from_blob(p.picture_data).first
+         
+         big_canvas = Magick::Image.new(image.columns+220, image.rows+60)
+         big_canvas = big_canvas.composite(image, NorthEastGravity, OverCompositeOp)
+         unless montage.empty?
+           big_canvas = big_canvas.composite(montage, NorthWestGravity, OverCompositeOp)
+         end
+         
+         text = Magick::Draw.new
+	 text.font_family = 'Arial'
+	 text.pointsize = 40
+	 text.gravity = Magick::SouthGravity
+         text.annotate(big_canvas, 0,0,0,0, p.name) { self.fill = 'black' }
+                  
+         File.open('public/kiosk_images/slideshow/'+picture,'w'){|f| f.write(big_canvas.to_blob{self.format = "jpg"})}
       end
       
-      
-      unless p.features.empty?
-      
-        for f in p.features
-          # add features to left and right of phone
-        end
-      
-      end
-      
-      xml += "<image img='/kiosk_images/slideshow/"+picture_name+"' caption='Buy Outright for $"+p.buy_price.to_s+"' />\r\n"
+      xml += "<image img='/kiosk_images/slideshow/"+picture+"' caption='Buy Outright for $"+p.buy_price.to_s+"' />\r\n"
     
     end
     
