@@ -144,6 +144,8 @@ OF STOCK'
       
       unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}")
          
+         montage = ''
+         
          unless p.features.empty?
              
              ilist = Magick::ImageList.new
