@@ -95,14 +95,16 @@ OF STOCK'
                                 FROM kiosks AS k, phones AS p
                                 WHERE k.kiosk = "'+@plasma+'"
                                 AND p.id = k.phone_id')
+    accessories = Accessory.find(:all, :conditions => {:plasma => '1'})
+    logos = Logo.find(:all, :conditions => {:plasma => '1'})
     
     xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n"
     xml += '	<slideshow  displayTime="20" transitionSpeed=".7" transitionType="Fade" motionType="None" motionEasing="easeInOut" randomize="true"
                             slideshowWidth="auto" slideshowHeight="auto" slideshowX="center" slideshowY="center" bgColor="FFFFFF" bgOpacity="100"
                             useHtml="true" showHideCaption="true" captionBg="000000" captionBgOpacity="80" captionTextSize="20" captionTextColor="FFFFFF"
                             captionBold="true" 	captionPadding="7" showNav="false" autoHideNav="true" navHiddenOpacity="15" navX="center"
-                             navY="center" btnColor="FFCC00" btnHoverColor="ffffff" btnShadowOpacity="70"  btnGradientOpacity="20" btnScale="120"
-                                	btnSpace="10"  navBgColor="333333" navBgAlpha="95" navCornerRadius="20" navBorderWidth="2" navBorderColor="FFFFFF"
+                            navY="center" btnColor="FFCC00" btnHoverColor="ffffff" btnShadowOpacity="70"  btnGradientOpacity="20" btnScale="120"
+                            btnSpace="10"  navBgColor="333333" navBgAlpha="95" navCornerRadius="20" navBorderWidth="2" navBorderColor="FFFFFF"
                                 
 				navBorderAlpha="100"
 				navPadding="10"
@@ -138,8 +140,6 @@ OF STOCK'
     
     for p in phones
       
-      # Redo this so that it shows the phone name beneath the phone and adds feature pics
-      
       picture = p.picture_name+'.jpg'
       
       unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}")
@@ -160,23 +160,88 @@ OF STOCK'
          
          image = Magick::Image.from_blob(p.picture_data).first
          
-         big_canvas = Magick::Image.new(image.columns+220, image.rows+60)
+         if p.buy_price        
+	   price = ' - $'+p.buy_price.to_s
+	 else
+	   price = ''
+         end
+         
+         text = Magick::Image.read("caption:"+p.name+price) { 
+	 	            self.size = "#{image.columns+220}";
+	 	            self.pointsize = 35
+	 	            self.gravity = SouthGravity
+	 	            self.font = 'Arial'
+         }.first
+         
+         big_canvas = Magick::Image.new(image.columns+220, image.rows+text.rows)
          big_canvas = big_canvas.composite(image, NorthEastGravity, OverCompositeOp)
          unless montage.empty?
            big_canvas = big_canvas.composite(montage, NorthWestGravity, OverCompositeOp)
          end
+         big_canvas = big_canvas.composite(text, SouthGravity, OverCompositeOp)
          
-         if p.buy_price        
-           price = ' - $'+p.buy_price.to_s
-         else
-           price = ''
+         wet = big_canvas.wet_floor(initial=0.5, rate=0.1)
+         wet.resize!(wet.columns, wet.rows/3)
+         
+         final = Magick::Image.new(big_canvas.columns, big_canvas.rows+wet.rows)
+         final = final.composite(wet, SouthGravity, OverCompositeOp)
+         final = final.composite(big_canvas, NorthGravity, OverCompositeOp)
+                  
+         File.open('public/kiosk_images/slideshow/'+picture,'w'){|f| f.write(final.to_blob{self.format = "jpg"})}
+      end
+      
+      xml += "<image img='/kiosk_images/slideshow/"+picture+"' caption='' />\r\n"
+    
+    end
+    
+    for a in accessories
+      
+      picture = a.picture_name+'.jpg'
+      
+      unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}")
+                  
+         image = Magick::Image.from_blob(a.picture_data).first
+         
+         if a.buy_price        
+	   price = ' - $'+a.buy_price.to_s
+	 else
+	   price = ''
          end
          
-         text = Magick::Draw.new
-	 text.font_family = 'Arial'
-	 text.pointsize = 35
-	 text.gravity = Magick::SouthGravity
-         text.annotate(big_canvas, 0,0,0,0, p.name+price) { self.fill = 'black' }
+         text = Magick::Image.read("caption:"+a.name+price) { 
+	            self.size = "#{image.columns}";
+	            self.pointsize = 20
+	            self.font = 'Arial'
+         }.first
+         
+         big_canvas = Magick::Image.new(image.columns, image.rows+text.rows)
+         big_canvas = big_canvas.composite(image, NorthEastGravity, OverCompositeOp)
+         big_canvas = big_canvas.composite(text, SouthGravity, OverCompositeOp)
+         
+         wet = big_canvas.wet_floor(initial=0.5, rate=0.1)
+         wet.resize!(wet.columns, wet.rows/3)
+         
+         final = Magick::Image.new(big_canvas.columns, big_canvas.rows+wet.rows)
+         final = final.composite(wet, SouthGravity, OverCompositeOp)
+         final = final.composite(big_canvas, NorthGravity, OverCompositeOp)
+                  
+         File.open('public/kiosk_images/slideshow/'+picture,'w'){|f| f.write(final.to_blob{self.format = "jpg"})}
+      end
+      
+      xml += "<image img='/kiosk_images/slideshow/"+picture+"' caption='' />\r\n"
+    
+    end
+
+    for l in logos
+      
+      picture = l.picture_name+'.jpg'
+      
+      unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}")
+                  
+         image = Magick::Image.from_blob(l.picture_data).first
+         
+         big_canvas = Magick::Image.new(image.columns, image.rows)
+         big_canvas = big_canvas.composite(image, NorthEastGravity, OverCompositeOp)
          
          wet = big_canvas.wet_floor(initial=0.5, rate=0.1)
          wet.resize!(wet.columns, wet.rows/3)
