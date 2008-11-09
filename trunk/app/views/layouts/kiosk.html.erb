@@ -17,13 +17,19 @@
 			}
 			.carousel_container {
 				width: 100%;
-				height: 98%;
+				height: 80%;
 				
+			}
+			
+			#header {
+			  text-align: center;
+			  padding: 10px;
 			}
 		</style>
 	</head>
 
 <body>
+<div id="header"><%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %></div>
 <%= yield  %>
 
 </body>
