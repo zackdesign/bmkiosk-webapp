@@ -1019,3 +1019,42 @@ Processing KioskController#plasma (for 127.0.0.1 at 2008-11-10 07:15:28) [GET]
 Rendering template within layouts/kiosk
 Rendering kiosk/plasma
 Completed in 5.11118 (0 reqs/sec) | Rendering: 0.00115 (0%) | DB: 0.15509 (3%) | 200 OK [http://localhost/kiosk/plasma]
+
+
+Processing KioskController#plasma (for 127.0.0.1 at 2008-11-10 07:20:41) [GET]
+  Session ID: 18d8615b56212110a32305eeddbbfdcb
+  Parameters: {"action"=>"plasma", "controller"=>"kiosk"}
+  [4;35;1mPhone Load (0.003249)[0m   [0mSELECT p.id, p.name, p.picture_type, p.picture_name, p.picture_data, p.buy_price
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = "4"
+ AND p.id = k.phone_id[0m
+  [4;36;1mPhone Columns (0.001136)[0m   [0;1mSHOW FIELDS FROM `phones`[0m
+Rendering template within layouts/kiosk
+Rendering kiosk/plasma
+Completed in 0.01689 (59 reqs/sec) | Rendering: 0.00101 (5%) | DB: 0.00479 (28%) | 200 OK [http://localhost/kiosk/plasma]
+
+
+Processing KioskController#plasma (for 127.0.0.1 at 2008-11-10 07:20:53) [GET]
+  Session ID: 18d8615b56212110a32305eeddbbfdcb
+  Parameters: {"action"=>"plasma", "controller"=>"kiosk"}
+  [4;35;1mPhone Load (0.005339)[0m   [0mSELECT p.id, p.name, p.picture_type, p.picture_name, p.picture_data, p.buy_price
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = "4"
+ AND p.id = k.phone_id[0m
+  [4;36;1mPhone Columns (0.001929)[0m   [0;1mSHOW FIELDS FROM `phones`[0m
+Rendering template within layouts/kiosk
+Rendering kiosk/plasma
+Completed in 0.03127 (31 reqs/sec) | Rendering: 0.00186 (5%) | DB: 0.00804 (25%) | 200 OK [http://localhost/kiosk/plasma]
+
+
+Processing KioskController#plasma (for 127.0.0.1 at 2008-11-10 07:24:33) [GET]
+  Session ID: 18d8615b56212110a32305eeddbbfdcb
+  Parameters: {"action"=>"plasma", "controller"=>"kiosk"}
+  [4;35;1mPhone Load (0.005231)[0m   [0mSELECT p.id, p.name, p.picture_type, p.picture_name, p.picture_data, p.buy_price
+ FROM kiosks AS k, phones AS p
+ WHERE k.kiosk = "4"
+ AND p.id = k.phone_id[0m
+  [4;36;1mPhone Columns (0.001200)[0m   [0;1mSHOW FIELDS FROM `phones`[0m
+Rendering template within layouts/kiosk
+Rendering kiosk/plasma
+Completed in 0.08061 (12 reqs/sec) | Rendering: 0.00122 (1%) | DB: 0.00733 (9%) | 200 OK [http://localhost/kiosk/plasma]
