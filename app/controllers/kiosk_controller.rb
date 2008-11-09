@@ -99,7 +99,7 @@ OF STOCK'
     xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n"
     xml += '	<slideshow  displayTime="20" transitionSpeed=".7" transitionType="Fade" motionType="None" motionEasing="easeInOut" randomize="true"
                             slideshowWidth="auto" slideshowHeight="auto" slideshowX="center" slideshowY="center" bgColor="FFFFFF" bgOpacity="100"
-                            useHtml="true" showHideCaption="false" captionBg="000000" captionBgOpacity="80" captionTextSize="20" captionTextColor="FFFFFF"
+                            useHtml="true" showHideCaption="true" captionBg="000000" captionBgOpacity="80" captionTextSize="20" captionTextColor="FFFFFF"
                             captionBold="true" 	captionPadding="7" showNav="false" autoHideNav="true" navHiddenOpacity="15" navX="center"
                              navY="center" btnColor="FFCC00" btnHoverColor="ffffff" btnShadowOpacity="70"  btnGradientOpacity="20" btnScale="120"
                                 	btnSpace="10"  navBgColor="333333" navBgAlpha="95" navCornerRadius="20" navBorderWidth="2" navBorderColor="FFFFFF"
@@ -164,11 +164,17 @@ OF STOCK'
            big_canvas = big_canvas.composite(montage, NorthWestGravity, OverCompositeOp)
          end
          
+         if p.buy_price        
+           price = ' - $'+p.buy_price.to_s
+         else
+           price = ''
+         end
+         
          text = Magick::Draw.new
 	 text.font_family = 'Arial'
-	 text.pointsize = 40
+	 text.pointsize = 35
 	 text.gravity = Magick::SouthGravity
-         text.annotate(big_canvas, 0,0,0,0, p.name) { self.fill = 'black' }
+         text.annotate(big_canvas, 0,0,0,0, p.name+price) { self.fill = 'black' }
          
          wet = big_canvas.wet_floor(initial=0.5, rate=0.1)
          wet.resize!(wet.columns, wet.rows/3)
@@ -180,7 +186,7 @@ OF STOCK'
          File.open('public/kiosk_images/slideshow/'+picture,'w'){|f| f.write(final.to_blob{self.format = "jpg"})}
       end
       
-      xml += "<image img='/kiosk_images/slideshow/"+picture+"' caption='Buy Outright for $"+p.buy_price.to_s+"' />\r\n"
+      xml += "<image img='/kiosk_images/slideshow/"+picture+"' caption='' />\r\n"
     
     end
     
