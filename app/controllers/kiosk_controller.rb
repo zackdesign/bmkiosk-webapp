@@ -97,7 +97,7 @@ OF STOCK'
                                 AND p.id = k.phone_id')
     
     xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n"
-    xml += '	<slideshow  displayTime="5" transitionSpeed=".7" transitionType="Fade" motionType="None" motionEasing="easeInOut" randomize="true"
+    xml += '	<slideshow  displayTime="20" transitionSpeed=".7" transitionType="Fade" motionType="None" motionEasing="easeInOut" randomize="true"
                             slideshowWidth="auto" slideshowHeight="auto" slideshowX="center" slideshowY="center" bgColor="FFFFFF" bgOpacity="100"
                             useHtml="true" showHideCaption="false" captionBg="000000" captionBgOpacity="80" captionTextSize="20" captionTextColor="FFFFFF"
                             captionBold="true" 	captionPadding="7" showNav="false" autoHideNav="true" navHiddenOpacity="15" navX="center"
