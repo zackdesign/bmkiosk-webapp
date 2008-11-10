@@ -1,5 +1,7 @@
 class KioskController < ApplicationController
-
+  
+  before_filter :no_cache, :only => [:new]
+  
   require 'RMagick'
   include Magick
   
@@ -40,7 +42,13 @@ OF STOCK'
       
       picture += '.jpg'
       
-      unless FileTest.exist?("public/kiosk_images/#{picture}")
+      reload = 0
+      
+      if params[:reload]
+        reload = 1
+      end
+      
+      if ((FileTest.exist?("public/kiosk_images/#{picture}") == 0) || (reload == 1))
       
         image = Magick::Image.from_blob(p.picture_data).first
         
@@ -147,7 +155,7 @@ OF STOCK'
       
       picture = p.picture_name+'.jpg'
       
-      unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}")
+      unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}") || params[:reload]
          
          montage = ''
          
@@ -203,7 +211,7 @@ OF STOCK'
       
       picture = a.picture_name+'.jpg'
       
-      unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}")
+      unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}") || params[:reload]
                   
          image = Magick::Image.from_blob(a.picture_data).first
          
@@ -241,7 +249,7 @@ OF STOCK'
       
       picture = l.picture_name+'.jpg'
       
-      unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}")
+      unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}") || params[:reload]
                   
          image = Magick::Image.from_blob(l.picture_data).first
          
