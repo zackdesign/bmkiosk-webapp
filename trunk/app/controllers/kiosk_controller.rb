@@ -48,7 +48,7 @@ OF STOCK'
         reload = 1
       end
       
-      if ((FileTest.exist?("public/kiosk_images/#{picture}") == 0) || (reload == 1))
+      if ((!FileTest.exist?("public/kiosk_images/#{picture}")) || (reload == 1))
       
         image = Magick::Image.from_blob(p.picture_data).first
         
@@ -100,6 +100,10 @@ OF STOCK'
   
   def plasma
     @plasma = '4'
+    
+    if params[:reload]
+            reload = 1
+      end
     
     # Will also need to grab accessories
     # Check for logos flagged as 'other' to put here also
@@ -155,7 +159,7 @@ OF STOCK'
       
       picture = p.picture_name+'.jpg'
       
-      unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}") || params[:reload]
+      if ((!FileTest.exist?("public/kiosk_images/#{picture}")) || (reload == 1))
          
          montage = ''
          
@@ -211,7 +215,7 @@ OF STOCK'
       
       picture = a.picture_name+'.jpg'
       
-      unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}") || params[:reload]
+      if ((!FileTest.exist?("public/kiosk_images/#{picture}")) || (reload == 1))
                   
          image = Magick::Image.from_blob(a.picture_data).first
          
@@ -249,7 +253,7 @@ OF STOCK'
       
       picture = l.picture_name+'.jpg'
       
-      unless FileTest.exist?("public/kiosk_images/slideshow/#{picture}") || params[:reload]
+      if ((!FileTest.exist?("public/kiosk_images/#{picture}")) || (reload == 1))
                   
          image = Magick::Image.from_blob(l.picture_data).first
          
