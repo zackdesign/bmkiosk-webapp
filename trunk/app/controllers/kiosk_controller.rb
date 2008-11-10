@@ -2,6 +2,8 @@ class KioskController < ApplicationController
 
   require 'RMagick'
   include Magick
+  
+  include ActionView::Helpers::NumberHelper
 
   layout 'kiosk'
   
@@ -42,23 +44,22 @@ OF STOCK'
       
         image = Magick::Image.from_blob(p.picture_data).first
         
-        big_canvas = Magick::Image.new(image.columns, image.rows+60)
-        big_canvas = big_canvas.composite(image, NorthGravity, OverCompositeOp)
-        
         max_dimension = (image.columns < image.rows) ? image.rows : image.columns
           if max_dimension < 220
-            thumb = big_canvas
+            thumb = image
           else
-            thumb = big_canvas.resize_to_fit(220, 220)
+            thumb = image.resize_to_fit(220, 220)
         end
         
-        text = Magick::Draw.new
-        text.font_family = 'Arial'
-        text.pointsize = 12
-        text.gravity = Magick::SouthGravity
-        text.annotate(thumb, 0,0,0,0, p.name) { self.fill = 'black' }
+        caption = Magick::Image.read("caption:"+p.name) { 
+	       self.size = "#{thumb.columns}";
+	       self.pointsize = 20
+	       self.font = 'Arial'
+	       self.gravity = CenterGravity
+        }.first
         
         unless pos.empty?
+            text = Magick::Draw.new
             text.font_family = 'arial'
             text.pointsize = 20
             text.gravity = Magick::CenterGravity
@@ -68,6 +69,10 @@ OF STOCK'
             text.annotate(thumb, 0,0,2,2, pos) { self.fill = 'black' }
             text.annotate(thumb, 0,0,0,0, pos) { self.fill = 'red' }
         end
+        
+        big_canvas = Magick::Image.new(thumb.columns, thumb.rows+caption.rows)
+	big_canvas = big_canvas.composite(thumb, NorthGravity, OverCompositeOp)
+        thumb = big_canvas.composite(caption, SouthGravity, OverCompositeOp)
         
         File.open('public/kiosk_images/'+picture,'w'){|f| f.write(thumb.to_blob{self.format = "jpg"})}
       
@@ -161,7 +166,7 @@ OF STOCK'
          image = Magick::Image.from_blob(p.picture_data).first
          
          if p.buy_price        
-	   price = ' - $'+p.buy_price.to_s
+	   price = ' - '+number_to_currency(p.buy_price)
 	 else
 	   price = ''
          end
@@ -203,7 +208,7 @@ OF STOCK'
          image = Magick::Image.from_blob(a.picture_data).first
          
          if a.buy_price        
-	   price = ' - $'+a.buy_price.to_s
+	   price = ' - '+number_to_currency(a.buy_price)
 	 else
 	   price = ''
          end
