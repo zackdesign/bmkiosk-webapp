@@ -139,7 +139,7 @@ OF STOCK'
 				loaderColor="FF0000"
 				loaderOpacity="100"
 				attachCaptionToImage="true"
-				imageScaling="downFit"
+				imageScaling="downFill"
 				slideshowMargin="0"
 				showMusicButton="false"
 				music=""
@@ -177,20 +177,22 @@ OF STOCK'
          
          image = Magick::Image.from_blob(p.picture_data).first
          
+         width = image.columns + 220
+         
          if p.buy_price        
-	   price = ' - '+number_to_currency(p.buy_price)
+	   price = '  '+number_to_currency(p.buy_price)
 	 else
 	   price = ''
          end
          
          text = Magick::Image.read("caption:"+p.name+price) { 
-	 	            self.size = "#{image.columns+220}";
+	 	            self.size = "#{width}";
 	 	            self.pointsize = 35
 	 	            self.gravity = SouthGravity
 	 	            self.font = 'Arial'
          }.first
          
-         big_canvas = Magick::Image.new(image.columns+220, image.rows+text.rows)
+         big_canvas = Magick::Image.new(width, image.rows+text.rows)
          big_canvas = big_canvas.composite(image, NorthEastGravity, OverCompositeOp)
          unless montage.empty?
            big_canvas = big_canvas.composite(montage, NorthWestGravity, OverCompositeOp)
@@ -200,7 +202,7 @@ OF STOCK'
          wet = big_canvas.wet_floor(initial=0.5, rate=0.1)
          wet.resize!(wet.columns, wet.rows/3)
          
-         final = Magick::Image.new(big_canvas.columns, big_canvas.rows+wet.rows)
+         final = Magick::Image.new(width, big_canvas.rows+wet.rows)
          final = final.composite(wet, SouthGravity, OverCompositeOp)
          final = final.composite(big_canvas, NorthGravity, OverCompositeOp)
                   
@@ -219,26 +221,33 @@ OF STOCK'
                   
          image = Magick::Image.from_blob(a.picture_data).first
          
+         if image.columns < 500
+           width = 500
+         else
+           width = image.columns
+         end
+         
          if a.buy_price        
-	   price = ' - '+number_to_currency(a.buy_price)
+	   price = '  '+number_to_currency(a.buy_price)
 	 else
 	   price = ''
          end
          
          text = Magick::Image.read("caption:"+a.name+price) { 
-	            self.size = "#{image.columns}";
-	            self.pointsize = 20
+	            self.size = "#{width}";
+	            self.pointsize = 35
 	            self.font = 'Arial'
+	            self.gravity = CenterGravity
          }.first
          
-         big_canvas = Magick::Image.new(image.columns, image.rows+text.rows)
-         big_canvas = big_canvas.composite(image, NorthEastGravity, OverCompositeOp)
+         big_canvas = Magick::Image.new(width, image.rows+text.rows)
+         big_canvas = big_canvas.composite(image, NorthGravity, OverCompositeOp)
          big_canvas = big_canvas.composite(text, SouthGravity, OverCompositeOp)
          
          wet = big_canvas.wet_floor(initial=0.5, rate=0.1)
          wet.resize!(wet.columns, wet.rows/3)
          
-         final = Magick::Image.new(big_canvas.columns, big_canvas.rows+wet.rows)
+         final = Magick::Image.new(width, big_canvas.rows+wet.rows)
          final = final.composite(wet, SouthGravity, OverCompositeOp)
          final = final.composite(big_canvas, NorthGravity, OverCompositeOp)
                   
