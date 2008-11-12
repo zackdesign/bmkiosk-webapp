@@ -80,6 +80,7 @@ font-family: verdana, arial, helvetica, sans-serif;
 #phone {
   float: right;
   width: 300px;
+  text-align: center;
 }
 
 #features {
@@ -90,7 +91,8 @@ font-family: verdana, arial, helvetica, sans-serif;
 }
 
 #text {
-  width: 400px;
+  width: 30%;
+  float: left;
 }
 
 .info {
