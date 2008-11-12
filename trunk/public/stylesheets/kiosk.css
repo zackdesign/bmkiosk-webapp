@@ -100,18 +100,37 @@ font-family: verdana, arial, helvetica, sans-serif;
   clear: both;
 }
 
-.phone_features ul {
+.phone_features ul, .phone_accessories ul {
   margin:0;
   padding:0;
 }
 
 .phone_features li {
-
+float: left;
   list-style: none;
   margin: 0;
   padding: 0;
   padding-right: 20px;
   float: left;
+}
+
+.phone_accessories {}
+
+.phone_accessories li {
+  float: left;
+  width: 48%;
+    list-style: none;
+    margin: 0;
+  padding: 0;
+  padding-right:2px;
+  padding-left: 2px;
+  padding-bottom:5px;
+  text-align: center;
+}
+
+.acaption {
+  display: block;
+  text-align: left;
 }
 
 .fcaption {

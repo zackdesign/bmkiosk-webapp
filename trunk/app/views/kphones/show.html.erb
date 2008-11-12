@@ -1,21 +1,34 @@
 <div id="text">
-<h1>Description</h1>
-<%= @phone.description %>
 
 
+  <h1>Accessories</h1>
+  
+  	<div class="phone_accessories">
+  <%
+    unless (@phone.accessories.empty?)
+  %>
+  		<ul>
+  <%
+      for a in @phone.accessories
+  %>
+  			<li><%= show_feature_if_available(a) %><span class="acaption"><%= a.name %></span></li>
+  <%
+      end
+  %>
+  		</ul>
+  <%
+    else
+  %>
+  	<%= content_tag(:span, "No Features") %>
+  <%
+    end
+  %>
+	</div>
 
 </div>
 <div id="phone">
   <%= show_phone_thumbnail_if_available(@phone) %>
-</div>
 
-<div id="features">
-<a class="buy" href="javascript:window.print()">
-Buy Outright for <%= number_to_currency(@phone.outright) %>
-</a>
-<a class="bplan" href="<%= url_for(:controller=>"plans",:action=>'buy',:id=>@phone) %>">
-Purchase on a Plan
-</a>
 <h1>Features</h1>
 
 	<div class="phone_features">
@@ -39,6 +52,17 @@ Purchase on a Plan
   end
 %>
 	</div>
+</div>
+
+<div id="features">
+<a class="buy" href="javascript:window.print()">
+Buy Outright for <%= number_to_currency(@phone.outright) %>
+</a>
+<a class="bplan" href="<%= url_for(:controller=>"plans",:action=>'buy',:id=>@phone) %>">
+Purchase on a Plan
+</a>
+<h1>Description</h1>
+<%= @phone.description %>
 
 </div>
 
