@@ -16,14 +16,7 @@ folder = ''
 <body>
 <div id="header"><%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %></div>
 
-
 <%= yield  %>
-    <div id="middlehead<%= folder %>">
-        <img src="/images<%= folder %>/lefthead.gif" id="lefthead">
-        <img src="/images<%= folder %>/righthead.gif" id="righthead">
-        <div id="kiosk"><h1><br /></h1></div>
-        <div id="zd"><a href="http://www.zackdesign.biz">Website by Zack Design</a></div>
-</div>
 <iframe style="height:0px;width:0px;visibility:hidden" src="about:blank"> this frame prevents back forward cache </iframe>
 </body>
 </html>
