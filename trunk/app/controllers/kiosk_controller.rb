@@ -86,7 +86,7 @@ OF STOCK'
       
       end
       
-      xml += "\t<photo href=\"/phones/"+p.id.to_s+"\" alt='"+p.name+"' target=\"_self\">/kiosk_images/"+picture+"</photo>\r\n"
+      xml += "\t<photo href=\"/kphones/show/"+p.id.to_s+"\" alt='"+p.name+"' target=\"_self\">/kiosk_images/"+picture+"</photo>\r\n"
     
     end
     

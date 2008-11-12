@@ -10,6 +10,7 @@ class PhonesController < ApplicationController
   require 'RMagick'
   include Magick
 
+  
   layout 'personal'
 
   # GET /phones

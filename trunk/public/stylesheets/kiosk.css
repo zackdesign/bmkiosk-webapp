@@ -1,0 +1,169 @@
+html,body{
+
+  margin:0;
+  padding:0;
+  height: 100%;
+
+font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   11px;
+}
+
+			.carousel_container {
+				width: 100%;
+				height: 80%;
+				
+			}
+			
+			#header {
+			  text-align: center;
+			  padding: 10px;
+}
+
+#lefthead {
+  float: left;
+}
+
+#middlehead {
+  background-image: url('/images/headback.gif');
+  min-height: 62px;
+  width: 90%;
+  margin: 0 auto;
+  clear: both;
+}
+
+#main {
+  width: 85%;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+#main h1 {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 10px;
+}
+
+#righthead {
+  float: right;
+}
+
+#org h1 {
+  margin: 0px;
+  padding-top: 0px;
+  height: 27px;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+}
+ 
+#purchase {
+  float: right;
+  font-size: 18px;
+}
+
+#purchase h2 {
+    margin: 0px;
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  color: white;
+}
+#purchase a {
+  color: white;
+}
+
+#purchase a:hover {
+  text-decoration: none;
+}
+
+
+#phone {
+  float: right;
+  width: 300px;
+}
+
+#features {
+  float: right;
+  width: 30%;
+  padding-right: 10px;
+  padding-left: 5px;
+}
+
+#text {
+  width: 400px;
+}
+
+.info {
+  padding-top: 10px;
+  clear: both;
+}
+
+.phone_features ul {
+  margin:0;
+  padding:0;
+}
+
+.phone_features li {
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-right: 20px;
+  float: left;
+}
+
+.fcaption {
+  display: block;
+  width: 50px;
+}
+
+#kiosk a {
+  color: white;
+  text-decoration: none;
+  
+}
+
+#kiosk {
+  color: white;
+  
+}
+
+#kiosktop {
+  float: right;
+  color: white;
+}
+
+#kiosktop a {
+  color: white;
+  font-weight: bold;
+  font-size: 10pt;
+  text-decoration: none;
+}
+
+#zd {
+  float: right;
+  
+}
+
+#zd a {
+  color: white;
+  
+}
+
+.buy, .bplan {
+  color: white;
+  background-color: gray;
+  text-align: center;
+  margin: 10px;
+  font-size: 20pt;
+  display: block;
+  padding: 20px;
+}
+
+.buy, .bplan {
+  color: white;
+}
+
+.buy:hover, .bplan:hover {
+  text-decoration: none;
+}

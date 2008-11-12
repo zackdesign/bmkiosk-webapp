@@ -1,0 +1,46 @@
+
+<div id="phone">
+
+<%= image_tag("/db_images/phones/"+@phone.picture_name) %>
+</div>
+
+<div id="features">
+<a class="buy" href="javascript:window.print()">
+Buy Outright for <%= number_to_currency(@phone.outright) %>
+</a>
+<a class="bplan" href="<%= url_for(:controller=>"plans",:action=>'buy',:id=>@phone) %>">
+Purchase on a Plan
+</a>
+<h1>Features</h1>
+
+	<div class="phone_features">
+<%
+  unless (@phone.features.empty?)
+%>
+		<ul>
+<%
+    for feature in @phone.features
+%>
+			<li><%= show_feature_thumbnail_if_available(feature) %><span class="fcaption"><%= feature.name %></span></li>
+<%
+    end
+%>
+		</ul>
+<%
+  else
+%>
+	<%= content_tag(:span, "No Features") %>
+<%
+  end
+%>
+	</div>
+
+</div>
+
+<div id="text">
+<h1>Description</h1>
+<%= @phone.description %>
+
+
+
+</div>
