@@ -1,7 +1,6 @@
 
 <div id="phone">
-
-<%= image_tag("/db_images/phones/"+@phone.picture_name) %>
+  <%= show_phone_thumbnail_if_available(@phone) %>
 </div>
 
 <div id="features">
