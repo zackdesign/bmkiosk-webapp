@@ -1,0 +1,43 @@
+<%
+folder = ''
+%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+		<title>BM Tronics</title>
+		
+		
+<%= stylesheet_link_tag "kiosk" , :media => "all" %>
+        <%= javascript_include_tag 'swfobject' %>
+<%= javascript_include_tag  :defaults %>
+	</head>
+
+<body>
+<div id="header"><%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %></div>
+
+    <div id="middlehead<%= folder %>">
+        <img src="/images<%= folder %>/lefthead.gif" id="lefthead">
+        <img src="/images<%= folder %>/righthead.gif" id="righthead">
+        <div id="kiosktop"><a href="#" onClick="history.go(-1)">Back</a> | <%= link_to("Kiosk 1", :controller=>"kiosk",:action=>'touch',:id=>'1') %> | 
+	        <%= link_to("Kiosk 2", :controller=>"kiosk",:action=>'touch',:id=>'2') %> | 
+        <%= link_to("Kiosk 3", :controller=>"kiosk",:action=>'touch',:id=>'3') %></div>
+        <div id="org">
+            <h1><%= h @phone.name %> (<%=h @phone.network %>)</h1>
+        </div>
+        
+</div>
+<div id="main">
+<%= yield  %>
+</div>
+    <div id="middlehead<%= folder %>">
+        <img src="/images<%= folder %>/lefthead.gif" id="lefthead">
+        <img src="/images<%= folder %>/righthead.gif" id="righthead">
+        <div id="kiosk"><h2><%= link_to("Kiosk 1", :controller=>"kiosk",:action=>'touch',:id=>'1') %> | 
+        <%= link_to("Kiosk 2", :controller=>"kiosk",:action=>'touch',:id=>'2') %> | 
+        <%= link_to("Kiosk 3", :controller=>"kiosk",:action=>'touch',:id=>'3') %></h2></div>
+        <div id="zd"><a href="http://www.zackdesign.biz">Website by Zack Design</a></div>
+</body>
+</html>
