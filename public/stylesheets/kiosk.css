@@ -24,7 +24,7 @@ font-family: verdana, arial, helvetica, sans-serif;
 }
 
 #middlehead {
-  background-image: url('/images/headback.gif');
+  background: #FFFFFF url('/images/headback.gif') 0 0 repeat-x;
   min-height: 62px;
   width: 90%;
   margin: 0 auto;
