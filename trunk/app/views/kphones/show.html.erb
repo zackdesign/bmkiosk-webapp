@@ -26,7 +26,7 @@ Purchase on a Plan
 <%
     for feature in @phone.features
 %>
-			<li><%= show_feature_thumbnail_if_available(feature) %><span class="fcaption"><%= feature.name %></span></li>
+			<li><%= show_feature_if_available(feature) %><span class="fcaption"><%= feature.name %></span></li>
 <%
     end
 %>

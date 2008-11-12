@@ -1,5 +1,5 @@
 module KphonesHelper
-  def show_feature_thumbnail_if_available(feature)
+  def show_feature_if_available(feature)
         unless FileTest.exist?("public/db_images/features/#{feature.picture_name}")
           image = Magick::Image.from_blob(feature.picture_data).first
           
