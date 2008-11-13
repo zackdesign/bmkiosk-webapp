@@ -58,7 +58,7 @@
 <a class="buy" href="javascript:window.print()">
 Buy Outright for <%= number_to_currency(@phone.outright) %>
 </a>
-<a class="bplan" href="<%= url_for(:controller=>"plans",:action=>'buy',:id=>@phone) %>">
+<a class="bplan" href="<%= url_for(:controller=>"kplans",:action=>'list',:id=>@phone) %>">
 Purchase on a Plan
 </a>
 <h1>Description</h1>
