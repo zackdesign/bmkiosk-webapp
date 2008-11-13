@@ -1,0 +1,38 @@
+<script>
+function hide_show(hide_id, show_id)
+{
+/*	Effect.BlindUp(hide_id);
+	Effect.BlindDown(show_id);*/
+	if ((hide_id) && (hide_id != ''))
+	{
+		$(hide_id).hide();
+	}
+
+	if ((show_id) && (show_id != ''))
+	{
+		$(show_id).show();
+	}
+}
+</script>
+
+<h1>View Plans</h1>
+<%#= debug @plan_groups_consumer %>
+<%= link_to_function("Consumer Phone Plans", "hide_show('business', 'consumer')") %> <%= link_to_function("Business Phone Plans", "hide_show('consumer', 'business')") %>
+
+<div id="consumer" style="display: none;">
+	<ul>
+<%=
+@plan_groups = @plan_groups_consumer
+render :partial => "plan_groups", :collection => @plan_groups
+%>
+	</ul>
+</div>
+
+<div id="business" style="display: none;">
+	<ul>
+<%=
+@plan_groups = @plan_groups_business
+render :partial => "plan_groups", :collection => @plan_groups
+%>
+	</ul>
+</div>

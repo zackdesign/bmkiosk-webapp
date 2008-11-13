@@ -1,0 +1,12 @@
+<%
+unless plans.nil?
+%>
+	<li><h3><%= h plans.name %></h3></li>
+<%
+  #render :partial => "plans", @collection => plan_groups
+else
+%>
+	<li>No Plans</li>
+<%
+end
+%>
