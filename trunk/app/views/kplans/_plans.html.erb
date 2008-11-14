@@ -1,12 +1,16 @@
 <%
 unless plans.nil?
 %>
-	<li><h3><%= h plans.name %></h3></li>
+	<li>
+		<h3><%= link_to_function(h(plans.name), "$('" + h(plans.name) + "').toggle()") %></h3>
+		<ul id="<%= h(plans.name) %>" style="display: none;">
+<%= render :partial => "charges_plan", :object => plans %>
+		</ul>
+	</li>
 <%
-  #render :partial => "plans", @collection => plan_groups
 else
 %>
-	<li>No Plans</li>
+	<li>No Plan Information Available</li>
 <%
 end
 %>
