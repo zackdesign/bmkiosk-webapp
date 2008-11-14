@@ -13,7 +13,7 @@
 
 class Charge < ActiveRecord::Base
 
-  belongs_to :plan
-  has_many :charge_rows, :foreign_key => "charges_id", :dependent => :destroy
+  belongs_to :charge_values
+  validates_uniqueness_of :name
 
 end
