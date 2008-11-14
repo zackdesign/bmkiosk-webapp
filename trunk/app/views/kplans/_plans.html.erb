@@ -1,10 +1,14 @@
 <%
 unless plans.nil?
+  @plan_options = { :action => "summary", :plan_id => plans.id }
+  unless @phone.nil?
+    @plan_options.merge!({ :phone_id => @phone.id })
+  end
 %>
 	<li>
-		<h3><%= link_to_function(h(plans.name), "$('" + h(plans.name) + "').toggle()") %></h3>
+		<h3><%= link_to_function(h(plans.name), "$('" + h(plans.name) + "').toggle()") %></h3><%= link_to("Choose Plan", @plan_options) %>
 		<ul id="<%= h(plans.name) %>" style="display: none;">
-<%= render :partial => "charges_plan", :object => plans %>
+			<li><%= render :partial => "charges_plan", :object => plans %></li>
 		</ul>
 	</li>
 <%

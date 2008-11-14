@@ -1,0 +1,56 @@
+<h1>Summary</h1>
+
+<h2>Phone</h2>
+<%
+unless @phone.nil?
+%>
+<h3>Details</h3>
+<table cellpadding="0" cellspacing="0">
+	<tr class="<%= cycle("even", "odd") %>">
+		<th>Phone Name</th>
+		<td><%= h @phone.name %></td>
+	</tr>
+	<tr class="<%= cycle("even", "odd") %>">
+		<th>Description</th>
+		<td><%= @phone.description %></td>
+	</tr>
+</table>
+<%
+else
+%>
+No phone has been choosen yet
+<%
+end
+%>
+
+<h2>Plan</h2>
+<%
+unless @plan.nil?
+%>
+<h3>Details</h3>
+<table cellpadding="0" cellspacing="0">
+	<tr class="<%= cycle("even", "odd") %>">
+		<th>Plan Name</th>
+		<td><%= h @plan.name %></td>
+	</tr>
+	<tr class="<%= cycle("even", "odd") %>">
+		<th>Description</th>
+		<td><%= h @plan.description %></td>
+	</tr>
+</table>
+<h3>Plan Charges</h3>
+<%= render :partial => "charges_plan", :object => @plan %>
+<%
+else
+%>
+No plan has been choosen yet
+<%
+end
+%>
+<%=
+if @phone.nil?
+  link_to "Choose a Phone", { :controller => "kphones", :action => "" }
+else
+  link_to_function "Print And Finish", "window.print()"
+end
+%>
