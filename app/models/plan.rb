@@ -25,7 +25,8 @@ class Plan < ActiveRecord::Base
 
   validates_presence_of :name
   has_and_belongs_to_many :phones
-  belongs_to :plan_group
+#  belongs_to :plan_group
+  belongs_to :plan_group, :class_name => "PlanGroup", :foreign_key => "plan_group"
 #  has_many :charges
   has_and_belongs_to_many :charges
   has_and_belongs_to_many :options, :join_table => "plans_options"

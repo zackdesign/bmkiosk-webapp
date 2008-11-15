@@ -4,7 +4,14 @@ unless plan_groups.nil?
 	<li>
 		<h2><%= link_to_function(h(plan_groups.name), "$('" + h(plan_groups.name) + "').toggle()") %></h2>
 		<ul id="<%= h(plan_groups.name) %>" style="display: none;">
-			<%= render :partial => "plans", :collection => plan_groups.plans %>
+<%
+unless @phone.nil?
+  @plan_group_plans = Plan.find_all_by_plan_group_and_handset(plan_groups.id, @phone.id)
+else
+  @plan_group_plans = plan_groups.plans
+end
+%>
+<%= render :partial => "plans", :collection => @plan_group_plans %>
 		</ul>
 	</li>
 <%

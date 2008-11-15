@@ -25,11 +25,15 @@ class KplansController < ApplicationController
   def list
     @phone = Phone.find(params[:id])
 
-    @plan_groups_consumer = PlanGroup.find_all_by_categories("consumer")
+    @plans = Plan.find_all_by_handset(params[:id])
+    @plan_group_ids = @plans.collect { |plan| plan.plan_group.id }
+
+    @plan_groups_consumer = PlanGroup.find_all_by_categories_and_id("consumer", @plan_group_ids)
     if @plan_groups_consumer.nil?
       @plan_groups_consumer = Array.new
     end
-    @plan_groups_business = PlanGroup.find_all_by_categories("business")
+
+    @plan_groups_business = PlanGroup.find_all_by_categories_and_id("business", @plan_group_ids)
     if @plan_groups_business.nil?
       @plan_groups_business = Array.new
     end
