@@ -1,9 +1,12 @@
-<div id="header"><%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %></div><div class="carousel_container">
+<div id="header"  onclick='toggle_nav()'><%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %></div><div class="carousel_container">
 <div id="knav" style ="display: none">
 
-    <div class='drop-down'><%= link_to('Accessories',:controller=> 'kaccessories' ) %>
+    <div class='drop-down'><%= link_to('Accessories',:controller=> 'kaccessories' ) %> |
     
-    <%= link_to('Plans',:controller=> 'kplans' ) %></div>
+    <%= link_to('Plans',:controller=> 'kplans' ) %> |
+    <%= link_to("Kiosk 1", :controller=>"kiosk",:action=>'touch',:id=>'1') %> | 
+    	        <%= link_to("Kiosk 2", :controller=>"kiosk",:action=>'touch',:id=>'2') %> | 
+        <%= link_to("Kiosk 3", :controller=>"kiosk",:action=>'touch',:id=>'3') %></div>
 
 </div>
 	<div id="carousel1">
