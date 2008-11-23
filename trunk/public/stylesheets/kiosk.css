@@ -3,6 +3,8 @@ html,body{
   margin:0;
   padding:0;
   height: 100%;
+  
+  color: #26232B;
 
 font-family: verdana, arial, helvetica, sans-serif;
   font-size:   11px;
@@ -30,6 +32,7 @@ font-family: verdana, arial, helvetica, sans-serif;
   margin: 0 auto;
   clear: both;
 }
+
 
 #main {
   width: 85%;
@@ -149,8 +152,7 @@ float: left;
 }
 
 #kiosktop {
-  float: right;
-  color: white;
+  text-align: center;
 }
 
 #kiosktop a {
@@ -172,7 +174,7 @@ float: left;
 
 .buy, .bplan {
   color: white;
-  background-color: gray;
+  background-color: #3366E2;
   text-align: center;
   margin: 10px;
   font-size: 20pt;
@@ -180,12 +182,10 @@ float: left;
   padding: 20px;
 }
 
-.buy, .bplan {
-  color: white;
-}
 
 .buy:hover, .bplan:hover {
   text-decoration: none;
+  color: #1A80F0;
 }
 
 .drop-down a {
@@ -201,11 +201,32 @@ text-align: center;
   height: 60px;
 }
 
+a {
+  color: #4C4CD4;
+}
+
+a:hover {
+  color: #1A80F0;
+  text-decoration: none;
+}
+
+h2 {
+  color: #4C4CD4
+}
+
+h1 {
+  color: #3366E2
+}
+
+th {
+  color: #4C4CD4
+}
+
 /* Kplans */
 
 .plantype a {
   padding: 15px;
-  background-color: gray;
+  background-color: #3366E2;
   margin: 20px;
   font-size: 16pt;
   color: white;
@@ -275,3 +296,10 @@ a img {
 
 /*  end Kplans */
 
+
+
+#backbutton {
+  position: absolute;
+  margin-left: 10%;
+  margin-top: 15px;
+} 

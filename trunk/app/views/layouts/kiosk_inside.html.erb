@@ -46,24 +46,27 @@ function return_to_kiosk()
 	</head>
 
 <body>
+<div id="backbutton"><a href="#" onClick="history.go(-1); return false;" title="Back"><%= image_tag('back.png') %></a></div>
 <div id="header" onclick='toggle_nav()'><%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %></div>
 
 <div id="knav" style ="display: none">
 
-    <div class='drop-down'><%= link_to('Accessories',:controller=> 'kaccessories' ) %>
+    <div class='drop-down'><%= link_to('Accessories',:controller=> 'kaccessories' ) %> |
     
-    <%= link_to('Plans',:controller=> 'kplans' ) %></div>
+    <%= link_to('Plans',:controller=> 'kplans' ) %> |
+    <%= link_to("Kiosk 1", :controller=>"kiosk",:action=>'touch',:id=>'1') %> | 
+    	        <%= link_to("Kiosk 2", :controller=>"kiosk",:action=>'touch',:id=>'2') %> | 
+        <%= link_to("Kiosk 3", :controller=>"kiosk",:action=>'touch',:id=>'3') %></div>
+    
 
 </div>
 
     <div id="middlehead<%= folder %>">
         <img src="/images<%= folder %>/lefthead.gif" id="lefthead">
         <img src="/images<%= folder %>/righthead.gif" id="righthead">
-        <div id="kiosktop"><a href="#" onClick="history.go(-1); return false;">Back</a> | <%= link_to("Kiosk 1", :controller=>"kiosk",:action=>'touch',:id=>'1') %> | 
-	        <%= link_to("Kiosk 2", :controller=>"kiosk",:action=>'touch',:id=>'2') %> | 
-        <%= link_to("Kiosk 3", :controller=>"kiosk",:action=>'touch',:id=>'3') %></div>
+        
         <div id="org">
-            <h1><%= (@phone.nil?) ? "" : (h @phone.name + " (" + h(@phone.network) + ")") %></h1>
+            <h1><%= (@phone.nil?) ? @page_title : (h @phone.name + " (" + h(@phone.network) + ") " + @page_title) %></h1>
         </div>
         
 </div>
@@ -73,9 +76,7 @@ function return_to_kiosk()
     <div id="middlehead<%= folder %>">
         <img src="/images<%= folder %>/lefthead.gif" id="lefthead">
         <img src="/images<%= folder %>/righthead.gif" id="righthead">
-        <div id="kiosk"><h2><%= link_to("Kiosk 1", :controller=>"kiosk",:action=>'touch',:id=>'1') %> | 
-        <%= link_to("Kiosk 2", :controller=>"kiosk",:action=>'touch',:id=>'2') %> | 
-        <%= link_to("Kiosk 3", :controller=>"kiosk",:action=>'touch',:id=>'3') %></h2></div>
+        <br /><br /><br />
         <div id="zd"><a href="http://www.zackdesign.biz">Website by Zack Design</a></div>
 </body>
 </html>

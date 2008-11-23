@@ -15,7 +15,9 @@ class KplansController < ApplicationController
     if @plan_groups_business.nil?
       @plan_groups_business = Array.new
     end
-
+    
+    @page_title = 'Plan Choice'
+    
     respond_to do |format|
       format.html { render :action => "list" }
       format.xml  { render :xml => @phone }
@@ -42,6 +44,8 @@ class KplansController < ApplicationController
     if @plan_groups_business.nil?
       @plan_groups_business = Array.new
     end
+    
+    @page_title = 'Plans'
 
     respond_to do |format|
       format.html
@@ -56,16 +60,22 @@ class KplansController < ApplicationController
       @phone = nil
     end
     @plan = Plan.find(params[:plan_id])
-
+    
+    @page_title = 'Summary'
+    
     respond_to do |format|
       format.html
       format.xml  { render :xml => @phone }
     end
   end
   
+  
+  
   def phone
     @phones = Plan.find_by_sql("SELECT p.* FROM phones p, phones_plans pp WHERE p.id = pp.phone_id AND pp.plan_id = " + params[:id])
     @plan = params[:id]
+    
+    @page_title = 'Choose Phone'
     respond_to do |format|
           format.html
           format.xml  { render :xml => @phone }

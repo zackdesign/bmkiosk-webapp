@@ -197,7 +197,8 @@ OF STOCK'
 
           image = Magick::Image.from_blob(p.picture_data).first
 
-          width = image.columns + 220
+          #width = image.columns + 220
+          width = image.columns
           if p.buy_price
             price = '  '+number_to_currency(p.buy_price)
           else
