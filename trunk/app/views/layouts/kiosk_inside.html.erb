@@ -11,8 +11,21 @@ folder = ''
 		
 		
 <%= stylesheet_link_tag "kiosk" , :media => "all" %>
-        <%= javascript_include_tag 'swfobject' %>
+<%= javascript_include_tag 'swfobject' %>
 <%= javascript_include_tag  :defaults %>
+<%= javascript_include_tag 'cookie' %>
+
+<% javascript_tag do -%>
+var reset_timeout = 600; // in seconds... currently 600 seconds = 10 minutes
+var kiosk = 0; // TODO: Set this from Ruby?!
+var reset_urls = new Array('http://localhost:3000');
+var timer = new PeriodicalExecuter(return_to_kiosk, reset_timeout);
+
+function return_to_kiosk()
+{
+	window.location.href = reset_urls[kiosk];
+}
+<% end %>
 	</head>
 
 <body>
