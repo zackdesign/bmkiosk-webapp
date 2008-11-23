@@ -3,7 +3,7 @@ class KphonesController < ApplicationController
   include Magick
   
   layout 'kiosk_inside'
-
+ 
   def show
     @phone = Phone.find(params[:id])
     

@@ -157,6 +157,8 @@ OF STOCK'
     
     for p in phones
       
+      unless p.picture_data.empty?
+      
       picture = p.picture_name+'.jpg'
       
       if ((!FileTest.exist?("public/kiosk_images/#{picture}")) || (reload == 1))
@@ -168,11 +170,18 @@ OF STOCK'
              ilist = Magick::ImageList.new
              
 	     for f in p.features
-	        ilist.from_blob(f.picture_data) 
-	        ilist.cur_image[:Label] = f.name
+	      
+	        unless f.picture_data.blank?
+	      
+	          ilist.from_blob(f.picture_data) 
+	          ilist.cur_image[:Label] = f.name
+	        
+	        end
 	     end
 	     
-	     montage = ilist.montage{background_color='white', self.geometry='100x100+2+2', self.pointsize=10, self.tile='2x30'}
+	     unless ilist.empty?	     
+	       montage = ilist.montage{background_color='white', self.geometry='100x100+2+2', self.pointsize=10, self.tile='2x30'}
+	     end
          end
          
          image = Magick::Image.from_blob(p.picture_data).first
@@ -210,10 +219,14 @@ OF STOCK'
       end
       
       xml += "<image img='/kiosk_images/slideshow/"+picture+"' caption='' />\r\n"
+      
+      end
     
     end
     
     for a in accessories
+    
+      unless a.picture_data.blank?
       
       picture = a.picture_name+'.jpg'
       
@@ -256,9 +269,13 @@ OF STOCK'
       
       xml += "<image img='/kiosk_images/slideshow/"+picture+"' caption='' />\r\n"
     
+      end
+    
     end
 
     for l in logos
+    
+      unless l.picture_data.blank?
       
       picture = l.picture_name+'.jpg'
       
@@ -289,6 +306,7 @@ OF STOCK'
     
     File.open(local_filename,'w'){|f| f.write(xml)}
     
+    end
   end
 
 end

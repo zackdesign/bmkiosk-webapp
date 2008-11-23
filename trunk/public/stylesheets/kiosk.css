@@ -134,8 +134,7 @@ float: left;
 }
 
 .fcaption {
-  display: block;
-  width: 50px;
+  text-align: left;
 }
 
 #kiosk a {
@@ -188,3 +187,91 @@ float: left;
 .buy:hover, .bplan:hover {
   text-decoration: none;
 }
+
+.drop-down a {
+  padding: 20px;
+  width: 100px;
+  color: black;
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+.drop-down {
+text-align: center;
+  height: 60px;
+}
+
+/* Kplans */
+
+.plantype a {
+  padding: 15px;
+  background-color: gray;
+  margin: 20px;
+  font-size: 16pt;
+  color: white;
+}
+
+.plantype {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#consumer li, #business li {
+  list-style: none;
+}
+
+#business {
+  margin-left: 320px;
+}
+
+.plancharge ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+.plancharge td {
+  
+  padding: 4px;
+}
+
+.plancharge th {
+  text-align: left;
+  padding: 4px;
+}
+
+.phonesummary {
+  width: 45%;
+  vertical-align: top;
+}
+
+.plansummary {
+  width: 45%;
+  padding-left: 5%;
+  vertical-align: top;
+  
+}
+
+.summarytable th {
+  text-align: left;
+  padding: 5px;
+  font-size: 11pt;
+  
+}
+
+.summarytable td{
+  padding: 5px;
+}
+
+a img {
+  border: 0px;
+}
+
+.printer {
+  float: right;
+  padding: 20px;
+  padding-top: 0px;
+  margin-right: 10%;
+}
+
+/*  end Kplans */
+
