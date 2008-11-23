@@ -1,0 +1,19 @@
+
+<table>
+
+<tr>
+
+  <td rowspan='2'  style = "padding: 5px;"><%= show_offer_picture_if_available(@accessory) %></td>
+  
+  <td><%= @accessory.description %></td>
+
+</tr>
+
+<tr><td><strong><%= number_to_currency(@accessory.price) %></strong></td></tr>
+
+</table>
+
+
+<div class="printer">
+<%= link_to_function image_tag('print_printer.png'), "window.print()" %>
+</div>

@@ -1,0 +1,24 @@
+
+
+<h2>Mobile Accessories</h2>
+
+<table>
+  
+<%
+
+    for accessory in @accessories
+%>
+
+  <tr>
+  
+    <th style='text-align: left; padding: 5px;'><%= link_to(h(accessory.name), url_for({ :action => 'show', :id => accessory.id }), { :class => 'phone_name' }) %></th>
+    <td><%= accessory.description %></td>
+    <td><strong><%= number_to_currency(accessory.price) %></strong></td>
+  
+  </tr>
+
+<%
+    end
+%>
+  
+</table>
