@@ -1,5 +1,6 @@
 module KphonesHelper
   def show_feature_if_available(feature)
+    unless feature.picture_name.blank?
         unless FileTest.exist?("public/db_images/features/#{feature.picture_name}")
           image = Magick::Image.from_blob(feature.picture_data).first
           
@@ -11,9 +12,9 @@ module KphonesHelper
           end
           
           File.open('public/db_images/features/'+feature.picture_name,'w'){|f| f.write(thumb.to_blob)}
+        end
+        image_tag("/db_images/features/"+feature.picture_name)
     end
-    
-    image_tag("/db_images/features/"+feature.picture_name)
   end
   
   def show_phone_thumbnail_if_available(phone)
