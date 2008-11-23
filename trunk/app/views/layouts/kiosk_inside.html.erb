@@ -18,13 +18,30 @@ folder = ''
 
 <% javascript_tag do -%>
 var reset_timeout = 600; // in seconds... currently 600 seconds = 10 minutes
-var kiosk = 0; // TODO: Set this from Ruby?!
-var reset_urls = new Array('http://localhost:3000');
+
+// Find the kiosk number from the cookie, and if it doesn't exist default to kiosk #1
+var kiosk = parseInt(getCookie('kiosk'));
+if (!kiosk)
+{
+	kiosk = 1;
+	var now = new Date();
+	fixDate(now);
+	now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+	setCookie('kiosk', 1, now);
+}
+
+var reset_url;
+with (window.location)
+{
+	reset_url = protocol + '//' + hostname + ((port != '') ? ':' + port : '') + '/kiosk/touch/';
+	alert(reset_url);
+}
+
 var timer = new PeriodicalExecuter(return_to_kiosk, reset_timeout);
 
 function return_to_kiosk()
 {
-	window.location.href = reset_urls[kiosk];
+	window.location.href = reset_url;
 }
 <% end %>
 	</head>

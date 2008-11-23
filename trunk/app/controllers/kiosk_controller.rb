@@ -10,9 +10,27 @@ class KioskController < ApplicationController
   layout 'kiosk'
   
   def touch
+    # Find out which kiosk to serve from the cookie, and if the cookie isn't present then default to kiosk #1
+    @kiosk = 1
+    unless cookies[:kiosk].nil?
+      # Check the kiosks table to make sure that the ID specified in the cookie actually exists
+      unless Kiosk.find_by_kiosk(cookies[:kiosk].to_i).nil?
+        @kiosk = cookies[:kiosk].to_i
+      end
+    end
+
+    # If an ID has been passed, override the "kiosk" specified in the cookie with this new ID
+    unless params[:id].nil?
+      # Check the kiosks table to make sure that the ID specified in params actually exists
+      unless Kiosk.find_by_kiosk(params[:id].to_i).nil?
+        @kiosk = params[:id].to_i
+        cookies[:kiosk] = params[:id]
+      end
+    end
+
     phones = Phone.find_by_sql('SELECT p.id, p.name, p.picture_name, p.picture_data, p.outofstock, p.discontinued
                                 FROM kiosks AS k, phones AS p
-                                WHERE k.kiosk = '+params[:id]+'
+                                WHERE k.kiosk = ' + @kiosk.to_s + '
                                 AND p.id = k.phone_id')
     
     xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n"
@@ -91,9 +109,9 @@ OF STOCK'
     end
     
     xml += "</slide_show>\r\n"
-    
-    local_filename = 'public/xml/kiosk'+params[:id]+'.xml'
-    
+
+    local_filename = 'public/xml/kiosk' + @kiosk.to_s + '.xml'
+
     File.open(local_filename,'w'){|f| f.write(xml)}
     
   end
