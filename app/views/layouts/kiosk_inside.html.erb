@@ -66,6 +66,9 @@ function return_to_kiosk()
         <img src="/images<%= folder %>/righthead.gif" id="righthead">
         
         <div id="org">
+        <% if (@page_title.nil?) 
+        @page_title = ''
+        end%>
             <h1><%= (@phone.nil?) ? @page_title : (h @phone.name + " (" + h(@phone.network) + ") " + @page_title) %></h1>
         </div>
         
