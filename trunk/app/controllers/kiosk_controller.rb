@@ -60,11 +60,11 @@ OF STOCK'
       
       picture += '.jpg'
       
-      reload = 0
+      reload = 1
       
-      if params[:reload]
-        reload = 1
-      end
+#      if params[:reload]
+#        reload = 1
+#      end
       
       if ((!FileTest.exist?("public/kiosk_images/#{picture}")) || (reload == 1))
       
@@ -118,21 +118,21 @@ OF STOCK'
   
   def plasma
     @plasma = '4'
-    
+
     if params[:reload]
-            reload = 1
-      end
-    
+      reload = 1
+    end
+
     # Will also need to grab accessories
     # Check for logos flagged as 'other' to put here also
-    
+
     phones = Phone.find_by_sql('SELECT p.id, p.name, p.picture_type, p.picture_name, p.picture_data, p.buy_price
                                 FROM kiosks AS k, phones AS p
                                 WHERE k.kiosk = "'+@plasma+'"
                                 AND p.id = k.phone_id')
     accessories = Accessory.find(:all, :conditions => {:plasma => '1'})
     logos = Logo.find(:all, :conditions => {:plasma => '1'})
-    
+
     xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n"
     xml += '	<slideshow  displayTime="20" transitionSpeed=".7" transitionType="Fade" motionType="None" motionEasing="easeInOut" randomize="true"
                             slideshowWidth="auto" slideshowHeight="auto" slideshowX="center" slideshowY="center" bgColor="FFFFFF" bgOpacity="100"
@@ -172,76 +172,66 @@ OF STOCK'
 				watermarkLinkTarget="_blank"
 				captionsY="absbottom"
 				>'
-    
+
     for p in phones
-      
       unless p.picture_data.empty?
-      
-      picture = p.picture_name+'.jpg'
-      
-      if ((!FileTest.exist?("public/kiosk_images/#{picture}")) || (reload == 1))
-         
-         montage = ''
-         
-         unless p.features.empty?
-             
-             ilist = Magick::ImageList.new
-             
-	     for f in p.features
-	      
-	        unless f.picture_data.blank?
-	      
-	          ilist.from_blob(f.picture_data) 
-	          ilist.cur_image[:Label] = f.name
-	        
-	        end
-	     end
-	     
-	     unless ilist.empty?	     
-	       montage = ilist.montage{background_color='white', self.geometry='100x100+2+2', self.pointsize=10, self.tile='2x30'}
-	     end
-         end
-         
-         image = Magick::Image.from_blob(p.picture_data).first
-         
-         width = image.columns + 220
-         
-         if p.buy_price        
-	   price = '  '+number_to_currency(p.buy_price)
-	 else
-	   price = ''
-         end
-         
-         text = Magick::Image.read("caption:"+p.name+price) { 
-	 	            self.size = "#{width}";
-	 	            self.pointsize = 35
-	 	            self.gravity = SouthGravity
-	 	            self.font = 'Arial'
-         }.first
-         
-         big_canvas = Magick::Image.new(width, image.rows+text.rows)
-         big_canvas = big_canvas.composite(image, NorthEastGravity, OverCompositeOp)
-         unless montage.empty?
-           big_canvas = big_canvas.composite(montage, NorthWestGravity, OverCompositeOp)
-         end
-         big_canvas = big_canvas.composite(text, SouthGravity, OverCompositeOp)
-         
-         wet = big_canvas.wet_floor(initial=0.5, rate=0.1)
-         wet.resize!(wet.columns, wet.rows/3)
-         
-         final = Magick::Image.new(width, big_canvas.rows+wet.rows)
-         final = final.composite(wet, SouthGravity, OverCompositeOp)
-         final = final.composite(big_canvas, NorthGravity, OverCompositeOp)
-                  
-         File.open('public/kiosk_images/slideshow/'+picture,'w'){|f| f.write(final.to_blob{self.format = "jpg"})}
+        picture = p.picture_name+'.jpg'
+
+        reload = 1
+        if ((!FileTest.exist?("public/kiosk_images/#{picture}")) || (reload == 1))
+          montage = ''
+
+          unless p.features.empty?
+            ilist = Magick::ImageList.new
+	        for f in p.features
+              unless f.picture_data.blank?
+                ilist.from_blob(f.picture_data)
+                ilist.cur_image[:Label] = f.name
+              end
+            end
+
+            unless ilist.empty?
+              montage = ilist.montage{background_color='white', self.geometry='100x100+2+2', self.pointsize=10, self.tile='2x30'}
+            end
+          end
+
+          image = Magick::Image.from_blob(p.picture_data).first
+
+          width = image.columns + 220
+          if p.buy_price
+            price = '  '+number_to_currency(p.buy_price)
+          else
+            price = ''
+          end
+
+          text = Magick::Image.read("caption:"+p.name+price) {
+            self.size = "#{width}";
+            self.pointsize = 35
+            self.gravity = SouthGravity
+            self.font = 'Arial'
+          }.first
+
+          big_canvas = Magick::Image.new(width, image.rows+text.rows)
+          big_canvas = big_canvas.composite(image, NorthEastGravity, OverCompositeOp)
+          unless montage.empty?
+            big_canvas = big_canvas.composite(montage, NorthWestGravity, OverCompositeOp)
+          end
+          big_canvas = big_canvas.composite(text, SouthGravity, OverCompositeOp)
+
+          wet = big_canvas.wet_floor(initial=0.5, rate=0.1)
+          wet.resize!(wet.columns, wet.rows/3)
+
+          final = Magick::Image.new(width, big_canvas.rows+wet.rows)
+          final = final.composite(wet, SouthGravity, OverCompositeOp)
+          final = final.composite(big_canvas, NorthGravity, OverCompositeOp)
+
+          File.open('public/kiosk_images/slideshow/'+picture,'w'){|f| f.write(final.to_blob{self.format = "jpg"})}
+        end
+
+        xml += "<image img='/kiosk_images/slideshow/"+picture+"' caption='' />\r\n"
       end
-      
-      xml += "<image img='/kiosk_images/slideshow/"+picture+"' caption='' />\r\n"
-      
-      end
-    
     end
-    
+
     for a in accessories
     
       unless a.picture_data.blank?

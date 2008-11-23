@@ -34,7 +34,6 @@ var reset_url;
 with (window.location)
 {
 	reset_url = protocol + '//' + hostname + ((port != '') ? ':' + port : '') + '/kiosk/touch/';
-	alert(reset_url);
 }
 
 var timer = new PeriodicalExecuter(return_to_kiosk, reset_timeout);
