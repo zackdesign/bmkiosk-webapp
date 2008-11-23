@@ -13,8 +13,10 @@ function hide_show(hide_id, show_id)
 }
 </script>
 
-<h1>View Plans</h1>
-<%= link_to_function("Consumer Phone Plans", "hide_show('business', 'consumer')") %> <%= link_to_function("Business Phone Plans", "hide_show('consumer', 'business')") %>
+<div class='plantype'><%= link_to_function("Consumer Phone Plans", "hide_show('business', 'consumer')") %> 
+<%= link_to_function("Business Phone Plans", "hide_show('consumer', 'business')") %></div>
+
+
 
 <div id="consumer" style="display: none;">
 	<ul>

@@ -1,56 +1,77 @@
 <h1>Summary</h1>
 
-<h2>Phone</h2>
-<%
-unless @phone.nil?
-%>
-<h3>Details</h3>
-<table cellpadding="0" cellspacing="0">
-	<tr class="<%= cycle("even", "odd") %>">
-		<th>Phone Name</th>
-		<td><%= h @phone.name %></td>
-	</tr>
-	<tr class="<%= cycle("even", "odd") %>">
-		<th>Description</th>
-		<td><%= @phone.description %></td>
-	</tr>
-</table>
-<%
-else
-%>
-No phone has been choosen yet
-<%
-end
-%>
+<table>
 
-<h2>Plan</h2>
-<%
-unless @plan.nil?
+<tr>
+
+  <td class='phonesummary'>
+  
+  
+  <%
+  unless @phone.nil?
+  %>
+  <table cellpadding="0" cellspacing="0" class="summarytable">
+  	<tr class="<%= cycle("even", "odd") %>">
+  		<th>Phone</th>
+  		<th><%= h @phone.name %></th>
+  	</tr>
+  	<tr class="<%= cycle("even", "odd") %>">
+  		<th>Description</th>
+  		<td><%= @phone.description %></td>
+  	</tr>
+  </table>
+  <%
+  else
+  %>
+  No phone has been chosen yet
+  <%
+  end
 %>
-<h3>Details</h3>
-<table cellpadding="0" cellspacing="0">
-	<tr class="<%= cycle("even", "odd") %>">
-		<th>Plan Name</th>
-		<td><%= h @plan.name %></td>
-	</tr>
-	<tr class="<%= cycle("even", "odd") %>">
-		<th>Description</th>
-		<td><%= h @plan.description %></td>
-	</tr>
+  
+  </td>
+  
+  
+  
+  <td class='plansummary'>
+  
+  <%
+  unless @plan.nil?
+  %>
+  <table cellpadding="0" cellspacing="0" class="summarytable">
+  	<tr class="<%= cycle("even", "odd") %>">
+  		<th>Plan Name</th>
+  		<td><%= h @plan.name %></td>
+  	</tr>
+  	<tr class="<%= cycle("even", "odd") %>">
+  		<th>Description</th>
+  		<td><%=  @plan.description %></td>
+  	</tr>
+  </table>
+  <h3>Plan Charges</h3>
+  <div class="plancharge"
+  <%= render :partial => "charges_plan", :object => @plan %>
+  </div>
+  <%
+  else
+  %>
+  No plan has been chosen yet
+  <%
+  end
+%>
+  
+  </td>
+
+</tr>
+
 </table>
-<h3>Plan Charges</h3>
-<%= render :partial => "charges_plan", :object => @plan %>
-<%
-else
-%>
-No plan has been choosen yet
-<%
-end
-%>
+<div class="printer">
 <%=
 if @phone.nil?
-  link_to "Choose a Phone", { :controller => "kphones", :action => "" }
+  link_to "<h1>Choose a Phone</h1>", { :action => "phone", :id => @plan }
 else
-  link_to_function "Print And Finish", "window.print()"
+  link_to_function image_tag('print_printer.png'), "window.print()"
 end
 %>
+</div>
+
+

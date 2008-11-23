@@ -7,15 +7,15 @@
   <%
     unless (@phone.accessories.empty?)
   %>
-  		<ul>
+  		<table>
   <%
       for a in @phone.accessories
   %>
-  			<li><%= show_feature_if_available(a) %><span class="acaption"><%= a.name %></span></li>
+  			<tr><td><%= show_feature_if_available(a) %></td><td class="acaption"><%= a.name %></td></li>
   <%
       end
   %>
-  		</ul>
+  		</table>
   <%
     else
   %>
@@ -36,15 +36,15 @@
 <%
   unless (@phone.features.empty?)
 %>
-		<ul>
+		<table>
 <%
     for feature in @phone.features
 %>
-			<li><%= show_feature_if_available(feature) %><span class="fcaption"><%= feature.name %></span></li>
+			<tr><td><%= show_feature_if_available(feature) %></td><td class="fcaption"><%= feature.name %></td></tr>
 <%
     end
 %>
-		</ul>
+		</table>
 <%
   else
 %>

@@ -13,6 +13,7 @@ folder = ''
 <%= stylesheet_link_tag "kiosk" , :media => "all" %>
 <%= javascript_include_tag 'swfobject' %>
 <%= javascript_include_tag  :defaults %>
+<%= javascript_include_tag  'kiosk_navigation' %>
 <%= javascript_include_tag 'cookie' %>
 
 <% javascript_tag do -%>
@@ -29,7 +30,15 @@ function return_to_kiosk()
 	</head>
 
 <body>
-<div id="header"><%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %></div>
+<div id="header" onclick='toggle_nav()'><%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %></div>
+
+<div id="knav" style ="display: none">
+
+    <div class='drop-down'><%= link_to('Accessories',:controller=> 'kaccessories' ) %>
+    
+    <%= link_to('Plans',:controller=> 'kplans' ) %></div>
+
+</div>
 
     <div id="middlehead<%= folder %>">
         <img src="/images<%= folder %>/lefthead.gif" id="lefthead">
@@ -38,7 +47,7 @@ function return_to_kiosk()
 	        <%= link_to("Kiosk 2", :controller=>"kiosk",:action=>'touch',:id=>'2') %> | 
         <%= link_to("Kiosk 3", :controller=>"kiosk",:action=>'touch',:id=>'3') %></div>
         <div id="org">
-            <h1><%= (@phone.nil?) ? "" : (h @phone.name + "(" + h(@phone.network) + ")") %></h1>
+            <h1><%= (@phone.nil?) ? "" : (h @phone.name + " (" + h(@phone.network) + ")") %></h1>
         </div>
         
 </div>

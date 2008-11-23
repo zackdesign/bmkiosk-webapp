@@ -24,6 +24,7 @@ class KplansController < ApplicationController
 
   def list
     @phone = Phone.find(params[:id])
+    
 
     # First find all the plans that are available with the chosen phone
     @plans = Plan.find_by_sql("SELECT p.* FROM plans p, phones_plans pp WHERE p.id = pp.plan_id AND pp.phone_id = " + params[:id])
@@ -60,6 +61,15 @@ class KplansController < ApplicationController
     respond_to do |format|
       format.html
       format.xml  { render :xml => @phone }
+    end
+  end
+  
+  def phone
+    @phones = Plan.find_by_sql("SELECT p.* FROM phones p, phones_plans pp WHERE p.id = pp.phone_id AND pp.plan_id = " + params[:id])
+    @plan = params[:id]
+    respond_to do |format|
+          format.html
+          format.xml  { render :xml => @phone }
     end
   end
 end
