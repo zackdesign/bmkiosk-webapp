@@ -6,7 +6,7 @@ unless plan_groups.nil?
 		<ul id="<%= h(plan_groups.name) %>" style="display: none;">
 <%
 unless @phone.nil?
-  @plan_group_plans = Plan.find_all_by_plan_group_and_handset(plan_groups.id, @phone.id)
+  @plan_group_plans = @plans.collect { |plan| (plan.plan_group.id == plan_groups.id) ? plan : nil }.compact
 else
   @plan_group_plans = plan_groups.plans
 end
