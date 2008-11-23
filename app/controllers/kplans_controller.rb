@@ -25,14 +25,19 @@ class KplansController < ApplicationController
   def list
     @phone = Phone.find(params[:id])
 
-    @plans = Plan.find_all_by_handset(params[:id])
+    # First find all the plans that are available with the chosen phone
+    @plans = Plan.find_by_sql("SELECT p.* FROM plans p, phones_plans pp WHERE p.id = pp.plan_id AND pp.phone_id = " + params[:id])
+
+    # Now extract a collection containing each plan group id associated with each plan found
     @plan_group_ids = @plans.collect { |plan| plan.plan_group.id }
 
+    # Now find the consumer plan groups
     @plan_groups_consumer = PlanGroup.find_all_by_categories_and_id("consumer", @plan_group_ids)
     if @plan_groups_consumer.nil?
       @plan_groups_consumer = Array.new
     end
 
+    # And now find the business plan groups
     @plan_groups_business = PlanGroup.find_all_by_categories_and_id("business", @plan_group_ids)
     if @plan_groups_business.nil?
       @plan_groups_business = Array.new
