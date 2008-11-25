@@ -28,7 +28,7 @@ class KioskController < ApplicationController
       end
     end
 
-    phones = Phone.find_by_sql('SELECT p.id, p.name, p.picture_name, p.picture_data, p.outofstock, p.discontinued
+    phones = Phone.find_by_sql('SELECT p.id, p.name, p.picture_name, p.picture_data, p.outofstock, p.discontinued, p.coming_soon
                                 FROM kiosks AS k, phones AS p
                                 WHERE k.kiosk = ' + @kiosk.to_s + '
                                 AND p.id = k.phone_id')
@@ -47,13 +47,20 @@ class KioskController < ApplicationController
       
       pos = ''
       
-      if p.discontinued
+      if p.coming_soon
+          picture = 'cs_'+p.picture_name
+          pos = 'COMING
+SOON'
+          color = 'yellow'
+      elsif p.discontinued
           picture = 'dc_'+p.picture_name
           pos =  'DISCONTINUED'
+          color = 'red'
       elsif p.outofstock
           picture = 'st_'+p.picture_name
           pos = 'OUT
 OF STOCK'
+          color = 'orange'
       else
           picture = p.picture_name
       end
@@ -93,7 +100,7 @@ OF STOCK'
             text.rotation = -45
             text.annotate(thumb, 0,0,2.5,2.5, pos) { self.fill = 'gray' }
             text.annotate(thumb, 0,0,2,2, pos) { self.fill = 'black' }
-            text.annotate(thumb, 0,0,0,0, pos) { self.fill = 'red' }
+            text.annotate(thumb, 0,0,0,0, pos) { self.fill = color }
         end
         
         big_canvas = Magick::Image.new(thumb.columns, thumb.rows+caption.rows)
