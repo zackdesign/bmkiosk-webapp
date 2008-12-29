@@ -45,7 +45,7 @@ class KioskController < ApplicationController
     
     for p in phones
       
-      pos = ''
+      pos = '';
       
       if p.coming_soon
           picture = 'cs_'+p.picture_name
@@ -64,6 +64,8 @@ OF STOCK'
       else
           picture = p.picture_name
       end
+      
+      unless picture.nil?
       
       picture += '.jpg'
       
@@ -112,7 +114,8 @@ OF STOCK'
       end
       
       xml += "\t<photo href=\"/kphones/show/"+p.id.to_s+"\" alt='"+p.name+"' target=\"_self\">/kiosk_images/"+picture+"</photo>\r\n"
-    
+      
+      end
     end
     
     xml += "</slide_show>\r\n"
