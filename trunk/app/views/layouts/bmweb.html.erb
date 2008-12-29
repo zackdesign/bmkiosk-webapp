@@ -1,0 +1,234 @@
+<%
+folder = ''
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+		<title>BM Tronics - <%= controller.controller_name %> - <%= controller.action_name %></title>
+<%= stylesheet_link_tag "bmweb" , :media => "all" %>
+	</head>
+
+<!-- Template type -->
+<body class="templateC">
+<!-- no cacheing -->
+
+
+
+<div id="pagewidth" class="width1024">
+  <div id="pagewidthInner">
+    <div id="pagewidthInner2">
+
+
+<!-- Start header -->
+<div id="header">
+  <div class="headerWrap">
+    <div class="headerLogo">    
+    <img src="/bmweb/hdr_logo_white.gif" width="151" height="32" alt="Telstra logo" class='tlogo' /><span class='dealertext'>Dealer</span>
+    <%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %>
+    
+
+    </div>
+    <div id="headerRight" class="headerRight">
+      <div class="headerSearch">
+      	<div class="headerSearchWrap">
+          <div id="sites"><ul><li>Search BM Tronics for </li></ul>
+          </div>
+
+          <form method="get" action="" id="SearchForm" >
+            <fieldset>
+            	<input type="hidden" name="searchMode" id="searchMode" value="telstra" />
+            </fieldset>
+            <fieldset>
+              <input value="SIS" name="searchfrom" type="hidden" />
+              <input value="TS" name="engine" type="hidden" />
+              <input type="hidden" name="domainName" value="telstracom" />
+              <input type="hidden" name="domainProfile" value="Telstrajsp" />
+
+              <input type="hidden" name="CategorySelect" value="No" />
+             <div class="searchWrap">
+              <div class="searchField">
+                <div class="searchFieldWrap">
+                  <input class="headerSearchInput" type="text" value="" id="kwsearch1" name="inpSearch" title="Keyword" tabindex="4" />
+                </div>
+              </div>
+              <div id="searchOptions" class="searchOptions">
+
+                <div id="searchOptionsMenu" class="searchOptionsMenu">
+                  <a href="#" onclick="searchSwap('telstra'); return false;" id="search-telstra">Search Telstra</a>
+                  <a href="#" onclick="searchSwap('bigpond'); return false;" id="search-bigpond">Search BigPond</a>
+                  <a href="#" onclick="searchSwap('web'); return false;" id="search-web">Search the Web</a>
+                </div>  
+              </div>
+              <div class="searchButton">
+                <input class="headerSearchButton" type="image" src="/bmweb/button_search_blue.gif" id="Go" alt="Go" title="Go" value="Go" tabindex="5" />
+
+              </div>
+            </div>     
+            </fieldset>
+          </form>
+          
+        </div>
+      </div>
+      <div id="headerLogin" class="headerLogin"></div>
+
+    </div>
+    <div class="clearer"></div>
+  </div>
+  
+  <div id="menuContainer">
+  	<div id="menuWrap">
+    
+			<div id="menu">
+	<ul>
+		<li id="tabId0"><%= link_to('BM Tronics Home', :controller=>'home') %></li>
+
+		<li id="tabId1"><%= link_to('Phones', :controller=>'phones') %></li>
+		<li id="tabId2"><%= link_to('Plans', :controller=>'plans') %></li>
+		<li id="tabId3"><%= link_to('Accessories', :controller=>'accessories') %></li>
+		<li id="tabId4"><%= link_to('Log In', :controller=>'login') %></li>
+		<li id="tabId5"><a href="http://www.bmtronics.com.au">Warranty Repairs</a></li>
+	</ul>
+</div>
+
+    </div>
+  </div>
+</div>
+<div class="clearer" ></div>
+
+<!-- End header -->
+      <div id="outer" class="v2">
+        <!-- left content -->
+
+        <div id="hp_left">
+        
+          <!-- start shopping cart - should be hidden if empty 
+	            <div class="shadebox_middle_n">
+	  
+	              <div class="shadebox_top_n"></div>
+	              <div class="shadebox_bottom_n">
+	                <div class="shadebox_content_n"> <h3>Shopping Cart</h3>
+	                  <div class="dotline_black">&nbsp;</div>
+	                    ...
+	                </div>
+	              </div>
+	            </div>
+	  
+          -->
+          <!-- start quick links -->
+	            <div class="shadebox_middle_n">
+	  
+	              <div class="shadebox_top_n"></div>
+	              <div class="shadebox_bottom_n">
+	                <div class="shadebox_content_n"> <h3>Latest Phones</h3>
+	                  <div class="dotline_black">&nbsp;</div>
+	                  <ul class="linklist">
+	                    <%= show_latest_phones() %>
+	                  </ul>
+	                </div>
+	              </div>
+	            </div>
+	  
+          <!-- end quick links -->
+          <!-- start quick links -->
+          <div class="shadebox_middle_n">
+
+            <div class="shadebox_top_n"></div>
+            <div class="shadebox_bottom_n">
+              <div class="shadebox_content_n"> <h3>Latest Accessories</h3>
+                <div class="dotline_black">&nbsp;</div>
+                <ul class="linklist">
+                  <%= show_latest_accessories() %>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- end quick links -->
+        </div>
+        <!-- end of left content -->
+        <!-- right content -->
+
+        <div id="hp_right">
+          <!-- sorter should be hidden if not in use -->
+          <% if @sorting %>
+	            <div class="shadebox_middle_n">
+	              <div class="shadebox_top_n"></div>
+	              <div class="shadebox_bottom_n">
+	                <div class="shadebox_content_n"> <h3>Sort by</h3>
+	                  <div class="dotline_black">&nbsp;</div>
+	                    <ul class="linklist">
+	  		      <%= %>
+	  	            </ul>
+	                  </div>
+	              </div>
+	            </div>
+	  <% end %>
+          <!-- end sorter -->
+          <!-- shareprice -->
+          <div class="shadebox_middle_n">
+            <div class="shadebox_top_n"></div>
+            <div class="shadebox_bottom_n">
+              <div class="shadebox_content_n"> <h3>Popular Phones</h3>
+                <div class="dotline_black">&nbsp;</div>
+                <ul class="linklist">
+		  <%= show_popular_phones() %>
+	        </ul>
+                </div>
+            </div>
+          </div>
+          <!-- end shareprice -->
+          <!-- start other telstra sites -->
+          <div class="shadebox_middle_n">
+            <div class="shadebox_top_n"></div>
+
+            <div class="shadebox_bottom_n">
+              <div class="shadebox_content_n"> <h3>Popular Accessories</h3>
+                <div class="dotline_black">&nbsp;</div>
+                <ul class="linklist">
+		  <%= show_latest_accessories() %>
+	        </ul></div>
+            </div>
+          </div>
+          <!-- end other telstra sites -->
+        </div>
+        <!-- end of right content -->
+        <!-- middle content -->
+        <div id="hp_middle">
+
+
+          <%= yield %>
+        </div>
+        <!-- end of middle content -->
+        <div class="clearer"></div>
+
+        <div class="dotline_black" style="width:950px; margin:0 7px 10px 7px;">&nbsp;</div>
+        <div style="margin:0; padding:0; margin-bottom:1em;" align="center">
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <!-- Footer include -->
+
+    
+<div id="footer">
+	<ul>
+		<li class="footerLogo"><a href="http://www.telstra.com"><img src="/bmweb/ftr_logo_white.gif" alt="Telstra" /></a></li>
+		<li id="tabId0"><%= link_to('BM Tronics Home', :controller=>'home') %></li>
+
+		<li id="tabId1"><%= link_to('Phones', :controller=>'phones') %></li>
+		<li id="tabId2"><%= link_to('Plans', :controller=>'plans') %></li>
+		<li id="tabId3"><%= link_to('Accessories', :controller=>'accessories') %></li>
+		<li id="tabId4"><%= link_to('Log In', :controller=>'login') %></li>
+		<li id="tabId5"><a href="http://www.bmtronics.com.au">Warranty Repairs</a></li>
+	</ul>
+</div> 
+
+  </div>
+</div>
+
+</body>
+</html>
+
