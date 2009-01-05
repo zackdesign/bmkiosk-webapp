@@ -27,16 +27,10 @@ class LoginController < ApplicationController
         session[:user_type] = user.usertype
         uri = session[:original_uri]
         session[:original_uri] = nil
-        
+
         case user.usertype.to_i
-#         when "1"    then redirect_to(uri || { :action => "index" })
-#         when "2"    then redirect_to(:controller => "phones" , :action => "index" )
-#         when "3"    then redirect_to(:controller => "phones" , :action => "index" )
-#         else return "Unknown"
           when 1      then redirect_to(uri || { :action => "index" })
           when 2 .. 4 then redirect_to(:controller => "phones" , :action => "index" )
-#          when 3      then redirect_to(:controller => "phones" , :action => "index" )
-#          when 4      then redirect_to(:controller => "phones" , :action => "index" )
           else return "Unknown"
         end 
       else
@@ -77,8 +71,10 @@ class LoginController < ApplicationController
 
   def logout
     session[:user_id] = nil
-    flash[:notice] = "Logged out"
-    redirect_to(:action => "login")
+    session[:user_type] = nil
+    flash[:notice] = "You are now logged out"
+#    redirect_to(:action => "login")
+    redirect_to({ :controller => "phones", :action => "index" })
   end
   
   
