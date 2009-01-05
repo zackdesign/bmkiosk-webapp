@@ -82,9 +82,9 @@ end
 <div id="wrapper">
 <div id="content"><img src="/images/contenttop.gif" width="714" height="7" >
     <div id="body">
-    <% if flash[:notice] -%>
-    <div id="notice" ><%= flash[:notice] %></div><br><br>
-    <% end -%>
+    <%# if flash[:notice] -%>
+    <!--<div id="notice" >--><%#= flash[:notice] %><!--</div><br><br>-->
+    <%# end -%>
     <%= yield  %>
     
     </div>
