@@ -28,11 +28,16 @@ class LoginController < ApplicationController
         uri = session[:original_uri]
         session[:original_uri] = nil
         
-        case user.usertype
-         when "1"    then redirect_to(uri || { :action => "index" })
-         when "2"    then redirect_to(:controller => "phones" , :action => "index" )
-         when "3"    then redirect_to(:controller => "phones" , :action => "index" )
-         else return "Unknown"
+        case user.usertype.to_i
+#         when "1"    then redirect_to(uri || { :action => "index" })
+#         when "2"    then redirect_to(:controller => "phones" , :action => "index" )
+#         when "3"    then redirect_to(:controller => "phones" , :action => "index" )
+#         else return "Unknown"
+          when 1      then redirect_to(uri || { :action => "index" })
+          when 2 .. 4 then redirect_to(:controller => "phones" , :action => "index" )
+#          when 3      then redirect_to(:controller => "phones" , :action => "index" )
+#          when 4      then redirect_to(:controller => "phones" , :action => "index" )
+          else return "Unknown"
         end 
       else
         flash.now[:notice] = "Invalid password..."

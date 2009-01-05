@@ -48,17 +48,26 @@ class User < ActiveRecord::Base
     end
   end   
   
-    
+
+#  def showtype(ut)
+#     case ut
+#       when "1"    then return "Admin"
+#       when "2"    then return "Business"
+#       when "3"    then return "User"
+#       else return "Unknown"
+#     end
+#  end
+
   def showtype(ut)
      case ut
        when "1"    then return "Admin"
-       when "2"    then return "Business"
-       when "3"    then return "User"
+       when "2"    then return "Government"
+       when "3"    then return "Corporate"
+       when "4"    then return "Business"
        else return "Unknown"
-     end 
+     end
+  end
 
-  end      
-  
   
   private
   

@@ -6,6 +6,14 @@ if(session[:user_type] == "1")
   folder = 2
 end
 if(session[:user_type] == "2")
+  porb = "Government"
+  folder = 2
+end
+if(session[:user_type] == "3")
+  porb = "Corporate"
+  folder = 2
+end
+if(session[:user_type] == "4")
   porb = "Business"
   folder = 2
 end
@@ -31,12 +39,14 @@ end
     <table width="100%"><tr><td style="border: 0px;">
     <div align="left"><a href="/" title="Home"><img src="/images/logo.jpg" alt="Telstra Logo" /></a></div></td>
     <td style="border: 0px;"><div align="right">
-    <% if(session[:user_type])  %> 
-<% else  %>  
-    <%= form_tag :controller => "login", :action => "login" %>
-        <label for="password">Password:</label>&nbsp;&nbsp;&nbsp;<%= password_field_tag :password, params[:password] %>&nbsp;&nbsp;&nbsp;<%= submit_tag "Login" %>
-    </form>
-<% end  %></div>
+    <%=
+      if(session[:user_type])
+        link_to "Logout", url_for(:controller => "login", :action => "logout")
+      else
+        link_to "Login", url_for(:controller => "login", :action => "login")
+      end
+    %>
+    </div>
     
     </td></tr></table>
 
