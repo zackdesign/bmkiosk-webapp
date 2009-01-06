@@ -4,7 +4,8 @@
 
 <!-- begin shop -->
           <div class="box2">
-            <%= display_phones() %>            
+            <%= display_phones() %>       
+            <%= display_accessories() %> 
           </div>
           
 
@@ -13,35 +14,32 @@
 	            <div class="personal_box" >
 	              <div class="row1">
 	                <div class="row1_col1"><%= link_to '<strong>Mobile</strong>', :controller=>'phones' %></div>
-	                <div class="row1_col2"><a href="http://www.telstra.com.au/mobile/index.html" onclick="s.linkType='o';s.linkName='TR-TcomHP-Pers-Mob'"><img src="/bmweb/clickarrow_blue.gif" width="13" height="13" style="border:none;" /></a></div>
-	                <div class="row1_col3"><a href="http://www.bigpond.com/default.asp" onclick="s.linkType='o';s.linkName='TR-TcomHP-Pers-BigPond'"><strong>BigPond&reg; Internet</strong></a></div>
-	                <div class="row1_col4"><a href="http://www.bigpond.com/default.asp" onclick="s.linkType='o';s.linkName='TR-TcomHP-Pers-BigPond'"><img src="/bmweb/clickarrow_blue.gif" width="13" height="13" style="border:none;" /></a></div>
+	                <div class="row1_col2"><%= link_to image_tag('/bmweb/clickarrow_blue.gif'), :controller=>'phones' %></div>
+	                <div class="row1_col3"><%= link_to '<strong>Mobile Accessories</strong>', :controller=>'accessories' %></div>
+	                <div class="row1_col4"><%= link_to image_tag('/bmweb/clickarrow_blue.gif'), :controller=>'accessories' %></div>
 	  
-	                <div class="row1_col5"><a href="http://www.telstrabusiness.com/business/" onclick="s.linkType='o';s.linkName='TR-TcomHP-Bus-SMB'" style="color:#FF6600;"><strong>Small &amp;<br />
-	                  Medium Business</strong></a></div>
-	                <div class="row1_col6"><a href="http://www.telstrabusiness.com/business/" onclick="s.linkType='o';s.linkName='TR-TcomHP-Bus-SMB'"><img src="/bmweb/clickarrow_orange.gif" width="13" height="13" style="border:none;" /></a></div>
+	                <div class="row1_col5"><%= link_to '<strong>Small &amp;<br />Medium Business</strong>',{ :controller=>'login'}, :style => 'color:#FF6600;' %></div>
+	                <div class="row1_col6"><%= link_to image_tag('/bmweb/clickarrow_orange.gif'), :controller=>'login' %></div>
 	              </div>
 	              <div class="row2">
-	                <div class="row2_col1"><a href="http://www.telstra.com.au/rewardoptions" onclick="s.linkType='o';s.linkName='TR-TcomHP-Pers-Rewards'">Bundle &amp; Save</a></div>
+	                <div class="row2_col1"></div>
 	  
-	                <div class="row2_col2" onclick="s.linkType='o';s.linkName='TR-TcomHP-Pers-Rewards';location.href='http://www.telstra.com.au/rewardoptions/options.htm';">&nbsp;</div>
-	                <div class="row2_col3"><a href="http://www.telstra.com.au/rewardoptions" onclick="s.linkType='o';s.linkName='TR-TcomHP-Pers-Rewards'"><span class="textbold">FREE</span> Rewards</a></div>
-	                <div class="row2_col4"><a href="http://www.telstrabusiness.com/business/portal/online/site/myonlineservices"><img src="/bmweb/login_orange.gif" width="150" height="17" style="border:none;" /></a></div>
+	                <div class="row2_col2"></div>
+	                <div class="row2_col3"></div>
+	                <div class="row2_col4"><%= link_to image_tag('/bmweb/login_orange.gif'), :controller=>'login' %></div>
 	              </div>
 	              <div class="row3">
-	                <div class="row3_col1"><a href="http://www.telstra.com.au/homephone/index.html" onclick="s.linkType='o';s.linkName='TR-TcomHP-Pers-HomePh'"><strong>Home Phone</strong></a></div>
-	                <div class="row3_col2"><a href="http://www.telstra.com.au/homephone/index.html" onclick="s.linkType='o';s.linkName='TR-TcomHP-Pers-HomePh'"><img src="/bmweb/clickarrow_blue.gif" width="13" height="13" style="border:none;" /></a></div>
+	                <div class="row3_col1"><%= link_to '<strong>Phone Plans</strong>', :controller=>'plans' %></div>
+	                <div class="row3_col2"><%= link_to image_tag('/bmweb/clickarrow_blue.gif'), :controller=>'plans' %></div>
 	  
-	                <div class="row3_col3"><a href="http://www.telstra.com.au/foxtel" onclick="s.linkType='o';s.linkName='TR-TcomHP-Pers-Foxtel'"><strong>FOXTEL</strong></a><br />
-	                  <a href="http://www.telstra.com.au/austar/"><strong>AUSTAR</strong></a></div>
-	                <div class="row3_col4"><a href="http://www.telstra.com.au/foxtel" onclick="s.linkType='o';s.linkName='TR-TcomHP-Pers-Foxtel'"><img src="/bmweb/clickarrow_blue.gif" width="13" height="13" border="0" /></a><br />
-	                  <a href="http://www.telstra.com.au/austar/"><img style="margin-top:2px;" src="/bmweb/clickarrow_blue.gif" width="13" height="13" border="0" /></a></div>
-	                <div class="row3_col5"><a href="http://www.telstraenterprise.com/" style="color:#005FA4;"><strong>Enterprise &amp; Government</strong></a></div>
-	                <div class="row3_col6"><a href="http://www.telstraenterprise.com/"><img src="/bmweb/clickarrow_blue2.gif" width="13" height="13" border="0" /></a></div>
+	                <div class="row3_col3"></div>
+	                <div class="row3_col4"></div>
+	                <div class="row3_col5"><%= link_to '<strong>Enterprise &amp; Government</strong>',{ :controller=>'login'}, :style => 'color:#005FA4;' %></div>
+	                <div class="row3_col6"><%= link_to image_tag('/bmweb/clickarrow_blue2.gif'), :controller=>'login' %></div>
 	  
 	              </div>
 	              <div class="row4">
-	                <div class="row4_col1"><a href="http://www.telstraenterprise.com/"><img src="/bmweb/login_blue.gif" alt="Visit us today" width="150" height="17" border="0" /></a></div>
+	                <div class="row4_col1"><%= link_to image_tag('/bmweb/login_blue.gif'), :controller=>'login' %></div>
 	              </div>
 	            </div>
 	            <!-- end personal -->
