@@ -1,145 +1,37 @@
-<style>
 
+<h2>Mobile Accessories <%= @brand %></h2>
 
-div.phone_features ul li
-{
-	display: inline;
-}
+<div class="apple_pagination"><%= will_paginate @accessories, { :prev_label => 'Prev', :next_label => 'Next' } %></div>
 
-.phone_sel
-{
-	float: left;
-	width: 22px;
-	/* background-color: #FF0000; */
-	vertical-align: middle;
-}
-
-/* .phone_sel input
-{
-	height: 100%;
-} */
-
-.phone_img
-{
-	float: left;
-	width: 80px;
-	text-align: center;
-	/* background-color: #00FF00; */
-}
-
-.phone_info
-{
-	float: right;
-	width: 594px;
-	/* background-color: #0000FF; */
-}
-
-.phone_name
-{
-	font-weight: bold;
-}
-
-.col
-{
-	width: 33%;
-	float: left;
-	/* background-color: #3366CC; */
-}
-
-div.col .image
-{
-	/* float: left; */
-	width: 124px;
-	/* background-color: #990000; */
-	text-align: center;
-}
-
-div.col .text
-{
-	/* float: left; */
-	width: 220px;
-	/* background-color: #336600; */
-}
-
-.clear
-{
-	clear: both;
-}
-
-.orange_button
-{
-	display: block;
-	width: 100px;
-	height: 17px;
-	background-image: url(/images/more_details.gif);
-	text-align: center;
-	text-decoration: none;
-	/* color: #ffffff; */
-	margin: 4px 0px;
-	font-size: 11px;
-	font-weight: bold;
-}
-
-a.orange_button
-{
-	color: #ffffff;
-}
-
-a.orange_button:visited
-{
-	color: #ffffff;
-}
-</style>
-
-<script language="javascript">
-function change_brand()
-{
-	var new_brand = $F('brand');
-	var query = window.location.search;
-	var new_query = ((new_brand != '') ? 'brand=' + new_brand : '');
-	window.location.search = new_query;
-}
-</script>
-
-<h2>Mobile Accessories</h2>
-Show accessories for: <%= select_tag "brand", options_for_select(@phone_brands, @selected_brand), { :onchange => "change_brand();" } %>
-<div style="text-align: right;"><%= will_paginate @accessories, { :prev_label => 'Prev', :next_label => 'Next' } %></div>
-<hr />
-<div id="results">
+<table class="accessories">
 <%
   count = 0
   unless ((@accessories == nil) or (@accessories.empty?))
     for accessory in @accessories
 %>
-	<div class="col">
-		<div class="image"><%= show_offer_picture_if_available(accessory) %></div>
-		<div class="text">
-			<div><%= link_to(h(accessory.name), url_for({ :action => 'show', :id => accessory.id }), { :class => 'phone_name' }) %></div>
-			<div><%= number_to_currency accessory.price %></div>
-			<!-- <p><%#= accessory.description %></p> -->
-			<!-- <%#= link_to(image_tag("more_details.gif", { :alt => "More Details", :border => 0 }), url_for({ :action => 'show', :id => phone.id })) %> -->
-			<!-- <%#= link_to('More Details', url_for({ :action => 'show', :id => accessory.id }), { :class => 'orange_button' }) %> -->
-			<%= link_to('Add to Cart', url_for({ :action => 'cartadd', :id => accessory.id, :page => @page, :brand => @selected_brand }), { :class => 'orange_button' }) %>
-		</div>
-		<div class="clear"></div>
-	</div>
-<%
-      count = count + 1
-      if (count.modulo(3) == 0)
-%>
-	<div class="clear"></div>
-<%
-      end
+<tr >
+
+<td colspan="4"><%= link_to(h(accessory.name), url_for({ :action => 'show', :id => accessory.id }), { :class => 'accessory_name' }) %></td>
+  
+</tr>
+<tr class=" bottom">
+
+<td><%= show_thumbnail_if_available(accessory) %></td>
+<td><div  class='description'><%= accessory.description %></div></td>
+<td class='price'><%= number_to_currency accessory.price %></td>
+<td><%= link_to('Add to Cart', url_for({ :action => 'cartadd', :id => accessory.id, :page => @page, :brand => @selected_brand }), { :class => 'orange_button' }) %></td>
+
+</tr>
+<% 
     end
   else
 %>
-	<div>There are currently no Mobile Accessories.</div>
+	<div>There are currently no Mobile Accessories listed for this brand.</div>
 <%
   end
 %>
-	<div class="clear"></div>
-</div>
-<hr />
-<div style="text-align: right;">
-<%= will_paginate @accessories, { :prev_label => 'Prev', :next_label => 'Next' } %>
-</div>
+
+</table>
+
+<div class="apple_pagination"><%= will_paginate @accessories, { :prev_label => 'Prev', :next_label => 'Next' } %></div>
+
