@@ -18,7 +18,7 @@ module PhonesHelper
     unless phone.picture_data.blank?
       link_to(image_tag(url_for({:action => 'picture', :id => phone.id }), { :alt => phone.name, :border => 0, :class => "medium" }), url_for({ :action => 'actual', :id => phone.id }), :popup => true)
     else
-      content_tag(:span, "None")
+      content_tag(:span, "No picture listed")
     end  
   end
   
@@ -26,7 +26,7 @@ module PhonesHelper
     unless phone.picture_data.blank?
       link_to(image_tag(url_for({:action => 'offer_picture', :id => phone.id }), { :alt => phone.name, :border => 0, :class => "medium" }), url_for({ :action => 'actual', :id => phone.id }), :popup => true)
     else
-      content_tag(:span, "None")
+      content_tag(:span, "No picture listed")
     end  
   end
   
