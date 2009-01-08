@@ -70,7 +70,7 @@ class AccessoriesController < ApplicationController
   # GET /accessories/1.xml
   def show
     @accessory = Accessory.find(params[:id])
-
+    @page_title = ' - '+@accessory.name
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @accessory }
@@ -156,7 +156,7 @@ class AccessoriesController < ApplicationController
     if max_dimension < 120
       thumb = image
     else
-      thumb = image.resize_to_fit(120, 120)
+      thumb = image.resize_to_fit(150, 150)
     end
     send_data thumb.to_blob, :filename => @accessory.picture_name,
               :type => @accessory.picture_type, :disposition => "inline"

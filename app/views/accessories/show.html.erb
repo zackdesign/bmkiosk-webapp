@@ -4,8 +4,8 @@
 
 </tr>
 <tr>
-<td class="table_name"><%= show_thumbnail_if_available(@accessory) %></td>
-<td><%= @accessory.description %></td>
+<td class="table_name"><%= show_offer_picture_if_available(@accessory) %></td>
+<td><%= @accessory.description %><br /><br />Price: <%= number_to_currency(@accessory.price) %></td>
 </tr>
 
 </table>

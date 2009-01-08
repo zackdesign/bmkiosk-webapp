@@ -306,7 +306,7 @@ class PhonesController < ApplicationController
     if max_dimension < 120
       thumb = image
     else
-      thumb = image.resize_to_fit(120, 120)
+      thumb = image.resize_to_fit(150, 150)
     end
     send_data thumb.to_blob, :filename => @phone.picture_name,
               :type => @phone.picture_type, :disposition => "inline"
