@@ -138,6 +138,15 @@ class AccessoriesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def thumbnail
+      # Create a thumbnail image of the uploaded picture for the phone list
+      @accessory = Accessory.find(params[:id])
+      image = Magick::Image.from_blob(@accessory.picture_data).first
+      thumb = image.thumbnail(128, 128)
+      send_data thumb.to_blob, :filename => @accessory.picture_name,
+                :type => @accessory.picture_type, :disposition => "inline"
+  end
 
   def offer_picture
     # Create a resized image of the uploaded picture for when the phone is shown

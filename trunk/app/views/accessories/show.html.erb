@@ -1,1 +1,15 @@
+<table class="product_table">
+<tr>
+<td colspan="2"><h2><%= h @accessory.name %></h2></td>
 
+</tr>
+<tr>
+<td class="table_name"><%= show_thumbnail_if_available(@accessory) %></td>
+<td><%= @accessory.description %></td>
+</tr>
+
+</table>
+
+
+
+<%= link_to('Add to Cart', url_for({ :action => 'cartadd', :id => @accessory.id, :page => @page, :brand => @selected_brand }), { :class => 'orange_button' }) %>
