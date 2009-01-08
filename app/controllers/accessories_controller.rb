@@ -13,21 +13,25 @@ class AccessoriesController < ApplicationController
 #    @count = Accessory.find(:all).length
 #    @accessories = Accessory.find(:all, :offset => @offset, :limit => @limit)
 
-    unless ((params[:brand].nil?) || (params[:brand].empty?))
+    unless ((params[:brand].nil?) || (params[:brand].empty?) || (params[:brand] == 'All Brands'))
       @selected_brand = params[:brand]
+      @brand = ' for '+@selected_brand
+      @page_title = ' - '+@selected_brand
     else
       @selected_brand = ""
     end
 
     @page = (params[:page].nil?) ? 1 : params[:page]
     unless @selected_brand.empty?
-      @accessories = Accessory.paginate_by_brand @selected_brand, :page => @page, :per_page => 9
+      @accessories = Accessory.paginate :page => @page, :per_page => 9, :conditions => ['name like ?', '%'+@selected_brand+'%'], :order => 'name'
     else
-      @accessories = Accessory.paginate :page => @page, :per_page => 9
+      @accessories = Accessory.paginate :page => @page, :per_page => 10, :order => 'name'
     end
 
     # Get a list of phone brands
     @phone_brands = get_phone_brands()
+    
+    @sorting = true
 
     respond_to do |format|
       format.html # index.html.erb
@@ -140,12 +144,17 @@ class AccessoriesController < ApplicationController
   end
   
   def thumbnail
-      # Create a thumbnail image of the uploaded picture for the phone list
-      @accessory = Accessory.find(params[:id])
-      image = Magick::Image.from_blob(@accessory.picture_data).first
-      thumb = image.thumbnail(128, 128)
-      send_data thumb.to_blob, :filename => @accessory.picture_name,
-                :type => @accessory.picture_type, :disposition => "inline"
+    # Create a resized image of the uploaded picture for when the phone is shown
+    @accessory = Accessory.find(params[:id])
+    image = Magick::Image.from_blob(@accessory.picture_data).first
+    max_dimension = (image.columns < image.rows) ? image.rows : image.columns
+    if max_dimension < 32
+      thumb = image
+    else
+      thumb = image.resize_to_fit(40, 40)
+    end
+    send_data thumb.to_blob, :filename => @accessory.picture_name,
+              :type => @accessory.picture_type, :disposition => "inline"
   end
 
   def offer_picture
@@ -164,10 +173,10 @@ class AccessoriesController < ApplicationController
 
   def get_phone_brands()
     @brands_records = Phone.find(:all, :select => "DISTINCT brand", :order => "brand ASC")
-    @brands = Array.new(1, ["All Phones Brands", ""])
+    @brands = Array.new(1, "All Brands")
 
     unless (@brands_records == nil)
-      @brands_records.each { |brand_record| @brands << [brand_record.brand, brand_record.brand] }
+      @brands_records.each { |brand_record| @brands << brand_record.brand }
     end
 
     return @brands

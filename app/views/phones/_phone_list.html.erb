@@ -1,6 +1,6 @@
 <div id="results">
 <%
-  unless ((@phones == nil) or (@phones.empty?))
+  unless (@phones.empty?)
     for phone in @phones
 %>
 	<div class="phone_sel"><input name="compare[]" type="checkbox" value="<%= phone.id %>" onclick="return set_compare(<%= phone.id %>, this);" <%= (@compare_ids.include?(phone.id.to_s)) ? 'checked="checked"' : '' %> /></div>

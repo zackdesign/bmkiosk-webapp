@@ -21,6 +21,90 @@
   padding: 2px;
 }
 
+/* Phone search */
+
+legend {
+  font-weight: bold;
+  padding: 5px;
+}
+
+/* Accessories */
+
+.accessories .description {
+  overflow: hidden;
+  width: 390px;
+}
+
+.accessories td {
+  vertical-align: top;
+}
+
+.accessories .accessory_name {
+  font-weight: bold;
+}
+
+.accessories .price {
+  text-align: center;
+}
+
+.accessories .bottom td {
+  padding-bottom: 10px;
+}
+
+
+.accessories .odd{
+  border: 1px solid gray;
+}
+
+.orange_button
+{
+	display: block;
+	width: 100px;
+	height: 17px;
+	background-image: url(/images/more_details.gif);
+	text-align: center;
+	text-decoration: none;
+	margin: 4px 0px;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+a.orange_button
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+a.orange_button:hover {
+        color: #000000;
+        text-decoration: none;
+}
+
+a.orange_button:visited
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+
+/* Apple Pagination */
+
+.apple_pagination {
+  background: #F1F1F1;
+  border: 1px solid #E5E5E5;
+  text-align: center;
+  padding: 1em; }
+  .apple_pagination a, .apple_pagination span {
+    padding: .2em .3em; }
+  .apple_pagination span.disabled {
+    color: #AAA; }
+  .apple_pagination span.current {
+    font-weight: bold;
+    background: transparent url(/bmweb/apple-circle.gif) no-repeat 50% 50%; }
+  .apple_pagination a, .apple_pagination a:visited {
+    text-decoration: none;
+    color: black; }
+    .apple_pagination a:hover, .apple_pagination a:focus {
+      text-decoration: underline; }
+
 
 /* Skip links */	
 

@@ -162,7 +162,11 @@ folder = ''
 	                <div class="shadebox_content_n"> <h3>Sort by</h3>
 	                  <div class="dotline_black">&nbsp;</div>
 	                    <ul class="linklist">
-	  		      <%= %>
+	                      <% if @phone_brands
+	  		           for brand in @phone_brands  %>
+	  		        <li><%= link_to(brand, :brand=>brand) %></li>
+	  		      <%    end
+	  		          end %>
 	  	            </ul>
 	                  </div>
 	              </div>
