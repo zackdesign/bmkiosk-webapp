@@ -109,9 +109,9 @@ module HomeHelper
   	        
             File.open('public/bmweb/phones/'+picture,'w'){|f| f.write(final.to_blob{self.format = "jpg"})}
             end
-            link = link_to image_tag('/bmweb/phones/'+picture, :alt=>p.name), :controller=>'phones',:action => 'show', :id => p.id
+            link = link_to image_tag('/bmweb/phones/'+picture, :alt=>p.name), :controller=>'accessories',:action => 'show', :id => p.id
             
-            more = link_to '<strong>More &raquo;</strong>&nbsp;', :controller=>'phones',:action => 'show', :id => p.id
+            more = link_to '<strong>More &raquo;</strong>&nbsp;', :controller=>'accessories',:action => 'show', :id => p.id
             
             if count == 1
               list += '
