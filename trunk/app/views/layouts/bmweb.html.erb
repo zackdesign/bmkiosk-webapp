@@ -7,6 +7,8 @@ folder = ''
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
 		<title>BM Tronics <%= @page_title %></title>
+		<!--[if lte IE 6]><style type="text/css" media="screen,projection">#hp_middle {*margin-left:179px !important;}</style><![endif]-->
+
 <%= stylesheet_link_tag "bmweb" , :media => "all" %>
 	</head>
 
@@ -19,14 +21,14 @@ folder = ''
 <div id="pagewidth" class="width1024">
   <div id="pagewidthInner">
     <div id="pagewidthInner2">
-
+ <div class="telstra-dealer">
+          <img src="/logo/Telstra-Dealer.gif" width="204" height="43" alt="Telstra logo" class='tlogo' />
+    </div>
 
 <!-- Start header -->
 <div id="header">
   <div class="headerWrap">
-  <div class="telstra-dealer">
-          <img src="/logo/Telstra-Dealer.gif" width="204" height="43" alt="Telstra logo" class='tlogo' />
-    </div>
+ 
     <div class="headerLogo">
     
     <%= image_tag '/logo/bmtronics_color.gif', :alt => "BM Tronics" %>
@@ -206,11 +208,11 @@ folder = ''
           <% if (controller.controller_name != 'home') %>
               <div id="page_top">
               </div>
-              <div id="page_body">
+              <div id="outline"><div id="page_body">
           <% end %>
           <%= yield %>
           <% if (controller.controller_name != 'home') %>
-	      </div>
+	      </div></div>
 	      <div id="page_bottom">
 	      </div>
           <% end %>

@@ -52,10 +52,6 @@ legend {
 }
 
 
-.accessories .odd{
-  border: 1px solid gray;
-}
-
 .orange_button
 {
 	display: block;
@@ -1715,12 +1711,15 @@ caption {
   
 }
 
-#page_body {
+#outline {
   background-image:url('/bmweb/page_back_repeat.gif');
   background-repeat: repeat-y;
   width: 600px;
-  padding-left: 10px;
-  padding-right: 0px;
+}
+
+#page_body {
+  width: 590px;
+  margin-left: 8px;
 }
 
 #page_bottom {
