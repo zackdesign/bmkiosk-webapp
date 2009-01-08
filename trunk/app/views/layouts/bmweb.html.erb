@@ -6,7 +6,7 @@ folder = ''
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
-		<title>BM Tronics - <%= controller.controller_name %> - <%= controller.action_name %></title>
+		<title>BM Tronics <%= @page_title %></title>
 <%= stylesheet_link_tag "bmweb" , :media => "all" %>
 	</head>
 
@@ -199,9 +199,17 @@ folder = ''
         <!-- end of right content -->
         <!-- middle content -->
         <div id="hp_middle">
-
-
+          <% if (controller.controller_name != 'home') %>
+              <div id="page_top">
+              </div>
+              <div id="page_body">
+          <% end %>
           <%= yield %>
+          <% if (controller.controller_name != 'home') %>
+	      </div>
+	      <div id="page_bottom">
+	      </div>
+          <% end %>
         </div>
         <!-- end of middle content -->
         <div class="clearer"></div>

@@ -11,7 +11,7 @@ class PhonesController < ApplicationController
   include Magick
 
   
-  layout 'personal'
+  layout 'bmweb'
 
   # GET /phones
   # GET /phones.xml
@@ -94,6 +94,8 @@ class PhonesController < ApplicationController
   # GET /phones/1.xml
   def show
     @phone = Phone.find(params[:id])
+    
+    @page_title = ' - '+@phone.name
 
     respond_to do |format|
       format.html # show.html.erb
@@ -282,7 +284,7 @@ class PhonesController < ApplicationController
     # Create a thumbnail image of the uploaded picture for the phone list
     @phone = Phone.find(params[:id])
     image = Magick::Image.from_blob(@phone.picture_data).first
-    thumb = image.thumbnail(64, 64)
+    thumb = image.thumbnail(128, 128)
     send_data thumb.to_blob, :filename => @phone.picture_name,
               :type => @phone.picture_type, :disposition => "inline"
   end

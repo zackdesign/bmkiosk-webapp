@@ -2,7 +2,7 @@ class PlansController < ApplicationController
   require 'RMagick'
   include Magick
 
-  layout 'personal'
+  layout 'bmweb'
 
   # GET /plans
   # GET /plans.xml

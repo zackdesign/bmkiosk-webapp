@@ -1,3 +1,27 @@
+/* Product Table */
+
+.product_table {
+  width: 100%;
+}
+
+.product_table td {
+  vertical-align: top;
+}
+
+.table_thumb, .table_name {
+  text-align: center;
+}
+
+.table_fthumbs {
+  padding-top: 15px;
+}
+
+#page_body li {
+  list-style: none;
+  padding: 2px;
+}
+
+
 /* Skip links */	
 
 #area_skipnav {
@@ -1599,6 +1623,28 @@ caption {
 	width:178px;
 	padding-right:1px;
 }
+
+#page_top {
+  background: url('/bmweb/page_back_top.gif') 0 4px no-repeat;
+  width:600px;
+  height:15px;
+  
+}
+
+#page_body {
+  background-image:url('/bmweb/page_back_repeat.gif');
+  background-repeat: repeat-y;
+  width: 600px;
+  padding-left: 10px;
+  padding-right: 0px;
+}
+
+#page_bottom {
+  background:url('/bmweb/page_back_bottom.gif')  0 -4px no-repeat;;
+  width:600px;
+  height:15px;
+}
+
 /* endof homepage three col */
 
 /* shadebox */

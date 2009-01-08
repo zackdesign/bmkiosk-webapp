@@ -1,12 +1,7 @@
-<h2><%= h @phone.name %></h2>
-<hr />
-<!--<div class="image"><%#= show_picture_if_available(@phone) %></div>-->
-<div class="image"><%= show_thumbnail_if_available(@phone) %></div>
-<div class="text">
-	<!-- <div>Outright cost <%#= number_to_currency @phone.outright %></div> -->
-	<p><%= @phone.description %></p>
-	<div class="phone_features">
-<%
+<table class="product_table">
+<tr>
+<td class="table_name"><h2><%= h @phone.name %></h2></td>
+<td rowspan="2" class="table_fthumbs"><%
   unless (@phone.features.empty?)
 %>
 		<ul>
@@ -19,16 +14,41 @@
 %>
 		</ul>
 <%
+  end
+%></td>
+<td rowspan="2"><h2>Features &amp; Specifications</h2>
+<%
+  unless (@phone.features.empty?)
+%>
+		<ul>
+<%
+    for feature in @phone.features
+%>
+			<li><%= h feature.name %></li>
+<%
+    end
+%>
+		</ul>
+<%
   else
 %>
-	<%= content_tag(:span, "No Features") %>
+	<%= content_tag(:span, "None Listed") %>
 <%
   end
-%>
-	</div>
-</div>
-<div style="clear: both;"></div>
-<hr />
+%></td>
+</tr>
+<tr>
+<td class='table_thumb'><%= show_thumbnail_if_available(@phone) %></td>
+
+</tr>
+</table>
+
+<%= @phone.description %>
+
+
+<!--<div class="image"><%#= show_picture_if_available(@phone) %></div>-->
+<!-- <div>Outright cost <%#= number_to_currency @phone.outright %></div> -->
+<br /><br />
 <h2>Select a Purchase Type to continue</h2>
 <script>
 function chk_buy()
@@ -110,24 +130,3 @@ function chk_buy()
 	<input type="hidden" name="id" value="<%= @phone.id %>" />
 	<input type="hidden" name="is_nextg" id="is_nextg" value="<%= (@phone.network == 'NextG') ? 1 : 0; %>" />
 </form>
-<hr />
-<h2>Features &amp; Specifications</h2>
-<%
-  unless (@phone.features.empty?)
-%>
-		<ul>
-<%
-    for feature in @phone.features
-%>
-			<li><%= h feature.name %></li>
-<%
-    end
-%>
-		</ul>
-<%
-  else
-%>
-	<%= content_tag(:span, "No Features") %>
-<%
-  end
-%>

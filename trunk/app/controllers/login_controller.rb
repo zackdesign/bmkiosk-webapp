@@ -2,7 +2,7 @@ class LoginController < ApplicationController
   require 'RMagick'
   include Magick
 
-  layout 'personal'
+  layout 'bmweb'
 
   
   

@@ -9,8 +9,6 @@ module PhonesHelper
   def show_thumbnail_if_available(phone)
     unless phone.picture_name.blank?
       image_tag(url_for({ :action => 'thumbnail', :id => phone.id }), :alt => phone.name, :class => "thumb")
-    else
-      content_tag(:span, "None")
     end
   end
   
@@ -53,8 +51,6 @@ module PhonesHelper
   def show_feature_thumbnail_if_available(feature)
     unless feature.picture_name.blank?
       image_tag(url_for({ :action => 'feature_thumb', :id => feature.id }), :alt => feature.name, :class => "thumb")
-    else
-      content_tag(:span, "None")
     end
   end
 
