@@ -1,14 +1,14 @@
-<div class="depot-form">
-	<h2>Please Log In</h2>
-	<hr />
+<div style='text-align: center'>
+	<h2>Password</h2>
+
 <% form_tag({}, { :id => "login" }) do %>
 	<p>
-		<label for="password">Password:</label>
+		
 <%= password_field_tag :password, params[:password] %>
 	</p>
-	<p>
+	<p><br />
 <%#= submit_tag "Login" %>
-<%= link_to_function('Login', "$('login').submit()", { :class => "orange_button"} ) %>
+<%= link_to_function('Login', "$('login').submit()", { :class => "orange_button", :style =>"margin: 0 auto;"} ) %>
 	</p>
 <% end %>
 </div>

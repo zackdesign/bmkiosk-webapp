@@ -35,6 +35,15 @@ legend {
   width: 390px;
 }
 
+.accessories .features {
+  overflow: hidden;
+  width: 330px;
+}
+
+.accessories .comparison {
+  padding-top: 30px;
+}
+
 .accessories td {
   vertical-align: top;
 }
@@ -76,6 +85,36 @@ a.orange_button:hover {
 }
 
 a.orange_button:visited
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.blue_button
+{
+	display: block;
+	width: 140px;
+	height: 17px;
+	background-image: url(/images/compare_selected.gif);
+	text-align: center;
+	text-decoration: none;
+	margin: 4px 0px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.float_button {
+  position: absolute;
+  margin-left: 450px;
+}
+
+a.blue_button
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+
+a.blue_button:visited
 {
 	color: #ffffff;
 	text-decoration: none;
@@ -463,7 +502,7 @@ html>/**/body #sites li span {
 	font-size: 100%;
 	height:2.5em;
 	margin: 0 auto;
-	width: 560px;
+	width: 570px;
 	font-weight:bold;
 	z-index: 100; }
 

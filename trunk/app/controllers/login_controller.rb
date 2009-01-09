@@ -74,7 +74,7 @@ class LoginController < ApplicationController
     session[:user_type] = nil
     flash[:notice] = "You are now logged out"
 #    redirect_to(:action => "login")
-    redirect_to({ :controller => "phones", :action => "index" })
+    redirect_to({ :controller => "home", :action => "index" })
   end
   
   

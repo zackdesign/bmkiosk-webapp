@@ -148,7 +148,7 @@ class AccessoriesController < ApplicationController
     @accessory = Accessory.find(params[:id])
     image = Magick::Image.from_blob(@accessory.picture_data).first
     max_dimension = (image.columns < image.rows) ? image.rows : image.columns
-    if max_dimension < 32
+    if max_dimension < 40
       thumb = image
     else
       thumb = image.resize_to_fit(40, 40)

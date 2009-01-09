@@ -1,14 +1,31 @@
-<div id="results">
+<form>
+<table class="accessories">
+<tr>
+<th colspan="3"> <%= link_to('Compare Selected', url_for({ :action => 'show', :id => 1 }), { :class => 'blue_button' }) %></th>
+<th class="price">Buy Outright</th>
+</tr>
 <%
   unless (@phones.empty?)
     for phone in @phones
 %>
-	<div class="phone_sel"><input name="compare[]" type="checkbox" value="<%= phone.id %>" onclick="return set_compare(<%= phone.id %>, this);" <%= (@compare_ids.include?(phone.id.to_s)) ? 'checked="checked"' : '' %> /></div>
-	<div class="phone_img"><%= show_thumbnail_if_available(phone) %></div>
-	<div class="phone_info">
-		<div><span class="phone_name"><%= h phone.name %></span> - Outright cost <%= number_to_currency phone.outright %></div>
-		<div class="phone_features">
-<%
+<tr >
+<td rowspan="2" class="comparison"><input name="compare[]" type="checkbox" value="<%= phone.id %>" onclick="return set_compare(<%= phone.id %>, this);" 
+	
+	<% unless @compare_ids.nil? %>
+	<%= (@compare_ids.include?(phone.id.to_s)) ? 'checked="checked"' : '' %>
+	<% end %>
+	
+	/></td>
+<td colspan="4">
+
+	<%= link_to(h(phone.name), url_for({ :action => 'show', :id => phone.id }), { :class => 'accessory_name' }) %>
+</td>
+  
+</tr>
+<tr class=" bottom">
+
+<td><%= show_thumbnail_if_available(phone) %></td>
+<td><div  class='features'><%
       unless (phone.features.empty?)
 %>
 			<ul>
@@ -21,19 +38,14 @@
 %>
 			</ul>
 <%
-      else
-%>
-<%=     content_tag(:span, "No Features") %>
-<%
 	  end
-%>
-		</div>
-		<p><%= phone.description %></p>
-		<!-- <%= link_to(image_tag("more_details.gif", { :alt => "More Details", :border => 0 } ), url_for({ :action => 'show', :id => phone.id })) %> -->
-		<%= link_to('More Details', url_for({ :action => 'show', :id => phone.id }), { :class => 'orange_button' }) %>
-	</div>
-	<hr style="clear: both;" />
-<%
+%></div></td>
+<td class='price'><%= number_to_currency phone.outright %></td>
+<td><%= link_to('More Details', url_for({ :action => 'show', :id => phone.id }), { :class => 'orange_button' }) %>
+</td>
+
+</tr>
+<% 
     end
   else
 %>
@@ -41,12 +53,20 @@
 <%
   end
 %>
-</div>
+<tr>
+<th colspan="3"> <%= link_to('Compare Selected', url_for({ :action => 'show', :id => 1 }), { :class => 'blue_button' }) %></th>
+</tr>
+</table>
+
+
 <!-- <input name="prev_start" type="hidden" value="" />
 <input name="next_start" type="hidden" value="" /> -->
 <!--<form name="compare_form" id="compare_form" action="<%= url_for({ :action => 'compare', :id => @submit_id }) %>" method="get">-->
 <form name="compare_form" id="compare_form" action="" method="post">
-<input name="compare_ids" id="compare_ids" type="hidden" value="<%= @compare_ids.join(',') %>" />
+<input name="compare_ids" id="compare_ids" type="hidden" value="
+<% unless @compare_ids.nil? %>
+<%= @compare_ids.join(',') %>
+<% end %>" />
 <!--<input name="offset" id="offset" type="hidden" value="<%= @offset %>" />-->
 <input name="page" id="page" type="hidden" value="" />
 </form>

@@ -46,16 +46,18 @@
   	<fieldset>
   		<legend>Purchase Type</legend>
   		<div>
-  			<label>Monthly plan <em>or</em> Outright purchase</label>
+  			<label>
   			<span>
   				<input name="purchase_type" type="radio" value="monthly" checked="checked" />
   			</span>
+  			Monthly plan <em>or</em> Outright purchase</label>
   		</div>
   		<div>
-  			<label>Pre-Paid only</label>
+  			<label>
   			<span>
   				<input name="purchase_type" type="radio" value="prepaid" />
   			</span>
+  			Pre-Paid only</label>
   		</div>
   	</fieldset>
   
@@ -71,10 +73,11 @@
       for network in @networks
   %>
   		<div>
-  			<label><%= network.first %></label>
+  			<label>
   			<span>
   				<input name="network" type="radio" value="<%= network.last %>" <%= checked -%> />
   			</span>
+  			<%= network.first %></label>
   		</div>
   <%
   	  if (first)
