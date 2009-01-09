@@ -79,7 +79,7 @@ a.orange_button
 	color: #ffffff;
 	text-decoration: none;
 }
-a.orange_button:hover {
+a.orange_button:hover, a.blue_button:hover {
         color: #000000;
         text-decoration: none;
 }
