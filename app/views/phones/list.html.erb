@@ -1,9 +1,6 @@
+<%= link_to('New Mobile Search', url_for({ :action => '' }), { :class => 'blue_button float_button' }) %> 
 <h2>Mobile Phones</h2>
-<div style="text-align: right;">
-	<div class="right_buttons"><%= link_to('Compare Selected', url_for({ :action => 'show', :id => 1 }), { :class => 'blue_button' }) %></div>
-	<div class="right_buttons"><%= link_to('New Mobile Search', url_for({ :action => '' }), { :class => 'blue_button' }) %></div>
-	<div style="clear: both;"></div>
-</div>
-<hr />
+
+<br />
+
 <%= render :partial => 'phone_list.html.erb' %>
-<div style="text-align: right;"><div class="right_buttons"><%= link_to('Compare Selected', url_for({ :action => 'show', :id => 1 }), { :class => 'blue_button' }) %><div style="clear: both;"></div></div></div>

@@ -1,6 +1,3 @@
-<%
-folder = ''
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -10,6 +7,16 @@ folder = ''
 		<!--[if lte IE 6]><style type="text/css" media="screen,projection">#hp_middle {*margin-left:179px !important;}</style><![endif]-->
 
 <%= stylesheet_link_tag "bmweb" , :media => "all" %>
+<!--
+<style type="text/css">
+<% if session[:user_type] == '4' %>
+    #menuContainer {
+    	background-image:url(/bmweb/menu_bg_orange.gif); }
+<% elsif session[:user_type] == '3' %>
+    #menuContainer {
+    	background-image:url(/bmweb/menu_bg_dark.gif); }
+<% end %>
+</style> -->
 	</head>
 
 <!-- Template type -->
@@ -92,7 +99,7 @@ folder = ''
 		<li id="tabId1"><%= link_to('Phones', :controller=>'phones') %></li>
 		<li id="tabId2"><%= link_to('Plans', :controller=>'plans') %></li>
 		<li id="tabId3"><%= link_to('Accessories', :controller=>'accessories') %></li>
-		<li id="tabId4"><%= link_to('Log In', :controller=>'login') %></li>
+		<li id="tabId4"><%= (session[:user_type]) ? link_to('Log Out', :controller=>'login', :action=>'logout') : link_to('Log In', :controller=>'login') %></li>
 		<li id="tabId5"><a href="http://www.bmtronics.com.au">Warranty Repairs</a></li>
 	</ul>
 </div>
@@ -221,7 +228,7 @@ folder = ''
         <div class="clearer"></div>
 
         <div class="dotline_black" style="width:950px; margin:0 7px 10px 7px;">&nbsp;</div>
-        <div style="margin:0; padding:0; margin-bottom:1em;" align="center">
+        <div style="margin:0; padding:0; margin: 0 auto; margin-bottom:1em;">
 
         </div>
       </div>
@@ -233,13 +240,13 @@ folder = ''
 <div id="footer">
 	<ul>
 		<li class="footerLogo"><a href="http://bmtronics.net"><img src="/logo/bm_squiggle.gif" alt="BM Tronics" /></a></li>
-		<li id="tabId0"><%= link_to('BM Tronics Home', :controller=>'home') %></li>
+		<li><%= link_to('BM Tronics Home', :controller=>'home') %></li>
 
-		<li id="tabId1"><%= link_to('Phones', :controller=>'phones') %></li>
-		<li id="tabId2"><%= link_to('Plans', :controller=>'plans') %></li>
-		<li id="tabId3"><%= link_to('Accessories', :controller=>'accessories') %></li>
-		<li id="tabId4"><%= link_to('Log In', :controller=>'login') %></li>
-		<li id="tabId5"><a href="http://www.bmtronics.com.au">Warranty Repairs</a></li>
+		<li><%= link_to('Phones', :controller=>'phones') %></li>
+		<li><%= link_to('Plans', :controller=>'plans') %></li>
+		<li><%= link_to('Accessories', :controller=>'accessories') %></li>
+		<li><%= link_to('Log In', :controller=>'login') %></li>
+		<li><a href="http://www.bmtronics.com.au">Warranty Repairs</a></li>
 	</ul>
 </div> 
 

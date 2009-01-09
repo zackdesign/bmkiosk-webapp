@@ -10,7 +10,7 @@ class PhonesController < ApplicationController
   require 'RMagick'
   include Magick
 
-  
+  protect_from_forgery :only => [:create, :update, :destroy] 
   layout 'bmweb'
 
   # GET /phones
@@ -281,10 +281,15 @@ class PhonesController < ApplicationController
   end
 
   def thumbnail
-    # Create a thumbnail image of the uploaded picture for the phone list
+    # Create a resized image of the uploaded picture for when the phone is shown
     @phone = Phone.find(params[:id])
     image = Magick::Image.from_blob(@phone.picture_data).first
-    thumb = image.thumbnail(128, 128)
+    max_dimension = (image.columns < image.rows) ? image.rows : image.columns
+    if max_dimension < 50
+      thumb = image
+    else
+      thumb = image.resize_to_fit(50, 50)
+    end
     send_data thumb.to_blob, :filename => @phone.picture_name,
               :type => @phone.picture_type, :disposition => "inline"
   end
