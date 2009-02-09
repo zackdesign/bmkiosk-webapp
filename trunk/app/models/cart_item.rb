@@ -25,4 +25,8 @@ class CartItem
   def price
     @product.price * @quantity
   end
+
+  def quantity
+    return @quantity
+  end
 end

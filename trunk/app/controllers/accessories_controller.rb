@@ -46,16 +46,17 @@ class AccessoriesController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       logger.error("Attempt to access invalid product #{params[:id]}")
       flash[:notice] = "Invalid product"
-      redirect_to(:action => "index") and return
+      redirect_to(:action => "index") unless request.xhr? and return
     else
       find_id = ActiveRecord::Base.connection.select_value("SELECT id FROM products WHERE title LIKE '"+accessory.name+"'")
-      if(find_id)
-        ActiveRecord::Base.connection.execute("UPDATE products SET price = '"+accessory.price.to_s()+"' WHERE id = '"+find_id.to_s()+"'")
+      if (find_id)
+#        ActiveRecord::Base.connection.execute("UPDATE products SET price = '"+accessory.price.to_s()+"' WHERE id = '"+find_id.to_s()+"'")
         last_id = find_id 
       else 
         ActiveRecord::Base.connection.execute("INSERT INTO products (title, price) VALUES ('"+accessory.name+"', '"+accessory.price.to_s()+"')")
         last_id = ActiveRecord::Base.connection.select_value("SELECT id FROM products WHERE id = LAST_INSERT_ID()") 
       end
+
       add_to_cart(last_id)
     end
       flash.now[:notice] = "Added to cart"
@@ -67,7 +68,41 @@ class AccessoriesController < ApplicationController
     end
 
     @page = (params[:page].nil?) ? 1 : params[:page]
-    redirect_to(:action => "index", :page => @page, :brand => @selected_brand )
+    redirect_to(:action => "index", :page => @page, :brand => @selected_brand ) unless request.xhr?
+  end
+
+  def cartdel
+    begin
+      product = Product.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      logger.error("Attempt to access invalid product #{params[:id]}")
+      flash[:notice] = "Invalid product"
+      redirect_to(:action => "index") unless request.xhr? and return
+    else
+      remove_from_cart
+#      product.destroy
+    end
+  end
+
+  def emptycart
+    unless @cart.items.empty?
+#      item_ids = @cart.items.collect { |item| item.id }
+      empty_cart
+
+#      begin
+#        products = Product.find(item_ids)
+#      rescue ActiveRecord::RecordNotFound
+#        logger.error("Attempt to access invalid product #{params[:id]}")
+#        flash[:notice] = "Invalid product"
+#        redirect_to(:action => "index") unless request.xhr? and return
+#      else
+#        products.each { |prod| prod.destroy }
+#      end
+    end
+  end
+
+  def saveorder
+    save_order
   end
 
   # GET /accessories/1

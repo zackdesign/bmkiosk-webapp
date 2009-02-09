@@ -1,0 +1,20 @@
+page.replace_html("cart" , :partial => "cart" , :object => @cart)
+page[:cart_parent].visual_effect(:blind_down, { :duration => 0.75 }) if @cart.total_items == 1
+#page[:current_item].visual_effect :pulsate, :pulses => 3, :duration => 1.5
+#page["current_item_" + @current_item.product.id].visual_effect :pulsate, :pulses => 3, :duration => 1.5
+
+#page.visual_effect :appear, "cart_item_" + @current_item.product.id.to_s + "_1", { :duration => 1.5, :queue => { :position => "end", :scope => "effect1" } }
+#page.visual_effect :appear, "cart_item_" + @current_item.product.id.to_s + "_2", { :duration => 1.5, :queue => { :position => "end", :scope => "effect2" } }
+
+#page.visual_effect :pulsate, "cart_item_" + @current_item.product.id.to_s + "_1", { :pulses => 3, :duration => 1.5, :queue => { :position => "end", :scope => "effect1" } }
+#page.visual_effect :pulsate, "cart_item_" + @current_item.product.id.to_s + "_2", { :pulses => 3, :duration => 1.5, :queue => { :position => "end", :scope => "effect2" } }
+
+#page.visual_effect :appear, "cart_item_" + @current_item.product.id.to_s + "_1", { :duration => 2.0, :queue => { :position => "end", :scope => "effect1" } }
+#page.visual_effect :appear, "cart_item_" + @current_item.product.id.to_s + "_2", { :duration => 2.0, :queue => { :position => "end", :scope => "effect1" } }
+#page.visual_effect :appear, "cart_item_" + @current_item.product.id.to_s + "_3", { :duration => 2.0, :queue => { :position => "end", :scope => "effect1" } }
+#page.visual_effect :appear, "cart_item_" + @current_item.product.id.to_s + "_4", { :duration => 2.0, :queue => { :position => "end", :scope => "effect1" } }
+
+#page.visual_effect :appear, "cart_item_" + @current_item.product.id.to_s + "_1", { :duration => 2.0 }
+#page.visual_effect :appear, "cart_item_" + @current_item.product.id.to_s + "_2", { :duration => 2.0 }
+#page.visual_effect :appear, "cart_item_" + @current_item.product.id.to_s + "_3", { :duration => 2.0 }
+#page.visual_effect :appear, "cart_item_" + @current_item.product.id.to_s + "_4", { :duration => 2.0 }

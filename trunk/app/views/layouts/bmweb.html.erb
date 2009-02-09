@@ -17,12 +17,12 @@
     	background-image:url(/bmweb/menu_bg_dark.gif); }
 <% end %>
 </style> -->
+    <%= javascript_include_tag :defaults %>
 	</head>
 
 <!-- Template type -->
 <body class="templateC">
 <!-- no cacheing -->
-
 
 
 <div id="pagewidth" class="width1024">
@@ -115,19 +115,21 @@
 
         <div id="hp_left">
         
-          <!-- start shopping cart - should be hidden if empty 
-	            <div class="shadebox_middle_n">
-	  
+          <!-- start shopping cart - should be hidden if empty -->
+                <div id="debug"></div>
+	            <div id="cart_parent" class="shadebox_middle_n" style="<%= ((@cart.items.empty?) ? 'display: none;' : '') %>">
 	              <div class="shadebox_top_n"></div>
 	              <div class="shadebox_bottom_n">
-	                <div class="shadebox_content_n"> <h3>Shopping Cart</h3>
+	                <div class="shadebox_content_n">
+	                  <h3>Shopping Cart</h3>
 	                  <div class="dotline_black">&nbsp;</div>
-	                    ...
+	                  <div id="cart">
+<%= render(:partial => "accessories/cart" , :object => @cart) %>
+                      </div>
 	                </div>
 	              </div>
 	            </div>
-	  
-          -->
+
           <!-- start quick links -->
 	            <div class="shadebox_middle_n">
 	  
