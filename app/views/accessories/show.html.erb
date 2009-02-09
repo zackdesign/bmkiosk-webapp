@@ -6,7 +6,7 @@
 <tr>
 <td class="table_name"><%= show_offer_picture_if_available(@accessory) %></td>
 <td><%= @accessory.description %><br /><br />Price: <%= number_to_currency(@accessory.price) %>
-<br /><br /><%= link_to('Add to Cart', url_for({ :action => 'cartadd', :id => @accessory.id, :page => @page, :brand => @selected_brand }), { :class => 'orange_button' }) %></td>
+<br /><br /><%#= link_to('Add to Cart', url_for({ :action => 'cartadd', :id => @accessory.id, :page => @page, :brand => @selected_brand }), { :class => 'orange_button' }) %><%= link_to_remote('Add to Cart', :url => { :action => 'cartadd', :id => @accessory.id, :page => @page, :brand => @selected_brand }, :html => { :class => 'orange_button' }) %></td>
 </tr>
 
 </table>
