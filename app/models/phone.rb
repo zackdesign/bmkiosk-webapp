@@ -32,6 +32,7 @@ class Phone < ActiveRecord::Base
 
   has_and_belongs_to_many :accessories, :join_table => "phones_accessories"
   has_and_belongs_to_many :features, :join_table => "phones_features"
+  has_and_belongs_to_many :plans, :join_table => "phones_plans"
 
   def picture=(picture_data_field)
     return if picture_data_field.blank?
