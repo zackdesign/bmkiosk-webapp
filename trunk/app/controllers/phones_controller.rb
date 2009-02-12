@@ -95,6 +95,13 @@ class PhonesController < ApplicationController
   def show
     @phone = Phone.find(params[:id])
     
+    # Both existing phone number and service type need to be shown on the form and sent in the email 
+    @existing = params[:existing]
+    @network = params[:network]
+    @service_type = params[:service]
+    
+    if(@service_type == nil)
+    
     # First find all the plans that are available with the chosen phone
     @plans = Plan.find_by_sql("SELECT p.* FROM plans p, phones_plans pp WHERE p.id = pp.plan_id AND pp.phone_id = " + params[:id]) 
     
@@ -107,12 +114,37 @@ class PhonesController < ApplicationController
        @plan_groups_consumer = Array.new
     end
     
+    else
+    
+        @plan = Plan.find(params[:plan])   
+    
+    end
+    
     @page_title = ' - '+@phone.name
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @phone }
     end
+  end
+  
+  def plan_phone
+    
+    # The existing and service type both need to go into the email
+    
+    @plan = Plan.find(params[:plan])
+    
+    @existing = params[:existing]
+    @network = params[:network]
+    @service_type = params[:service_type]
+    
+    @page_title = ' - '+@plan.name
+    
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @phone }
+    end
+      
   end
 
   def offers
