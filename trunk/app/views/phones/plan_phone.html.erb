@@ -6,4 +6,4 @@
 
 
 <br />
-<%= link_to('Back', '/plans', { :class => 'blue_button', :style => 'line-height: 17px;' }) %>
+<%= link_to('Back', '/plans/list?service_type='+@service_type+'&network='+@network+'&existing='+@existing+'&plan_group[group_id]='+@plan.plan_group.id.to_s, { :class => 'blue_button', :style => 'line-height: 17px;' }) %>
