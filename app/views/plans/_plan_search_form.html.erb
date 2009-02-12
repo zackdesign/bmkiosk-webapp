@@ -1,15 +1,7 @@
-<!-- Hack for IE to allow legend text to align with the rest of the form -->
-<!--[if IE]>
-<style>
-legend
-{
-	text-indent: -4px;
-}
-</style>
-<![endif]-->
 
 <p>To help find a plan for you we need to ask a few questions:</p>
 <form name="plan_search" action="/plans/list" method="post">
+<!--
 <%
   if @phone.nil?
 %>
@@ -40,38 +32,8 @@ legend
 		<input name="handset_required" type="hidden" value="monthly" />
 		<input name="id" type="hidden" value="<%= @phone.id %>" />
 	</fieldset>
-<% end -%>
+<% end -%> -->
 
-	<hr />
-
-	<fieldset>
-		<legend>Is this a Business or Personal purchase ?</legend>
-<!--		<div>
-			<label>Business</label>
-			<span>
-				<input name="purchase_type" type="radio" value="business" checked="checked" />
-			</span>
-		</div>
-		<div>
-			<label>Personal</label>
-			<span>
-				<input name="purchase_type" type="radio" value="personal" />
-			</span>
-		</div>-->
-		<div>
-			<label for="purchase_type">Purchase type</label>
-			<span>
-<!--				<select name="purchase_type" id="purchase_type" size="1">
-					<option value="">Please select</option>
-					<option value="business">Business</option>
-					<option value="personal">Personal</option>
-				</select>-->
-				<%= select_tag 'purchase_type', options_for_select([['Please select', ''], ['Business', 'business'], ['Personal', 'personal']], @purchase_type) %>
-			</span>
-		</div>
-	</fieldset>
-
-	<hr />
 
 	<fieldset>
 		<legend>Is this a new service or an upgrade ?</legend>
@@ -101,8 +63,6 @@ legend
 		</div>
 	</fieldset>
 
-	<hr />
-
 <%
   if @phone.nil?
 %>
@@ -110,10 +70,20 @@ legend
 		<legend>Which Telstra Network would you like to use ?</legend>
 <%
   first = true
-  checked = 'checked="checked"'
 
   unless ((@networks == nil) or (@networks.empty?))
     for network in @networks
+        
+        if ((network.last == @network))
+            checked = 'checked="checked"'
+            
+            first = false
+        elsif (first == true)
+            checked = 'checked="checked"'
+	    first = false
+	else
+	    checked = ''
+        end
 %>
 		<div>
 			<label><%= network.first %></label>
@@ -122,10 +92,6 @@ legend
 			</span>
 		</div>
 <%
-	  if (first)
-	    checked = ''
-		first = false
-	  end
     end
   else
 %>
@@ -135,7 +101,6 @@ legend
 %>
 	</fieldset>
 
-	<hr />
 <% else %>
 	<input name="network" type="hidden" value="<%= h @phone.network %>" />
 <% end -%>
@@ -153,13 +118,16 @@ legend
 		</div> -->
 		<div>
 			<%#= select_tag "brand", options_for_select(@phone_brands, @selected_brand) %>
-			<label for="plan_type">Plan Type</label>
+			<label for="plan_type"></label>
+			<%= collection_select("plan_group", "group_id" , @plan_groups_consumer, "id", "name") %>
+			
+			<!--
 			<select name="plan_type" id="plan_type" size="1">
 				<option value="" checked="checked">Please select</option>
 				<option value="cap">Cap Plan</option>
 				<option value="phone">Phone Plan</option>
 				<option value="member">Member Plan</option>
-			</select>
+			</select>-->
 		</div>
 	</fieldset>
 <% else %>
@@ -190,8 +158,6 @@ legend
 		<input type="hidden" name="plan_type" value="<%= @plan_type %>" />
 	</fieldset>
 <% end -%>
-
-	<hr />
 
 <%
   if @show_sub_plan_type
@@ -262,5 +228,5 @@ legend
 	<hr />
 <% end -%>
 
-<!--	<div style="text-align: right;"><div class="right_buttons"><%= link_to_function('Display Plans', "document.plan_search.submit()", { :class => "orange_button"} ) %></div><div style="clear: both;"></div></div>-->
+<!--	<div style="text-align: right;"><div class="right_buttons"><%= link_to_function('Display Plans', "document.plan_search.submit()", { :class => "orange_button"} ) %></div></div>-->
 </form>

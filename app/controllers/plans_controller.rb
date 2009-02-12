@@ -3,6 +3,8 @@ class PlansController < ApplicationController
   include Magick
 
   layout 'bmweb'
+  
+  protect_from_forgery :only => [:create, :update, :destroy] 
 
   # GET /plans
   # GET /plans.xml
@@ -46,6 +48,11 @@ class PlansController < ApplicationController
     end
 
     @service_type = 'new'
+    
+    @plan_groups_consumer = PlanGroup.find_all_by_categories("consumer")
+        if @plan_groups_consumer.nil?
+           @plan_groups_consumer = Array.new
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -54,6 +61,43 @@ class PlansController < ApplicationController
   end
 
   def list
+  
+    @plans = Plan.find(:all, :conditions => [ "plan_group = ?", params['plan_group']['group_id']])
+    
+    @plan_groups_consumer = PlanGroup.find_all_by_categories("consumer")
+            if @plan_groups_consumer.nil?
+               @plan_groups_consumer = Array.new
+    end
+    
+        unless params[:service_type].nil?
+          @service_type = params[:service_type]
+        else
+          @service_type = 'new'
+    end
+    
+    unless params[:network].nil?
+              @network = params[:network]
+            else
+              @network = ''
+    end
+    
+        unless params[:existing].nil?
+          @existing = params[:existing]
+        else
+          @existing = ''
+    end
+    
+    # Get a list of phone network types
+    @networks = get_phone_networks()
+    
+    respond_to do |format|
+          format.html
+          format.xml  { render :xml => @plans }
+    end
+  
+  end
+
+  def list_old
     # Get a list of phone network types
     @networks = get_phone_networks()
 

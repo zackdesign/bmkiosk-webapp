@@ -49,6 +49,7 @@
 <!--<div class="image"><%#= show_picture_if_available(@phone) %></div>-->
 <!-- <div>Outright cost <%#= number_to_currency @phone.outright %></div> -->
 <br /><br />
+<% if (@plan == nil) %>
 <h2>Select a Purchase Type to continue</h2>
 <script>
 function chk_buy()
@@ -103,11 +104,14 @@ function chk_buy()
 </script>
 
 <form name="plans" id="plans" action="/plans" method="get" style="padding: 0px; margin: 0px; width: 100%;" onsubmit="return chk_buy();">
-        <% for plan in @plan_groups_consumer %>
+        <%
+        
+        
+        for plan in @plan_groups_consumer %>
         <div>
 	   	<ul>
 <%
-unless @plan_groups_consumer.empty?
+unless (@plan_groups_consumer.empty?)
   @plan_groups = @plan_groups_consumer
 %>
 <%= render :partial => "plan_groups", :collection => @plan_groups %>
@@ -116,7 +120,10 @@ else
 %>
 		<li>No Matching Consumer Plans</li>
 <%
+
 end
+
+
 %>
 	</ul>	
 	</div>
@@ -128,6 +135,20 @@ end
 	<div>
 		<label><h3><input type="radio" name="plan_id" value="outright" />Buy Outright for <%= number_to_currency @phone.outright %> (no plan)</h3></label>
 	</div>
+	<% 
+	
+	else
+	
+	%>
+	
+	<h3>Click Buy Now to get this phone on the  <%= @plan.name %></h3>
+	<br />
+	<%
+	
+	end 
+	# End of the 'if @plan == nil)
+	%>
+	
 	<div>
 		<table cellpadding="0" cellspacing="0" border="0" width="100%">
 			<tr>
