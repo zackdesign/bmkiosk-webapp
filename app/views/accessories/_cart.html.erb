@@ -5,5 +5,10 @@
 		<td class="total-cell" ><b><%= number_to_currency(cart.total_price) %></b></td>
 	</tr>
 </table>
-<br>
-<%= link_to "Checkout", :controller => 'accessories', :action => :checkout %> | <%= link_to_remote "Empty Cart", :url => { :controller => 'accessories', :action => "emptycart" } %>
+<br />
+<%= link_to_remote image_tag('/bmweb/cart_delete.png', :title => 'Empty Cart', :alt=>'Empty Cart', :style => 'float: left'), :url => { :controller => 'accessories', :action => "emptycart" } %>
+ 
+
+<%= link_to image_tag('/bmweb/cart_go.png', :title => 'Checkout', :alt=>'Checkout' , :style => 'float: right'), :controller => 'accessories', :action => :checkout %>
+
+<div style="clear:both"></div>
