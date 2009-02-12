@@ -1,0 +1,23 @@
+<%
+unless plans.nil?
+  @plan_options = { :action => "summary", :plan_id => plans.id }
+  unless @phone.nil?
+    @plan_options.merge!({ :phone_id => @phone.id })
+  end
+%>
+	<li>
+		<label><h3><input type="radio" name="plan_id" value="<%= plans.id %>" />
+		<%= link_to_function(h(plans.name), "$('" + h(plans.name) + "').toggle()") %></h3></label>
+		<ul id="<%= h(plans.name) %>" style="display: none;">
+			<li><%= render :partial => "charges_plan", :object => plans %></li>
+		</ul>
+		
+		
+	</li>
+<%
+else
+%>
+	<li>No Plan Information Available</li>
+<%
+end
+%>
