@@ -101,23 +101,32 @@ function chk_buy()
 	return cont;
 }
 </script>
+
 <form name="plans" id="plans" action="/plans" method="get" style="padding: 0px; margin: 0px; width: 100%;" onsubmit="return chk_buy();">
-	<div>
-		<label><input type="radio" name="plan_type" value="phone" />Phone Plan</label>
-		<span>$0 Upfront (for phone & service) on selected Personal & Business Phone Plans for 24 months</span>
+        <% for plan in @plan_groups_consumer %>
+        <div>
+	   	<ul>
+<%
+unless @plan_groups_consumer.empty?
+  @plan_groups = @plan_groups_consumer
+%>
+<%= render :partial => "plan_groups", :collection => @plan_groups %>
+<%
+else
+%>
+		<li>No Matching Consumer Plans</li>
+<%
+end
+%>
+	</ul>	
 	</div>
+        <% end %>
+        
+        <!--
+        <label><input type="radio" name="plan_type" value="phone" /></label>
+	   		<span>$0 Upfront (for phone & service) on selected Personal & Business Phone Plans for 24 months</span> -->
 	<div>
-		<label><input type="radio" name="plan_type" value="member" />Member Plan</label>
-		<span>Personal & Business Member Plans with handset repayment for 12 or 24 months</span>
-	</div>
-	<div>
-		<label><input type="radio" name="plan_type" value="cap" />Cap Plan</label>
-		<span>Personal & Business Cap Plans with handset repayment for 12 or 24 months</span>
-	</div>
-	<div>
-		<label><input type="radio" name="plan_type" value="outright" />Buy Outright</label>
-		<!-- CHECK WHETHER TO USE @phone.outright HERE -->
-		<span>Outright purchase for <%= number_to_currency @phone.outright %> (no plan)</span>
+		<label><h3><input type="radio" name="plan_id" value="outright" />Buy Outright for <%= number_to_currency @phone.outright %> (no plan)</h3></label>
 	</div>
 	<div>
 		<table cellpadding="0" cellspacing="0" border="0" width="100%">
