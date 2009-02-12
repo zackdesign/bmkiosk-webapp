@@ -22,6 +22,7 @@
 	<!--<tr id="cart_item_<%= cart_item.product.id.to_s %>_2">-->
 		<td style="padding-left: 8px;"><div id="cart_item_<%= cart_item.product.id.to_s %>_2"<%#= show ? '' : 'style="display: none;"' %>><%= cart_item.quantity %> &times;</div></td>
 		<td class="item-price"><div id="cart_item_<%= cart_item.product.id.to_s %>_3"<%#= show ? '' : 'style="display: none;"' %>><%= number_to_currency(cart_item.price) %></div></td>
-		<td><div id="cart_item_<%= cart_item.product.id.to_s %>_4"<%#= show ? '' : 'style="display: none;"' %>><%= link_to_remote "[X]", :url => { :controller => 'accessories', :action => :cartdel , :id => cart_item.product.id } %></div></td>
+		<td><div id="cart_item_<%= cart_item.product.id.to_s %>_4"<%#= show ? '' : 'style="display: none;"' %>>
+		<%= link_to_remote image_tag('/bmweb/cart_remove.png', :title => 'Remove Item', :alt=>'Remove Item', :style => 'float: right'), :url => { :controller => 'accessories', :action => :cartdel , :id => cart_item.product.id } %></div></td>
 		<!--<td><%= link_to "[X]", :url => {:controller => 'store', :action => :remove_from_cart , :id => cart_item.product} %></td>-->
 	</tr>
