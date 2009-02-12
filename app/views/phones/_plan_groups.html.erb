@@ -1,0 +1,23 @@
+<%
+unless plan_groups.nil?
+%>
+	<li>
+		<h2><%= link_to_function(h(plan_groups.name), "$('" + h(plan_groups.name) + "').toggle()") %></h2> <%= plan_groups.description %>
+		<ul id="<%= h(plan_groups.name) %>" class="plancharge" style="display: none;">
+<%
+unless @phone.nil?
+  @plan_group_plans = @plans.collect { |plan| (plan.plan_group.id == plan_groups.id) ? plan : nil }.compact
+else
+  @plan_group_plans = plan_groups.plans
+end
+%>
+<%= render :partial => "plans", :collection => @plan_group_plans %>
+		</ul>
+	</li>
+<%
+else
+%>
+	<li>No Phone Plans Available</li>
+<%
+end
+%>
