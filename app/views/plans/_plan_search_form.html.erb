@@ -1,4 +1,4 @@
-
+<br />
 <p>To help find a plan for you we need to ask a few questions:</p>
 <form name="plan_search" action="/plans/list" method="post">
 <!--
@@ -33,7 +33,7 @@
 		<input name="id" type="hidden" value="<%= @phone.id %>" />
 	</fieldset>
 <% end -%> -->
-
+<br />
 
 	<fieldset>
 		<legend>Is this a new service or an upgrade ?</legend>
@@ -62,7 +62,7 @@
 			</span>
 		</div>
 	</fieldset>
-
+<br />
 <%
   if @phone.nil?
 %>
@@ -104,7 +104,7 @@
 <% else %>
 	<input name="network" type="hidden" value="<%= h @phone.network %>" />
 <% end -%>
-
+<br />
 <%
   if @phone.nil?
 %>
@@ -158,7 +158,7 @@
 		<input type="hidden" name="plan_type" value="<%= @plan_type %>" />
 	</fieldset>
 <% end -%>
-
+<br />
 <%
   if @show_sub_plan_type
 %>

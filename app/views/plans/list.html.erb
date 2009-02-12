@@ -3,11 +3,14 @@
 <%= render :partial => 'plan_search_form.html.erb' %>
 <div style="text-align: right;"><div class="right_buttons"><%= link_to_function('Refresh', "document.plan_search.submit()", { :class => "orange_button"} ) %></div></div>
 <p>To view alternatives, change your preferences and click 'Refresh'.</p>
+<br />
+<h2>Choose Your Plan</h2>
+<br />
 <%
   for plan in @plans
 %>
 
-		<label><h3>
+		<label><h3><%= image_tag('/bmweb/arrow_blue_light.gif') %>
 		<%= link_to_function(h(plan.name), "$('" + h(plan.name) + "').toggle()") %></h3>
 		<%= plan.description %>
 		</label>
@@ -16,11 +19,13 @@
 		    <input type="hidden" name="service_type" value="<%= @service_type %>">
 		    <input type="hidden" name="existing" value="<%= @existing %>">
 		    <input type="hidden" name="plan" value="<%= plan.id %>">
-		<%= link_to_function('Display Phones', "document.plan_"+plan.id.to_s+".submit()", { :class => "orange_button"} ) %>
+		
 		</form>
 		<ul id="<%= h(plan.name) %>" style="display: none;">
 			<li><%= render :partial => "charges_plan", :object => plan %></li>
 		</ul>
+		<%= link_to_function('Display Phones', "document.plan_"+plan.id.to_s+".submit()", { :class => "orange_button"} ) %>
+		<br /><br />
 
 <%
   end
