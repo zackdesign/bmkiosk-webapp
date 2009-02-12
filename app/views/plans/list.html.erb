@@ -14,7 +14,7 @@
 		<%= link_to_function(h(plan.name), "$('" + h(plan.name) + "').toggle()") %></h3>
 		<%= plan.description %>
 		</label>
-		<form id="plan_<%= plan.id %>" action="/phones/plan_phone" method="post" name="plan_<%= plan.id %>">
+		<form id="plan_<%= plan.id %>" action="/phones/plan_phone" method="get" name="plan_<%= plan.id %>">
 		    <input type="hidden" name="network" value="<%= @network %>">
 		    <input type="hidden" name="service_type" value="<%= @service_type %>">
 		    <input type="hidden" name="existing" value="<%= @existing %>">
