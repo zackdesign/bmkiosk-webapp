@@ -48,7 +48,8 @@
           <div id="sites"><ul><li>Search BM Tronics for </li></ul>
           </div>
 
-          <form method="get" action="" id="SearchForm" >
+          <form method="post" action="/search" id="SearchForm" >
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token() %>" />
             <fieldset>
             	<input type="hidden" name="searchMode" id="searchMode" value="telstra" />
             </fieldset>
