@@ -83,6 +83,8 @@ class PhonesController < ApplicationController
 #      conditions += "feature IN (" + params[:feature].join(", ") + ")"
       @phones.delete_if { |phone| !phone_has_features(phone, params[:feature]) }
     end
+    
+    @user = session[:user_type]
 
     respond_to do |format|
       format.html # index.html.erb

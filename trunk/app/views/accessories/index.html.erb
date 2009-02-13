@@ -18,7 +18,15 @@
 
 <td><%= show_thumbnail_if_available(accessory) %></td>
 <td><div  class='description'><%= accessory.description %></div></td>
-<td class='price'><%= number_to_currency accessory.price %></td>
+<td class='price'><%= number_to_currency accessory.price %><br /><br /><strong>
+<% if @user == '3' %>
+Corp.<br />
+<%= number_to_currency accessory.corp_price %>
+<% elsif @user == '2' %>
+Gov.<br />
+<%= number_to_currency accessory.govt_price %>
+<% end %></strong>
+</td>
 <!--<td><%#= link_to('Add to Cart', url_for({ :action => 'cartadd', :id => accessory.id, :page => @page, :brand => @selected_brand }), { :class => 'orange_button' }) %></td>-->
 <td><%= link_to_remote('Add to Cart', :url => { :action => 'cartadd', :id => accessory.id, :page => @page, :brand => @selected_brand }, :html => { :class => 'orange_button' }) %></td>
 
