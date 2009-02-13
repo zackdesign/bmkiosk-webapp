@@ -2,7 +2,7 @@
 unless plan_groups.nil?
 %>
 	<li>
-		<h2><%= link_to_function(h(plan_groups.name), "$('" + h(plan_groups.name) + "').toggle()") %></h2> <%= plan_groups.description %>
+		<h2><%= image_tag('/bmweb/arrow_blue_light.gif') %> <%= link_to_function(h(plan_groups.name), "$('" + h(plan_groups.name) + "').toggle()") %></h2> <%= plan_groups.description %>
 		<ul id="<%= h(plan_groups.name) %>" class="plancharge" style="display: none;">
 <%
 unless @phone.nil?

@@ -120,7 +120,7 @@
 			<%#= select_tag "brand", options_for_select(@phone_brands, @selected_brand) %>
 			<label for="plan_type"></label>
 			<%= 
-			select_tag 'plan_group[group_id]', options_from_collection_for_select(PlanGroup.find_all_by_categories("consumer"),'id','name', @group_id.to_i)
+			select_tag 'plan_group[group_id]', options_from_collection_for_select(PlanGroup.find_all_by_categories(@categories, :order=>'name'),'id','name', @group_id.to_i)
 
 			%>
 			

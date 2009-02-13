@@ -49,9 +49,14 @@ class PlansController < ApplicationController
 
     @service_type = 'new'
     
-    @plan_groups_consumer = PlanGroup.find_all_by_categories("consumer")
-        if @plan_groups_consumer.nil?
-           @plan_groups_consumer = Array.new
+    if session[:user_type] == '4'
+        @categories = ['business','consumer']
+    elsif session[:user_type] == 3
+        @categories = ['corporate','consumer']
+    elsif session[:user_type] == 2
+        @categories = ['government','consumer']
+    else
+        @categories = ['consumer']
     end
 
     respond_to do |format|
@@ -63,6 +68,16 @@ class PlansController < ApplicationController
   def list
   
     @group_id = params['plan_group']['group_id']
+    
+        if session[:user_type] == '4'
+            @categories = ['business','consumer']
+        elsif session[:user_type] == 3
+            @categories = ['corporate','consumer']
+        elsif session[:user_type] == 2
+            @categories = ['government','consumer']
+        else
+            @categories = ['consumer']
+    end
     
     @plans = Plan.find(:all, :conditions => [ "plan_group = ?", @group_id])
     
