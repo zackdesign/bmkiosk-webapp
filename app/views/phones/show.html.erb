@@ -1,3 +1,4 @@
+
 <table class="product_table">
 <tr>
 <td class="table_name"><h2><%= h @phone.name %></h2></td>
@@ -107,14 +108,14 @@ function chk_buy()
         <%
         
         
-        for plan in @plan_groups_consumer %>
+         %>
         <div>
 	   	<ul>
 <%
 unless (@plan_groups_consumer.empty?)
-  @plan_groups = @plan_groups_consumer
+  
 %>
-<%= render :partial => "plan_groups", :collection => @plan_groups %>
+<%= render :partial => "plan_groups", :collection => @plan_groups_consumer %>
 <%
 else
 %>
@@ -127,7 +128,7 @@ end
 %>
 	</ul>	
 	</div>
-        <% end %>
+        <%  %>
         
         <!--
         <label><input type="radio" name="plan_type" value="phone" /></label>

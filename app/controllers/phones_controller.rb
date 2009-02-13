@@ -26,7 +26,7 @@ class PhonesController < ApplicationController
     @networks = get_phone_networks()
 
     # Get a list of features
-    @features = Feature.find(:all)
+    @features = Feature.find(:all, :order => 'name')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -109,7 +109,18 @@ class PhonesController < ApplicationController
     @plan_group_ids = @plans.collect { |plan| plan.plan_group.id }
     
     # Now find the consumer plan groups
-    @plan_groups_consumer = PlanGroup.find_all_by_categories_and_id("consumer", @plan_group_ids)
+            if session[:user_type] == '4'
+                @categories = ['business','consumer']
+            elsif session[:user_type] == 3
+                @categories = ['corporate','consumer']
+            elsif session[:user_type] == 2
+                @categories = ['government','consumer']
+            else
+                @categories = ['consumer']
+    end
+    
+    @plan_groups_consumer = PlanGroup.find_all_by_categories_and_id(@categories,  @plan_group_ids.uniq!)
+    
     if @plan_groups_consumer.nil?
        @plan_groups_consumer = Array.new
     end
