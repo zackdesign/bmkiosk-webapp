@@ -61,7 +61,14 @@
 <%
 	  end
 %></div></td>
-<td class='price'><%= number_to_currency phone.outright %></td>
+<td class='price'><%= number_to_currency phone.outright %><br /><br /><strong>
+<% if @user == '3' %>
+Corp.<br />
+<%= number_to_currency phone.corp_price %>
+<% elsif @user == '2' %>
+Gov.<br />
+<%= number_to_currency phone.gov_price %>
+<% end %></strong></td>
 <td><%= link_to('More Details', url_for({ :action => 'show', :id => phone.id, :plan => @plan, :existing => @existing, :network => @network, :service => @service_type }), { :class => 'orange_button' }) %>
 </td>
 

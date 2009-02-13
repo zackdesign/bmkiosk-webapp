@@ -32,6 +32,8 @@ class AccessoriesController < ApplicationController
     @phone_brands = get_phone_brands()
     
     @sorting = true
+    
+    @user = session[:user_type]
 
     respond_to do |format|
       format.html # index.html.erb
