@@ -62,12 +62,9 @@ class PlansController < ApplicationController
 
   def list
   
-    @plans = Plan.find(:all, :conditions => [ "plan_group = ?", params['plan_group']['group_id']])
+    @group_id = params['plan_group']['group_id']
     
-    @plan_groups_consumer = PlanGroup.find_all_by_categories("consumer")
-            if @plan_groups_consumer.nil?
-               @plan_groups_consumer = Array.new
-    end
+    @plans = Plan.find(:all, :conditions => [ "plan_group = ?", @group_id])
     
         unless params[:service_type].nil?
           @service_type = params[:service_type]

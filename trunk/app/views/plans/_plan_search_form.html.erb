@@ -119,7 +119,10 @@
 		<div>
 			<%#= select_tag "brand", options_for_select(@phone_brands, @selected_brand) %>
 			<label for="plan_type"></label>
-			<%= collection_select("plan_group", "group_id" , @plan_groups_consumer, "id", "name") %>
+			<%= 
+			select_tag 'plan_group[group_id]', options_from_collection_for_select(PlanGroup.find_all_by_categories("consumer"),'id','name', @group_id.to_i)
+
+			%>
 			
 			<!--
 			<select name="plan_type" id="plan_type" size="1">
