@@ -1,0 +1,73 @@
+<%
+  @url = ''
+  case search_result.type.to_s
+    when 'Phone'
+      @url = url_for :controller => 'phones', :action => 'show', :id => search_result.id
+    when 'Plan'
+      @url = url_for :controller => 'plans', :action => 'show', :id => search_result.id
+    when 'Accessory'
+      @url = url_for :controller => 'accessories', :action => 'show', :id => search_result.id
+  end
+
+  @name = search_result.name
+  @keywords.each { |keyword|
+    @name = @name.gsub(Regexp.new(keyword, Regexp::IGNORECASE)) { |m| '<strong>' + m + '</strong>' }
+  }
+
+  # Max number of characters to be displayed
+  display_len = 180
+  @description = strip_tags(search_result.description)
+
+#@dl = @description.length
+
+  if @description.length > display_len
+    @positions = @keywords.collect { |keyword|
+      @position = @description.downcase.index(keyword.downcase)
+      unless @position.nil?
+        while (@description.slice(@position, 1) != " ") and (@position > 0)
+          @position = @position - 1
+        end
+      end
+      @position
+    }
+
+    start = 1000000
+    unless @positions.empty?
+      @positions.each { |p|
+        unless p.nil?
+          if p < start
+            start = p
+          end
+        end
+      }
+    end
+
+    if start == 1000000
+      start = 0
+    end
+
+    truncate = true
+    finish = start + display_len
+    if (finish >= @description.length)
+      start = start - (finish - @description.length)
+      finish = @description.length - 1
+      truncate = false
+    end
+
+    if truncate
+      @description = @description[start .. (finish - 3)] + "..."
+    else
+      @description = @description[start .. finish]
+    end
+  end
+
+  @keywords.each { |keyword|
+    @description = @description.gsub(Regexp.new(keyword, Regexp::IGNORECASE)) { |m| "<strong>" + m + "</strong>" }
+  }
+%>
+			<li>
+				<!--<%#= debug @dl %><br />
+				<%#= debug @positions %><br />-->
+				<%= link_to @name, @url %><br />
+				<p><%= @description %></p>
+			</li>
