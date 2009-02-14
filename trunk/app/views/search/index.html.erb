@@ -8,14 +8,17 @@
 
 	<fieldset>
 		<input class="" type="text" value="" name="inpSearch" title="Keyword" tabindex="4" style="width: 318px;" />
-		<input class="headerSearchButton" type="image" src="/bmweb/button_search_blue.gif" id="Go" alt="Go" title="Go" value="Go" tabindex="5" />
+		<input class="headerSearchButton" style="margin-top: 2px;" type="image" src="/bmweb/button_search_blue.gif" id="Go" alt="Go" title="Go" value="Go" tabindex="5" /><br />
 		<label><input type="radio" name="new_search" value="0" />New Search</label>
 		<label><input type="radio" name="new_search" value="1" checked="checked" />Search In Results</label>
 	</fieldset>
-</form>
-<div class="dotline_black" style="width: 100%; margin: 10px 0px 3px;">&nbsp;</div>
-<h2>Search Results</h2>
-<h3>Results for: <%= @keywords.nil? ? "No keywords specified" : @keywords.join(" AND ") %></h3>
+</form><br />
+<h2>Search Results</h2><br />
+
+
+<h3>Results for: <%= @keywords.nil? ? "No keywords specified" : @keywords.join(" AND ") %></h3><br /><br />
+
+
 <%#= debug @phones.length %>
 <%#= debug @plans.length %>
 <%#= debug @accessories.length %>
@@ -28,29 +31,35 @@
       @search_result = @phones
 %>
 	<h3>Phones</h3>
+	<div class="dotline_black" style="width: 100%; margin: 10px 0px 3px;">&nbsp;</div>
 		<ul class="linklist">
 <%=   render :partial => "search_result", :collection => @search_result %>
 		</ul>
+		
 <%
-    end
+    end %> <%
 
     unless @plans.empty?
       @search_result = @plans
 %>
 	<h3>Plans</h3>
+	<div class="dotline_black" style="width: 100%; margin: 10px 0px 3px;">&nbsp;</div>
 		<ul class="linklist">
 <%=   render :partial => "search_result", :collection => @search_result %>
 		</ul>
+		
 <%
     end
-
+%> <%
     unless @accessories.empty?
       @search_result = @accessories
 %>
 	<h3>Accessories</h3>
+	<div class="dotline_black" style="width: 100%; margin: 10px 0px 3px;">&nbsp;</div>
 		<ul class="linklist">
 <%=   render :partial => "search_result", :collection => @search_result %>
 		</ul>
+		
 <%
     end
   else
