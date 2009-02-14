@@ -23,6 +23,10 @@
   padding-top: 15px;
 }
 
+.table_fthumbs li {
+  float: left;
+}
+
 #page_body li {
   list-style: none;
   padding: 2px;
@@ -67,6 +71,11 @@ legend {
   padding-bottom: 10px;
 }
 
+
+.features li {
+  float: right;
+  
+}
 
 .orange_button
 {

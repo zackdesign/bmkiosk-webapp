@@ -50,7 +50,7 @@ module PhonesHelper
   # used in features/list.rhtml
   def show_feature_thumbnail_if_available(feature)
     unless feature.picture_name.blank?
-      image_tag(url_for({ :action => 'feature_thumb', :id => feature.id }), :alt => feature.name, :class => "thumb")
+      image_tag(url_for({ :action => 'feature_thumb', :id => feature.id }), :alt => feature.name, :title=>feature.name, :class => "thumb")
     end
   end
 

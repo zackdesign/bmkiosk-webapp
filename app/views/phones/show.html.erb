@@ -2,21 +2,7 @@
 <table class="product_table">
 <tr>
 <td class="table_name"><h2><%= h @phone.name %></h2></td>
-<td rowspan="2" class="table_fthumbs"><%
-  unless (@phone.features.empty?)
-%>
-		<ul>
-<%
-    for feature in @phone.features
-%>
-			<li><%= show_feature_thumbnail_if_available(feature) %></li>
-<%
-    end
-%>
-		</ul>
-<%
-  end
-%></td>
+
 <td rowspan="2"><h2>Features &amp; Specifications</h2>
 <%
   unless (@phone.features.empty?)
@@ -41,6 +27,23 @@
 <tr>
 <td class='table_thumb'><%= show_offer_picture_if_available(@phone) %></td>
 
+</tr>
+<tr><td class="table_fthumbs" colspan="5">
+<%
+  unless (@phone.features.empty?)
+%>
+		<ul>
+<%
+    for feature in @phone.features
+%>
+			<li><%= show_feature_thumbnail_if_available(feature) %></li>
+<%
+    end
+%>
+		</ul>
+<%
+  end
+%></td>
 </tr>
 </table>
 

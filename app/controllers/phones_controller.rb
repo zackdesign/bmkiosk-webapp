@@ -355,7 +355,12 @@ class PhonesController < ApplicationController
     # Create a thumbnail image of the uploaded picture for the feature list
     @feature = Feature.find(params[:id])
     image = Magick::Image.from_blob(@feature.picture_data).first
-    thumb = image.thumbnail(32, 32)
+    max_dimension = (image.columns < image.rows) ? image.rows : image.columns
+        if max_dimension < 25
+          thumb = image
+        else
+          thumb = image.resize_to_fit(25, 25)
+    end
     send_data thumb.to_blob, :filename => @feature.picture_name,
               :type => @feature.picture_type, :disposition => "inline"
   end
