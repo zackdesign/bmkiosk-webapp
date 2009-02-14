@@ -371,7 +371,9 @@ html>/**/body .headerSearchWrap {
 
 #sites li {
 	float:left;
-	margin-right: -1px;
+	margin-top: 5px;
+	margin-left: 20px;
+
 	position:relative; }
 	
 #sites li.divider {
