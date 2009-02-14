@@ -54,7 +54,7 @@ module HomeHelper
           <div class='shop_handset#{count}_img'>#{link}</div>
               <div class='shop_handset#{count}'>
                 <div class='shop_handset_title' style='padding-top:4px;'>#{p.name}</div>
-                <div class='shop_handset_desc'>short desc</div>
+                <div class='shop_handset_desc'></div>
                 <div class='shop_handset_foot'>
                   <!--<div class='shf_nextg'><img src='/bmweb/nextg_sml_reflect.gif' alt='NextG' width='28' height='40' /></div>-->
                   <div class='shf_more'>#{more}</div>

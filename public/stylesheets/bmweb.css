@@ -1,7 +1,14 @@
+#print_button {
+  float: right;
+  padding: 10px;
+  height: 64px;
+  width: 64px;
+}
+
 /* Product Table */
 
 .product_table {
-  width: 100%;
+  width: 85%;
 }
 
 .product_table td {

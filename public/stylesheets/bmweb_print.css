@@ -1,0 +1,208 @@
+/* --- PRINT --- */
+
+
+body { margin-top:20px; font-size: 11px; font-family: Verdana, Arial, Helvetica, sans-serif; line-height: 1.4; }
+
+#area_skipnav { display:none; }
+#leftcol { display: none; }
+#lnav { display:none; }
+#header { }
+
+#page_body{
+    padding-top: 100px;
+}
+
+
+#header {
+	background-color:#0b2266; }
+
+.headerWrap {
+	background-color:#ffffff;
+	width:100%;  }
+	
+.headerLogo { 
+	float:left;
+	padding-top:13px;
+	padding-left:11px;
+	padding-bottom: 20px;
+	height:32px;
+	width:152px; }
+
+.telstra-dealer {
+  background-color: #004e9c;
+  height: 66px;
+  width: 230px;
+  position: absolute;
+  margin-left: 350px;
+  text-align: center;
+}
+
+.tlogo {
+  margin-top: 13px;
+}
+.dealertext {
+  position: absolute;
+  margin-left: 472px;
+  margin-top: 0px;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 22pt;
+  color: #003399;
+}
+
+.headerRight { 
+	float:right;
+	width:370px;
+	text-align:right; }
+
+.headerSearch { }
+	
+.headerSearchWrap {
+	background-image:url(/bmweb/hdr_search_bg.gif);
+	background-repeat:repeat-x;
+	background-position:left bottom;
+	background-color:#ffffff;
+	padding-bottom: 4px;
+  padding-top: 2px;	}
+
+html>/**/body .headerSearchWrap {
+  padding-bottom: 4px;
+  padding-top: 2px;
+}
+	
+/*.headerSearchInput {
+	border:1px solid #cccccc;
+	background-image:url(/bmweb/hdr_search_logo.gif);
+	background-repeat:no-repeat;
+	background-position:4px 3px;
+	padding-top:2px;
+	height:1.4em;	
+	padding-left:22px;
+	width:135px;
+	color:#8090ae; }*/
+	
+.headerSearchInput {
+	padding-left:4px;
+	padding-right:4px;
+	border:0px;
+	height:13px;
+	width:102px;
+	color:#8090ae; }	
+
+.headerSearchButton {
+ vertical-align:top;
+ width:39px;
+ padding-top:1px;
+ height:17px; }
+img { border:0; }
+.headerLogo { margin-bottom:20px; margin-left:-10px; }
+#headerRight { display:none; }
+#menuContainer { display:none; }
+#maincol { padding-left:10px; }
+#udm { display: none; }
+#footer { display: none; }	
+#headerLogo img { display:none; }	
+#section { display:none; }
+#rightcol {	display:none; }
+
+#hp_left {display: none}
+#hp_right {display: none}
+#print_button{display: none}
+
+h1 { font-size:16px; color:#000; padding:0; margin:0; padding-bottom:1em; margin-top:0px; line-height:1.2em;}
+h2 { font-size:14px; color:#000; padding:0; margin:0; padding-bottom:1em; padding-top:1em; line-height:1.2em; }
+h3 { font-size:11px; color:#000; padding:0; margin:0; padding-bottom:1em; padding-top:.75em; font-weight:bold; }
+h4 { font-size:11px; color:#000; padding:0; margin:0; padding-bottom:0em; padding-top:.75em; font-weight:bold; }
+h5 { font-size:11px; color:#000; padding:0; margin:0; padding-bottom:0em; padding-top:.75em; font-weight:bold; }
+h6 { font-size:11px; color:#000; padding:0; margin:0; padding-bottom:0em; padding-top:.75em; font-style:italic; }
+
+h2.first { margin-top:0px; padding-top:4px; }
+
+p { padding:0; margin:0; padding-bottom:1em; color:#000; }
+.disclaimer { color:#666; }
+div.disclaimer { padding-top:2em; }
+.disclaimer p { color:#666; }
+.disclaimer a { color:#666; }
+
+.strict #maincol .disclaimer h1,
+.strict #maincol .disclaimer h2,
+.strict #maincol .disclaimer h3,
+.strict #maincol .disclaimer h4,
+.strict #maincol .disclaimer h5,
+.strict #maincol .disclaimer h6 { color:#666; margin:0; padding:0; font-size:11px; font-style:normal; font-weight:bold; margin-bottom:.5em; }
+.strict #maincol .disclaimer ul { color:#666; padding-bottom:.5em; }
+.strict #maincol .disclaimer ul li { color:#666; padding-left:8px; }
+.strict #maincol .disclaimer ol { color:#666; padding-bottom:.5em; }
+.strict #maincol .disclaimer ol li { color:#666; margin-left:23px; }
+
+
+dl { color:#666; padding-bottom:1em; }
+dl dt { float:left; }
+dl dd { clear:right; }
+a { color:#000; }
+
+ul {	margin:0px;	padding:0px; padding-bottom:1em;	list-style:disc; }
+ul li { margin-left:15px; }
+ul ul { padding-bottom:0; list-style:circle; }
+ul ol { padding-bottom:0; }
+
+ul.linkList li { padding-bottom:.5em; }
+
+ol {	margin:0px;	padding:0px; padding-bottom:1em;	margin-left:0px; list-style:decimal; }
+ol li { margin-left:30px; }
+ol ol { padding-bottom:0; }
+ol ul { padding-bottom:0; }
+
+.tableLayout { width:100%; margin:0px; padding:0px; margin-left:0px; margin-bottom:1em; border-collapse: collapse; border:1px solid #ccc; }
+.tableLayout th { text-align:left; border: 1px solid #ccc; padding: 10px 10px; background-color:#f4f4f4;   }
+.tableLayout td { border: 1px solid #ccc; padding: 10px 10px; }
+
+.home2col .homeImage img { display:none; }
+
+.tabNav { display:none; }
+.tabHdr { display:block; }
+
+.strict.popup .popup-hdr { background:url(/global/themes/v9/images/menu_bg_app.gif); background-repeat:repeat-x; background-position:bottom; width:100%; overflow:hidden; margin-left:10px; padding-bottom:10px; }	
+.strict.popup .popup-logo { padding-top:10px; padding-bottom:10px; width:160px; margin-left:-10px; }	
+.strict.popup .popup-actions { display:none; }
+.strict.popup .popup-title { font-size: 125%; font-weight: normal;margin: 12px 13px 15px 10px }
+
+
+.strict .form { border:1px solid #cccccc; padding:10px; background-color:#FBFBFB; width:96%; }
+.strict fieldset { margin:0; padding:0; border:0; padding-bottom:15px; }
+.strict .legend { font-weight:bold; color:#0049A7; padding-bottom:5px; margin-bottom:15px; background:url(/global/themes/v9/images/dots_blue.gif) bottom repeat-x; }
+.strict .form .row { overflow:hidden; width:100%; padding-bottom:.5em; padding-top:.5em; margin-top:.2em; margin-bottom:.2em; }
+.strict .form .label { float:left; text-align:right; width:170px; padding:0; margin:0; padding-right:20px; padding-top:2px; }
+.strict .form .element { float:left; }
+.strict #maincol .form .element ul,
+.strict #maincol .form .element ol,
+.strict #maincol .form .noLabel ul,
+.strict #maincol .form .noLabel ol { margin:0; padding:0; padding-top:4px; }
+
+.strict .form .hint { color:#666; padding-top:3px; }
+.strict .form .help { display:none; }
+.strict .form .date-picker { display:none; }
+
+.strict .form .error { border:1px solid #ff0000; padding:10px; padding-left:40px; margin-bottom:15px; color:#ff0000; background:url(/sitelet/images/global/form_error.gif) no-repeat 10px 7px;  }
+.strict .form .error .legend { color:#ff0000; background:none; margin-bottom:0px; }
+.strict #maincol .form .error ul { color:#ff0000; list-style:disc; }
+.strict #maincol .form .error li { color:#ff0000; background:0; }
+.strict .form .errorElement { border:1px dashed #ff0000; }
+
+.strict .form .divider { background:url(/global/themes/v9/images/dots_blue.gif) top repeat-x; padding-top:15px; }
+.strict .form .noLabel { padding-left:190px; }
+.strict .form .required { color:#FF0000; }
+.strict .form .label .required { display:inline; margin-right:-.6em; }
+
+.strict .form .textFieldExtraLong { width:400px; }
+.strict .form .textFieldLong { width:300px; }
+.strict .form .textFieldMedium { width:150px; }
+.strict .form .textFieldShort { width:75px; }
+.strict .form .textFieldExtraShort { width:30px; }
+
+.strict .form .selectExtraLong { width:400px; }
+.strict .form .selectLong { width:300px; }
+.strict .form .selectMedium { width:150px; }
+.strict .form .selectShort { width:75px; }
+.strict .form .selectExtraShort { width:30px; }
+

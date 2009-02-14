@@ -6,7 +6,8 @@
 		<title>BM Tronics <%= @page_title %></title>
 		<!--[if lte IE 6]><style type="text/css" media="screen,projection">#hp_middle {*margin-left:179px !important;}</style><![endif]-->
 
-<%= stylesheet_link_tag "bmweb" , :media => "all" %>
+<%= stylesheet_link_tag "bmweb" , :media => "screen" %>
+<%= stylesheet_link_tag "bmweb_print", :media=> "print" %>
 <!--
 <style type="text/css">
 <% if session[:user_type] == '4' %>
@@ -219,6 +220,9 @@
               <div id="page_top">
               </div>
               <div id="outline"><div id="page_body">
+          <% end %>
+          <% if(controller.action_name == 'show') || (controller.action_name == 'checkout') %>
+          <div id="print_button"><a href="javascript://" onclick="window.print();return false;"><%= image_tag('/images/print_printer.png', :alt=>'Print', :width=>64, :height=>64) %></a></div>
           <% end %>
           <%= yield %>
           <% if (controller.controller_name != 'home') %>
