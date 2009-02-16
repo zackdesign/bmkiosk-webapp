@@ -65,7 +65,7 @@ OF STOCK'
           picture = p.picture_name
       end
       
-      unless picture.nil?
+      unless picture.blank?
       
       picture += '.jpg'
       
