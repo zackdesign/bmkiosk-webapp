@@ -11,6 +11,15 @@ folder = ''
         <%= javascript_include_tag 'swfobject' %>
 <%= javascript_include_tag  :defaults %>
 <%= javascript_include_tag  'kiosk_navigation' %>
+
+<% if (controller.action_name == 'touch') %>
+<META HTTP-EQUIV=REFRESH CONTENT='300'>
+<% 
+elsif (controller.action_name == 'plasma')
+%>
+<META HTTP-EQUIV=REFRESH CONTENT='3600'>
+<%
+end %>
 	</head>
 
 <body>
