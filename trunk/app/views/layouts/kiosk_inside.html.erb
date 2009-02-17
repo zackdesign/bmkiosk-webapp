@@ -69,7 +69,7 @@ function return_to_kiosk()
         <% if (@page_title.nil?) 
         @page_title = ''
         end%>
-            <h1><%= (@phone.nil?) ? @page_title : (h @phone.name + " (" + h(@phone.network) + ") " + @page_title) %></h1>
+            <h1><%= (@phone.nil?) ? @page_title : ( @phone.name + " (" + @phone.network + ") " + @page_title) %></h1>
         </div>
         
 </div>
