@@ -46,7 +46,7 @@ function return_to_kiosk()
 	</head>
 
 <body>
-<div id="backbutton"><a href="#" onClick="history.go(-1); return false;" title="Back"><%= image_tag('back.png') %></a></div>
+<div id="backbutton"><%= link_to(image_tag('back.png'), :back) %></div>
 <div id="header" onclick='toggle_nav()'><%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %></div>
 
 <div id="knav" style ="display: none">
