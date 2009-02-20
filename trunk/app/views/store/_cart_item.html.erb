@@ -1,12 +1,28 @@
-<% if cart_item == @current_item %>
-<tr id="current_item" >
-<% else %>
-<tr>
-<% end %>
-<td colspan="3" style="border-bottom: 0px;"><div align="left"><%= h(cart_item.title) %></div></td>
-</tr>
-<tr>
-<td><%= cart_item.quantity %>&times;</td>
-<td class="item-price"><%= number_to_currency(cart_item.price) %></td>
-<td><%= link_to_remote "[X]", :url => {:controller => 'store', :action => :remove_from_cart , :id => cart_item.product} %></td>
-</tr>
+<%
+#if cart_item == @current_item
+#  if cart_item.quantity == 1
+#    show = false
+#  else
+#    show = true
+#  end
+#else
+#  show = true
+#end
+%>
+	<tr>
+		<td colspan="3" style="border-bottom: 0px;">
+			<div id="cart_item_<%= cart_item.product.id.to_s %>_1"<%#= show ? '' : 'style="display: none;"' %>>
+			<!--<div align="left"><%= h(cart_item.title) %></div>-->
+			<ul class="linklist"><li align="left"><%= h(cart_item.title) %></li></ul>
+		</td>
+	</tr>
+
+	<!--<tr id="cart_item_<%= cart_item.product.id.to_s %>_2" style="/*display: none;*/">-->
+	<tr>
+	<!--<tr id="cart_item_<%= cart_item.product.id.to_s %>_2">-->
+		<td style="padding-left: 8px;"><div id="cart_item_<%= cart_item.product.id.to_s %>_2"<%#= show ? '' : 'style="display: none;"' %>><%= cart_item.quantity %> &times;</div></td>
+		<td class="item-price"><div id="cart_item_<%= cart_item.product.id.to_s %>_3"<%#= show ? '' : 'style="display: none;"' %>><%= number_to_currency(cart_item.price) %></div></td>
+		<td><div id="cart_item_<%= cart_item.product.id.to_s %>_4"<%#= show ? '' : 'style="display: none;"' %>>
+		<%= link_to_remote image_tag('/bmweb/cart_remove.png', :title => 'Remove Item', :alt=>'Remove Item', :style => 'float: right'), :url => { :controller => 'store', :action => :cartdel , :id => cart_item.product.id } %></div></td>
+		<!--<td><%= link_to "[X]", :url => {:controller => 'store', :action => :remove_from_cart , :id => cart_item.product} %></td>-->
+	</tr>

@@ -1,4 +1,4 @@
-page.replace_html("cart" , :partial => "cart" , :object => @cart)
+page.replace_html("cart" , :partial => "store/cart" , :object => @cart)
 page[:cart_parent].visual_effect(:blind_down, { :duration => 0.75 }) if @cart.total_items == 1
 #page[:current_item].visual_effect :pulsate, :pulses => 3, :duration => 1.5
 #page["current_item_" + @current_item.product.id].visual_effect :pulsate, :pulses => 3, :duration => 1.5

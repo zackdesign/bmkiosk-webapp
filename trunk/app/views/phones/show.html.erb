@@ -1,4 +1,3 @@
-
 <table class="product_table">
 <tr>
 <td class="table_name"><h2><%= h @phone.name %></h2></td>
@@ -70,7 +69,8 @@ function chk_buy()
 	var chked = false;
 	var buy = false;
 
-	var pln = pln_frm['plan_type'];
+//	var pln = pln_frm['plan_type'];
+	var pln = pln_frm['plan_id'];
 	for (var r = 0 ; r < pln.length ; r++)
 	{
 		chked = (chked || pln[r].checked);
@@ -107,7 +107,7 @@ function chk_buy()
 }
 </script>
 
-<form name="plans" id="plans" action="/plans" method="get" style="padding: 0px; margin: 0px; width: 100%;" onsubmit="return chk_buy();">
+<form name="plans" id="plans" action="/phones/cartadd" method="post" style="padding: 0px; margin: 0px; width: 100%;" onsubmit="return chk_buy();">
         <%
         
         
@@ -142,10 +142,54 @@ end
 	<% 
 	
 	else
-	
+	  business = (session[:user_type] == '4')
+	  corporate = (session[:user_type] == '3')
+	  government = (session[:user_type] == '2')
 	%>
-	
-	<h3>Click Buy Now to get this phone on the  <%= @plan.name %></h3>
+
+	<form name="plans" id="plans" action="/phones/cartadd" method="post" style="padding: 0px; margin: 0px; width: 100%;">
+	<div>
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+			<tr>
+				<td><h3>Get this phone on the <%= @plan.name %> (Personal)</h3></td>
+				<td align="right">
+					<input type="submit" name="next_personal" value="Buy Now" class="orange_button" style="border: none; background-color: transparent; color: #ffffff; cursor: hand;" />
+					<input type="hidden" name="plan_id_personal" value="<%= @plan.id %>" />
+					<input type="hidden" name="phone_price_personal" value="<%= @plan.id + 1 %>" />
+				</td>
+			</tr>
+<% if business %>
+			<tr>
+				<td><h3>Get this phone on the <%= @plan.name %> (Business)</h3></td>
+				<td align="right">
+					<input type="submit" name="next_business" value="Buy Now" class="orange_button" style="border: none; background-color: transparent; color: #ffffff; cursor: hand;" />
+					<input type="hidden" name="plan_id_business" value="<%= @plan.id %>" />
+					<input type="hidden" name="phone_price_business" value="<%= @plan.id + 2 %>" />
+				</td>
+			</tr>
+<% end %>
+<% if corporate %>
+			<tr>
+				<td><h3>Get this phone on the <%= @plan.name %> (Corporate)</h3></td>
+				<td align="right">
+					<input type="submit" name="next_corporate" value="Buy Now" class="orange_button" style="border: none; background-color: transparent; color: #ffffff; cursor: hand;" />
+					<input type="hidden" name="plan_id_corporate" value="<%= @plan.id %>" />
+					<input type="hidden" name="phone_price_corporate" value="<%= @plan.id + 3 %>" />
+				</td>
+			</tr>
+<% end %>
+<% if government %>
+			<tr>
+				<td><h3>Get this phone on the <%= @plan.name %> (Government)</h3></td>
+				<td align="right">
+					<input type="submit" name="next_government" value="Buy Now" class="orange_button" style="border: none; background-color: transparent; color: #ffffff; cursor: hand;" />
+					<input type="hidden" name="plan_id_government" value="<%= @plan.id %>" />
+					<input type="hidden" name="phone_price_government" value="<%= @plan.id + 4 %>" />
+				</td>
+			</tr>
+<% end %>
+		</table>
+	</div>
 	<br />
 	<%
 	
@@ -154,12 +198,12 @@ end
 	%>
 	
 	<div>
-		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<% if @plan.nil? %><table cellpadding="0" cellspacing="0" border="0" width="100%">
 			<tr>
-				<td style="text-align: left; border: none; width: 100%;"><%= link_to('Back', :back, { :class => 'blue_button', :style => 'line-height: 17px;' }) %></td>
-				<td style="text-align: right; border: none;"><input type="submit" name="next" value="Next" class="orange_button" style="border: none; background-color: transparent; color: #ffffff; cursor: hand;" /></td>
+				<td style="text-align: left; border: none; width: 100%;"><% end %><%= link_to('Back', :back, { :class => 'blue_button', :style => 'line-height: 17px;' }) %><% if @plan.nil? %></td>
+				<td style="text-align: right; border: none;"><input type="submit" name="next" value="Buy Now" class="orange_button" style="border: none; background-color: transparent; color: #ffffff; cursor: hand;" /></td>
 			</tr>
-		</table>
+		</table><% end %>
 	</div>
 	<input type="hidden" name="id" value="<%= @phone.id %>" />
 	<input type="hidden" name="is_nextg" id="is_nextg" value="<%= (@phone.network == 'NextG') ? 1 : 0; %>" />

@@ -223,6 +223,91 @@ class PhonesController < ApplicationController
         # TODO: What to do ???
     end
   end
+  
+  def cartadd
+    begin
+      @phone = Phone.find(params[:id])
+#      if params[:plan_id].nil? or params[:plan_id].empty?
+#        phone_cost = phone.outright
+#      elsif params[:plan_id] == "outright"
+#        phone_cost = phone.outright
+#      else
+#        plan = Plan.find(params[:plan_id])
+#        phone_cost = plan.handset
+#      end
+
+#      @purchase_type = "personal"
+      @purchase_type = ""
+      if params[:next_personal]
+        @purchase_type = "personal"
+      elsif params[:next_business]
+        @purchase_type = "business"
+      elsif params[:next_corporate]
+        @purchase_type = "corporate"
+      elsif params[:next_government]
+        @purchase_type = "government"
+      end
+
+      @plan_id = @purchase_type.empty? ? params["plan_id"] : params["plan_id_" + @purchase_type]
+      unless @plan_id == "outright"
+        @plan = Plan.find(@plan_id)
+        @phone_cost = params["phone_price_" + ((@purchase_type.empty?) ? @plan_id : @purchase_type)]
+      else
+        @plan = nil
+        @phone_cost = @phone.outright
+      end
+
+      unless @plan.nil?
+#        @insert_query = "INSERT INTO products (title, price) VALUES ('" + @phone.name + " on the " + @plan.name + " " + @purchase_type + " plan" + "', '" + @phone_cost.to_s() + "')"
+        @product_title = @phone.name + " on the " + @plan.name# + " " + @purchase_type + " plan"
+        @product_desc = @plan.description # strip_tags(@plan.description)
+        unless @product_desc.length < 180
+          @product_desc = @product_desc[0 .. 177] + "..."
+        end
+      else
+        @product_title = @phone.name
+        @product_desc = @phone.description # strip_tags(@phone.description)
+        unless @product_desc.length < 180
+          @product_desc = @product_desc[0 .. 177] + "..."
+        end
+      end
+      @product_cost = @phone_cost
+      unless @phone.picture_name.blank?
+        @product_img = url_for({ :action => 'thumbnail', :id => @phone.id })
+      else
+        @product_img = ""
+      end
+
+    rescue ActiveRecord::RecordNotFound
+      logger.error("Attempt to access invalid product #{params[:id]}")
+      flash[:notice] = "Invalid product"
+      redirect_to(:action => "index") unless request.xhr? and return
+    else
+      users_prod_ids = product_ids_in_cart
+      unless users_prod_ids.empty?
+        prod_ids_set = "(" + users_prod_ids.collect { |pid| pid.to_s }.join(",") + ")"
+        find_id = ActiveRecord::Base.connection.select_value("SELECT id FROM products WHERE title LIKE '" + @product_title + "' AND id IN " + prod_ids_set)
+      else
+        find_id = false
+      end
+
+      if (find_id)
+#        ActiveRecord::Base.connection.execute("UPDATE products SET price = '"+accessory.price.to_s()+"' WHERE id = '"+find_id.to_s()+"'")
+        last_id = find_id
+      else
+        ActiveRecord::Base.connection.execute("INSERT INTO products (title, price, description, image_url) VALUES ('" + @product_title + "', '" + @product_cost.to_s + "', '" + @product_desc + "', '" + @product_img + "')")
+        last_id = ActiveRecord::Base.connection.select_value("SELECT id FROM products WHERE id = LAST_INSERT_ID()") 
+      end
+
+      add_to_cart(last_id)
+    end
+#      flash.now[:notice] = "Added to cart"
+
+#    @page = (params[:page].nil?) ? 1 : params[:page]
+#    redirect_to(:action => "index", :page => @page, :brand => @selected_brand ) unless request.xhr?
+
+    redirect_to(:controller => "store", :action => "checkout")
+  end
 
   # GET /phones/new
   # GET /phones/new.xml

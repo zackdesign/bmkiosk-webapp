@@ -1,0 +1,13 @@
+#page[:current_item].visual_effect :pulsate, :pulses => 3, :duration => 1.5
+#page.replace_html("cart" , :partial => "cart" , :object => @cart)
+if @cart.total_items == 0
+  page[:cart_parent].visual_effect :blind_up
+  page.select("#chkcart").collect('maincart') do |cart|
+    cart.update(render :partial => "store/main_cart", :object => @cart)
+  end
+else #if @current_item.quantity > 0
+  page.replace_html("cart", :partial => "store/cart", :object => @cart)
+  page.select("#chkcart").collect('maincart') do |cart|
+    cart.update(render :partial => "store/main_cart", :object => @cart)
+  end
+end
