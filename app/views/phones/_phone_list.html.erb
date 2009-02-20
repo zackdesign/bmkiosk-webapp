@@ -1,7 +1,8 @@
-<form>
+<form name="compare_form" id="compare_form" action="<%= url_for({ :action => 'compare', :id => 1 }) %>" method="post" onsubmit="var num = ($('compare_form').getElements().select(function (e) { return ((e.checked) && (e.checked == true)); }).length); if ((num > 1) && (num < 5)) { return true; } else { alert('Select at least 2 and up to 4 phones for a comparison.'); return false; }">
 <table class="accessories">
 <tr>
-<th colspan="3"> <%= link_to('Compare Selected', url_for({ :action => 'show', :id => 1 }), { :class => 'blue_button' }) %></th>
+<!--<th colspan="3"> <%= link_to('Compare Selected', url_for({ :action => 'compare', :id => 1 }), { :class => 'blue_button' }) %></th>-->
+<th colspan="3"><input type="submit" name="do_compare" value="Compare Selected" class="blue_button" style="border: none; background-color: transparent; color: #ffffff; cursor: hand;" /></th>
 <th class="price">Buy Outright</th>
 </tr>
 
@@ -30,7 +31,7 @@
        unless (stop)
 %>
 <tr >
-<td rowspan="2" class="comparison"><input name="compare[]" type="checkbox" value="<%= phone.id %>" onclick="return set_compare(<%= phone.id %>, this);" 
+<td rowspan="2" class="comparison"><input name="compare[]" type="checkbox" value="<%= phone.id %>" onclick="/*return set_compare(<%= phone.id %>, this);*/" 
 	
 	<% unless @compare_ids.nil? %>
 	<%= (@compare_ids.include?(phone.id.to_s)) ? 'checked="checked"' : '' %>
@@ -85,9 +86,11 @@ Gov.<br />
   
 %>
 <tr>
-<th colspan="3"> <%= link_to('Compare Selected', url_for({ :action => 'show', :id => 1 }), { :class => 'blue_button' }) %></th>
+<!--<th colspan="3"> <%= link_to('Compare Selected', url_for({ :action => 'compare', :id => 1 }), { :class => 'blue_button' }) %></th>-->
+<th colspan="3"><input type="submit" name="do_compare" value="Compare Selected" class="blue_button" style="border: none; background-color: transparent; color: #ffffff; cursor: hand;" /></th>
 </tr>
 </table>
+</form>
 
 
 <!-- <input name="prev_start" type="hidden" value="" />
@@ -95,9 +98,9 @@ Gov.<br />
 <!--<form name="compare_form" id="compare_form" action="<%= url_for({ :action => 'compare', :id => @submit_id }) %>" method="get">-->
 <form name="compare_form" id="compare_form" action="" method="post">
 <input name="compare_ids" id="compare_ids" type="hidden" value="
-<% unless @compare_ids.nil? %>
-<%= @compare_ids.join(',') %>
-<% end %>" />
+<%# unless @compare_ids.nil? %>
+<%#= @compare_ids.join(',') %>
+<%# end %>" />
 <!--<input name="offset" id="offset" type="hidden" value="<%= @offset %>" />-->
 <input name="page" id="page" type="hidden" value="" />
 </form>
