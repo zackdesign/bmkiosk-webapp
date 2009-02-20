@@ -26,10 +26,10 @@ module HomeHelper
                image = Magick::Image.from_blob(p.picture_data).first
 	        
 	        max_dimension = (image.columns < image.rows) ? image.rows : image.columns
-	          if max_dimension < 80
+	          if max_dimension < 100
 	            thumb = image
 	          else
-	            thumb = image.resize_to_fit(80, 150)
+	            thumb = image.resize_to_fit(100, 100)
 	        end
 		
 		wet = thumb.wet_floor(initial=0.5, rate=0.1)

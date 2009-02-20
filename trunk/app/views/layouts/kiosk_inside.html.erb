@@ -46,7 +46,42 @@ function return_to_kiosk()
 	</head>
 
 <body>
-<div id="backbutton"><%= link_to(image_tag('back.png'), :back) %></div>
+<% 
+
+if (controller.controller_name == 'kphones' || (controller.controller_name == 'kaccessories' && controller.action_name=='index') || 
+    (controller.controller_name == 'kplans' && controller.action_name=='index'))
+  controllern = 'kiosk'
+  action = 'touch'
+  id = cookies["kiosk"]
+elsif ((controller.controller_name == 'kplans') && (controller.action_name=='list'))
+  controllern = 'kphones'
+  action = 'show'
+  id = params[:id]
+elsif ((controller.controller_name == 'kplans') && (controller.action_name=='summary') && !(params[:phone_id].blank?))
+  controllern = 'kplans'
+  action = 'list'
+  id = params[:phone_id]
+elsif ((controller.controller_name == 'kplans') && (controller.action_name=='summary') && (params[:phone_id].blank?))
+  controllern = 'kplans'
+  action = 'index'
+  id = ''
+elsif ((controller.controller_name == 'kplans') && (controller.action_name=='phone'))
+  controllern = 'kplans'
+  action = 'summary'
+  id = params[:id]
+elsif ((controller.controller_name == 'kaccessories') && (controller.action_name=='show'))
+  controllern = 'kaccessories'
+  action = 'index'
+  id = ''
+end
+
+%>
+
+<div id="backbutton"><%= if (controller.action_name == 'phone')
+                           link_to(image_tag('back.png'), :controller=>controllern, :action=>action, :plan_id=>id)
+                         else
+                           link_to(image_tag('back.png'), :controller=>controllern, :action=>action, :id=>id)
+                         end %></div>
 <div id="header" onclick='toggle_nav()'><%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %></div>
 
 <div id="knav" style ="display: none">
