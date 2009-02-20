@@ -8,8 +8,8 @@ class Order < ActiveRecord::Base
     [ "Purchase order" , "po" ]
   ]
   
-  validates_presence_of :name, :address, :email, :pay_type
-  validates_inclusion_of :pay_type, :in => PAYMENT_TYPES.map {|disp, value| value}
+  validates_presence_of :name, :phone_no, :email #, :message
+#  validates_inclusion_of :pay_type, :in => PAYMENT_TYPES.map {|disp, value| value}
   
   def add_line_items_from_cart(cart)
     cart.items.each do |item|

@@ -43,19 +43,57 @@ class AccessoriesController < ApplicationController
   
   
   def cartadd
-    begin                     
-      accessory = Accessory.find(params[:id])  
+    unless request.xhr?
+      return
+    end
+
+#    logger.info("cartadd")
+#    logger.info(params.to_s)
+    begin
+      @accessory = Accessory.find(params[:id])
+
+#      @purchase_type = "personal"
+#      if params[:add_personal]
+#        @purchase_type = "personal"
+##      elsif params[:add_business]
+##        @purchase_type = "business"
+#      elsif params[:add_corporate]
+#        @purchase_type = "corporate"
+#      elsif params[:add_government]
+#        @purchase_type = "government"
+#      end
+
+      @product_title = @accessory.name
+      @product_desc = @accessory.description
+      @product_cost = params[:acc_price]
+      unless @accessory.picture_name.nil? or @accessory.picture_name.blank?
+        @product_img = url_for({ :action => 'thumbnail', :id => @accessory.id })
+      else
+        @product_img = ""
+      end
+
     rescue ActiveRecord::RecordNotFound
       logger.error("Attempt to access invalid product #{params[:id]}")
       flash[:notice] = "Invalid product"
       redirect_to(:action => "index") unless request.xhr? and return
+      return
     else
-      find_id = ActiveRecord::Base.connection.select_value("SELECT id FROM products WHERE title LIKE '"+accessory.name+"'")
+      users_prod_ids = product_ids_in_cart
+      unless users_prod_ids.empty?
+        prod_ids_set = "(" + users_prod_ids.collect { |pid| pid.to_s }.join(",") + ")"
+        find_id = ActiveRecord::Base.connection.select_value("SELECT id FROM products WHERE title LIKE '" + @product_title + "' AND id IN " + prod_ids_set + " AND price = " + @product_cost)
+      else
+        find_id = false
+      end
+
+#      find_id = ActiveRecord::Base.connection.select_value("SELECT id FROM products WHERE title LIKE '"+accessory.name+"'")
+
       if (find_id)
 #        ActiveRecord::Base.connection.execute("UPDATE products SET price = '"+accessory.price.to_s()+"' WHERE id = '"+find_id.to_s()+"'")
         last_id = find_id 
       else 
-        ActiveRecord::Base.connection.execute("INSERT INTO products (title, price) VALUES ('"+accessory.name+"', '"+accessory.price.to_s()+"')")
+#        ActiveRecord::Base.connection.execute("INSERT INTO products (title, price) VALUES ('"+accessory.name+"', '"+accessory.price.to_s()+"')")
+        ActiveRecord::Base.connection.execute("INSERT INTO products (title, price, description, image_url) VALUES ('" + @product_title + "', '" + @product_cost.to_s + "', '" + @product_desc + "', '" + @product_img + "')")
         last_id = ActiveRecord::Base.connection.select_value("SELECT id FROM products WHERE id = LAST_INSERT_ID()") 
       end
 
@@ -70,42 +108,42 @@ class AccessoriesController < ApplicationController
     end
 
     @page = (params[:page].nil?) ? 1 : params[:page]
-    redirect_to(:action => "index", :page => @page, :brand => @selected_brand ) unless request.xhr?
+#    redirect_to(:action => "index", :page => @page, :brand => @selected_brand ) unless request.xhr?
   end
 
-  def cartdel
-    begin
-      product = Product.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      logger.error("Attempt to access invalid product #{params[:id]}")
-      flash[:notice] = "Invalid product"
-      redirect_to(:action => "index") unless request.xhr? and return
-    else
-      remove_from_cart
-#      product.destroy
-    end
-  end
+#  def cartdel
+#    begin
+#      product = Product.find(params[:id])
+#    rescue ActiveRecord::RecordNotFound
+#      logger.error("Attempt to access invalid product #{params[:id]}")
+#      flash[:notice] = "Invalid product"
+#      redirect_to(:action => "index") unless request.xhr? and return
+#    else
+#      remove_from_cart
+##      product.destroy
+#    end
+#  end
 
-  def emptycart
-    unless @cart.items.empty?
-#      item_ids = @cart.items.collect { |item| item.id }
-      empty_cart
+#  def emptycart
+#    unless @cart.items.empty?
+##      item_ids = @cart.items.collect { |item| item.id }
+#      empty_cart
+#
+##      begin
+##        products = Product.find(item_ids)
+##      rescue ActiveRecord::RecordNotFound
+##        logger.error("Attempt to access invalid product #{params[:id]}")
+##        flash[:notice] = "Invalid product"
+##        redirect_to(:action => "index") unless request.xhr? and return
+##      else
+##        products.each { |prod| prod.destroy }
+##      end
+#    end
+#  end
 
-#      begin
-#        products = Product.find(item_ids)
-#      rescue ActiveRecord::RecordNotFound
-#        logger.error("Attempt to access invalid product #{params[:id]}")
-#        flash[:notice] = "Invalid product"
-#        redirect_to(:action => "index") unless request.xhr? and return
-#      else
-#        products.each { |prod| prod.destroy }
-#      end
-    end
-  end
-
-  def saveorder
-    save_order
-  end
+#  def saveorder
+#    save_order
+#  end
 
   # GET /accessories/1
   # GET /accessories/1.xml

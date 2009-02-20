@@ -17,5 +17,6 @@ class Emailer < ActionMailer::Base
     @sent_on      = Time.now
     @content_type = "text/plain"
     body[:id]  = id
+    body[:user_cart] = @cart
   end
 end

@@ -26,6 +26,14 @@ class CartItem
     @product.price * @quantity
   end
 
+  def description
+    @product.description
+  end
+
+  def image_url
+    @product.image_url
+  end
+
   def quantity
     return @quantity
   end

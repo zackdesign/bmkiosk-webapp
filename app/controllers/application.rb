@@ -43,7 +43,8 @@ class ApplicationController < ActionController::Base
   end
 
   def empty_cart
-    session[:cart] = nil
+#    session[:cart] = nil
+    @cart = session[:cart] = Cart.new
     redirect_to_index("Your cart is empty") unless (request.xhr? || hide == 1)
   end
   
@@ -59,7 +60,7 @@ class ApplicationController < ActionController::Base
     @order = Order.new(params[:order])   
     @order.add_line_items_from_cart(@cart)
     if @order.save                       
-      session[:cart] = nil
+#      session[:cart] = nil
       last_id = ActiveRecord::Base.connection.select_value("SELECT id FROM orders WHERE id = LAST_INSERT_ID()")
 #      Emailer.deliver_emailer(last_id)
 
@@ -67,7 +68,9 @@ class ApplicationController < ActionController::Base
       Emailer.deliver_to_service_rep(last_id)
 
 #      redirect_to_index("Thank you for your order, a sales person will contact you to process the order.") and return
-      redirect_to(:controller => "accessories" , :action => "index" ) and return
+
+      @cart = session[:cart] = Cart.new
+      redirect_to(:controller => "store" , :action => "complete" ) and return
     else
       render :action => :checkout and return
     end
@@ -95,6 +98,10 @@ class ApplicationController < ActionController::Base
       flash[:notice] = "Please log in..."
       redirect_to(:controller => "login" , :action => "login" )
     end
+  end
+
+  def product_ids_in_cart
+    prod_ids = @cart.items.collect { |prod| prod.id }
   end
 
   private

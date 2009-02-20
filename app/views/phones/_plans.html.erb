@@ -6,7 +6,7 @@ unless plans.nil?
   end
 %>
 	<li>
-		<label><h3><input type="radio" name="plan_id" value="<%= plans.id %>" />
+		<label><h3><input type="radio" name="plan_id" value="<%= plans.id %>" /><input type="hidden" name="phone_price_<%= plans.id %>" value="<%= plans.id %>" />
 		<%= link_to_function(h(plans.name), "$('" + h(plans.name) + "').toggle()") %></h3></label>
 		<ul id="<%= h(plans.name) %>" style="display: none;">
 			<li><%= render :partial => "charges_plan", :object => plans %></li>

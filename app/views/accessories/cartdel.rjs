@@ -1,7 +1,0 @@
-#page[:current_item].visual_effect :pulsate, :pulses => 3, :duration => 1.5
-#page.replace_html("cart" , :partial => "cart" , :object => @cart)
-if @cart.total_items == 0
-  page[:cart_parent].visual_effect :blind_up
-else #if @current_item.quantity > 0
-  page.replace_html("cart", :partial => "cart", :object => @cart)
-end

@@ -1,7 +1,10 @@
 <div class="depot-form">
-  
   <%= error_messages_for 'order' %>
-  
+  <h2>Shopping Cart Contents</h2>
+    <div id="chkcart">
+<%= render(:partial => "store/main_cart" , :object => @cart) %>
+    </div>
+
   <fieldset>
     <legend>Please Enter Your Details</legend>
 
@@ -12,8 +15,8 @@
       </p>
 
       <p class="padded">
-        <label for="order_address">Address:</label><br>
-        <%= form.text_area :address, :rows => 3, :cols => 40 %>
+        <label for="order_phone">Phone Number:</label><br>
+        <%= form.text_field :phone_no, :size => 40 %>
       </p>
 
       <p class="padded">
@@ -22,13 +25,18 @@
       </p>
 
       <p class="padded">
+        <label for="order_message">Message [optional]:</label><br>
+        <%= form.text_area :message, :rows => 3, :cols => 40 %>
+      </p>
+
+      <!--<p class="padded">
         <label for="order_pay_type">Pay with:</label><br>
-        <%=
+        <%#=
           form.select :pay_type,
                        Order::PAYMENT_TYPES, 
                       :prompt => "Select a payment method"
         %>
-      </p>
+      </p>-->
     
       <%= submit_tag "Place Order", :class => "submit" %>
     <% end %>  

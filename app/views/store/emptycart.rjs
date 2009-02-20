@@ -1,0 +1,4 @@
+page[:cart_parent].visual_effect :blind_up, { :duration => 0.75 }
+page.select("#chkcart").collect('maincart') do |cart|
+  cart.update(render :partial => "store/main_cart", :object => @cart)
+end
