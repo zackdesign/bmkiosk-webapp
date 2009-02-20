@@ -198,7 +198,7 @@ class PhonesController < ApplicationController
   end
 
   def compare
-    @compare_ids = params[:compare_ids].split(',')
+    @compare_ids = params[:compare].nil? ? Array.new : params[:compare] #.split(',')
     @phones = Phone.find(@compare_ids)
 	@features = Array.new
     for @ph in @phones
@@ -209,19 +209,19 @@ class PhonesController < ApplicationController
    	  end
     end
 
-    case params[:id]
-      when 'prepaid'
-        render :template => 'phones/compare.html.erb'
-
-      when 'nextg'
-        render :template => 'phones/compare.html.erb'
-
-      when 'pda'
-        render :template => 'phones/compare.html.erb'
-
-      else
-        # TODO: What to do ???
-    end
+#    case params[:id]
+#      when 'prepaid'
+#        render :template => 'phones/compare.html.erb'
+#
+#      when 'nextg'
+#        render :template => 'phones/compare.html.erb'
+#
+#      when 'pda'
+#        render :template => 'phones/compare.html.erb'
+#
+#      else
+#        # TODO: What to do ???
+#    end
   end
   
   def cartadd
