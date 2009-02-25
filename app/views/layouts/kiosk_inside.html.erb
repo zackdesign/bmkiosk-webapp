@@ -131,11 +131,7 @@ end
 
 <div id="main">
 <%= yield  %>
-<%= if (controller.action_name == 'phone')
-                           link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :plan_id=>id},{:style=>'padding:40px;'})
-                         else
-                           link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :id=>id},{:style=>'padding:40px;'})
-                         end %>
+
 </div>
     <div id="middlehead<%= folder %>">
         <img src="/images<%= folder %>/lefthead.gif" id="lefthead">
