@@ -134,5 +134,14 @@ end
         <img src="/images<%= folder %>/righthead.gif" id="righthead">
         <br /><br /><br />
         <div id="zd">Website by Zack Design</div>
+        </div>
+ 
+ <div style=" padding: 30px;padding-left: 40px;">
+ 
+<%= if (controller.action_name == 'phone')
+                           link_to('&laquo; BACK', {:controller=>controllern, :action=>action, :plan_id=>id},{:style=>'padding:40px;'})
+                         else
+                           link_to('&laquo; BACK', {:controller=>controllern, :action=>action, :id=>id},{:style=>'padding:40px;'})
+                         end %></div>
 </body>
 </html>
