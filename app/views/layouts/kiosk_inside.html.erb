@@ -83,13 +83,13 @@ end
 
 <td>
 <%= if (controller.action_name == 'phone')
-                           link_to(image_tag('back.png'), :controller=>controllern, :action=>action, :plan_id=>id)
+                           link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :plan_id=>id},{:style=>'padding:40px;'})
                          else
-                           link_to(image_tag('back.png'), :controller=>controllern, :action=>action, :id=>id)
+                           link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :id=>id},{:style=>'padding:40px;'})
                          end %>
 </td>
 
-<td style="text-align: center;">
+<td style="text-align: center;width:70%">
 <div onclick='toggle_nav()' ><%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %></div>
 <div id="knav" style ="display: none; margin-top: 20px;">
 
@@ -103,6 +103,7 @@ end
 
 </div>
 </td>
+<td style="width:16%"></td>
 </tr>
 
 </table>
