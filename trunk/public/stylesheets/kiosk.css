@@ -162,6 +162,11 @@ float: left;
   text-decoration: none;
 }
 
+.backbutton {
+  font-weight: bold;
+  font-size: 12pt;
+}
+
 #zd {
   float: right;
   color: white;
