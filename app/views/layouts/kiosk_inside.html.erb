@@ -105,9 +105,9 @@ end
 </td>
 <td style="width:16%">
 <%= if (controller.action_name == 'phone')
-                           link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :plan_id=>id},{:style=>'padding:40px;'})
+                           link_to('Back', {:controller=>controllern, :action=>action, :plan_id=>id},{:style=>'padding:40px;'})
                          else
-                           link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :id=>id},{:style=>'padding:40px;'})
+                           link_to('Back', {:controller=>controllern, :action=>action, :id=>id},{:style=>'padding:40px;'})
                          end %>
 </td>
 </tr>
