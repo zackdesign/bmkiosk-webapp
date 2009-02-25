@@ -1,0 +1,430 @@
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-02-25 13:49:19) [GET]
+  Session ID: 6e96608fb0ba101145be0568acc1d62f
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/bmweb
+Rendering home/index
+Completed in 0.32292 (3 reqs/sec) | Rendering: 0.29662 (91%) | DB: 0.02456 (7%) | 200 OK [http://localhost/]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-02-25 13:49:21) [GET]
+  Session ID: 6e96608fb0ba101145be0568acc1d62f
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/bmweb
+Rendering home/index
+Completed in 0.18334 (5 reqs/sec) | Rendering: 0.17342 (94%) | DB: 0.01913 (10%) | 200 OK [http://localhost/]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-02-25 13:49:21) [GET]
+  Session ID: 6e96608fb0ba101145be0568acc1d62f
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/bmweb
+Rendering home/index
+Completed in 0.15101 (6 reqs/sec) | Rendering: 0.14024 (92%) | DB: 0.01192 (7%) | 200 OK [http://localhost/]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-02-25 13:49:22) [GET]
+  Session ID: 6e96608fb0ba101145be0568acc1d62f
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/bmweb
+Rendering home/index
+Completed in 0.21206 (4 reqs/sec) | Rendering: 0.20198 (95%) | DB: 0.01126 (5%) | 200 OK [http://localhost/]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-02-25 13:49:22) [GET]
+  Session ID: 6e96608fb0ba101145be0568acc1d62f
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/bmweb
+Rendering home/index
+Completed in 0.12111 (8 reqs/sec) | Rendering: 0.11008 (90%) | DB: 0.01184 (9%) | 200 OK [http://localhost/]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-02-25 13:49:23) [GET]
+  Session ID: 6e96608fb0ba101145be0568acc1d62f
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/bmweb
+Rendering home/index
+Completed in 0.08435 (11 reqs/sec) | Rendering: 0.07668 (90%) | DB: 0.00835 (9%) | 200 OK [http://localhost/]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-02-25 13:49:23) [GET]
+  Session ID: 6e96608fb0ba101145be0568acc1d62f
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/bmweb
+Rendering home/index
+Completed in 0.08583 (11 reqs/sec) | Rendering: 0.07800 (90%) | DB: 0.00846 (9%) | 200 OK [http://localhost/]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-02-25 13:49:23) [GET]
+  Session ID: 6e96608fb0ba101145be0568acc1d62f
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/bmweb
+Rendering home/index
+Completed in 0.08390 (11 reqs/sec) | Rendering: 0.07648 (91%) | DB: 0.00808 (9%) | 200 OK [http://localhost/]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-02-25 13:49:23) [GET]
+  Session ID: 6e96608fb0ba101145be0568acc1d62f
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/bmweb
+Rendering home/index
+Completed in 0.14418 (6 reqs/sec) | Rendering: 0.07795 (54%) | DB: 0.06685 (46%) | 200 OK [http://localhost/]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:49:49) [GET]
+  Session ID: 6e96608fb0ba101145be0568acc1d62f
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.22629 (4 reqs/sec) | Rendering: 0.00419 (1%) | DB: 0.00986 (4%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-02-25 13:50:51) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/bmweb
+Rendering home/index
+Completed in 0.09173 (10 reqs/sec) | Rendering: 0.08366 (91%) | DB: 0.00921 (10%) | 200 OK [http://localhost/]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:50:55) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.10291 (9 reqs/sec) | Rendering: 0.00214 (2%) | DB: 0.01097 (10%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:50:57) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.16712 (5 reqs/sec) | Rendering: 0.00240 (1%) | DB: 0.00537 (3%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:50:57) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.16754 (5 reqs/sec) | Rendering: 0.00203 (1%) | DB: 0.00729 (4%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:50:58) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.15639 (6 reqs/sec) | Rendering: 0.00204 (1%) | DB: 0.00575 (3%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:50:58) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.10362 (9 reqs/sec) | Rendering: 0.00375 (3%) | DB: 0.00265 (2%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:50:58) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.09561 (10 reqs/sec) | Rendering: 0.00199 (2%) | DB: 0.00449 (4%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:50:58) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.16658 (6 reqs/sec) | Rendering: 0.00201 (1%) | DB: 0.01006 (6%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:50:59) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.07316 (13 reqs/sec) | Rendering: 0.00200 (2%) | DB: 0.00239 (3%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:51:47) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.22964 (4 reqs/sec) | Rendering: 0.00265 (1%) | DB: 0.00313 (1%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-02-25 13:51:51) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/bmweb
+Rendering home/index
+Completed in 0.12238 (8 reqs/sec) | Rendering: 0.11344 (92%) | DB: 0.01020 (8%) | 200 OK [http://localhost/]
+
+
+Processing PlansController#index (for 127.0.0.1 at 2009-02-25 13:51:54) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"index", "controller"=>"plans"}
+Rendering template within layouts/bmweb
+Rendering plans/index
+Completed in 0.03268 (30 reqs/sec) | Rendering: 0.02095 (64%) | DB: 0.01034 (31%) | 200 OK [http://localhost/plans]
+
+
+Processing AccessoriesController#index (for 127.0.0.1 at 2009-02-25 13:51:58) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"index", "controller"=>"accessories"}
+Rendering template within layouts/bmweb
+Rendering accessories/index
+DEPRECATION WARNING: WillPaginate: :prev_label view parameter is now :previous_label; the old name has been deprecated  See http://www.rubyonrails.org/deprecation for details. (called from _run_erb_47app47views47accessories47index46html46erb at /home/isaac/Documents/bmkiosk/app/views/accessories/index.html.erb:4)
+DEPRECATION WARNING: WillPaginate: :prev_label view parameter is now :previous_label; the old name has been deprecated  See http://www.rubyonrails.org/deprecation for details. (called from _run_erb_47app47views47accessories47index46html46erb at /home/isaac/Documents/bmkiosk/app/views/accessories/index.html.erb:51)
+Completed in 0.10677 (9 reqs/sec) | Rendering: 0.06644 (62%) | DB: 0.03467 (32%) | 200 OK [http://localhost/accessories]
+
+
+Processing AccessoriesController#thumbnail (for 127.0.0.1 at 2009-02-25 13:51:58) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"thumbnail", "id"=>"44", "controller"=>"accessories"}
+Sending data Blackberry 8100 Extreme Hard Case.JPG
+Completed in 0.03975 (25 reqs/sec) | Rendering: 0.00072 (1%) | DB: 0.00602 (15%) | 200 OK [http://localhost/accessories/thumbnail/44]
+
+
+Processing AccessoriesController#thumbnail (for 127.0.0.1 at 2009-02-25 13:51:59) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"thumbnail", "id"=>"53", "controller"=>"accessories"}
+Sending data BlackBerry Travel Charger.jpg
+Completed in 0.01822 (54 reqs/sec) | Rendering: 0.00033 (1%) | DB: 0.01462 (80%) | 200 OK [http://localhost/accessories/thumbnail/53]
+
+
+Processing AccessoriesController#thumbnail (for 127.0.0.1 at 2009-02-25 13:51:59) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"thumbnail", "id"=>"52", "controller"=>"accessories"}
+Sending data BlackBerry Stereo Headset suits 8100.jpg
+Completed in 0.05863 (17 reqs/sec) | Rendering: 0.00037 (0%) | DB: 0.01145 (19%) | 200 OK [http://localhost/accessories/thumbnail/52]
+
+
+Processing AccessoriesController#thumbnail (for 127.0.0.1 at 2009-02-25 13:51:59) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"thumbnail", "id"=>"46", "controller"=>"accessories"}
+Sending data BlackBerry Headset.jpg
+Completed in 0.06195 (16 reqs/sec) | Rendering: 0.00219 (3%) | DB: 0.01509 (24%) | 200 OK [http://localhost/accessories/thumbnail/46]
+
+
+Processing AccessoriesController#thumbnail (for 127.0.0.1 at 2009-02-25 13:51:59) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"thumbnail", "id"=>"54", "controller"=>"accessories"}
+Sending data BlackBerry USB Sync & Charge Cable.JPG
+Completed in 0.03645 (27 reqs/sec) | Rendering: 0.00038 (1%) | DB: 0.00683 (18%) | 200 OK [http://localhost/accessories/thumbnail/54]
+
+
+Processing AccessoriesController#thumbnail (for 127.0.0.1 at 2009-02-25 13:51:59) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"thumbnail", "id"=>"55", "controller"=>"accessories"}
+Sending data BlackBerry Vehicle Charger.JPG
+Completed in 0.04987 (20 reqs/sec) | Rendering: 0.00038 (0%) | DB: 0.01766 (35%) | 200 OK [http://localhost/accessories/thumbnail/55]
+
+
+Processing AccessoriesController#thumbnail (for 127.0.0.1 at 2009-02-25 13:51:59) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"thumbnail", "id"=>"48", "controller"=>"accessories"}
+Sending data BlackBerry Lambskin Leather Swivel Holster Black.jpg
+Completed in 0.06338 (15 reqs/sec) | Rendering: 0.00039 (0%) | DB: 0.01997 (31%) | 200 OK [http://localhost/accessories/thumbnail/48]
+
+
+Processing AccessoriesController#thumbnail (for 127.0.0.1 at 2009-02-25 13:51:59) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"thumbnail", "id"=>"3", "controller"=>"accessories"}
+Sending data Bluetrek Duo Stereo 2 in 1 Mono and Stereo Headset.JPG
+Completed in 0.02283 (43 reqs/sec) | Rendering: 0.00035 (1%) | DB: 0.00850 (37%) | 200 OK [http://localhost/accessories/thumbnail/3]
+
+
+Processing AccessoriesController#thumbnail (for 127.0.0.1 at 2009-02-25 13:52:00) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"thumbnail", "id"=>"6", "controller"=>"accessories"}
+Sending data Bluetrek Surface Sound Duo SlimLine Handsfree Speakerphone and Headset.jpg
+Completed in 0.02073 (48 reqs/sec) | Rendering: 0.00037 (1%) | DB: 0.00258 (12%) | 200 OK [http://localhost/accessories/thumbnail/6]
+
+
+Processing AccessoriesController#thumbnail (for 127.0.0.1 at 2009-02-25 13:52:00) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"thumbnail", "id"=>"8", "controller"=>"accessories"}
+Sending data Bluetrek Water Resistant X2 Bluetooth Headset.jpg
+Completed in 0.01749 (57 reqs/sec) | Rendering: 0.00033 (1%) | DB: 0.00266 (15%) | 200 OK [http://localhost/accessories/thumbnail/8]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:52:08) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.11171 (8 reqs/sec) | Rendering: 0.00479 (4%) | DB: 0.00713 (6%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:53:22) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.09492 (10 reqs/sec) | Rendering: 0.00212 (2%) | DB: 0.00674 (7%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:53:23) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.15133 (6 reqs/sec) | Rendering: 0.00204 (1%) | DB: 0.00757 (4%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:56:20) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.12732 (7 reqs/sec) | Rendering: 0.00594 (4%) | DB: 0.00819 (6%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:56:20) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.12809 (7 reqs/sec) | Rendering: 0.00533 (4%) | DB: 0.00926 (7%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:56:21) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.06988 (14 reqs/sec) | Rendering: 0.00207 (2%) | DB: 0.00230 (3%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:56:22) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.24328 (4 reqs/sec) | Rendering: 0.00233 (0%) | DB: 0.00633 (2%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:56:34) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.14413 (6 reqs/sec) | Rendering: 0.00214 (1%) | DB: 0.00560 (3%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-02-25 13:57:03) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/styles/bmweb.css" with {:method=>:get}):
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/railz/request_handler.rb:38:in `process_request'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_request_handler.rb:165:in `main_loop'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/railz/application_spawner.rb:321:in `start_request_handler'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/railz/application_spawner.rb:282:in `handle_spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/utils.rb:163:in `safe_fork'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/utils.rb:161:in `fork'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/utils.rb:161:in `safe_fork'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/railz/application_spawner.rb:280:in `handle_spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/utils.rb:163:in `safe_fork'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/utils.rb:161:in `fork'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/utils.rb:161:in `safe_fork'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/railz/application_spawner.rb:279:in `handle_spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:317:in `__send__'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:317:in `main_loop'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:168:in `start_synchronously'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:135:in `start'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:112:in `fork'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:112:in `start'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/railz/application_spawner.rb:179:in `start'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/railz/framework_spawner.rb:270:in `handle_spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/railz/framework_spawner.rb:263:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/railz/framework_spawner.rb:263:in `handle_spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:317:in `__send__'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:317:in `main_loop'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:168:in `start_synchronously'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:135:in `start'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:112:in `fork'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:112:in `start'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/railz/framework_spawner.rb:87:in `start'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/spawn_manager.rb:222:in `spawn_rails_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/spawn_manager.rb:217:in `synchronize'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/spawn_manager.rb:217:in `spawn_rails_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/spawn_manager.rb:126:in `spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/spawn_manager.rb:251:in `handle_spawn_application'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:317:in `__send__'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:317:in `main_loop'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/lib/passenger/abstract_server.rb:168:in `start_synchronously'
+    /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/bin/passenger-spawn-server:46
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:58:56) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.10592 (9 reqs/sec) | Rendering: 0.00207 (1%) | DB: 0.00766 (7%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:58:57) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.13807 (7 reqs/sec) | Rendering: 0.00226 (1%) | DB: 0.00564 (4%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:58:57) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.12354 (8 reqs/sec) | Rendering: 0.00206 (1%) | DB: 0.00654 (5%) | 200 OK [http://localhost/kiosk/touch/1]
+
+
+Processing KioskController#touch (for 127.0.0.1 at 2009-02-25 13:58:58) [GET]
+  Session ID: 7cba1167cbd542e27e1cb53e3ba07f94
+  Parameters: {"action"=>"touch", "id"=>"1", "controller"=>"kiosk"}
+Cookie set: kiosk=1; path=/
+Rendering template within layouts/kiosk
+Rendering kiosk/touch
+Completed in 0.15004 (6 reqs/sec) | Rendering: 0.00214 (1%) | DB: 0.00578 (3%) | 200 OK [http://localhost/kiosk/touch/1]

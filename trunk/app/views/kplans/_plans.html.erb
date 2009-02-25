@@ -6,11 +6,11 @@ unless plans.nil?
   end
 %>
 	<li>
-		<h3><%= link_to_function(h(plans.name), "$('" + h(plans.name) + "').toggle()") %></h3>
+		<h2 style="padding:10px; padding-left: 0px;"><%= link_to(h(plans.name), @plan_options, {:style=>'padding:20px;padding-left:0px;'}) %></h2>
+		<h3><%= link_to_function('View Charges for this Plan', "$('" + h(plans.name) + "').toggle()") %></h3>
 		<ul id="<%= h(plans.name) %>" style="display: none;">
-			<li><%= render :partial => "charges_plan", :object => plans %></li>
+					<li><%= render :partial => "charges_plan", :object => plans %></li>
 		</ul>
-		<%= link_to("Choose Plan", @plan_options) %>
 	</li>
 <%
 else
