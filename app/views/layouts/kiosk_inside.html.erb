@@ -77,13 +77,20 @@ end
 
 %>
 
-<div id="backbutton"><%= if (controller.action_name == 'phone')
+<table style="width:90%; margin: 0 auto;">
+
+<tr>
+
+<td>
+<%= if (controller.action_name == 'phone')
                            link_to(image_tag('back.png'), :controller=>controllern, :action=>action, :plan_id=>id)
                          else
                            link_to(image_tag('back.png'), :controller=>controllern, :action=>action, :id=>id)
-                         end %></div>
-<div id="header" onclick='toggle_nav()'><%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %></div>
+                         end %>
+</td>
 
+<td style="text-align: center;">
+<div onclick='toggle_nav()' ><%= image_tag '/logo/bmtronics.gif', :alt => "BM Tronics" %></div>
 <div id="knav" style ="display: none">
 
     <div class='drop-down'><%= link_to('Accessories',:controller=> 'kaccessories' ) %> |
@@ -95,6 +102,10 @@ end
     
 
 </div>
+</td>
+</tr>
+
+</table>
 
     <div id="middlehead<%= folder %>">
         <img src="/images<%= folder %>/lefthead.gif" id="lefthead">
@@ -104,10 +115,13 @@ end
         <% if (@page_title.nil?) 
         @page_title = ''
         end%>
-            <h1><%= (@phone.nil?) ? @page_title : ( @phone.name + " (" + @phone.network + ") " + @page_title) %></h1>
+            <h1><%= (@phone.nil?) ? @page_title : ( @phone.brand + ' ' + @phone.name + " (" + @phone.network + ") " + @page_title) %></h1>
         </div>
         
 </div>
+
+
+
 <div id="main">
 <%= yield  %>
 </div>

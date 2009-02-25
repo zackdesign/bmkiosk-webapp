@@ -1,9 +1,45 @@
-<div id="text">
 
+<table>
 
-  <h1>Accessories</h1>
-  
-  	<div class="phone_accessories">
+<tr>
+<td style="width:200px; text-align: center"><%= show_phone_thumbnail_if_available(@phone) %>
+<br /><strong style="font-size: 12pt"><%= number_to_currency(@phone.outright) %> Outright</strong></td>
+<td style="width:50%"><%= @phone.description %></td>
+<td style="width:30%"><ul>
+<%
+  unless (@phone.features.empty?)
+
+    for feature in @phone.features
+%>
+			<li><%= feature.name %></li>
+<%
+    end
+%>
+
+<%
+  else
+%>
+	<%= content_tag(:span, "No Features") %>
+<%
+  end
+%>
+</ul>
+</td>
+</tr>
+<tr>
+<td></td><td>
+<a class="bplan" href="<%= url_for(:controller=>"kplans",:action=>'list',:id=>@phone) %>">
+Purchase on a Plan
+</a></td><td style="text-align: center">
+
+<%= link_to(image_tag('/images/print_printer.png'), 'javascript:window.print()') %>
+
+</td>
+</tr>
+</table>
+
+<h1>Accessories for the <%= @phone.brand + ' ' + @phone.name %></h1>
+
   <%
     unless (@phone.accessories.empty?)
   %>
@@ -23,48 +59,8 @@
   <%
     end
   %>
-	</div>
+<br />
+<br />
 
-</div>
-<div id="phone">
-  <%= show_phone_thumbnail_if_available(@phone) %>
-
-<h1>Features</h1>
-
-	<div class="phone_features">
-	
-<%
-  unless (@phone.features.empty?)
-%>
-		<table>
-<%
-    for feature in @phone.features
-%>
-			<tr><td><%= show_feature_if_available(feature) %></td><td class="fcaption"><%= feature.name %></td></tr>
-<%
-    end
-%>
-		</table>
-<%
-  else
-%>
-	<%= content_tag(:span, "No Features") %>
-<%
-  end
-%>
-	</div>
-</div>
-
-<div id="features">
-<a class="buy" href="javascript:window.print()">
-Buy Outright for <%= number_to_currency(@phone.outright) %>
-</a>
-<a class="bplan" href="<%= url_for(:controller=>"kplans",:action=>'list',:id=>@phone) %>">
-Purchase on a Plan
-</a>
-<h1>Description</h1>
-<%= @phone.description %>
-
-</div>
 
 

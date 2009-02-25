@@ -8,7 +8,7 @@ folder = ''
 		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
 		<title>BM Tronics</title>
 <%= stylesheet_link_tag "kiosk" , :media => "all" %>
-        <%= javascript_include_tag 'swfobject' %>
+<%= javascript_include_tag 'swfobject' %>
 <%= javascript_include_tag  :defaults %>
 <%= javascript_include_tag  'kiosk_navigation' %>
 
@@ -23,7 +23,6 @@ end %>
 	</head>
 
 <body>
-
 
 <%= yield  %>
 <iframe style="height:0px;width:0px;visibility:hidden" src="about:blank"> this frame prevents back forward cache </iframe>
