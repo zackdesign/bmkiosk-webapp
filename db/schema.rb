@@ -102,9 +102,9 @@ ActiveRecord::Schema.define(:version => 52) do
 
   create_table "orders", :force => true do |t|
     t.string "name"
-    t.text   "address"
+    t.text   "message"
     t.string "email"
-    t.string "pay_type", :limit => 10
+    t.string "phone_no"
   end
 
   create_table "phones", :force => true do |t|
