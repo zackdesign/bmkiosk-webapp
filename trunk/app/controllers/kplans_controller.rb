@@ -32,11 +32,19 @@ class KplansController < ApplicationController
 
     # Now extract a collection containing each plan group id associated with each plan found
     @plan_group_ids = @plans.collect { |plan| plan.plan_group.id }
+        
+    # add in the MRO plans (BAD BAD BAD this should not be hard-coded!!)
+    @plan_mro_ids = [11,16,17,12]
 
     # Now find the consumer plan groups
     @plan_groups_consumer = PlanGroup.find_all_by_categories_and_id("consumer", @plan_group_ids)
     if @plan_groups_consumer.nil?
       @plan_groups_consumer = Array.new
+    end
+    
+    @consumer_mro = PlanGroup.find_all_by_categories_and_id("consumer", @plan_mro_ids)
+    if @consumer_mro.nil?
+          @consumer_mro = Array.new
     end
 
     # And now find the business plan groups
@@ -44,6 +52,8 @@ class KplansController < ApplicationController
     if @plan_groups_business.nil?
       @plan_groups_business = Array.new
     end
+    
+    @business_mro = PlanGroup.find_all_by_categories_and_id("business", @plan_mro_ids)
     
     @page_title = 'Plans'
 

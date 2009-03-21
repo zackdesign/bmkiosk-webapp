@@ -83,9 +83,9 @@ end
 
 <td class="backbutton">
 <%= if (controller.action_name == 'phone')
-                           link_to('&laquo; BACK', {:controller=>controllern, :action=>action, :plan_id=>id},{:style=>'padding:40px;'})
+                           link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :plan_id=>id},{:style=>'padding:40px;'})
                          else
-                           link_to('&laquo; BACK', {:controller=>controllern, :action=>action, :id=>id},{:style=>'padding:40px;'})
+                           link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :id=>id},{:style=>'padding:40px;'})
                          end %>
 </td>
 
@@ -139,9 +139,9 @@ end
  <div style=" padding: 30px;padding-left: 40px;"  class="backbutton">
  
 <%= if (controller.action_name == 'phone')
-                           link_to('&laquo; BACK', {:controller=>controllern, :action=>action, :plan_id=>id},{:style=>'padding:40px;'})
+                           link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :plan_id=>id},{:style=>'padding:40px;'})
                          else
-                           link_to('&laquo; BACK', {:controller=>controllern, :action=>action, :id=>id},{:style=>'padding:40px;'})
+                           link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :id=>id},{:style=>'padding:40px;'})
                          end %></div>
 </body>
 </html>

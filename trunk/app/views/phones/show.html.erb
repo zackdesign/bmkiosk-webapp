@@ -49,9 +49,13 @@
 <%= @phone.description %>
 
 
+
 <!--<div class="image"><%#= show_picture_if_available(@phone) %></div>-->
 <!-- <div>Outright cost <%#= number_to_currency @phone.outright %></div> -->
 <br /><br />
+
+<% if (@phone.coming_soon == false) %>
+
 <% if (@plan == nil) %>
 <h2>Select a Purchase Type to continue</h2>
 <script>
@@ -208,3 +212,9 @@ end
 	<input type="hidden" name="id" value="<%= @phone.id %>" />
 	<input type="hidden" name="is_nextg" id="is_nextg" value="<%= (@phone.network == 'NextG') ? 1 : 0; %>" />
 </form>
+
+<% else %>
+   
+   <h2>Phone Coming Soon!</h2>
+
+<% end %>

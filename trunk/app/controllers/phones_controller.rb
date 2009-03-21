@@ -45,7 +45,7 @@ class PhonesController < ApplicationController
 #    @selected_brand = params[:brand]
 
     # Build a list of conditions that the phones have to meet
-    conditions = "";
+    conditions = "outofstock = '0' AND discontinued = '0' ";
     unless ((params[:brand] == nil) or (params[:brand].empty?))
       conditions += "brand = '" + params[:brand] + "'"
     end

@@ -1,6 +1,8 @@
 
 <h2>Mobile Accessories <%= @brand %></h2>
-
+<% if @user == '3' %>
+    <strong>All prices include Freight + GST.</strong>
+<% end %>
 <div class="apple_pagination"><%= will_paginate @accessories, { :prev_label => 'Prev', :next_label => 'Next' } %></div>
 
 <table class="accessories">

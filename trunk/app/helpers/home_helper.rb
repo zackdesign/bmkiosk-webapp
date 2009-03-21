@@ -7,9 +7,9 @@ module HomeHelper
 
     def display_phones()
         
-        phones = Phone.find_by_sql('SELECT p.id, p.name, picture_name, p.picture_data
+        phones = Phone.find_by_sql('SELECT p.id, p.name, picture_name, p.picture_data, p.brand, p.coming_soon
                                     FROM kiosks AS k, phones AS p
-                                    WHERE k.kiosk < "4"
+                                    WHERE k.kiosk < "4" AND outofstock = "0" AND discontinued = "0"
                                     AND p.id = k.phone_id                                  
                                     ORDER BY p.created_at DESC
                                     LIMIT 3')
@@ -50,11 +50,17 @@ module HomeHelper
             <div class="box2_row1">'
           end
           
+          coming_soon = ''
+          
+          if p.coming_soon == true
+            coming_soon = '<span style="font-weight: bold; color: gray">Coming Soon!</span>'
+          end
+          
           list += "
           <div class='shop_handset#{count}_img'>#{link}</div>
               <div class='shop_handset#{count}'>
-                <div class='shop_handset_title' style='padding-top:4px;'>#{p.name}</div>
-                <div class='shop_handset_desc'></div>
+                <div class='shop_handset_title' style='padding-top:4px;'>#{p.brand} #{p.name}</div>
+                <div class='shop_handset_desc'>#{coming_soon}</div>
                 <div class='shop_handset_foot'>
                   <!--<div class='shf_nextg'><img src='/bmweb/nextg_sml_reflect.gif' alt='NextG' width='28' height='40' /></div>-->
                   <div class='shf_more'>#{more}</div>

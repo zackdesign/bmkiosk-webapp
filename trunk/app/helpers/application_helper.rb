@@ -20,7 +20,7 @@ module ApplicationHelper
   
     max = options[:max]
     
-    phones = Phone.find(:all, :order => "created_at DESC", :limit => max)
+    phones = Phone.find(:all, :conditions => "outofstock = '0' AND discontinued = '0'", :order => "created_at DESC", :limit => max)
     
     list = phones[0...phones.length].map { |a|
             link = link_to "#{a.name}", :controller=>'phones',:action => 'show', :id => a.id
@@ -49,6 +49,15 @@ module ApplicationHelper
             
       return list
     
+  end
+  
+  def upfront_cost(phone, plan)
+    
+    period  = plan.period.split(',')
+    phone.outright
+      
+      
+    return plan.name
   end
 
 end
