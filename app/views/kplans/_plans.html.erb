@@ -1,6 +1,8 @@
 <%
+@action = @upfront ? "mro" : "summary"
+
 unless plans.nil?
-  @plan_options = { :action => "summary", :plan_id => plans.id }
+  @plan_options = { :action => @action, :plan_id => plans.id }
   unless @phone.nil?
     @plan_options.merge!({ :phone_id => @phone.id })
   end
