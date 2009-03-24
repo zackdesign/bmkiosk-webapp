@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 52) do
+ActiveRecord::Schema.define(:version => 53) do
 
   create_table "accessories", :force => true do |t|
     t.string   "name"
@@ -29,14 +29,14 @@ ActiveRecord::Schema.define(:version => 52) do
     t.decimal  "corp_price",                         :precision => 9, :scale => 2
     t.decimal  "govt_price",                         :precision => 9, :scale => 2
     t.string   "brand",                                                            :default => ""
-    t.integer  "plasma"
+    t.integer  "plasma",       :limit => 11
   end
 
   create_table "charge_values", :force => true do |t|
     t.text     "value"
-    t.integer  "charge_id"
-    t.integer  "plan_id"
-    t.integer  "plan_group_id"
+    t.integer  "charge_id",     :limit => 11
+    t.integer  "plan_id",       :limit => 11
+    t.integer  "plan_group_id", :limit => 11
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,29 +59,19 @@ ActiveRecord::Schema.define(:version => 52) do
   end
 
   create_table "kiosks", :id => false, :force => true do |t|
-    t.integer "phone_id", :null => false
-    t.integer "kiosk",    :null => false
+    t.integer "phone_id", :limit => 11, :null => false
+    t.integer "kiosk",    :limit => 11, :null => false
   end
 
   create_table "line_items", :force => true do |t|
-    t.integer "product_id",                                :null => false
-    t.integer "order_id",                                  :null => false
-    t.integer "quantity",                                  :null => false
-    t.decimal "total_price", :precision => 8, :scale => 2, :null => false
+    t.integer "product_id",  :limit => 11,                               :null => false
+    t.integer "order_id",    :limit => 11,                               :null => false
+    t.integer "quantity",    :limit => 11,                               :null => false
+    t.decimal "total_price",               :precision => 8, :scale => 2, :null => false
   end
 
   add_index "line_items", ["product_id"], :name => "fk_line_item_products"
   add_index "line_items", ["order_id"], :name => "fk_line_item_orders"
-
-  create_table "local_sessions", :force => true do |t|
-    t.string   "session_id", :null => false
-    t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "local_sessions", ["session_id"], :name => "index_sessions_on_session_id"
-  add_index "local_sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "logos", :force => true do |t|
     t.text     "name"
@@ -90,7 +80,7 @@ ActiveRecord::Schema.define(:version => 52) do
     t.string   "picture_name"
     t.string   "picture_type",                       :default => "image/jpeg"
     t.binary   "picture_data", :limit => 2147483647
-    t.integer  "plasma"
+    t.integer  "plasma",       :limit => 11
   end
 
   create_table "options", :force => true do |t|
@@ -136,23 +126,23 @@ ActiveRecord::Schema.define(:version => 52) do
   end
 
   create_table "phones_accessories", :id => false, :force => true do |t|
-    t.integer "phone_id",     :null => false
-    t.integer "accessory_id", :null => false
+    t.integer "phone_id",     :limit => 11, :null => false
+    t.integer "accessory_id", :limit => 11, :null => false
   end
 
   add_index "phones_accessories", ["phone_id", "accessory_id"], :name => "index_phones_accessories_on_phone_id_and_accessory_id"
 
   create_table "phones_features", :id => false, :force => true do |t|
-    t.integer "phone_id",   :null => false
-    t.integer "feature_id", :null => false
+    t.integer "phone_id",   :limit => 11, :null => false
+    t.integer "feature_id", :limit => 11, :null => false
   end
 
   add_index "phones_features", ["phone_id", "feature_id"], :name => "index_phones_features_on_phone_id_and_feature_id"
 
   create_table "phones_plans", :force => true do |t|
-    t.integer "plan_id",                                    :default => 0
-    t.integer "phone_id",                                   :default => 0
-    t.decimal "handset_cost", :precision => 9, :scale => 2
+    t.integer "plan_id",      :limit => 24,                               :default => 0
+    t.integer "phone_id",     :limit => 24,                               :default => 0
+    t.decimal "handset_cost",               :precision => 9, :scale => 2
   end
 
   add_index "phones_plans", ["phone_id", "plan_id"], :name => "index_phones_plans_on_phone_id_and_plan_id"
@@ -164,8 +154,8 @@ ActiveRecord::Schema.define(:version => 52) do
 #   Unknown type 'set('consumer','business','corporate','government')' for column 'categories'
 
   create_table "plans_options", :id => false, :force => true do |t|
-    t.integer "plan_id",   :null => false
-    t.integer "option_id", :null => false
+    t.integer "plan_id",   :limit => 11, :null => false
+    t.integer "option_id", :limit => 11, :null => false
   end
 
   add_index "plans_options", ["plan_id", "option_id"], :name => "index_plans_options_on_plan_id_and_option_id"
@@ -175,6 +165,10 @@ ActiveRecord::Schema.define(:version => 52) do
     t.text    "description"
     t.string  "image_url"
     t.decimal "price",       :precision => 8, :scale => 2, :default => 0.0
+  end
+
+  create_table "schema_info", :id => false, :force => true do |t|
+    t.integer "version", :limit => 11
   end
 
   create_table "sessions", :force => true do |t|
@@ -187,26 +181,11 @@ ActiveRecord::Schema.define(:version => 52) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
-  create_table "user_values", :id => false, :force => true do |t|
-    t.text    "name",  :null => false
-    t.boolean "value"
-  end
-
   create_table "users", :force => true do |t|
     t.string "name"
     t.string "hashed_password"
     t.string "salt"
     t.string "usertype"
   end
-
-  create_table "web_sessions", :force => true do |t|
-    t.string   "session_id", :null => false
-    t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "web_sessions", ["session_id"], :name => "index_sessions_on_session_id"
-  add_index "web_sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
 end

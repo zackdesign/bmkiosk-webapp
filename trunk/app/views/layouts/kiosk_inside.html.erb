@@ -65,6 +65,14 @@ elsif ((controller.controller_name == 'kplans') && (controller.action_name=='sum
   controllern = 'kplans'
   action = 'index'
   id = ''
+elsif ((controller.controller_name == 'kplans') && (controller.action_name=='mro') && !(params[:phone_id].blank?))
+  controllern = 'kplans'
+  action = 'mro'
+  id = params[:phone_id]
+elsif ((controller.controller_name == 'kplans') && (controller.action_name=='summary') && (params[:phone_id].blank?))
+  controllern = 'kplans'
+  action = 'index'
+  id = ''
 elsif ((controller.controller_name == 'kplans') && (controller.action_name=='phone'))
   controllern = 'kplans'
   action = 'summary'
