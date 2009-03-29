@@ -1,9 +1,31 @@
+<% javascript_tag do %>
+function validate()
+{
+	var no_mro = document.getElementById('no_mro');
+	var contract_length = document.getElementById('contract_length');
+
+	if ((contract_length.selectedIndex > 0) && (no_mro.checked))
+	{
+		alert('Please select an MRO amount for the contract period selected.');
+		return false;
+	}
+
+	if ((contract_length.selectedIndex == 0) && (!no_mro.checked))
+	{
+		alert('Please select a contract period for the MRO amount selected.');
+		return false;
+	}
+
+	return true;
+}
+<% end %>
+
 <h1>Monthly Repayment Options</h1>
 
-<%= form_tag :action => "summary" %>
+<%= form_tag ({ :action => "summary" }, { :onsubmit => "return validate()" }) %>
 <label for="contract_length">Length of the contract:<%= select_tag "contract_length", options_for_select([["None", 0], ["12 months", 12], ["18 months", 18], ["24 months", 24]]) %></label>
 <ul>
-	<li><label><input type="radio" name="mro_payment_total" value="0" checked="checked">No MRO</label></li>
+	<li><label><input id="no_mro" type="radio" name="mro_payment_total" value="0" checked="checked">No MRO</label></li>
 <%
   @mro_repayment_totals.each { |total|
 %>

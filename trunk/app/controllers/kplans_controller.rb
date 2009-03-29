@@ -102,10 +102,16 @@ class KplansController < ApplicationController
   def summary
     unless params[:phone_id].nil?
       @phone = Phone.find(params[:phone_id])
+      @phone_outright = @phone.outright
     else
       @phone = nil
     end
     @plan = Plan.find(params[:plan_id])
+    
+    @contract_length = params[:contract_length].to_i
+    @mro_amount = params[:mro_payment_total].to_f
+    @upfront_cost = (@phone_outright >= @mro_amount) ? @phone_outright - @mro_amount : 0
+    @monthly_mro_amount = (@contract_length > 0) ? @mro_amount / @contract_length : 0
     
     @page_title = 'Summary'
     
