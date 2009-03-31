@@ -32,9 +32,6 @@ class KplansController < ApplicationController
 
     # Now extract a collection containing each plan group id associated with each plan found
     @plan_group_ids = @plans.collect { |plan| plan.plan_group.id }
-        
-    # add in the MRO plans (BAD BAD BAD this should not be hard-coded!!)
-#    @plan_mro_ids = [11,16,17,12]
 
     # Now find the consumer plan groups
     @plan_groups_consumer = PlanGroup.find_all_by_categories_and_id("consumer", @plan_group_ids)
@@ -42,7 +39,6 @@ class KplansController < ApplicationController
       @plan_groups_consumer = Array.new
     end
     
-#    @consumer_mro = PlanGroup.find_all_by_categories_and_id("consumer", @plan_mro_ids)
     @consumer_mro = PlanGroup.find_all_by_categories_and_applies_all_phones("consumer", 1)
     if @consumer_mro.nil?
           @consumer_mro = Array.new
@@ -54,7 +50,6 @@ class KplansController < ApplicationController
       @plan_groups_business = Array.new
     end
     
-#    @business_mro = PlanGroup.find_all_by_categories_and_id("business", @plan_mro_ids)
     @business_mro = PlanGroup.find_all_by_categories_and_applies_all_phones("business", 1)
     
     @page_title = 'Plans'
@@ -74,6 +69,28 @@ class KplansController < ApplicationController
       @phone_cost = 0
     end
     @plan = Plan.find(params[:plan_id])
+    
+    #Only show periods for the plan that are already set in the DB
+    @periods = Array.new
+    unless @plan.period.blank?
+    
+      if @plan.period.include?("12")
+        @periods << ['12 months',12]
+      end
+      if @plan.period.include?("18")
+        @periods << ['18 months',18]
+      end
+      if @plan.period.include?("24")
+        @periods << ['24 months',24]
+      end
+    
+    end
+    
+    # Check to make sure that this isn't a subsidized plan
+    @applies = params[:applies]
+    if @applies.blank?
+      @applies = false
+    end
 
     # Find the monthly cost of the plan to determine the correct tier
     name = @plan.name.split(' ')
@@ -91,7 +108,7 @@ class KplansController < ApplicationController
       @mro_repayment_totals = mro_amounts[(mro_tier_ends[1] + 1) .. mro_tier_ends[2]]
     end
 
-    @page_title = 'Monthly Repayment Options'
+    @page_title = 'Contract Options'
 
     respond_to do |format|
       format.html
@@ -112,6 +129,10 @@ class KplansController < ApplicationController
     @mro_amount = params[:mro_payment_total].to_f
     @upfront_cost = (@phone_outright >= @mro_amount) ? @phone_outright - @mro_amount : 0
     @monthly_mro_amount = (@contract_length > 0) ? @mro_amount / @contract_length : 0
+    if (@plan.description.downcase.include?('subsidized') )
+        @upfront_cost = 0
+    end
+    @period = params[:contract_length] + ' months'
     
     @page_title = 'Summary'
     

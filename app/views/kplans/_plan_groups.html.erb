@@ -10,6 +10,9 @@ unless @phone.nil?
 else
   @plan_group_plans = plan_groups.plans
 end
+
+    @applies = false
+
 %>
 <%= render :partial => "plans", :collection => @plan_group_plans %>
 		</ul>
