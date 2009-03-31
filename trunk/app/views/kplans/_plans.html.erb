@@ -1,15 +1,23 @@
 <%
-@action = @upfront ? "mro" : "summary"
 
 unless plans.nil?
-  @plan_options = { :action => @action, :plan_id => plans.id }
+
+  show = 1
+  
+  @mropage = false
+  
+  unless plans.period.blank? || plans.period == 'Nill' || plans.period == 'NULL'
+      @mropage = true
+  end
+  
+  @action = @mropage ? "mro" : "summary"
+
+  @plan_options = { :action => @action, :plan_id => plans.id, :applies => @applies }
   unless @phone.nil?
     @plan_options.merge!({ :phone_id => @phone.id })
   end
   
-  show = 1
-  
-  if (@upfront)
+  if (@mropage && @applies)
   
     name = plans.name.split(' ')
     name[0].slice!(0)
@@ -26,9 +34,7 @@ unless plans.nil?
 %>
 	<li>
 		<h2 style="padding:10px; padding-left: 0px;"><%= link_to(h(plans.name), @plan_options, {:style=>'padding:20px;padding-left:0px;'}) %></h2>
-		<% if @upfront %>
-		    <%#= debug upfront_cost(@phone, plans) %>
-		<% end %>
+
 		<h3><%= link_to_function('View Charges for this Plan', "$('" + h(plans.name) + "').toggle()") %></h3>
 		<ul id="<%= h(plans.name) %>" style="display: none;">
 					<li><%= render :partial => "charges_plan", :object => plans %></li>

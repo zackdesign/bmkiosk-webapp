@@ -7,7 +7,8 @@ unless mro_groups.nil?
 <%
 
   @plan_group_plans = Plan.find_all_by_plan_group(mro_groups)
-  @upfront = true
+  
+  @applies = true
 %>
 <%= render :partial => "plans", :collection => @plan_group_plans %>
 		</ul>

@@ -306,3 +306,19 @@ a img {
   margin-left: 10%;
   margin-top: 15px;
 } 
+
+.tiers ul {
+  margin: 0;
+  padding: 0;
+}
+
+.tiers li {
+  list-style: none;
+  padding: 10px;
+  margin: 10px;
+  font-size: 12pt;
+  display: inline;
+  float: left;
+}
+
+.clear {clear: both}

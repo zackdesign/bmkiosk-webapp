@@ -50,37 +50,23 @@ function return_to_kiosk()
 
 if (controller.controller_name == 'kphones' || (controller.controller_name == 'kaccessories' && controller.action_name=='index') || 
     (controller.controller_name == 'kplans' && controller.action_name=='index'))
-  controllern = 'kiosk'
-  action = 'touch'
-  id = cookies["kiosk"]
+  @back_url = {:controller=>'kiosk', :action => 'touch', :id => cookies["kiosk"] }
 elsif ((controller.controller_name == 'kplans') && (controller.action_name=='list'))
-  controllern = 'kphones'
-  action = 'show'
-  id = params[:id]
+  @back_url = {:controller=>'kphones', :action => 'show', :id => params[:id] }
+elsif ((controller.controller_name == 'kplans') && (controller.action_name=='summary') && !(params[:phone_id].blank?) && !(params[:contract_length].blank?))
+  @back_url = {:controller=>'kplans', :action => 'mro', :phone_id => params[:phone_id], :plan_id => params[:plan_id], :applies => params[:applies] }
 elsif ((controller.controller_name == 'kplans') && (controller.action_name=='summary') && !(params[:phone_id].blank?))
-  controllern = 'kplans'
-  action = 'list'
-  id = params[:phone_id]
+  @back_url = {:controller=>'kplans', :action => 'list', :id => params[:phone_id] }
 elsif ((controller.controller_name == 'kplans') && (controller.action_name=='summary') && (params[:phone_id].blank?))
-  controllern = 'kplans'
-  action = 'index'
-  id = ''
+  @back_url = {:controller=>'kplans', :action => 'index' }
 elsif ((controller.controller_name == 'kplans') && (controller.action_name=='mro') && !(params[:phone_id].blank?))
-  controllern = 'kplans'
-  action = 'mro'
-  id = params[:phone_id]
+  @back_url = {:controller=>'kplans', :action => 'list', :id => params[:phone_id] }
 elsif ((controller.controller_name == 'kplans') && (controller.action_name=='summary') && (params[:phone_id].blank?))
-  controllern = 'kplans'
-  action = 'index'
-  id = ''
+  @back_url = {:controller=>'kplans', :action => 'index' }
 elsif ((controller.controller_name == 'kplans') && (controller.action_name=='phone'))
-  controllern = 'kplans'
-  action = 'summary'
-  id = params[:id]
+  @back_url = {:controller=>'kplans', :action => 'summary', :id => params[:id] }
 elsif ((controller.controller_name == 'kaccessories') && (controller.action_name=='show'))
-  controllern = 'kaccessories'
-  action = 'index'
-  id = ''
+  @back_url = {:controller=>'kaccessories', :action => 'index' }
 end
 
 %>
@@ -90,11 +76,7 @@ end
 <tr>
 
 <td class="backbutton">
-<%= if (controller.action_name == 'phone')
-                           link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :plan_id=>id},{:style=>'padding:40px;'})
-                         else
-                           link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :id=>id},{:style=>'padding:40px;'})
-                         end %>
+<%= link_to(image_tag('back.png'), @back_url,{:style=>'padding:40px;'}) %>
 </td>
 
 <td style="text-align: center;width:70%">
@@ -146,7 +128,7 @@ end
  
  <div style=" padding: 30px;padding-left: 40px;"  class="backbutton">
  
-<%= if (controller.action_name == 'phone')
+<%#= if (controller.action_name == 'phone')
                            link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :plan_id=>id},{:style=>'padding:40px;'})
                          else
                            link_to(image_tag('back.png'), {:controller=>controllern, :action=>action, :id=>id},{:style=>'padding:40px;'})
