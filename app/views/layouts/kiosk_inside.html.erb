@@ -59,6 +59,8 @@ elsif ((controller.controller_name == 'kplans') && (controller.action_name=='sum
   @back_url = {:controller=>'kplans', :action => 'list', :id => params[:phone_id] }
 elsif ((controller.controller_name == 'kplans') && (controller.action_name=='summary') && (params[:phone_id].blank?))
   @back_url = {:controller=>'kplans', :action => 'index' }
+elsif ((controller.controller_name == 'kplans') && (controller.action_name=='mro') && (params[:previous] == 'phone'))
+  @back_url = {:controller=>'kplans', :action => 'phone', :id => params[:plan_id], :applies => params[:applies] }
 elsif ((controller.controller_name == 'kplans') && (controller.action_name=='mro') && !(params[:phone_id].blank?))
   @back_url = {:controller=>'kplans', :action => 'list', :id => params[:phone_id] }
 elsif ((controller.controller_name == 'kplans') && (controller.action_name=='summary') && (params[:phone_id].blank?))

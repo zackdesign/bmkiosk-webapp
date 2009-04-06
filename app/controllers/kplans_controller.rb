@@ -151,12 +151,19 @@ class KplansController < ApplicationController
   
   
   def phone
-    @phones = Plan.find_by_sql("SELECT p.* FROM phones p, phones_plans pp WHERE p.id = pp.phone_id AND pp.plan_id = " + params[:id])
+    @phones = Phone.find_by_sql("SELECT p.* FROM phones p, phones_plans pp WHERE discontinued = 0 AND outofstock = 0 AND coming_soon = 0 AND p.id = pp.phone_id AND pp.plan_id = " + params[:id] + " ORDER BY name ASC")
 
     @plan = Plan.find(params[:id])
+    unless @plan.period.blank? || @plan.period == 'Nill' || @plan.period == 'NULL' 
+      mropage = true
+    else
+      mropage = false
+    end
     
-    if (@plan.plan_group.applies_all_phones == true)
-      @phones = Phone.find(:all)
+    @action = mropage ? "mro" : "summary"
+    
+    if (@plan.plan_group.applies_all_phones == true) && (@phones.empty?)
+      @phones = Phone.find(:all, :conditions => 'discontinued = 0 AND outofstock = 0 AND coming_soon = 0', :order => 'name ASC' )
     end
     @plan = params[:id]
     
@@ -215,5 +222,19 @@ class KplansController < ApplicationController
       26,
       31
     ]
+  end
+  
+   def thumbnail
+    # Create a resized image of the uploaded picture for when the phone is shown
+    @phone = Phone.find(params[:id])
+    image = Magick::Image.from_blob(@phone.picture_data).first
+    max_dimension = (image.columns < image.rows) ? image.rows : image.columns
+    if max_dimension < 50
+      thumb = image
+    else
+      thumb = image.resize_to_fit(50, 50)
+    end
+    send_data thumb.to_blob, :filename => @phone.picture_name,
+              :type => @phone.picture_type, :disposition => "inline"
   end
 end

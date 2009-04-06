@@ -79,7 +79,7 @@
 <div class="printer">
 <%=
 if @phone.nil?
-  link_to "<h1>Choose a Phone</h1>", { :action => "phone", :id => @plan }
+  link_to "<h1>Choose a Phone</h1>", { :action => "phone", :id => @plan, :applies => params[:applies] }
 else
   link_to_function image_tag('print_printer.png'), "window.print()"
 end
