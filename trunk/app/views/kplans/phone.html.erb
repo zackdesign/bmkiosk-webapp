@@ -8,8 +8,24 @@ for p in @phones
 
 %>
 
-  <tr><th><%= p.name %></th><td><%= p.description %></td>
-  <td><%= link_to "Choose Phone", :action=> 'summary', :phone_id => p, :plan_id => @plan %></td></tr>
+  <tr><td><%=  show_thumbnail_if_available(p) %></td>
+  <th style="font-size: 12pt;"><%= link_to p.name, :action=> @action, :phone_id => p, :plan_id => @plan, :previous => 'phone', :applies => params[:applies] %></th>
+  <td><div  class='features'><%
+      unless (p.features.empty?)
+%>
+			<ul>
+<%
+        for feature in p.features
+%>
+				<li><%= feature.name %></li>
+<%
+		end
+%>
+			</ul>
+<%
+	  end
+%></div></td>
+  </tr>
 
 <% end %>
 
