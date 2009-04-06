@@ -6,7 +6,7 @@ unless plans.nil?
   
   @mropage = false
   
-  unless plans.period.blank? || plans.period == 'Nill' || plans.period == 'NULL'
+  unless plans.period.blank? || plans.period == 'Nill' || plans.period == 'NULL' || @phone.blank?
       @mropage = true
   end
   
