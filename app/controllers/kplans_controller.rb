@@ -122,8 +122,14 @@ class KplansController < ApplicationController
       @phone_outright = @phone.outright
     else
       @phone = nil
+      @phone_outright = 0
     end
     @plan = Plan.find(params[:plan_id])
+    if (params[:contract_length].blank?)
+        contract = ''
+    else
+        contract = params[:contract_length]
+    end
     
     @contract_length = params[:contract_length].to_i
     @mro_amount = params[:mro_payment_total].to_f
@@ -132,7 +138,7 @@ class KplansController < ApplicationController
     if (@plan.description.downcase.include?('subsidized') )
         @upfront_cost = 0
     end
-    @period = params[:contract_length] + ' months'
+    @period = contract + ' months'
     
     @page_title = 'Summary'
     
@@ -146,6 +152,12 @@ class KplansController < ApplicationController
   
   def phone
     @phones = Plan.find_by_sql("SELECT p.* FROM phones p, phones_plans pp WHERE p.id = pp.phone_id AND pp.plan_id = " + params[:id])
+
+    @plan = Plan.find(params[:id])
+    
+    if (@plan.plan_group.applies_all_phones == true)
+      @phones = Phone.find(:all)
+    end
     @plan = params[:id]
     
     @page_title = 'Choose Phone'
