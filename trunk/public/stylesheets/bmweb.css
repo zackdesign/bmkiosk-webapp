@@ -5,6 +5,18 @@
   width: 64px;
 }
 
+.odd {
+  background-color: #DFDFDF;
+}
+
+.yes {
+  color: #014391;
+}
+
+.no {
+  color: #ca0006;
+}
+
 /* Product Table */
 
 .product_table {
