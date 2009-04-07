@@ -8,7 +8,7 @@
 	num = @phones.length
 	for phone in @phones
 %>
-  <td class="phones" style="text-align: center; width:110px"><strong><%= h phone.name %></strong></td>
+  <td class="phones" style="text-align: center; width:110px"><strong><%= phone.brand  %> <%= h phone.name %></strong></td>
 <% end %>
 	</tr>
         <tr><td class="phones">&nbsp;</td>
