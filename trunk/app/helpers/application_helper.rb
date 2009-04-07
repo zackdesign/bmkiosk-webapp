@@ -59,5 +59,11 @@ module ApplicationHelper
       
     return plan.name
   end
+  
+  def show_shop_logo(logo_name, alt)
+    image_tag(url_for({ :action => 'return_logo', :name=> logo_name }), :alt => alt)
+  end
+  
+
 
 end

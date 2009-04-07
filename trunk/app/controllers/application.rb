@@ -75,6 +75,14 @@ class ApplicationController < ActionController::Base
       render :action => :checkout and return
     end
   end
+  
+  def return_logo ()
+    logo = Logo.find(:all, :conditions => ['name = ?', params[:name]])
+    unless logo[0].picture_data == nil
+        send_data logo[0].picture_data, :filename => logo[0].picture_name,
+                :type => logo[0].picture_type, :disposition => "inline"
+    end
+  end
 
   private
   
