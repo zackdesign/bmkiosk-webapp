@@ -54,7 +54,7 @@
 <!-- <div>Outright cost <%#= number_to_currency @phone.outright %></div> -->
 <br /><br />
 
-<% if (@phone.coming_soon == false) %>
+<% unless (@phone.coming_soon == true) %>
 
 <% if (@plan == nil) %>
 <h2>Select a Purchase Type to continue</h2>
