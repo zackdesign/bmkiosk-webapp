@@ -1,8 +1,8 @@
 class Emailer < ActionMailer::Base
   def to_customer(id)
-    @recipients   = "softwud@softwud.com"
-    @from         = "chris@sharpwebservice.com"
-    headers         "Reply-to" => "chris@sharpwebservice.com"
+    @recipients   = "isaac@zackdesign.biz"
+    @from         = "carla@bmtronics.com.au"
+    headers         "Reply-to" => "carla@bmtronics.com.au"
     @subject      = "New web order"
     @sent_on      = Time.now
     @content_type = "text/plain"
@@ -10,9 +10,9 @@ class Emailer < ActionMailer::Base
   end
 
   def to_service_rep(id)
-    @recipients   = "softwud@softwud.com"
-    @from         = "chris@sharpwebservice.com"
-    headers         "Reply-to" => "chris@sharpwebservice.com"
+    @recipients   = "isaac@zackdesign.biz"
+    @from         = "carla@bmtronics.com.au"
+    headers         "Reply-to" => "carla@bmtronics.com.au"
     @subject      = "New web order"
     @sent_on      = Time.now
     @content_type = "text/plain"
