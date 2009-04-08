@@ -6,7 +6,7 @@ class StoreController < ApplicationController
   layout 'bmweb'
 
   def saveorder
-    save_order
+    save_order(params[:order])
   end
 
   def cartdel
