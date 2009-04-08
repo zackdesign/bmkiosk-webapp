@@ -56,7 +56,8 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def save_order(user)
+  def save_order()
+    user = params[:order]
     @order = Order.new(params[:order])   
     @order.add_line_items_from_cart(@cart)
     if @order.save                       
