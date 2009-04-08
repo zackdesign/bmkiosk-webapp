@@ -6,7 +6,7 @@ class CreateFeaturedItems < ActiveRecord::Migration
     remove_column :featured_phones, :id
     create_table :featured_accessories do |t|
       t.column :accessory_id, :integer, :null => false
-      t.column :type, :text, :null => false
+      t.column :atype, :text, :null => false
     end
     remove_column :featured_accessories, :id
   end
