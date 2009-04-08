@@ -40,7 +40,7 @@
 	/></td>
 <td colspan="4">
 
-	<%= link_to(phone.brand+h(phone.name), url_for({ :action => 'show', :id => phone.id }), { :class => 'accessory_name' }) %>
+	<%= link_to(phone.brand+' '+h(phone.name), url_for({ :action => 'show', :id => phone.id }), { :class => 'accessory_name' }) %>
 	<% if phone.coming_soon == true %>
 	      - <span style="font-weight: bold">Coming Soon!</span>
 	<% end %>

@@ -133,7 +133,7 @@ class PhonesController < ApplicationController
     
     end
     
-    @page_title = ' - '+@phone.brand+@phone.name
+    @page_title = ' - '+@phone.brand+' '+@phone.name
 
     respond_to do |format|
       format.html # show.html.erb

@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def save_order
+  def save_order(user)
     @order = Order.new(params[:order])   
     @order.add_line_items_from_cart(@cart)
     if @order.save                       
@@ -64,8 +64,8 @@ class ApplicationController < ActionController::Base
       last_id = ActiveRecord::Base.connection.select_value("SELECT id FROM orders WHERE id = LAST_INSERT_ID()")
 #      Emailer.deliver_emailer(last_id)
 
-      Emailer.deliver_to_customer(last_id)
-      Emailer.deliver_to_service_rep(last_id)
+      Emailer.deliver_to_customer(last_id, user)
+      Emailer.deliver_to_service_rep(last_id, user)
 
 #      redirect_to_index("Thank you for your order, a sales person will contact you to process the order.") and return
 
