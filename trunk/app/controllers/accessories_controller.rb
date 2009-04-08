@@ -51,7 +51,7 @@ class AccessoriesController < ApplicationController
 #    logger.info(params.to_s)
     begin
       @accessory = Accessory.find(params[:id])
-
+      @accessory.update_attribute('popularity', @accessory.popularity + 1)
 #      @purchase_type = "personal"
 #      if params[:add_personal]
 #        @purchase_type = "personal"

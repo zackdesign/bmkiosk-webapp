@@ -8,10 +8,9 @@ module HomeHelper
     def display_phones()
         
         phones = Phone.find_by_sql('SELECT p.id, p.name, picture_name, p.picture_data, p.brand, p.coming_soon
-                                    FROM kiosks AS k, phones AS p
-                                    WHERE k.kiosk < "4" AND outofstock = "0" AND discontinued = "0"
-                                    AND p.id = k.phone_id                                  
-                                    ORDER BY p.created_at DESC
+                                    FROM featured_phones AS f, phones AS p
+                                    WHERE p.id = f.phone_id               
+                                    ORDER BY RAND()
                                     LIMIT 3')
         
         count=1
@@ -29,7 +28,7 @@ module HomeHelper
 	          if max_dimension < 80
 	            thumb = image
 	          else
-	            thumb = image.resize_to_fit(80, 100)
+	            thumb = image.resize_to_fit(80, 80)
 	        end
 		
 		wet = thumb.wet_floor(initial=0.5, rate=0.1)
@@ -83,10 +82,11 @@ module HomeHelper
   
       def display_accessories()
           
-          acc = Accessory.find_by_sql('SELECT p.id, p.name, p.picture_name, p.picture_data
-                                      FROM accessories AS p                                
-                                      ORDER BY p.created_at DESC
-                                      LIMIT 3')
+          acc = Accessory.find_by_sql('SELECT p.id, p.name, picture_name, p.picture_data, p.brand
+                                    FROM featured_accessories AS f, accessories AS p
+                                    WHERE p.id = f.accessory_id AND f.atype = "featured"
+                                    ORDER BY RAND()
+                                    LIMIT 3')
           
           count=1
           list = ''
@@ -103,7 +103,7 @@ module HomeHelper
   	          if max_dimension < 80
   	            thumb = image
   	          else
-  	            thumb = image.resize_to_fit(80, 150)
+  	            thumb = image.resize_to_fit(80, 80)
   	        end
   		
   		wet = thumb.wet_floor(initial=0.5, rate=0.1)

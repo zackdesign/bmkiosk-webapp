@@ -227,6 +227,7 @@ class PhonesController < ApplicationController
   def cartadd
     begin
       @phone = Phone.find(params[:id])
+      @phone.update_attribute('popularity', @phone.popularity + 1)
 #      if params[:plan_id].nil? or params[:plan_id].empty?
 #        phone_cost = phone.outright
 #      elsif params[:plan_id] == "outright"
