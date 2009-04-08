@@ -5,9 +5,9 @@ class Emailer < ActionMailer::Base
     headers         "Reply-to" => "admin@bmtronics.com.au"
     @subject      = "New web order"
     @sent_on      = Time.now
-    @content_type = "text/plain"
+    @content_type = "text/html"
     @user =order
-    @order = Order.find(id)
+    #@order = Order.find(id)
     #@order.add_line_items_from_cart(@cart)
     body[:id]  = id
     body[:user_cart] = @order
@@ -19,9 +19,9 @@ class Emailer < ActionMailer::Base
     headers         "Reply-to" => "admin@bmtronics.com.au"
     @subject      = "New web order"
     @sent_on      = Time.now
-    @content_type = "text/plain"
+    @content_type = "text/html"
     @user =order
-    @order = Order.find(id)
+    #@order = Order.find(id)
     #@order.add_line_items_from_cart(@cart)
     body[:id]  = id
     body[:user_cart] = @order
