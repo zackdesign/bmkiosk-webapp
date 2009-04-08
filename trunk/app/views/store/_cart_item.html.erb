@@ -9,16 +9,16 @@
 #  show = true
 #end
 %>
-	<tr>
+	<tr class="item_title">
 		<td colspan="3" style="border-bottom: 0px;">
 			<div id="cart_item_<%= cart_item.product.id.to_s %>_1"<%#= show ? '' : 'style="display: none;"' %>>
 			<!--<div align="left"><%= h(cart_item.title) %></div>-->
-			<ul class="linklist"><li align="left"><%= h(cart_item.title) %></li></ul>
+			<%= h(cart_item.title) %>
 		</td>
 	</tr>
 
 	<!--<tr id="cart_item_<%= cart_item.product.id.to_s %>_2" style="/*display: none;*/">-->
-	<tr>
+	<tr class="item_info">
 	<!--<tr id="cart_item_<%= cart_item.product.id.to_s %>_2">-->
 		<td style="padding-left: 8px;"><div id="cart_item_<%= cart_item.product.id.to_s %>_2"<%#= show ? '' : 'style="display: none;"' %>><%= cart_item.quantity %> &times;</div></td>
 		<td class="item-price"><div id="cart_item_<%= cart_item.product.id.to_s %>_3"<%#= show ? '' : 'style="display: none;"' %>><%= number_to_currency(cart_item.price) %></div></td>
