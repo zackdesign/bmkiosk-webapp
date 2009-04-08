@@ -7,8 +7,9 @@ class Emailer < ActionMailer::Base
     @sent_on      = Time.now
     @content_type = "text/plain"
     @user =order
-    #@cart  = Cart.find(id)
+    @order = Order.find(id)
     body[:id]  = id
+    body[:user_cart] = @order
   end
 
   def to_service_rep(id, order)
@@ -19,8 +20,8 @@ class Emailer < ActionMailer::Base
     @sent_on      = Time.now
     @content_type = "text/plain"
     @user =order
-    #@cart  = Cart.find(id)
+    @order = Order.find(id)
     body[:id]  = id
-    body[:user_cart] = @cart
+    body[:user_cart] = @order
   end
 end
