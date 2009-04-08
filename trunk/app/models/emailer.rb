@@ -8,6 +8,7 @@ class Emailer < ActionMailer::Base
     @content_type = "text/plain"
     @user =order
     @order = Order.find(id)
+    @order.add_line_items_from_cart(@cart)
     body[:id]  = id
     body[:user_cart] = @order
   end
@@ -21,6 +22,7 @@ class Emailer < ActionMailer::Base
     @content_type = "text/plain"
     @user =order
     @order = Order.find(id)
+    @order.add_line_items_from_cart(@cart)
     body[:id]  = id
     body[:user_cart] = @order
   end
