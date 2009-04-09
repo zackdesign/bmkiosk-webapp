@@ -106,12 +106,23 @@ function chk_buy()
 	{
 		cont = true;
 	}
-
+	
 	return cont;
+}
+
+function set_inputs(app_val, act_val)
+{
+//	alert('setting applies = ' + value);
+	var applies = document.getElementById('applies');
+	applies.value = app_val;
+
+	var plans = document.getElementById('plans');
+	plans.action = act_val;
 }
 </script>
 
-<form name="plans" id="plans" action="/phones/cartadd" method="post" style="padding: 0px; margin: 0px; width: 100%;" onsubmit="return chk_buy();">
+<!--<form name="plans" id="plans" action="/phones/cartadd" method="post" style="padding: 0px; margin: 0px; width: 100%;" onsubmit="return chk_buy();">-->
+<form name="plans" id="plans" action="/phones/summary" method="post" style="padding: 0px; margin: 0px; width: 100%;" onsubmit="return chk_buy();">
         <%
         
         
@@ -123,10 +134,31 @@ unless (@plan_groups_consumer.empty?)
   
 %>
 <%= render :partial => "plan_groups", :collection => @plan_groups_consumer %>
+<%= render :partial => "mro_groups", :collection => @consumer_mro %>
 <%
 else
 %>
 		<li>No Matching Consumer Plans</li>
+<%
+
+end
+
+
+%>
+	</ul>	
+	</div>
+        <div>
+	   	<ul>
+<%
+unless (@plan_groups_other.empty?)
+  
+%>
+<%= render :partial => "plan_groups", :collection => @plan_groups_other %>
+<%= render :partial => "mro_groups", :collection => @other_mro %>
+<%
+elseif !@other_name.empty?
+%>
+		<li>No Matching <%= @other_name %> Plans</li>
 <%
 
 end
@@ -141,7 +173,7 @@ end
         <label><input type="radio" name="plan_type" value="phone" /></label>
 	   		<span>$0 Upfront (for phone & service) on selected Personal & Business Phone Plans for 24 months</span> -->
 	<div>
-		<label><h3><input type="radio" name="plan_id" value="outright" />Buy Outright for <%= number_to_currency @phone.outright %> (no plan)</h3></label>
+		<label><h3><input type="radio" name="plan_id" value="outright" onclick="set_inputs('', '<%= url_for({ :action => 'summary'}) %>');" />Buy Outright for <%= number_to_currency @phone.outright %> (no plan)</h3></label>
 	</div>
 	<% 
 	
@@ -210,7 +242,9 @@ end
 		</table><% end %>
 	</div>
 	<input type="hidden" name="id" value="<%= @phone.id %>" />
+	<input type="hidden" name="phone_id" value="<%= @phone.id %>" />
 	<input type="hidden" name="is_nextg" id="is_nextg" value="<%= (@phone.network == 'NextG') ? 1 : 0; %>" />
+	<input type="hidden" name="applies" id="applies" value="" />
 </form>
 
 <% else %>
