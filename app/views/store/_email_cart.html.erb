@@ -1,8 +1,8 @@
 <%
-unless main_cart.items.empty?
+unless main_cart.line_items.empty?
 %>
 <table cellpadding="0" cellspacing="0" border="0" style="width: 90%;padding-top: 20px">
-<%= render(:partial => "store/main_cart_item" , :collection => main_cart.items) %>
+<%= render(:partial => "store/main_cart_item" , :collection => main_cart.line_items) %>
 	<tr class="total-line" >
           <td></td>
 		<td style='text-align: right'><b>Total:</b></td>

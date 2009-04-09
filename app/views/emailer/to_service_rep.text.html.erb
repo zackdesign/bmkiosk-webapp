@@ -13,7 +13,7 @@
   <h4>User Message:</h4>
   <p><%= @user[:message]  %></p><br /><br />
   <h3>Order ID: <%=  @order.id %></h3>
-<%= render(:partial => "store/main_cart" , :object => @order) %>
+<%= render(:partial => "store/email_cart" , :object => @order) %>
 </body> 
 </html> 
 
