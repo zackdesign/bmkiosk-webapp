@@ -1,15 +1,25 @@
 class Order < ActiveRecord::Base
-  has_many :line_items
+  has_many :line_items  
+  validates_presence_of :name, :phone_no, :baddress, :saddress, :btype
   
-  PAYMENT_TYPES = [
-    # Displayed stored in db
-    [ "Check" , "check" ],
-    [ "Credit card" , "cc" ],
-    [ "Purchase order" , "po" ]
-  ]
-  
-  validates_presence_of :name, :phone_no, :email #, :message
-#  validates_inclusion_of :pay_type, :in => PAYMENT_TYPES.map {|disp, value| value}
+  EmailAddress = begin
+    qtext = '[^\\x0d\\x22\\x5c\\x80-\\xff]'
+    dtext = '[^\\x0d\\x5b-\\x5d\\x80-\\xff]'
+    atom = '[^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-' +
+      '\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+'
+    quoted_pair = '\\x5c[\\x00-\\x7f]'
+    domain_literal = "\\x5b(?:#{dtext}|#{quoted_pair})*\\x5d"
+    quoted_string = "\\x22(?:#{qtext}|#{quoted_pair})*\\x22"
+    domain_ref = atom
+    sub_domain = "(?:#{domain_ref}|#{domain_literal})"
+    word = "(?:#{atom}|#{quoted_string})"
+    domain = "#{sub_domain}(?:\\x2e#{sub_domain})*"
+    local_part = "#{word}(?:\\x2e#{word})*"
+    addr_spec = "#{local_part}\\x40#{domain}"
+    pattern = /\A#{addr_spec}\z/
+  end
+  validates_format_of :email,
+   :with => EmailAddress
   
   def add_line_items_from_cart(cart)
     cart.items.each do |item|
@@ -18,4 +28,5 @@ class Order < ActiveRecord::Base
     end 
   end 
   
+
 end
