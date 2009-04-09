@@ -1,12 +1,17 @@
 <%
 unless email_cart.line_items.empty?
+  total_price = 0
+  for i in email_cart.line_items
+    total_price = i.total_price + total_price
+  end
+
 %>
 <table cellpadding="0" cellspacing="0" border="0" style="width: 90%;padding-top: 20px">
 <%= render(:partial => "store/email_cart_item" , :collection => email_cart.line_items) %>
 	<tr class="total-line" >
           <td></td>
 		<td style='text-align: right'><b>Total:</b></td>
-		<td class="total-cell" style="padding-left: 5px;" ><b><%= number_to_currency(email_cart.total_price) %></b></td>
+		<td class="total-cell" style="padding-left: 5px;" ><b><%= number_to_currency(total_price) %></b></td>
 	</tr>
 </table>
 <%
