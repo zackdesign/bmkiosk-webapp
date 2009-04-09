@@ -1,4 +1,8 @@
 <%
+if main_cart.items.nil?
+  main_cart.items = main_cart.line_items
+end
+
 unless main_cart.items.empty?
 %>
 <table cellpadding="0" cellspacing="0" border="0" style="width: 90%;padding-top: 20px">
