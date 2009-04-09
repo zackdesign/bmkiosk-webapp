@@ -18,11 +18,11 @@
         <%= form.text_field :attention, :size => 40 %>
       </p>
       <p class="padded">
-        <label for="order_purchasenum">Purchase Order #:</label><br>
+        <label for="order_purchase_number">Purchase Order #:</label><br>
         <%= form.text_field :purchase_number, :size => 40 %>
       </p>
       <p class="padded">
-        <label for="order_phone">Phone Number:</label><br>
+        <label for="order_phone_no">Phone Number:</label><br>
         <%= form.text_field :phone_no, :size => 20 %>
       </p>
 
@@ -31,15 +31,15 @@
         <%= form.text_field :email, :size => 30 %>
       </p>
       <p class="padded">
-        <label for="order_phone">Billing Type:</label><br>
+        <label for="order_billing_type">Billing Type:</label><br>
         <%= form.select :billing_type, {'Invoicing Out'=>'Invoicing Out', 'MRO'=>'MRO', 'Tech Fund Credits'=>'Tech Fund Credits'} %>
       </p>
       <p class="padded">
-        <label for="order_baddress">Billing Address:</label><br>
+        <label for="order_billing_address">Billing Address:</label><br>
         <%= form.text_area :billing_address, :rows => 3, :cols => 40 %>
       </p>
       <p class="padded">
-        <label for="order_saddress">Shipping Address:</label><br>
+        <label for="order_shippping_address">Shipping Address:</label><br>
         <%= form.text_area :shipping_address, :rows => 3, :cols => 40 %>
       </p>
       <p class="padded">

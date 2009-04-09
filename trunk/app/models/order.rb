@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
   has_many :line_items  
-  validates_presence_of :name, :phone_no, :baddress, :saddress, :btype
+  validates_presence_of :name, :phone_no, :billing_address, :shipping_address, :billing_type
   
   EmailAddress = begin
     qtext = '[^\\x0d\\x22\\x5c\\x80-\\xff]'
