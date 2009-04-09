@@ -11,7 +11,7 @@ class Emailer < ActionMailer::Base
 
   def to_service_rep(user, order)
     @recipients   = "isaac@zackdesign.biz"
-    @from         = "admin@bmtronics.com.au"
+    @from         = user[:email]
     headers         "Reply-to" => "admin@bmtronics.com.au"
     @subject      = "New web order"
     @sent_on      = Time.now
