@@ -8,8 +8,14 @@
   <h3>Customer details:</h3>
   <ul>
     <li>Name: <%= @user[:name]  %></li>
-    <li>Phone: <%= @user[:phone_no]  %></li>
+    <li>Attention: <%= @user[:attention]  %></li>
+    <li>Purchase Order #: <%= @user[:purchase_number]  %></li>    
+    <li>Billing Type: <%= @user[:billing_type]  %></li>  
   </ul>
+  <p>Billing Address</p>
+  <address><%= @user[:billing_address]  %></address>
+  <p>Shipping Address</p>
+  <address><%= @user[:shipping_address]  %></address>
   <h4>User Message:</h4>
   <p><%= @user[:message]  %></p><br /><br />
   <h3>Order ID: <%=  @order.id %></h3>
