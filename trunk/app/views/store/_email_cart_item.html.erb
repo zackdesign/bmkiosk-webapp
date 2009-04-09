@@ -15,6 +15,6 @@
 		<td><div id="cart_item_<%= email_cart_item.product.id.to_s %>_4"<%#= show ? '' : 'style="display: none;"' %>>
 		
 		
-                <td style="text-align: right; width: 80%"><div id="cart_item_<%= email_cart_item.product.id.to_s %>_2"<%#= show ? '' : 'style="display: none;"' %>><%= email_cart_item.product.quantity %> &times;</div></td>
-                <td class="item-price" style="padding-left: 5px;"><div id="cart_item_<%= email_cart_item.product.id.to_s %>_3"<%#= show ? '' : 'style="display: none;"' %>><%= number_to_currency(email_cart_item.product.price) %></div></td>
+                <td style="text-align: right; width: 80%"><div id="cart_item_<%= email_cart_item.product.id.to_s %>_2"<%#= show ? '' : 'style="display: none;"' %>><%= email_cart_item.quantity %> &times;</div></td>
+                <td class="item-price" style="padding-left: 5px;"><div id="cart_item_<%= email_cart_item.product.id.to_s %>_3"<%#= show ? '' : 'style="display: none;"' %>><%= number_to_currency(email_cart_item.total_price) %></div></td>
 	</tr>
