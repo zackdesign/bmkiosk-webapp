@@ -111,20 +111,44 @@ class PhonesController < ApplicationController
     @plan_group_ids = @plans.collect { |plan| plan.plan_group.id }
     
     # Now find the consumer plan groups
-            if session[:user_type] == '4'
-                @categories = ['business','consumer']
-            elsif session[:user_type] == 3
-                @categories = ['corporate','consumer']
-            elsif session[:user_type] == 2
-                @categories = ['government','consumer']
-            else
-                @categories = ['consumer']
+    if session[:user_type] == '4'
+#      @categories = ['business','consumer']
+      @categories = ['business']
+      @other_name = "Business"
+    elsif session[:user_type] == '3'
+#      @categories = ['corporate','consumer']
+      @categories = ['corporate']
+      @other_name = "Corporate"
+    elsif session[:user_type] == '2'
+#      @categories = ['government','consumer']
+      @categories = ['government']
+      @other_name = "Government"
+    else
+#      @categories = ['consumer']
+      @categories = []
+      @other_name = ""
     end
     
-    @plan_groups_consumer = PlanGroup.find_all_by_categories_and_id(@categories,  @plan_group_ids.uniq!)
+#    @plan_groups_consumer = PlanGroup.find_all_by_categories_and_id(@categories,  @plan_group_ids.uniq!)
+    @plan_groups_consumer = PlanGroup.find_all_by_categories_and_id('consumer',  @plan_group_ids.uniq!)
     
     if @plan_groups_consumer.nil?
        @plan_groups_consumer = Array.new
+    end
+
+    @consumer_mro = PlanGroup.find_all_by_categories_and_applies_all_phones("consumer", 1)
+    if @consumer_mro.nil?
+          @consumer_mro = Array.new
+    end
+
+    @plan_groups_other = PlanGroup.find_all_by_categories_and_id(@categories,  @plan_group_ids.uniq!)
+    if @plan_groups_other.nil?
+       @plan_groups_other = Array.new
+    end
+
+    @other_mro = PlanGroup.find_all_by_categories_and_applies_all_phones(@categories, 1)
+    if @other_mro.nil?
+      @other_mro = Array.new
     end
     
     else
@@ -139,6 +163,163 @@ class PhonesController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @phone }
     end
+  end
+
+  def mro
+#    unless params[:phone_id].nil?
+    unless params[:id].nil?
+#      @phone = Phone.find(params[:phone_id])
+      @phone = Phone.find(params[:id])
+      @phone_cost = @phone.outright
+    else
+      @phone = nil
+      @phone_cost = 0
+    end
+    @plan = Plan.find(params[:plan_id])
+    
+    #Only show periods for the plan that are already set in the DB
+    @periods = Array.new
+    unless @plan.period.blank?
+    
+      if @plan.period.include?("12")
+        @periods << ['12 months',12]
+      end
+      if @plan.period.include?("18")
+        @periods << ['18 months',18]
+      end
+      if @plan.period.include?("24")
+        @periods << ['24 months',24]
+      end
+    
+    end
+    
+    # Check to make sure that this isn't a subsidized plan
+    @applies = params[:applies]
+    if @applies.blank?
+      @applies = false
+    end
+
+    if @periods.empty? and @applies == false
+      # Shouldn't have arrived here - redirect to the summary page
+#      redirect_to :action => "summary"
+      return
+    end
+
+    # Find the monthly cost of the plan to determine the correct tier
+    name = @plan.name.split(' ')
+    @plan_monthly = name[0].delete("$").to_i
+
+    # Now get the complete set of MRO payment amounts (totals over the period)
+    if (@plan_monthly <= 60)
+      # First tier
+      @mro_repayment_totals = mro_amounts[0 .. mro_tier_ends[0]]
+    elsif (@plan_monthly <= 150)
+      # Second tier
+      @mro_repayment_totals = mro_amounts[(mro_tier_ends[0] + 1) .. mro_tier_ends[1]]
+    else
+      # Third tier
+      @mro_repayment_totals = mro_amounts[(mro_tier_ends[1] + 1) .. mro_tier_ends[2]]
+    end
+
+    @page_title = 'Contract Options'
+
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @phone }
+    end
+  end
+
+  def summary
+    unless params[:phone_id].nil?
+      @phone = Phone.find(params[:phone_id])
+      @phone_outright = @phone.outright
+    else
+      @phone = nil
+      @phone_outright = 0
+    end
+    
+    if params[:plan_id] != "outright"
+      @plan = Plan.find(params[:plan_id])
+    else
+      @phone_outright = @phone.outright
+      @plan = nil
+    end
+    
+    if (params[:contract_length].blank?)
+      contract = ''
+    else
+      contract = params[:contract_length]
+    end
+
+    @contract_length = params[:contract_length].to_i
+    @mro_amount = params[:mro_payment_total].to_f
+    @upfront_cost = (@phone_outright >= @mro_amount) ? @phone_outright - @mro_amount : 0
+    @monthly_mro_amount = (@contract_length > 0) ? @mro_amount / @contract_length : 0
+    
+    unless @plan.nil?
+      if (@plan.description.downcase.include?('subsidized') )
+        @upfront_cost = 0
+      end
+    end
+
+    @period = contract + ' months'
+    
+    @page_title = 'Summary'
+    
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @phone }
+    end
+  end
+
+  def mro_amounts
+    [
+      # Low Tier
+      49.00,
+      99.00,
+      149.00,
+      199.00,
+      229.00,
+      259.00,
+      289.00,
+      319.00,
+      349.00,
+      379.00,
+      409.00,
+      439.00,
+      469.00,
+      499.00,
+      529.00,
+      559.00,
+      589.00,
+      619.00,
+      649.00,
+      679.00,
+
+      # High Tier
+      729.00,
+      779.00,
+      829.00,
+      879.00,
+      929.00,
+      979.00,
+      999.00,
+
+      # Premium Tier
+      1099.00,
+      1199.00,
+      1299.00,
+      1399.00,
+      1499.00
+    ]
+  end
+
+  def mro_tier_ends
+    [
+      19,
+      26,
+      31
+    ]
   end
   
   def plan_phone

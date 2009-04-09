@@ -1,0 +1,18 @@
+<%
+unless mro_groups.nil?
+%>
+	<li>
+		<h2><%= image_tag('/bmweb/arrow_blue_light.gif') %> <%= link_to_function(h(mro_groups.name), "$('" + h(mro_groups.name) + "_mro').toggle()") %></h2> <%= mro_groups.description %>
+		<ul id="<%= h(mro_groups.name) + '_mro' %>" class="plancharge" style="display: none;">
+<%
+
+  @plan_group_plans = Plan.find_all_by_plan_group(mro_groups)
+  
+  @applies = true
+%>
+<%= render :partial => "plans", :collection => @plan_group_plans %>
+		</ul>
+	</li>
+<%
+end
+%>

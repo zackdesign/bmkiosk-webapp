@@ -1,0 +1,28 @@
+<h1>Contract Length</h1>
+<%= form_tag ({ :action => "summary" }) %>
+<label for="contract_length"><%= select_tag "contract_length", options_for_select(@periods) %></label> <%= submit_tag "Summary Page &raquo;" %><br /><br />
+<% if @applies %>
+
+<h1>Monthly Repayment Options</h1>
+<ul class="tiers">
+	<li><label><input id="no_mro" type="radio" name="mro_payment_total" value="0" checked="checked"><strong>$0</strong> MRO <br /> Upfront: <strong><%= number_to_currency @phone_cost %></strong></label></li>
+<%
+  @mro_repayment_totals.each { |total|
+  
+  unless (@phone_cost-total) < 0
+  
+%>
+	<li><label><%= radio_button_tag "mro_payment_total", total %><strong><%= number_to_currency total %></strong> MRO <br /> Upfront: <strong><%= number_to_currency (@phone_cost-total) %></strong></label></li>
+<%
+  
+  end
+  
+  }
+%>
+</ul><div class="clear"></div>
+<%= submit_tag "Summary Page &raquo;" %><br /><br />
+<% end %>
+<%= hidden_field_tag "phone_id", @phone.id %>
+<%= hidden_field_tag "plan_id", @plan.id %>
+<%= hidden_field_tag "applies", @applies %>
+</form>
