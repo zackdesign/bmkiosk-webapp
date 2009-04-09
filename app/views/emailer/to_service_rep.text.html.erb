@@ -6,7 +6,12 @@
 <body>  
   <h2>New Order!</h2>
   <h3>Customer details:</h3>
-  <p></p>
+  <ul>
+    <li>Name: <%= @user[:name]  %></li>
+    <li>Phone: <%= @user[:phone_no]  %></li>
+  </ul>
+  <h4>User Message:</h4>
+  <p><%= @user[:message]  %></p><br /><br />
   <h3>Order ID: <%=  @order.id %></h3>
 <%= render(:partial => "store/main_cart" , :object => @order) %>
 </body> 
