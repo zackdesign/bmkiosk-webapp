@@ -13,31 +13,40 @@
         <label for="order_name">Name:</label><br>
         <%= form.text_field :name, :size => 40 %>
       </p>
-
+      <p class="padded">
+        <label for="order_attention">Attention:</label><br>
+        <%= form.text_field :attention, :size => 40 %>
+      </p>
+      <p class="padded">
+        <label for="order_purchasenum">Purchase Order #:</label><br>
+        <%= form.text_field :purchase_number, :size => 40 %>
+      </p>
       <p class="padded">
         <label for="order_phone">Phone Number:</label><br>
-        <%= form.text_field :phone_no, :size => 40 %>
+        <%= form.text_field :phone_no, :size => 20 %>
       </p>
 
       <p class="padded">
         <label for="order_email">E-Mail:</label><br>
-        <%= form.text_field :email, :size => 40 %>
+        <%= form.text_field :email, :size => 30 %>
       </p>
-
+      <p class="padded">
+        <label for="order_phone">Billing Type:</label><br>
+        <%= form.select :billing_type, {'Invoicing Out'=>'Invoicing Out', 'MRO'=>'MRO', 'Tech Fund Credits'=>'Tech Fund Credits'} %>
+      </p>
+      <p class="padded">
+        <label for="order_baddress">Billing Address:</label><br>
+        <%= form.text_area :billing_address, :rows => 3, :cols => 40 %>
+      </p>
+      <p class="padded">
+        <label for="order_saddress">Shipping Address:</label><br>
+        <%= form.text_area :shipping_address, :rows => 3, :cols => 40 %>
+      </p>
       <p class="padded">
         <label for="order_message">Message [optional]:</label><br>
         <%= form.text_area :message, :rows => 3, :cols => 40 %>
       </p>
-
-      <!--<p class="padded">
-        <label for="order_pay_type">Pay with:</label><br>
-        <%#=
-          form.select :pay_type,
-                       Order::PAYMENT_TYPES, 
-                      :prompt => "Select a payment method"
-        %>
-      </p>-->
-    
+   
       <%= submit_tag "Notify BM Tronics Sales Rep", :class => "submit" %>
     <% end %>  
   </fieldset>
