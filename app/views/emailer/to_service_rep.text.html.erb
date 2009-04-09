@@ -4,10 +4,11 @@
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />  
 </head>  
 <body>  
-  <p>A customer has just placed the following order:</p>
-<%= debug @order %>
-<%= debug @user %>
-<%#= render(:partial => "store/main_cart" , :object => @order) %>
+  <h2>New Order!</h2>
+  <h3>Customer details:</h3>
+  <p></p>
+  <h3>Order ID: <%=  @order.id %></h3>
+<%= render(:partial => "store/main_cart" , :object => @order) %>
 </body> 
 </html> 
 
