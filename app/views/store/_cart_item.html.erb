@@ -11,11 +11,29 @@
 %>
 	<tr class="item_title">
 		<td colspan="3" style="border-bottom: 0px;">
-			<div id="cart_item_<%= cart_item.product.id.to_s %>_1"<%#= show ? '' : 'style="display: none;"' %>>
+			<!--<div id="cart_item_<%= cart_item.product.id.to_s %>_1"<%#= show ? '' : 'style="display: none;"' %>>-->
+			<div id="cart_item_<%= cart_item.product.id.to_s %>_1">
 			<!--<div align="left"><%= h(cart_item.title) %></div>-->
+			<% jscript_id = h(cart_item.title) + "_" + cart_item.id.to_s %>
+			<%
+			unless cart_item.plan_id == 0
+			%>
+			<%= link_to_function(h(cart_item.title), "$('" + jscript_id + "').toggle()") %></div>
+				<ul id="<%= jscript_id %>" class="plancharge" style="display: none;">
+					<% @plan = Plan.find(cart_item.plan_id) %>
+					<li><%= render :partial => "phones/charges_plan", :object => @plan %></li>
+				</ul>
+			<%
+			else
+			%>
 			<%= h(cart_item.title) %>
+			<%
+			end
+			%>
 		</td>
 	</tr>
+
+<%#= debug @plan %>
 
 	<!--<tr id="cart_item_<%= cart_item.product.id.to_s %>_2" style="/*display: none;*/">-->
 	<tr class="item_info">

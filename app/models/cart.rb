@@ -5,14 +5,28 @@ class Cart
     @items = []
   end
   
-  def add_product(product)
+  def add_product(product, phone_id, plan_id, mro)
     current_item = @items.find {|item| item.product == product}
+    
     if current_item
       current_item.increment_quantity
     else
       current_item = CartItem.new(product)
       @items << current_item
     end
+
+    unless phone_id.nil?
+      current_item.phone_id = phone_id
+    end
+
+    unless plan_id.nil?
+      current_item.plan_id = plan_id
+    end
+
+    unless mro.nil?
+      current_item.mro_amount = mro
+    end
+
     current_item
   end
   

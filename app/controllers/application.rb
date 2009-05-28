@@ -18,14 +18,14 @@ class ApplicationController < ActionController::Base
   end
   
   
-  def add_to_cart(id)
+  def add_to_cart(id, phone_id, plan_id, mro)
     begin                     
       product = Product.find(id)  
     rescue ActiveRecord::RecordNotFound
       logger.error("Attempt to access invalid product #{id}")
       redirect_to_index("Invalid product")
     else
-      @current_item = @cart.add_product(product)
+      @current_item = @cart.add_product(product, phone_id, plan_id, mro)
       #redirect_to_index("Added to cart") unless request.xhr?         
     end
   end
