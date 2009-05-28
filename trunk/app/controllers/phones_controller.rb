@@ -175,7 +175,10 @@ class PhonesController < ApplicationController
       @phone = nil
       @phone_cost = 0
     end
+    params.delete(:id)
+
     @plan = Plan.find(params[:plan_id])
+    params.delete(:plan_id)
     
     #Only show periods for the plan that are already set in the DB
     @periods = Array.new
@@ -198,6 +201,7 @@ class PhonesController < ApplicationController
     if @applies.blank?
       @applies = false
     end
+    params.delete(:applies)
 
     if @periods.empty? and @applies == false
       # Shouldn't have arrived here - redirect to the summary page
@@ -222,6 +226,8 @@ class PhonesController < ApplicationController
     end
 
     @page_title = 'Contract Options'
+
+    @pass_on = params
 
     respond_to do |format|
       format.html
@@ -407,7 +413,10 @@ class PhonesController < ApplicationController
   
   def cartadd
     begin
-      @phone = Phone.find(params[:id])
+#      @phone = Phone.find(params[:id])
+#      if @phone.nil?
+      @phone = Phone.find(params[:phone_id])
+#      end
       @phone.update_attribute('popularity', @phone.popularity + 1)
 #      if params[:plan_id].nil? or params[:plan_id].empty?
 #        phone_cost = phone.outright
@@ -433,15 +442,31 @@ class PhonesController < ApplicationController
       @plan_id = @purchase_type.empty? ? params["plan_id"] : params["plan_id_" + @purchase_type]
       unless @plan_id == "outright"
         @plan = Plan.find(@plan_id)
-        @phone_cost = params["phone_price_" + ((@purchase_type.empty?) ? @plan_id : @purchase_type)]
+        @phone_cost = (params["phone_price_" + ((@purchase_type.empty?) ? @plan_id : @purchase_type)]).to_f
       else
         @plan = nil
-        @phone_cost = @phone.outright
+        @phone_cost = @phone.outright.to_f
+      end
+
+      if params[:contract_length]
+        @contract = params[:contract_length].to_i
+      else
+        @contract = 0
+      end
+
+      if params[:mro_payment_total]
+        @mro_total = params[:mro_payment_total].to_f
+      else
+        @mro_total = 0.0
       end
 
       unless @plan.nil?
 #        @insert_query = "INSERT INTO products (title, price) VALUES ('" + @phone.name + " on the " + @plan.name + " " + @purchase_type + " plan" + "', '" + @phone_cost.to_s() + "')"
-        @product_title = @phone.name + " on the " + @plan.name# + " " + @purchase_type + " plan"
+        @product_title = @phone.name + " on the " + @plan.name + " (Upfront $" + (@phone_cost - @mro_total).to_s +
+                         ((@contract != 0) && (@mro_total != 0) ? " and $" + (@mro_total / @contract).to_s + " per month " : "") +
+                         ((@contract != 0) ? " on " + @contract.to_s + " months contract" : "") +
+                         ")"
+                         # + " " + @purchase_type + " plan"
         @product_desc = @plan.description # strip_tags(@plan.description)
         unless @product_desc.length < 180
           @product_desc = @product_desc[0 .. 177] + "..."
@@ -479,9 +504,10 @@ class PhonesController < ApplicationController
       else
         ActiveRecord::Base.connection.execute("INSERT INTO products (title, price, description, image_url) VALUES ('" + @product_title + "', '" + @product_cost.to_s + "', '" + @product_desc + "', '" + @product_img + "')")
         last_id = ActiveRecord::Base.connection.select_value("SELECT id FROM products WHERE id = LAST_INSERT_ID()") 
+        logger.error("AAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
       end
 
-      add_to_cart(last_id)
+      add_to_cart(last_id, @phone.id, (@plan.nil?) ? nil : @plan.id, @mro_total)
     end
 #      flash.now[:notice] = "Added to cart"
 

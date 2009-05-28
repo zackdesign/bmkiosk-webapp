@@ -1,0 +1,59 @@
+<%
+# first get list of all charges associated with plan group
+# go through each set of charges based on each plan
+# create a first column for the name, then just keep adding cells for each plan
+
+# "charges_plan" represents the plan which has the charges to display - a symptom
+# of the naming requirement of Rails partials
+plan = charges_plan
+unless plan.nil?
+  rows = {}
+
+  td = ''
+
+  value = ChargeValue.find(:all, :conditions => {:plan_id => plan.id})
+  amount = ChargeValue.count(:conditions => {:plan_id => plan.id})
+
+  if amount == 0
+    td = td +'<td></td>'
+  end
+
+  for v in value
+    name = Charge.find(:first, :conditions => {:id => v.charge_id})
+    key = '<th class="addnewcharge" id="'+name['name']+'"> '
+
+    if rows[key].nil?
+      rows[key] = name['name'] + '</th>' + td + '<td>' + v.value + '</td>'
+    else
+      rows[key] << td + '<td>' + v.value + '</td>'
+    end
+
+    td = ''
+  end
+
+  unless rows.empty?
+%>
+
+				<table cellpadding="0" cellspacing="0" border="0">
+<%
+    rows.each { |key, value|
+%>
+	<tr class="<%= cycle("even", "odd") %>">
+		<%= key %><%= value %>
+	</tr>
+<%
+    }
+%>
+				</table>
+<%
+  else
+%>
+				No Plan Charges Information Available
+<%
+  end
+else
+%>
+				No Plan Charges Information Available
+<%
+end
+%>
