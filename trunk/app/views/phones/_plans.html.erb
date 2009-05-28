@@ -12,7 +12,16 @@ unless plans.nil?
 %>
 	<li>
 		<!--<label><h3><input type="radio" name="plan_id" value="<%= plans.id %>" onclick="set_inputs('<%= (@applies ? 'true' : '') %>', '<%= (@mropage ? url_for({ :action => "mro"}) : url_for({ :action => "summary"})) %>');" /><input type="hidden" name="phone_price_<%= plans.id %>" value="<%= plans.id %>" />-->
-		<label><h3><input type="radio" name="plan_id" value="<%= plans.id %>" onclick="set_inputs('<%= (@applies ? 'true' : '') %>', '<%= (@mropage ? url_for({ :action => "mro"}) : url_for({ :action => "cartadd"})) %>');" /><input type="hidden" name="phone_price_<%= plans.id %>" value="<%= plans.id %>" />
+<%
+phone_price = @phone.outright
+if session[:user_type] == '3'
+  phone_price = @phone.corp_price
+elsif session[:user_type] == '2'
+  phone_price = @phone.gov_price
+end
+
+%>
+		<label><h3><input type="radio" name="plan_id" value="<%= plans.id %>" onclick="set_inputs('<%= (@applies ? 'true' : '') %>', '<%= (@mropage ? url_for({ :action => "mro"}) : url_for({ :action => "cartadd"})) %>');" /><input type="hidden" name="phone_price_<%= plans.id %>" value="<%= phone_price %>" />
 		<%= link_to_function(h(plans.name), "$('" + h(plans.name) + "').toggle()") %></h3></label>
 		<ul id="<%= h(plans.name) %>" style="display: none;">
 			<li><%= render :partial => "charges_plan", :object => plans %></li>
