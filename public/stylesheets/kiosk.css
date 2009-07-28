@@ -162,7 +162,9 @@ float: left;
   text-decoration: none;
 }
 
-.backbutton {
+.backbutton a {
+	margin: 10px;
+	border: 1px solid black;
 }
 
 #zd {
