@@ -1,6 +1,18 @@
-<h1>Contract Length</h1>
 <%= form_tag ({ :action => "summary" }) %>
-<label for="contract_length"><%= select_tag "contract_length", options_for_select(@periods) %></label> <%= submit_tag "Summary Page &raquo;" %><br /><br />
+<%= submit_tag "Next &raquo;", {'class'=>'submit'} %>
+
+<%
+  firstitem = true
+  @periods.each { |period|
+%>
+    <label class="period"><%= radio_button_tag "contract_length", period[1], firstitem  %><%= period[0] %></label>
+<%
+    firstitem = false
+  }
+%>
+
+
+
 <% if @applies %>
 
 <h1>Monthly Repayment Options</h1>
@@ -20,7 +32,7 @@
   }
 %>
 </ul><div class="clear"></div>
-<%= submit_tag "Summary Page &raquo;" %><br /><br />
+<%= submit_tag "Next &raquo;", {'class'=>'submit'} %>
 <% end %>
 <%= hidden_field_tag "phone_id", @phone.id %>
 <%= hidden_field_tag "plan_id", @plan.id %>

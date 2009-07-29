@@ -177,27 +177,38 @@ float: left;
 }
 
 .buy, .bplan {
-  color: white;
-  background-color: #3366E2;
   text-align: center;
   margin: 10px;
   font-size: 20pt;
   display: block;
   padding: 20px;
+  text-decoration: none;
+
+  border: 1px solid #CCCCCC;
+  background-color: #DDDDDD;
 }
 
 
-.buy:hover, .bplan:hover {
+.buy:hover, .bplan:hover, .bplan:active, .buy:active {
   text-decoration: none;
-  color: #DFDFDF;
+  color: #333333;
+  border: 1px solid #BBBBBB;
+  background-color: #666666;
 }
 
 .drop-down a {
-  padding: 20px;
+  padding: 15px;
   width: 100px;
   color: black;
   font-size: 12pt;
   font-weight: bold;
+  border: 1px solid #DEDEDE;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.drop-down a:active {
+  border: 1px solid #999999;
 }
 
 .drop-down {
@@ -230,23 +241,50 @@ th {
 
 .plantype a {
   padding: 15px;
-  background-color: #3366E2;
-  margin: 20px;
+  border: 1px solid #CCCCCC;
+  background-color: #DDDDDD;
   font-size: 16pt;
-  color: white;
+  width: 45%;
+  display: block;
+  float: left;
+}
+
+.plantype a.business {
+    float: right;
 }
 
 .plantype {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  clear: both;
+}
+
+#consumer ul, #business ul {
+  padding:0;
+  margin: 0;
 }
 
 #consumer li, #business li {
   list-style: none;
 }
 
+#consumer li li, #business li li {
+  list-style: none;
+  padding-left: 10px;
+}
+
 #business {
-  margin-left: 320px;
+  float: right;
+}
+
+#consumer {
+    float: left;
+}
+
+#business, #consumer {
+    clear: both;
+
+  width: 48%;
 }
 
 .plancharge ul {
@@ -301,12 +339,24 @@ a img {
 /*  end Kplans */
 
 
+input.submit, label.period {
+    float: right;
+    background-color: #DDDDDD;
+    border: 1px solid #AAAAAA;
+    padding: 15px;
+    margin: 10px;
+    font-size: 12pt;
+    color: #4C4CD4;
+}
+
 
 #backbutton {
   position: absolute;
   margin-left: 10%;
   margin-top: 15px;
-} 
+}
+
+.tiers {clear: both}
 
 .tiers ul {
   margin: 0;
@@ -315,11 +365,27 @@ a img {
 
 .tiers li {
   list-style: none;
-  padding: 10px;
-  margin: 10px;
   font-size: 12pt;
   display: inline;
   float: left;
+  width: 200px;
+}
+
+
+.tiers li label {
+  padding: 10px;
+  margin: 10px;
+  border: 1px dotted #CCCCCC;
+  display: block;
+  background-color: #EFEFEF;
+}
+
+.tiers li label:active {
+  padding: 10px;
+  margin: 10px;
+  border: 1px dotted #333333;
+  display: block;
+  background-color: #DDDDDD;
 }
 
 .clear {clear: both}

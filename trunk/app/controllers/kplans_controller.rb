@@ -135,7 +135,7 @@ class KplansController < ApplicationController
     @mro_amount = params[:mro_payment_total].to_f
     @upfront_cost = (@phone_outright >= @mro_amount) ? @phone_outright - @mro_amount : 0
     @monthly_mro_amount = (@contract_length > 0) ? @mro_amount / @contract_length : 0
-    if (@plan.description.downcase.include?('subsidized') )
+    if (@plan.description.downcase.include?('$0') )
         @upfront_cost = 0
     end
     @period = contract + ' months'
