@@ -13,8 +13,8 @@ function hide_show(hide_id, show_id)
 }
 </script>
 
-<div class='plantype'><%= link_to_function("Consumer Plans", "hide_show('business', 'consumer')") %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-<%= link_to_function("Business Plans", "hide_show('consumer', 'business')") %></div>
+<div class='plantype'><%= link_to_function("Consumer Plans", "hide_show('business', 'consumer')") %> 
+<%= link_to_function("Business Plans", "hide_show('consumer', 'business')", {'class'=>'business'}) %></div>
 
 
 
@@ -54,3 +54,5 @@ end
 %>
 	</ul>
 </div>
+
+<div style="clear:both"><br /></div>
