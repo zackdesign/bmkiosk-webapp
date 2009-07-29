@@ -49,22 +49,8 @@
 </tr>
 <tr class=" bottom">
 
-<td><%= show_thumbnail_if_available(phone) %></td>
-<td><div  class='features'><%
-      unless (phone.features.empty?)
-%>
-			<ul>
-<%
-        for feature in phone.features
-%>
-				<li><%#= show_feature_thumbnail_if_available(feature) %></li>
-<%
-		end
-%>
-			</ul>
-<%
-	  end
-%></div></td>
+<td width="50"><%= show_thumbnail_if_available(phone) %></td>
+<td><%= truncate(phone.description, 140) %> <a style="text-decoration: none" href="<%=  url_for({ :action => 'show', :id => phone.id }) %>">more &raquo;</a></td>
 <td class='price'><%= number_to_currency phone.outright %><br /><br /><strong>
 <% if @user == '3' %>
 Corp.<br />
