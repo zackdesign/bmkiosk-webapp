@@ -20,22 +20,26 @@
 
 <td><%= show_thumbnail_if_available(accessory) %></td>
 <td><div class='description'><%= accessory.description %></div></td>
-<td class='price'><%= number_to_currency accessory.price %><br /><br /><strong>
+<td class='price'>
 <% if @user == '3' %>
 Corp.<br />
 <%= number_to_currency accessory.corp_price %>
 <% elsif @user == '2' %>
 Gov.<br />
 <%= number_to_currency accessory.govt_price %>
-<% end %></strong>
+<% else  %>
+<%= number_to_currency accessory.price %>
+<% end %>
 </td>
 <!--<td><%#= link_to('Add to Cart', url_for({ :action => 'cartadd', :id => accessory.id, :page => @page, :brand => @selected_brand }), { :class => 'orange_button' }) %></td>-->
-<td><%= link_to_remote('Add to Cart', :url => { :action => 'cartadd', :id => accessory.id, :page => @page, :brand => @selected_brand, :acc_price => accessory.price.to_s }, :html => { :class => 'orange_button' }) %>
+<td>
 <% if @user == '3' %>
 <br /><%= link_to_remote('Add to Cart', :url => { :action => 'cartadd', :id => accessory.id, :page => @page, :brand => @selected_brand, :acc_price => accessory.corp_price.to_s }, :html => { :class => 'orange_button' }) %>
 <% elsif @user == '2' %>
 <br /><%= link_to_remote('Add to Cart', :url => { :action => 'cartadd', :id => accessory.id, :page => @page, :brand => @selected_brand, :acc_price => accessory.govt_price.to_s }, :html => { :class => 'orange_button' }) %>
-<% end %>
+<% else  %>
+<%= link_to_remote('Add to Cart', :url => { :action => 'cartadd', :id => accessory.id, :page => @page, :brand => @selected_brand, :acc_price => accessory.price.to_s }, :html => { :class => 'orange_button' }) %>
+    <% end %>
 </td>
 
 </tr>

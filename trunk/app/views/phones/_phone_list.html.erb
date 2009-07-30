@@ -51,14 +51,16 @@
 
 <td width="50"><%= show_thumbnail_if_available(phone) %></td>
 <td><%= truncate(phone.description, 140) %> <a style="text-decoration: none" href="<%=  url_for({ :action => 'show', :id => phone.id }) %>">more &raquo;</a></td>
-<td class='price'><%= number_to_currency phone.outright %><br /><br /><strong>
+<td class='price'>
 <% if @user == '3' %>
 Corp.<br />
 <%= number_to_currency phone.corp_price %>
 <% elsif @user == '2' %>
 Gov.<br />
 <%= number_to_currency phone.gov_price %>
-<% end %></strong></td>
+<% else  %>
+<%= number_to_currency phone.outright %>
+<% end %></td>
 <td><%= link_to('More Details', url_for({ :action => 'show', :id => phone.id, :plan => @plan, :existing => @existing, :network => @network, :service => @service_type }), { :class => 'orange_button' }) %>
 </td>
 
