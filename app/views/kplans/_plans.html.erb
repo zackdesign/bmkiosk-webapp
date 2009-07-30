@@ -33,9 +33,9 @@ unless plans.nil?
   if show
 %>
 	<li>
-		<h2 style="padding:10px; padding-left: 0px;"><%= link_to(h(plans.name), @plan_options, {:style=>'padding:20px;padding-left:0px;'}) %></h2>
+		<h3><%= link_to(h(plans.name), @plan_options) %></h3>
 
-		<h3><%= link_to_function('View Charges for this Plan', "$('" + h(plans.name) + "').toggle()") %></h3>
+		<h4><%= link_to_function('View Charges for this Plan', "$('" + h(plans.name) + "').toggle()") %></h4>
 		<ul id="<%= h(plans.name) %>" style="display: none;">
 					<li><%= render :partial => "charges_plan", :object => plans %></li>
 		</ul>

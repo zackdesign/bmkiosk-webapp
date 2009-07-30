@@ -162,9 +162,6 @@ float: left;
   text-decoration: none;
 }
 
-.backbutton a {
-	margin: 10px;
-}
 
 #zd {
   float: right;
@@ -241,12 +238,13 @@ th {
 
 .plantype a {
   padding: 15px;
-  border: 1px solid #CCCCCC;
-  background-color: #DDDDDD;
+  border: 1px solid #333333;
+  background-color: #666666;
   font-size: 16pt;
   width: 45%;
   display: block;
   float: left;
+  color: white;
 }
 
 .plantype a.business {
@@ -268,11 +266,6 @@ th {
   list-style: none;
 }
 
-#consumer li li, #business li li {
-  list-style: none;
-  padding-left: 10px;
-}
-
 #business {
   float: right;
 }
@@ -286,6 +279,30 @@ th {
 
   width: 48%;
 }
+
+#consumer h2 a, #business h2 a {
+  border: 1px solid #999999;
+  background-color: #BBBBBB;
+  padding: 15px;
+  display: block;
+}
+
+#consumer h3 a, #business h3 a {
+  border: 1px solid #AAAAAA;
+  background-color: #DEDEDE;
+  padding: 15px;
+  display: block;
+}
+
+#consumer h4 a, #business h4 a {
+  border: 1px dotted #BBBBBB;
+  border-top: 0px;
+  background-color: white;
+  padding: 15px;
+  margin: 0px;
+  display: block;
+}
+
 
 .plancharge ul {
   margin: 0px;
@@ -341,19 +358,28 @@ a img {
 
 input.submit, label.period {
     float: right;
-    background-color: #DDDDDD;
-    border: 1px solid #AAAAAA;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
     padding: 15px;
     margin: 10px;
     font-size: 12pt;
-    color: #4C4CD4;
+    color: black;
+    font-weight: bold;
 }
 
 
-#backbutton {
-  position: absolute;
-  margin-left: 10%;
-  margin-top: 15px;
+.backbutton a {
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    margin: 5px;
+    padding: 20px 0px 20px 0px;
+    width: 100%;
+    font-size: 12pt;
+    color: black;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    text-decoration: none;
 }
 
 .tiers {clear: both}
