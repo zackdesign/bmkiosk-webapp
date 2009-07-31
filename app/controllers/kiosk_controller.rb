@@ -44,7 +44,7 @@ class KioskController < ApplicationController
 	  </options>\r\n"
     
     for p in phones
-      
+
       pos = '';
       
       if p.coming_soon
@@ -65,7 +65,11 @@ OF STOCK'
           picture = p.picture_name
       end
       
+      require 'cgi'
+      picture = CGI.unescape(picture)
+      
       unless picture.blank?
+      
       
       picture += '.jpg'
       
