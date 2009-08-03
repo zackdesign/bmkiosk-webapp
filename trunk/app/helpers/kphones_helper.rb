@@ -19,7 +19,12 @@ module KphonesHelper
   
   def show_phone_thumbnail_if_available(phone)
     
-     unless FileTest.exist?("public/db_images/features/#{phone.picture_name}")
+     picture = phone.picture_name
+    
+     require 'cgi'
+     picture = CGI.unescape(picture)
+
+     unless FileTest.exist?("public/db_images/features/#{picture}")
           image = Magick::Image.from_blob(phone.picture_data).first
           
           max_dimension = (image.columns < image.rows) ? image.rows : image.columns
@@ -29,9 +34,9 @@ module KphonesHelper
                       thumb = image.resize_to_fit(300,300)
           end
           
-          File.open('public/db_images/phones/'+phone.picture_name,'w'){|f| f.write(thumb.to_blob)}    end
+          File.open('public/db_images/phones/'+picture,'w'){|f| f.write(thumb.to_blob)}    end
     
-    image_tag("/db_images/phones/"+phone.picture_name)
+    image_tag("/db_images/phones/"+picture)
   
   end
 end
