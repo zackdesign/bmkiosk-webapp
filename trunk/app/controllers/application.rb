@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
   
   
-  def add_to_cart(id, phone_id, plan_id, mro)
+  def add_to_cart(id, phone_id = 0, plan_id = 0, mro = 0)
     begin                     
       product = Product.find(id)  
     rescue ActiveRecord::RecordNotFound
