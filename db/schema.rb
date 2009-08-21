@@ -203,11 +203,6 @@ ActiveRecord::Schema.define(:version => 56) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
-  create_table "user_values", :id => false, :force => true do |t|
-    t.text    "name",  :null => false
-    t.boolean "value"
-  end
-
   create_table "users", :force => true do |t|
     t.string "name"
     t.string "hashed_password"
