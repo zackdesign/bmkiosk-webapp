@@ -4,6 +4,12 @@
   width: 100%;
 }
 
+.cart .plancharge li {
+
+    list-style: none;
+    font-size: 8pt;
+}
+
 .item_title td {
   padding-bottom: 5px;
   padding-top: 10px;
@@ -71,6 +77,16 @@ legend {
   font-weight: bold;
   padding: 5px;
 }
+
+
+/* MRO */
+
+.tiers li {
+    float: left;
+    padding: 10px;
+    margin: 10px;
+}
+
 
 /* Accessories */
 
@@ -724,7 +740,9 @@ input, select, table, textarea {
 	margin-top: -1px;
 	font-size: 1px;
 	line-height: 1px; }
-
+.clear {
+    clear: left;
+}
 
 
 /* --- PAGE CONTAINERS --- */

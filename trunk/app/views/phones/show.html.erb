@@ -55,7 +55,7 @@
 <br /><br />
 
 <% unless (@phone.coming_soon == true) %>
-<script>
+<script type="text/javascript">
 function set_inputs(app_val, act_val)
 {
 //	alert('setting applies = ' + app_val);
@@ -70,7 +70,7 @@ function set_inputs(app_val, act_val)
 
 <% if (@plan == nil) %>
 <h2>Select a Purchase Type to continue</h2>
-<script>
+<script type="text/javascript">
 function chk_buy()
 {
 	var cont = false;
@@ -95,6 +95,10 @@ function chk_buy()
 			buy = true;
 		}
 	}
+
+    var outright = document.getElementById('outright');
+    if (outright.checked)
+        chked = true;
 
 	if (!chked)
 	{
@@ -186,7 +190,16 @@ end
         <label><input type="radio" name="plan_type" value="phone" /></label>
 	   		<span>$0 Upfront (for phone & service) on selected Personal & Business Phone Plans for 24 months</span> -->
 	<div>
-		<label><h3><input type="radio" name="plan_id" value="outright" onclick="set_inputs('', '<%= url_for({ :action => 'cartadd'}) %>');" />Buy Outright for <%= number_to_currency @phone.outright %> (no plan)</h3></label>
+		<label><h3><input type="radio" name="plan_id" id="outright" value="outright" onclick="set_inputs('', '<%= url_for({ :action => 'cartadd'}) %>');" />Buy Outright for
+
+    <% if session[:user_type] == '3'  %>
+    <%= number_to_currency @phone.corp_price %><input type="hidden" name="phone_price_outright" value="<%= @phone.corp_price  %>" />
+    <% elsif session[:user_type] == '2'  %>
+    <%= number_to_currency @phone.gov_price %><input type="hidden" name="phone_price_outright" value="<%= @phone.gov_price  %>" />
+    <% else  %>
+    <%= number_to_currency @phone.outright %><input type="hidden" name="phone_price_outright" value="<%= @phone.outright  %>" />
+    <% end  %>
+    (no plan)</h3></label>
 	</div>
 	<% 
 	

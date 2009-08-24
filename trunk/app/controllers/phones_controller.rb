@@ -47,7 +47,7 @@ class PhonesController < ApplicationController
     # Build a list of conditions that the phones have to meet
     conditions = "outofstock = '0' AND discontinued = '0' ";
     unless ((params[:brand] == nil) or (params[:brand].empty?))
-      conditions += "brand = '" + params[:brand] + "'"
+      conditions += "AND brand = '" + params[:brand] + "'"
     end
 
     unless ((params[:purchase_type] == nil) or (params[:purchase_type].empty?))
@@ -62,10 +62,14 @@ class PhonesController < ApplicationController
     end
 
     unless ((params[:network] == nil) or (params[:network].empty?))
+
+      network = params[:network]
+      network = network.gsub('™', '&trade;')
+
       unless (conditions.empty?)
         conditions += " AND "
       end
-      conditions += "network = '" + params[:network] + "'"
+      conditions += "network = '" + network + "'"
     end
 
     # Get a list of phones that match the specified search criteria
@@ -445,7 +449,7 @@ class PhonesController < ApplicationController
         @phone_cost = (params["phone_price_" + ((@purchase_type.empty?) ? @plan_id : @purchase_type)]).to_f
       else
         @plan = nil
-        @phone_cost = @phone.outright.to_f
+        @phone_cost = params["phone_price_outright"].to_f
       end
 
       if params[:contract_length]
@@ -463,7 +467,7 @@ class PhonesController < ApplicationController
       unless @plan.nil?
 #        @insert_query = "INSERT INTO products (title, price) VALUES ('" + @phone.name + " on the " + @plan.name + " " + @purchase_type + " plan" + "', '" + @phone_cost.to_s() + "')"
         @product_title = @phone.name + " on the " + @plan.name + " (Upfront $" + (@phone_cost - @mro_total).to_s +
-                         ((@contract != 0) && (@mro_total != 0) ? " and $" + (@mro_total / @contract).to_s + " per month " : "") +
+                         ((@contract != 0) && (@mro_total != 0) ? " and $" + (@mro_total / @contract).to_i.to_s + " per month " : "") +
                          ((@contract != 0) ? " on " + @contract.to_s + " months contract" : "") +
                          ")"
                          # + " " + @purchase_type + " plan"
@@ -472,13 +476,15 @@ class PhonesController < ApplicationController
           @product_desc = @product_desc[0 .. 177] + "..."
         end
       else
-        @product_title = @phone.name
+        @product_title = @phone.brand+' '+@phone.name
         @product_desc = @phone.description # strip_tags(@phone.description)
         unless @product_desc.length < 180
           @product_desc = @product_desc[0 .. 177] + "..."
         end
       end
+      @product_desc = @product_desc.gsub("'", "\\'")
       @product_cost = @phone_cost
+      
       unless @phone.picture_name.blank?
         @product_img = url_for({ :action => 'thumbnail', :id => @phone.id })
       else
@@ -605,7 +611,7 @@ class PhonesController < ApplicationController
     @networks_records = Phone.find(:all, :select => "DISTINCT network", :order => "network ASC")
     @networks = Array.new(1, ["Don't Mind", ""])
 
-    unless (@networks_records == nil)
+    unless ((@networks_records.empty?))
       @networks_records.each { |network_record| @networks << [network_record.network, network_record.network] }
     end
 
