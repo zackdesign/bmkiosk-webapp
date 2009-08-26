@@ -147,6 +147,8 @@ function set_inputs(app_val, act_val)
         <div>
 	   	<ul>
 <%
+
+begin
 unless (@plan_groups_consumer.empty?)
   
 %>
@@ -159,7 +161,8 @@ else
 <%
 
 end
-
+rescue
+end
 
 %>
 	</ul>	
@@ -167,6 +170,7 @@ end
         <div>
 	   	<ul>
 <%
+begin
 unless (@plan_groups_other.empty?)
   
 %>
@@ -179,7 +183,8 @@ elseif !@other_name.empty?
 <%
 
 end
-
+rescue
+end
 
 %>
 	</ul>	
