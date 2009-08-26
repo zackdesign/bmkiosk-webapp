@@ -112,8 +112,10 @@ class PhonesController < ApplicationController
     @plans = Plan.find_by_sql("SELECT p.* FROM plans p, phones_plans pp WHERE p.id = pp.plan_id AND pp.phone_id = " + params[:id]) 
     
     # Now extract a collection containing each plan group id associated with each plan found
-    @plan_group_ids = @plans.collect { |plan| plan.plan_group.id }
-    
+    begin
+      @plan_groups = true
+      @plan_group_ids = @plans.collect { |plan| plan.plan_group.id }
+
     # Now find the consumer plan groups
     if session[:user_type] == '4'
 #      @categories = ['business','consumer']
@@ -154,6 +156,14 @@ class PhonesController < ApplicationController
     if @other_mro.nil?
       @other_mro = Array.new
     end
+
+
+    rescue 
+      # no need to do anything here - this happens when there is no plan group attached to the phone
+      @plan_groups = false
+    end
+
+
     
     else
     
