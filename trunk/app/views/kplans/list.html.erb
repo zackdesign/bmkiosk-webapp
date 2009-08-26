@@ -21,6 +21,8 @@ function hide_show(hide_id, show_id)
 <div id="consumer" style="display: none;">
 	<ul>
 <%
+begin
+
 unless @plan_groups_consumer.empty? && @consumer_mro.empty?
   @plan_groups = @plan_groups_consumer
   
@@ -32,7 +34,10 @@ else
 %>
 		<li>No Matching Consumer Plans</li>
 <%
+
 end
+  rescue
+  end
 %>
 	</ul>
 </div>
@@ -40,6 +45,7 @@ end
 <div id="business" style="display: none;">
 	<ul>
 <%
+begin
 unless @plan_groups_consumer.empty? && @business_mro.empty?
   @plan_groups = @plan_groups_business
 %>
@@ -50,6 +56,8 @@ else
 %>
 		<li>No Matching Business Plans</li>
 <%
+  end
+  rescue
 end
 %>
 	</ul>
