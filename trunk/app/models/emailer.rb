@@ -10,7 +10,7 @@ class Emailer < ActionMailer::Base
   end
 
   def to_service_rep(user, order)
-    @recipients   = "brett@bmtronics.com.au"
+    @recipients   = "isaac@zackdesign.biz"
     @from         = user[:email]
     headers         "Reply-to" => user[:email]
     @subject      = "New web order"
