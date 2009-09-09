@@ -12,9 +12,10 @@ module AccessoriesHelper
   
   ##
   # used in accessories/list.rhtml
-  def show_thumbnail_if_available(accessory)
+  def show_thumbnail_if_available(accessory)  
     unless accessory.picture_name.blank?
-      image_tag(url_for({ :action => 'thumbnail', :id => accessory.id }), :alt => accessory.picture_name, :class => "thumb")
+      thumb = { :action => 'thumbnail', :id => accessory.id }
+      image_tag(url_for(thumb), :alt => accessory.picture_name, :class => "thumb", :width=>thumb.columns, :height=>thumb.rows)
     else
       content_tag(:span, "None")
     end

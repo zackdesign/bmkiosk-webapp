@@ -80,13 +80,7 @@ class PhonesController < ApplicationController
     end
 
     # Filter the list of phones further based upon conditions that cross table boundaries e.g. features
-    unless ((params[:feature] == nil) or (params[:feature].empty?))
-#      unless (conditions.empty?)
-#        conditions += " ";
-#      end
-#      conditions += "feature IN (" + params[:feature].join(", ") + ")"
-      @phones.delete_if { |phone| !phone_has_features(phone, params[:feature]) }
-    end
+    @phones.delete_if { |phone| !phone_has_features(phone, params[:feature]) } unless ((params[:feature] == nil) or (params[:feature].empty?))
     
     @user = session[:user_type]
 
@@ -353,7 +347,7 @@ class PhonesController < ApplicationController
     @service_type = params[:service_type]
     
     @page_title = ' - '+@plan.name
-    
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @phone }
@@ -631,17 +625,13 @@ class PhonesController < ApplicationController
   def phone_has_features(phone, feature_ids)
     has_features = false
 
-    unless ((phone.features == nil) or (phone.features.empty?))
-      for feature_id in feature_ids
+    for feature_id in feature_ids
         @feature = Feature.find(feature_id)
         if (phone.features.include?(@feature))
           has_features = true
-        else
-          has_features = false
           break
         end
-      end
-    end
+      end unless ((phone.features == nil) or (phone.features.empty?))
 
     return has_features
   end

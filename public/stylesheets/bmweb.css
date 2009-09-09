@@ -90,9 +90,20 @@ legend {
 
 /* Accessories */
 
+.accessories .thumbnail img {
+    max-width: 40px;
+
+}
+
+.accessories .thumbnail {
+    width: 40px;
+
+}
+
 .accessories .description {
   overflow: hidden;
   width: 390px;
+  max-width: 390px;
 }
 
 .accessories .features {
@@ -238,9 +249,8 @@ a.blue_button:visited
 	
 .headerLogo { 
 	float:left;
+    padding-left: 250px;
 	padding-top:13px;
-  margin-left: 250px;
-	padding-left:11px;
 	padding-bottom: 20px;
 	height:32px;
 	width:152px; }
@@ -324,7 +334,7 @@ html>/**/body .headerSearchWrap {
 .searchField {
 	float:left; 
 	width:110px; 
-	padding-left:10px;
+	padding-left:0px;
 }
 
 .searchOptions {
@@ -426,7 +436,7 @@ html>/**/body .headerSearchWrap {
 	font-size: 100%;
 	font-weight:normal; 
 	text-align:left;
-	margin-left:10px;
+	margin-left:0px;
 	position: relative;
   z-index: 200; }
 

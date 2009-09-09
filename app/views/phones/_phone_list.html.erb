@@ -23,7 +23,7 @@
        if (change_ids)
            phone.id = phone.phone_id
            
-           if (@network != phone.network)
+           if (@network != phone.network.sub!(/&trade;/, ''))
                stop = true
            end
        end

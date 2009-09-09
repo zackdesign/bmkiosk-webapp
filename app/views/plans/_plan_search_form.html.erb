@@ -73,7 +73,7 @@
 
   unless ((@networks == nil) or (@networks.empty?))
     for network in @networks
-        
+
         if ((network.last == @network))
             checked = 'checked="checked"'
             
@@ -88,7 +88,7 @@
 		<div>
 			<label><%= network.first %></label>
 			<span>
-				<input name="network" type="radio" value="<%= network.last %>" <%= checked -%> />
+				<input name="network" type="radio" value="<%= network.last.sub!(/&trade;/, '') %>" <%= checked -%> />
 			</span>
 		</div>
 <%
