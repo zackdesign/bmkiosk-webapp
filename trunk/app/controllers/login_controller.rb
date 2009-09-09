@@ -7,7 +7,7 @@ class LoginController < ApplicationController
   
   
   before_filter :find_cart, :except => :empty_cart
-  before_filter :authorize, :except => [:login, :logout]
+  before_filter :authorize, :except => [:login, :logout, :return_logo]
   
   def index
     @all_users = User.find(:all)
