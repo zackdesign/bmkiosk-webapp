@@ -40,7 +40,8 @@ module ApplicationHelper
       max = options[:max]
       
       phones = Phone.find_by_sql('SELECT p.id, p.name, p.brand
-                                  FROM phones AS p                               
+                                  FROM phones AS p          
+						    WHERE outofstock = "0" AND discontinued = "0"
                                   ORDER BY p.popularity DESC
                                   LIMIT ' + max.to_s )
       
@@ -58,7 +59,8 @@ module ApplicationHelper
       max = options[:max]
       
       accessories = Accessory.find_by_sql('SELECT p.id, p.name
-                                  FROM accessories AS p                               
+                                  FROM accessories AS p     
+						    WHERE outofstock = "0" AND discontinued = "0"                          
                                   ORDER BY p.popularity DESC
                                   LIMIT ' + max.to_s )
       
