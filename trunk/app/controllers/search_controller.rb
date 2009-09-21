@@ -35,6 +35,7 @@ class SearchController < ApplicationController
 #      end
 
       @plans = Plan.find(:all, :conditions => @conditions)
+      @conditions += " AND discontinued = '0' AND outofstock = '0'";
       @phones = Phone.find(:all, :conditions => @conditions)
       @accessories = Accessory.find(:all, :conditions => @conditions)
     else
