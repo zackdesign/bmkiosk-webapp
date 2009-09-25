@@ -28,6 +28,10 @@
            end
        end
        
+       if (phone.discontinued || phone.outofstock)
+		stop = true
+       end
+       
        unless (stop)
 %>
 <tr >

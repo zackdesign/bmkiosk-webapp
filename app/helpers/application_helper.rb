@@ -7,7 +7,7 @@ module ApplicationHelper
     
     accessories = Accessory.find_by_sql('SELECT p.id, p.name
                                     FROM featured_accessories AS f, accessories AS p
-                                    WHERE p.id = f.accessory_id AND f.atype = "latest"
+                                    WHERE p.id = f.accessory_id AND f.atype = "latest" AND outofstock = "0" AND discontinued = "0" AND active = "1"
                                     ORDER BY p.name
                                     LIMIT '+max.to_s)
     
@@ -60,7 +60,7 @@ module ApplicationHelper
       
       accessories = Accessory.find_by_sql('SELECT p.id, p.name
                                   FROM accessories AS p     
-						    WHERE outofstock = "0" AND discontinued = "0"                          
+						    WHERE outofstock = "0" AND discontinued = "0" AND active = "1"                      
                                   ORDER BY p.popularity DESC
                                   LIMIT ' + max.to_s )
       
