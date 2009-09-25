@@ -23,9 +23,9 @@ class AccessoriesController < ApplicationController
 
     @page = (params[:page].nil?) ? 1 : params[:page]
     unless @selected_brand.empty?
-      @accessories = Accessory.paginate :page => @page, :per_page => 9, :conditions => ['name like ?', '%'+@selected_brand+'%'], :order => 'name'
+      @accessories = Accessory.paginate :page => @page, :per_page => 9, :conditions => ['active = "1" AND outofstock = "0" AND discontinued = "0" AND name like ?', '%'+@selected_brand+'%'], :order => 'name'
     else
-      @accessories = Accessory.paginate :page => @page, :per_page => 10, :order => 'name'
+      @accessories = Accessory.paginate :page => @page, :per_page => 10, :order => 'name', :conditions => 'active = "1" AND outofstock = "0" AND discontinued = "0"'
     end
 
     # Get a list of phone brands
