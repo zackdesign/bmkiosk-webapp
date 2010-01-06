@@ -149,10 +149,15 @@ class AccessoriesController < ApplicationController
   # GET /accessories/1.xml
   def show
     @accessory = Accessory.find(params[:id])
-    @page_title = ' - '+@accessory.name
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @accessory }
+
+    if (@accessory.discontinued == 1) || (@accessory.outofstock || 1) || (@accessory.active == 0)
+      redirect_to(:action=>'index')
+    else
+      @page_title = ' - '+@accessory.name
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @accessory }
+      end
     end
   end
 
