@@ -150,7 +150,7 @@ class AccessoriesController < ApplicationController
   def show
     @accessory = Accessory.find(params[:id])
 
-    if (@accessory.discontinued == 1) || (@accessory.outofstock == 1) || (@accessory.active == 0)
+    if (@accessory.active == false)
       flash[:notice] = "Product is either discontinued or out of stock."
       redirect_to(:action=>'index')
     else
