@@ -94,82 +94,86 @@ class PhonesController < ApplicationController
   # GET /phones/1.xml
   def show
     @phone = Phone.find(params[:id])
-    
-    # Both existing phone number and service type need to be shown on the form and sent in the email 
-    @existing = params[:existing]
-    @network = params[:network]
-    @service_type = params[:service]
-    
-    if(@service_type == nil)
-    
-    # First find all the plans that are available with the chosen phone
-    @plans = Plan.find_by_sql("SELECT p.* FROM plans p, phones_plans pp WHERE p.id = pp.plan_id AND pp.phone_id = " + params[:id]) 
-    
-    # Now extract a collection containing each plan group id associated with each plan found
-    begin
-      @plan_groups = true
-      @plan_group_ids = @plans.collect { |plan| plan.plan_group.id }
 
-    # Now find the consumer plan groups
-    if session[:user_type] == '4'
-#      @categories = ['business','consumer']
-      @categories = ['business']
-      @other_name = "Business"
-    elsif session[:user_type] == '3'
-#      @categories = ['corporate','consumer']
-      @categories = ['corporate']
-      @other_name = "Corporate"
-    elsif session[:user_type] == '2'
-#      @categories = ['government','consumer']
-      @categories = ['government']
-      @other_name = "Government"
+    if (@phone.discontinued == true)
+      redirect_to(:action=>'index')
     else
-#      @categories = ['consumer']
-      @categories = []
-      @other_name = ""
-    end
-    
-#    @plan_groups_consumer = PlanGroup.find_all_by_categories_and_id(@categories,  @plan_group_ids.uniq!)
-    @plan_groups_consumer = PlanGroup.find_all_by_categories_and_id('consumer',  @plan_group_ids.uniq!)
-    
-    if @plan_groups_consumer.nil?
-       @plan_groups_consumer = Array.new
-    end
+      # Both existing phone number and service type need to be shown on the form and sent in the email
+      @existing = params[:existing]
+      @network = params[:network]
+      @service_type = params[:service]
 
-    @consumer_mro = PlanGroup.find_all_by_categories_and_applies_all_phones("consumer", 1)
-    if @consumer_mro.nil?
-          @consumer_mro = Array.new
-    end
+      if(@service_type == nil)
 
-    @plan_groups_other = PlanGroup.find_all_by_categories_and_id(@categories,  @plan_group_ids.uniq!)
-    if @plan_groups_other.nil?
-       @plan_groups_other = Array.new
-    end
+      # First find all the plans that are available with the chosen phone
+      @plans = Plan.find_by_sql("SELECT p.* FROM plans p, phones_plans pp WHERE p.id = pp.plan_id AND pp.phone_id = " + params[:id])
 
-    @other_mro = PlanGroup.find_all_by_categories_and_applies_all_phones(@categories, 1)
-    if @other_mro.nil?
-      @other_mro = Array.new
-    end
+      # Now extract a collection containing each plan group id associated with each plan found
+      begin
+        @plan_groups = true
+        @plan_group_ids = @plans.collect { |plan| plan.plan_group.id }
+
+      # Now find the consumer plan groups
+      if session[:user_type] == '4'
+  #      @categories = ['business','consumer']
+        @categories = ['business']
+        @other_name = "Business"
+      elsif session[:user_type] == '3'
+  #      @categories = ['corporate','consumer']
+        @categories = ['corporate']
+        @other_name = "Corporate"
+      elsif session[:user_type] == '2'
+  #      @categories = ['government','consumer']
+        @categories = ['government']
+        @other_name = "Government"
+      else
+  #      @categories = ['consumer']
+        @categories = []
+        @other_name = ""
+      end
+
+  #    @plan_groups_consumer = PlanGroup.find_all_by_categories_and_id(@categories,  @plan_group_ids.uniq!)
+      @plan_groups_consumer = PlanGroup.find_all_by_categories_and_id('consumer',  @plan_group_ids.uniq!)
+
+      if @plan_groups_consumer.nil?
+         @plan_groups_consumer = Array.new
+      end
+
+      @consumer_mro = PlanGroup.find_all_by_categories_and_applies_all_phones("consumer", 1)
+      if @consumer_mro.nil?
+            @consumer_mro = Array.new
+      end
+
+      @plan_groups_other = PlanGroup.find_all_by_categories_and_id(@categories,  @plan_group_ids.uniq!)
+      if @plan_groups_other.nil?
+         @plan_groups_other = Array.new
+      end
+
+      @other_mro = PlanGroup.find_all_by_categories_and_applies_all_phones(@categories, 1)
+      if @other_mro.nil?
+        @other_mro = Array.new
+      end
 
 
-    rescue 
-      # no need to do anything here - this happens when there is no plan group attached to the phone
-      @plan_groups = false
-    end
+      rescue
+        # no need to do anything here - this happens when there is no plan group attached to the phone
+        @plan_groups = false
+      end
 
 
-    
-    else
-    
-        @plan = Plan.find(params[:plan])   
-    
-    end
-    
-    @page_title = ' - '+@phone.brand+' '+@phone.name
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @phone }
+      else
+
+          @plan = Plan.find(params[:plan])
+
+      end
+
+      @page_title = ' - '+@phone.brand+' '+@phone.name
+
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @phone }
+      end
     end
   end
 
